@@ -6,44 +6,71 @@ import type {
 
 declare module "@mui/material/styles" {
   interface Palette {
-    hybrid?: PaletteColor;
-    highlight?: PaletteColor;
+    headfoot?: PaletteColor;
+    hero?: PaletteColor;
+    mainbody?: PaletteColor;
+    icons?: PaletteColor;
   }
   interface PaletteOptions {
-    hybrid?: PaletteColorOptions;
-    highlight?: PaletteColorOptions;
+    headfoot?: PaletteColorOptions;
+    hero?: PaletteColorOptions;
+    mainbody?: PaletteColorOptions;
+    icons?: PaletteColorOptions;
   }
 }
 
 export const lightPalette: PaletteOptions = {
   primary: {
-    main: "",
-    contrastText: "",
+    main: "#F06549",
+    contrastText: "#FCFFFF",
   },
   secondary: {
-    main: "",
-    contrastText: "",
+    main: "#1F2937",
+    contrastText: "#E1E3E8",
   },
   info: {
-    main: "",
-    contrastText: "",
+    main: "#FFFFFF",
+    contrastText: "#1F2937",
   },
-  error: {
-    main: "",
-    contrastText: "",
+  divider: "#D1D5DB",
+  headfoot: {
+    main: "#F9FAFB",
   },
-  success: {
-    main: "",
-    contrastText: "",
+  hero: {
+    main: "#E2E8F0",
   },
-  hybrid: {
-    main: "",
-    contrastText: "",
+  mainbody: {
+    main: "#FFFFFF",
   },
-  highlight: {
-    main: "",
-    contrastText: "",
+  icons: {
+    main: "#64748B",
   },
 };
 
-export const darkPalette: PaletteOptions = {};
+export const darkPalette: PaletteOptions = {
+  primary: {
+    main: "#F06549",
+    contrastText: "#FCFFFF",
+  },
+  secondary: {
+    main: "#1F2937",
+    contrastText: "#E1E3E8",
+  },
+  info: {
+    main: "#F9FAFB",
+    contrastText: "#1F2937",
+  },
+  divider: "#1F2937",
+  headfoot: {
+    main: "#111827",
+  },
+  hero: {
+    main: "#18212F",
+  },
+  mainbody: {
+    main: "#1F2937",
+  },
+  icons: {
+    main: "#94A3B8",
+  },
+};
