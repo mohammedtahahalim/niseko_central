@@ -1,16 +1,13 @@
 import { useTranslation } from "react-i18next";
 import Loader from "./components/Loader";
+import Router from "./router/Router";
 
 function App() {
-  const { t, ready } = useTranslation();
+  const { ready } = useTranslation();
 
   if (!ready) return <Loader />;
 
-  return (
-    <div className="app">
-      <div>{t("title")}</div>
-    </div>
-  );
+  return <Router />;
 }
 
 export default App;
