@@ -1,0 +1,40 @@
+import { lazy } from "react";
+const Concierge = lazy(() => import("../pages/general_pages/Concierge"));
+const Contact = lazy(() => import("../pages/general_pages/Contact"));
+const Deals = lazy(() => import("../pages/general_pages/Deals"));
+const FAQ = lazy(() => import("../pages/general_pages/FAQ"));
+const Home = lazy(() => import("../pages/general_pages/Home"));
+const NotFound = lazy(() => import("../pages/general_pages/NotFound"));
+const Reservations = lazy(() => import("../pages/general_pages/Reservations"));
+import type { TRoutes } from "../utils/Types";
+
+export const general_pages: TRoutes[] = [
+  {
+    path: "/",
+    element: Home,
+  },
+  {
+    path: "/concierge",
+    element: Concierge,
+  },
+  {
+    path: "/contact",
+    element: Contact,
+  },
+  {
+    path: "/deals",
+    element: Deals,
+  },
+  {
+    path: "/faq",
+    element: FAQ,
+  },
+  {
+    path: "*",
+    element: NotFound,
+  },
+  {
+    path: "/reservations",
+    element: Reservations,
+  },
+];

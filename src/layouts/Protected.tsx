@@ -1,9 +1,9 @@
 import { Outlet } from "react-router-dom";
 
-export default function Main() {
+export default function Protected() {
   return (
     <div>
-      Main
+      Protected
       <Outlet />
     </div>
   );
