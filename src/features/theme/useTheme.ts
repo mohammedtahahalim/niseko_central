@@ -1,7 +1,8 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import type { TTheme } from "../../utils/Types";
 import { lightPalette, darkPalette } from "./MuiSettings";
 import { createTheme, type Theme } from "@mui/material";
+import { debouncer } from "../../utils/Constants";
 
 interface UseThemeProps {
   cooldown?: number;
@@ -33,7 +34,6 @@ export default function useTheme({
   cooldown = 500,
 }: UseThemeProps): UseThemeReturns {
   const [currentTheme, setCurrentTheme] = useState<TTheme>(getInitialTheme);
-  const cooldownRef = useRef<boolean>(false);
 
   useEffect(() => {
     try {
@@ -66,16 +66,14 @@ export default function useTheme({
     });
   }, [currentTheme]);
 
-  const changeTheme = useCallback(() => {
-    if (cooldownRef.current) return;
-    cooldownRef.current = true;
-    setCurrentTheme((currentTheme) =>
-      currentTheme === "dark" ? "light" : "dark"
-    );
-    setTimeout(() => {
-      cooldownRef.current = false;
-    }, cooldown);
-  }, [cooldown]);
+  const changeTheme = useCallback(
+    debouncer(() => {
+      setCurrentTheme((currentTheme) =>
+        currentTheme === "dark" ? "light" : "dark"
+      );
+    }, cooldown),
+    [cooldown]
+  );
 
   return { NisekoTheme, currentTheme, changeTheme };
 }
