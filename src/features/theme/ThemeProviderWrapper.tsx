@@ -1,5 +1,5 @@
 import { CssBaseline, ThemeProvider } from "@mui/material";
-import { MiniContext } from "./miniContext";
+import { MiniContext } from "./MiniContext";
 import useTheme from "./useTheme";
 
 interface ThemeProviderWrapperProps {
