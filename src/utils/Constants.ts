@@ -7,3 +7,4 @@ export const debouncer = (callback: Function, cooldown: number) => {
     }, cooldown);
   };
 };
+export const possibleLanguages = ["en", "ja", "ar", "fr"];
