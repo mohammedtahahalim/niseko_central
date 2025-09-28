@@ -3,3 +3,8 @@ export type TRoutes = {
   path: string;
   element: React.FC;
 };
+export type TRoles = "admin" | "devs" | "member" | "guest";
+export type TCurrentUser = {
+  id: number;
+  permissions: TRoles;
+};
