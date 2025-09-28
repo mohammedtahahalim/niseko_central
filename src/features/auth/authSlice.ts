@@ -13,12 +13,6 @@ interface AuthState {
   currentUser: TCurrentUser | null;
 }
 
-interface CheckAuthenticationProps {
-  baseURL?: string;
-  endpoint?: string;
-  options?: RequestInit;
-}
-
 interface ErrorShape {
   errorMessage: string;
   redirectTo: string;
@@ -26,22 +20,20 @@ interface ErrorShape {
 
 export const checkAuthentication = createAsyncThunk<
   TCurrentUser,
-  CheckAuthenticationProps,
+  void,
   { rejectValue: ErrorShape }
->("check/authentication", async (args, { signal, rejectWithValue }) => {
-  const {
-    baseURL = import.meta.env.VITE_API_URL,
-    endpoint = "auth",
-    options = {},
-  } = args;
+>("check/authentication", async (_, { signal, rejectWithValue }) => {
+  const baseURL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+  const endpoint = "auth";
   const fullURL: string = `${baseURL}/api/${endpoint}`;
   const fullOptions: RequestInit = {
+    method: "GET",
     signal,
     credentials: "include",
-    ...options,
   };
   try {
     const response = await fetch(fullURL, fullOptions);
+    console.log(response.status);
     const data = await response.json();
     if (!response.ok) {
       throw new Error(

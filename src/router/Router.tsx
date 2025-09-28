@@ -6,15 +6,15 @@ import { user_pages } from "./user_pages";
 import { item_pages } from "./item_pages";
 import Main from "../layouts/Main";
 import Generic from "../layouts/Generic";
-import Protected from "../layouts/Protected";
 import Loader from "../components/Loader";
+import Auth from "../features/auth/Auth";
 
 export default function Router() {
   return (
     <BrowserRouter>
       <Suspense fallback={<Loader />}>
         <Routes>
-          <Route element={<Protected />}>
+          <Route element={<Auth />}>
             {user_pages.map((page) => {
               return (
                 <Route
