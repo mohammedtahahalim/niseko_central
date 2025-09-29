@@ -8,6 +8,4 @@ export type TCurrentUser = {
   id: number;
   permissions: TRoles;
   name: string;
-  picture: string;
-  blurred_picture: string;
 };

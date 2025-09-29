@@ -1,8 +1,4 @@
-import {
-  createAsyncThunk,
-  createSlice,
-  type PayloadAction,
-} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { TCurrentUser } from "../../utils/Types";
 
 interface AuthState {
@@ -25,8 +21,7 @@ export const checkAuthentication = createAsyncThunk<
   { rejectValue: string }
 >("check/authentication", async (_, { signal, rejectWithValue }) => {
   const baseURL = import.meta.env.VITE_API_URL || "http://localhost:3000";
-  const endpoint = "auth";
-  const fullURL: string = `${baseURL}/api/${endpoint}`;
+  const fullURL: string = `${baseURL}/api/auth`;
   const fullOptions: RequestInit = {
     method: "GET",
     signal,
@@ -69,19 +64,15 @@ export const authSlice = createSlice({
     });
     builder.addCase(checkAuthentication.rejected, (state, action) => {
       state.loading = false;
-      state.isAuthenticated = false;
       state.redirectTo = "/";
       state.error = action.payload ?? "Unknown Error";
     });
-    builder.addCase(
-      checkAuthentication.fulfilled,
-      (state, action: PayloadAction<ResponseData>) => {
-        state.currentUser = action.payload.currentUser;
-        state.loading = false;
-        state.isAuthenticated = action.payload.isAuthenticated;
-        state.redirectTo = action.payload.redirectTo;
-      }
-    );
+    builder.addCase(checkAuthentication.fulfilled, (state, action) => {
+      state.currentUser = action.payload.currentUser;
+      state.loading = false;
+      state.isAuthenticated = action.payload.isAuthenticated;
+      state.redirectTo = action.payload.redirectTo;
+    });
   },
 });
 

@@ -9,14 +9,14 @@ export default function Auth() {
   const { loading, error, isAuthenticated, redirectTo } = useSelector(
     (state: RootState) => state.auth
   );
-  
+
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
     dispatch(checkAuthentication());
   }, []);
   if (loading) return <Loader />;
-  if (redirectTo) return <Navigate to={redirectTo} replace />;
   if (error) return <div>{error}</div>;
-  if (!isAuthenticated) return null;
+  if (redirectTo) return <Navigate to={redirectTo} replace />;
+  if (!isAuthenticated) return <Loader />;
   return <Outlet />;
 }

@@ -39,12 +39,11 @@ export default async function handler(req, res) {
         currentUser: null,
       });
     }
-    const { id, permissions, name, picture, blurred_picture } = isValidToken;
-    const currentUser = { id, permissions, name, picture, blurred_picture };
+    const { id, permissions, name } = isValidToken;
     return res.status(200).json({
       isAuthenticated: true,
       redirectTo: "/",
-      currentUser: currentUser,
+      currentUser: { id, permissions, name },
     });
   } catch (err) {
     console.log(err);
