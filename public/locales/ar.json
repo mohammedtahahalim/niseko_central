@@ -1,3 +1,7 @@
 {
-  "title": "مرحبًا"
+  "title": "مرحبًا",
+  "auth_fails": {
+    "try_again": "حاول ثانية",
+    "return_homepage": "العودة إلى الصفحة الرئيسية"
+  }
 }

@@ -1,8 +1,4 @@
-import {
-  createAsyncThunk,
-  createSlice,
-  type PayloadAction,
-} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { TCurrentUser } from "../../utils/Types";
 
 interface AuthState {
@@ -13,19 +9,19 @@ interface AuthState {
   currentUser: TCurrentUser | null;
 }
 
-interface ErrorShape {
-  errorMessage: string;
+interface ResponseData {
+  currentUser: TCurrentUser;
+  isAuthenticated: boolean;
   redirectTo: string;
 }
 
 export const checkAuthentication = createAsyncThunk<
-  TCurrentUser,
+  ResponseData,
   void,
-  { rejectValue: ErrorShape }
+  { rejectValue: string }
 >("check/authentication", async (_, { signal, rejectWithValue }) => {
   const baseURL = import.meta.env.VITE_API_URL || "http://localhost:3000";
-  const endpoint = "auth";
-  const fullURL: string = `${baseURL}/api/${endpoint}`;
+  const fullURL: string = `${baseURL}/api/auth`;
   const fullOptions: RequestInit = {
     method: "GET",
     signal,
@@ -33,34 +29,19 @@ export const checkAuthentication = createAsyncThunk<
   };
   try {
     const response = await fetch(fullURL, fullOptions);
-    const data = await response.json();
     if (!response.ok) {
-      throw new Error(
-        JSON.stringify({
-          errorMessage: response.status.toString(),
-          redirectTo: data.redirectTo,
-        })
-      );
+      throw new Error(response.status.toString());
     }
+    const data = await response.json();
     return data;
   } catch (err) {
-    const returnError: ErrorShape = JSON.parse(err as string);
     if (err instanceof DOMException && err.name === "AbortError") {
-      return rejectWithValue({
-        errorMessage: "Network Request Aborted ...",
-        redirectTo: "/",
-      });
+      return rejectWithValue("Network Request Aborted ...");
     }
     if (err instanceof Error) {
-      return rejectWithValue({
-        errorMessage: returnError.errorMessage ?? "Unknown Error",
-        redirectTo: returnError.redirectTo ?? "/",
-      });
+      return rejectWithValue(err.message);
     }
-    return rejectWithValue({
-      errorMessage: "Unknown Error",
-      redirectTo: "/",
-    });
+    return rejectWithValue("Unknow Error");
   }
 });
 
@@ -83,19 +64,15 @@ export const authSlice = createSlice({
     });
     builder.addCase(checkAuthentication.rejected, (state, action) => {
       state.loading = false;
-      state.isAuthenticated = false;
-      state.redirectTo = action.payload?.redirectTo ?? "/";
-      state.error = action.payload?.errorMessage ?? "Unknown Error";
+      state.redirectTo = "/";
+      state.error = action.payload ?? "Unknown Error";
     });
-    builder.addCase(
-      checkAuthentication.fulfilled,
-      (state, action: PayloadAction<TCurrentUser>) => {
-        state.currentUser = action.payload;
-        state.loading = false;
-        state.isAuthenticated = true;
-        state.redirectTo = null;
-      }
-    );
+    builder.addCase(checkAuthentication.fulfilled, (state, action) => {
+      state.currentUser = action.payload.currentUser;
+      state.loading = false;
+      state.isAuthenticated = action.payload.isAuthenticated;
+      state.redirectTo = action.payload.redirectTo;
+    });
   },
 });
 

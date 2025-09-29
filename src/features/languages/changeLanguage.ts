@@ -18,6 +18,7 @@ export default function useLanguage({
 }: UseLanguageProps): UseLanguageReturn {
   const { i18n } = useTranslation();
   const cooldownRef = useRef<boolean>(false);
+
   const changeLanguage = useCallback(
     (newLang: TLanguage) => {
       if (!possibleLang.includes(newLang)) return;
