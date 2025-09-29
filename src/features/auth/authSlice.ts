@@ -33,7 +33,6 @@ export const checkAuthentication = createAsyncThunk<
   };
   try {
     const response = await fetch(fullURL, fullOptions);
-    console.log(response.status);
     const data = await response.json();
     if (!response.ok) {
       throw new Error(
