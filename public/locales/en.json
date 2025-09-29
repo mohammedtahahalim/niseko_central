@@ -1,3 +1,7 @@
 {
-  "title": "Hello"
+  "title": "Hello",
+  "auth_fails": {
+    "try_again": "Try Again",
+    "return_homepage": "Return to Homepage"
+  }
 }

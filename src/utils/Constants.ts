@@ -1,3 +1,5 @@
+import type { TBackendErrors } from "./Types";
+
 export const debouncer = (callback: Function, cooldown: number) => {
   let timer: number;
   return (...args: any[]) => {
@@ -8,3 +10,51 @@ export const debouncer = (callback: Function, cooldown: number) => {
   };
 };
 export const possibleLanguages = ["en", "ja", "ar", "fr"];
+export const backendErrors: TBackendErrors = {
+  "en-US": {
+    "400": "Please refresh the page or return to the homepage",
+    "401":
+      "You are not authorized to access this page, please return to the homepage",
+    "403":
+      "You do not have permission to access this page; please contact the administration or return to the homepage",
+    "404": "The requested resource cannot be found",
+    "405": "The requested resource cannot be accessed with this HTTP method",
+    "500": "Internal server error; please try again later",
+    "522": "Server under maintenance; service will resume shortly",
+  },
+  ja: {
+    "400": "ページを更新するか、ホームページに戻ってください",
+    "401":
+      "このページにアクセスする権限がありません。ホームページに戻ってください",
+    "403":
+      "このページにアクセスする権限がありません。管理者に連絡するか、ホームページに戻ってください",
+    "404": "要求されたリソースが見つかりません",
+    "405": "このリソースは、このHTTPメソッドではアクセスできません",
+    "500":
+      "サーバー内部でエラーが発生しました。しばらくしてから再度お試しください",
+    "522": "サーバーはメンテナンス中です。まもなく復旧します",
+  },
+  ar: {
+    "400": "يرجى تحديث الصفحة أو العودة إلى الصفحة الرئيسية",
+    "401":
+      "ليس لديك إذن للوصول إلى هذه الصفحة؛ يرجى العودة إلى الصفحة الرئيسية",
+    "403":
+      "ليس لديك صلاحية الوصول إلى هذه الصفحة؛ يرجى الاتصال بالإدارة أو العودة إلى الصفحة الرئيسية",
+    "404": "المورد المطلوب غير موجود",
+    "405": "لا يمكن الوصول إلى المورد المطلوب باستخدام طريقة هذه",
+    "500": "خطأ داخلي في الخادم؛ يرجى المحاولة لاحقًا",
+    "522": "الخادم تحت الصيانة؛ سيعود للعمل قريبًا",
+  },
+  fr: {
+    "400": "Veuillez actualiser la page ou revenir à la page d'accueil",
+    "401":
+      "Vous n'êtes pas autorisé à accéder à cette page ; veuillez revenir à la page d'accueil",
+    "403":
+      "Vous n'avez pas la permission d'accéder à cette page ; veuillez contacter l'administration ou revenir à la page d'accueil",
+    "404": "La ressource demandée est introuvable",
+    "405":
+      "La ressource demandée ne peut pas être accédée avec cette méthode HTTP",
+    "500": "Erreur interne du serveur ; veuillez réessayer plus tard",
+    "522": "Serveur en maintenance ; le service reprendra sous peu",
+  },
+};

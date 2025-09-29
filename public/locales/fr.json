@@ -1,3 +1,7 @@
 {
-  "title": "Bonjour"
+  "title": "Bonjour",
+  "auth_fails": {
+    "try_again": "Essayer à nouveau",
+    "return_homepage": "Retour à la page d'accueil"
+  }
 }
