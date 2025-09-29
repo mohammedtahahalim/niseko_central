@@ -9,6 +9,7 @@ export default function Auth() {
   const { loading, error, isAuthenticated, redirectTo } = useSelector(
     (state: RootState) => state.auth
   );
+  
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
     dispatch(checkAuthentication());
