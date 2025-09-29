@@ -14,7 +14,7 @@ export default function Auth() {
     dispatch(checkAuthentication());
   }, []);
   if (loading) return <Loader />;
-  if (redirectTo) return <Navigate to={redirectTo} />;
+  if (redirectTo) return <Navigate to={redirectTo} replace />;
   if (error) return <div>{error}</div>;
   if (!isAuthenticated) return null;
   return <Outlet />;

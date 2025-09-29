@@ -32,17 +32,17 @@ export const checkAuthentication = createAsyncThunk<
     credentials: "include",
   };
   try {
-    const response = await fetch(fullURL, fullOptions);
-    console.log(response.status);
-    const data = await response.json();
+    const response = await fetch(fullURL, fullOptions).catch();
     if (!response.ok) {
+      const errorData = await response.json();
       throw new Error(
         JSON.stringify({
           errorMessage: response.status.toString(),
-          redirectTo: data.redirectTo,
+          redirectTo: errorData.redirectTo,
         })
       );
     }
+    const data = await response.json();
     return data;
   } catch (err) {
     const returnError: ErrorShape = JSON.parse(err as string);
