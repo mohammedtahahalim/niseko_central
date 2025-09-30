@@ -1,10 +1,13 @@
 import { Box, styled } from "@mui/material";
+import useModal from "./useModal";
+import { cloneElement } from "react";
 
 interface ModalProps {
   fullScreen?: boolean;
   blurBackground?: boolean;
   sx: React.CSSProperties;
   children: React.ReactNode;
+  trigger: React.ReactElement;
 }
 
 const ModalContainer = styled(Box)<{
@@ -25,18 +28,30 @@ const ModalContainer = styled(Box)<{
 
 const ModalWrapper = styled(Box)({});
 
-export default function Modal({
+export default function Modal<P extends HTMLElement, M extends HTMLElement>({
   fullScreen = false,
   blurBackground = true,
   sx = {},
+  children,
+  trigger,
 }: ModalProps) {
+  const { modalRef, parentRef, isOpen, openModal, closeModal } = useModal<
+    P,
+    M
+  >();
+  const clonedTrigger = cloneElement(trigger as React.ReactElement, {
+    onClick: (e) => {
+      e.stopPropagation();
+      openModal();
+    },
+  });
   return (
     <ModalContainer
       fullScreen={fullScreen}
       blurBackground={blurBackground}
       sx={sx}
     >
-      <ModalWrapper>Modal</ModalWrapper>
+      <ModalWrapper>{children}</ModalWrapper>
     </ModalContainer>
   );
 }
