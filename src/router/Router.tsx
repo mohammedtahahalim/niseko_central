@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import { general_pages } from "./general_pages";
 import { auth_pages } from "./auth_pages";
 import { user_pages } from "./user_pages";
@@ -8,8 +8,15 @@ import Main from "../layouts/Main";
 import Generic from "../layouts/Generic";
 import Loader from "../components/Loader";
 import Auth from "../features/auth/Auth";
+import { useTranslation } from "react-i18next";
 
 export default function Router() {
+  const { t, i18n } = useTranslation();
+
+  useEffect(() => {
+    document.title = t("title");
+  }, [i18n.language]);
+
   return (
     <BrowserRouter>
       <Suspense fallback={<Loader />}>
