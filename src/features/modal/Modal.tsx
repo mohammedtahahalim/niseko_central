@@ -1,6 +1,6 @@
 import { Box, styled } from "@mui/material";
 import useModal from "./useModal";
-import { cloneElement } from "react";
+import { cloneElement, type CSSProperties } from "react";
 
 interface ModalProps {
   fullScreen?: boolean;
@@ -13,7 +13,7 @@ interface ModalProps {
 const ModalContainer = styled(Box)<{
   fullScreen: boolean;
   blurBackground: boolean;
-  sx: React.CSSProperties;
+  sx: CSSProperties;
 }>(({ theme, fullScreen, blurBackground, sx }) => ({
   width: fullScreen ? "100vw" : "",
   height: fullScreen ? "100vh" : "",
@@ -39,19 +39,23 @@ export default function Modal<P extends HTMLElement, M extends HTMLElement>({
     P,
     M
   >();
+  console.log(parentRef, isOpen, closeModal);
   const clonedTrigger = cloneElement(trigger as React.ReactElement, {
-    onClick: (e) => {
+    onClick: (e: MouseEvent) => {
       e.stopPropagation();
       openModal();
     },
   });
   return (
-    <ModalContainer
-      fullScreen={fullScreen}
-      blurBackground={blurBackground}
-      sx={sx}
-    >
-      <ModalWrapper>{children}</ModalWrapper>
-    </ModalContainer>
+    <>
+      <ModalContainer
+        fullScreen={fullScreen}
+        blurBackground={blurBackground}
+        sx={sx}
+        ref={modalRef}
+      >
+        <ModalWrapper>{children}</ModalWrapper>
+      </ModalContainer>
+    </>
   );
 }
