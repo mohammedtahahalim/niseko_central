@@ -57,16 +57,20 @@ const ModalWrapper = styled(Box)(({ theme }) => ({
   minHeight: "150px",
   backgroundColor: theme.palette.info.main,
   color: theme.palette.primary.main,
-  padding: "10px",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
 }));
 
 const CloseModalWrapper = styled(Box)({
   position: "absolute",
-  top: "10px",
-  right: "10px",
-  width: "20px",
-  height: "20px",
+  top: "0px",
+  right: "0px",
   cursor: "pointer",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  zIndex: 9999,
 });
 
 export default function Modal({
@@ -83,6 +87,15 @@ export default function Modal({
       parentRef.current = node;
     },
     onClick: openModal,
+    "aria-haspopup": "dialog",
+    "aria-expanded": isOpen,
+  });
+
+  const clonedChild = React.cloneElement(children, {
+    width: "100%",
+    height: "100%",
+    minWidth: "150px",
+    minHeight: "150px",
   });
 
   return (
@@ -98,12 +111,16 @@ export default function Modal({
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3 }}
             exit={{ opacity: 0 }}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modal-title"
+            tabIndex={-1}
           >
             <ModalWrapper ref={modalRef}>
               <CloseModalWrapper onClick={closeModal}>
-                <CloseIcon fontSize="small" />
+                <CloseIcon fontSize="medium" />
               </CloseModalWrapper>
-              {children}
+              {clonedChild}
             </ModalWrapper>
           </ModalMotion>
         )}
