@@ -26,6 +26,7 @@
     "i18next-http-backend": "^3.0.2",
     "isomorphic-dompurify": "^2.28.0",
     "jsonwebtoken": "^9.0.2",
+    "motion": "^12.23.22",
     "mysql2": "^3.15.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",

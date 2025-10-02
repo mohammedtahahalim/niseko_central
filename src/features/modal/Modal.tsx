@@ -1,3 +1,113 @@
-export default function Modal() {
-  return <div>Modal</div>;
+import { Box, styled } from "@mui/material";
+import { AnimatePresence, motion } from "framer-motion";
+import React from "react";
+import useModal from "./useModal";
+import CloseIcon from "@mui/icons-material/Close";
+
+/* Read Carefully on how to use the modal */
+/*
+
+-- The Modal accepts the component to trigger the opening of the modal as trigger prop.
+-- The Modal takes the children as the instance of the modal to be created after the the trigger
+has been triggered.
+-- it accepts the following additional props, fullScreen a boolean value that determine if the wrapper
+around the modal takes the full screen width or not (the wrapper styling can be adjusted by using the
+sx prop)
+-- blurBackground a boolean value, needed if the wrapper is bigger than the modal content
+this will render the wrapper as blurry glass effect that mask the backround to highlight the modal
+-- sx an optional styling to style the wrapper of the modal (this is optional and had no default
+value)
+
+
+*/
+
+interface ModalProps {
+  trigger: React.ReactElement<any>;
+  children: React.ReactElement<any>;
+  sx?: React.CSSProperties;
+  fullScreen?: boolean;
+  blurBackground?: boolean;
+}
+
+type ModalStyle = Omit<ModalProps, "trigger" | "children" | "sx">;
+
+const ModalContainer = styled(Box, {
+  shouldForwardProp: (prop) =>
+    prop !== "fullScreen" && prop !== "blurBackground",
+})<ModalStyle>(({ blurBackground, fullScreen }) => ({
+  width: fullScreen ? "100vw" : "fit-content",
+  height: fullScreen ? "100vh" : "fit-content",
+  position: fullScreen ? "fixed" : "relative",
+  top: "0",
+  left: "0",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  background: blurBackground ? "rgba(255, 255, 255, 0.15)" : "transparent",
+  backdropFilter: blurBackground ? "blur(10px)" : "blur(0px)",
+}));
+
+const ModalMotion = motion.create(ModalContainer);
+
+const ModalWrapper = styled(Box)(({ theme }) => ({
+  position: "relative",
+  width: "fit-content",
+  height: "fit-content",
+  minWidth: "150px",
+  minHeight: "150px",
+  backgroundColor: theme.palette.info.main,
+  color: theme.palette.primary.main,
+  padding: "10px",
+}));
+
+const CloseModalWrapper = styled(Box)({
+  position: "absolute",
+  top: "10px",
+  right: "10px",
+  width: "20px",
+  height: "20px",
+  cursor: "pointer",
+});
+
+export default function Modal({
+  trigger,
+  children,
+  sx = {},
+  fullScreen = false,
+  blurBackground = true,
+}: ModalProps) {
+  const { parentRef, modalRef, openModal, closeModal, isOpen } = useModal();
+
+  const clonedTrigger = React.cloneElement(trigger, {
+    ref: (node: HTMLElement) => {
+      parentRef.current = node;
+    },
+    onClick: openModal,
+  });
+
+  return (
+    <>
+      {clonedTrigger}
+      <AnimatePresence>
+        {isOpen && (
+          <ModalMotion
+            sx={sx}
+            fullScreen={fullScreen}
+            blurBackground={blurBackground}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
+            exit={{ opacity: 0 }}
+          >
+            <ModalWrapper ref={modalRef}>
+              <CloseModalWrapper onClick={closeModal}>
+                <CloseIcon fontSize="small" />
+              </CloseModalWrapper>
+              {children}
+            </ModalWrapper>
+          </ModalMotion>
+        )}
+      </AnimatePresence>
+    </>
+  );
 }
