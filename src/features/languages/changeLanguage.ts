@@ -1,5 +1,6 @@
 import { useCallback, useRef } from "react";
 import { useTranslation } from "react-i18next";
+import { possibleLanguages } from "../../utils/Constants";
 
 interface UseLanguageProps {
   cooldown?: number;
@@ -11,8 +12,6 @@ interface UseLanguageReturn {
   changeLanguage: (newLang: TLanguage) => void;
 }
 
-const possibleLang = ["en", "ja", "ar", "fr"];
-
 export default function useLanguage({
   cooldown = 500,
 }: UseLanguageProps): UseLanguageReturn {
@@ -21,7 +20,7 @@ export default function useLanguage({
 
   const changeLanguage = useCallback(
     (newLang: TLanguage) => {
-      if (!possibleLang.includes(newLang)) return;
+      if (!possibleLanguages.includes(newLang)) return;
       if (cooldownRef.current) return;
       cooldownRef.current = true;
       i18n.changeLanguage(newLang);

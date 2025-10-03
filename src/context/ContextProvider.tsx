@@ -9,7 +9,7 @@ interface ContextProviderProps {
 
 export default function ContextProvider({ children }: ContextProviderProps) {
   const { NisekoTheme, changeTheme, currentTheme } = useTheme({
-    cooldown: 250,
+    cooldown: 100,
   });
   const { changeLanguage } = useLanguage({ cooldown: 250 });
   return (

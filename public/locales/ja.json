@@ -3,5 +3,10 @@
   "auth_fails": {
     "try_again": "もう一度やり直してください",
     "return_homepage": "ホームページに戻る"
+  },
+  "header": {
+    "login": "ログイン",
+    "signup": "アカウント作成",
+    "profile": "マイプロフィール"
   }
 }
