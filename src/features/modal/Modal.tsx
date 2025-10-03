@@ -10,7 +10,7 @@ import CloseIcon from "@mui/icons-material/Close";
 -- The Modal accepts the component to trigger the opening of the modal as trigger prop.
 -- The Modal takes the children as the instance of the modal to be created after the the trigger
 has been triggered.
--- it accepts the following additional props, fullScreen a boolean value that determine if the wrapper
+-- it accepts the following additional props, fullScreenModal a boolean value that determine if the wrapper
 around the modal takes the full screen width or not (the wrapper styling can be adjusted by using the
 sx prop)
 -- blurBackground a boolean value, needed if the wrapper is bigger than the modal content
@@ -25,19 +25,23 @@ interface ModalProps {
   trigger: React.ReactElement<any>;
   children: React.ReactElement<any>;
   sx?: React.CSSProperties;
-  fullScreen?: boolean;
+  fullScreenModal?: boolean;
+  fullScreenWrapper?: boolean;
   blurBackground?: boolean;
 }
 
-type ModalStyle = Omit<ModalProps, "trigger" | "children" | "sx">;
+type ModalStyle = Omit<
+  ModalProps,
+  "trigger" | "children" | "sx" | "fullScreenWrapper"
+>;
 
 const ModalContainer = styled(Box, {
   shouldForwardProp: (prop) =>
-    prop !== "fullScreen" && prop !== "blurBackground",
-})<ModalStyle>(({ blurBackground, fullScreen }) => ({
-  width: fullScreen ? "100vw" : "fit-content",
-  height: fullScreen ? "100vh" : "fit-content",
-  position: fullScreen ? "fixed" : "relative",
+    prop !== "fullScreenModal" && prop !== "blurBackground",
+})<ModalStyle>(({ blurBackground, fullScreenModal }) => ({
+  width: fullScreenModal ? "100vw" : "fit-content",
+  height: fullScreenModal ? "100vh" : "fit-content",
+  position: fullScreenModal ? "fixed" : "relative",
   top: "0",
   left: "0",
   display: "flex",
@@ -49,10 +53,12 @@ const ModalContainer = styled(Box, {
 
 const ModalMotion = motion.create(ModalContainer);
 
-const ModalWrapper = styled(Box)(({ theme }) => ({
+const ModalWrapper = styled(Box, {
+  shouldForwardProp: (prop) => prop !== "fullScreenWrapper",
+})<{ fullScreenWrapper: boolean }>(({ theme, fullScreenWrapper }) => ({
   position: "relative",
-  width: "fit-content",
-  height: "fit-content",
+  width: fullScreenWrapper ? "100vw" : "fit-content",
+  height: fullScreenWrapper ? "100vh" : "fit-content",
   minWidth: "150px",
   minHeight: "150px",
   backgroundColor: theme.palette.info.main,
@@ -64,8 +70,8 @@ const ModalWrapper = styled(Box)(({ theme }) => ({
 
 const CloseModalWrapper = styled(Box)({
   position: "absolute",
-  top: "0px",
-  right: "0px",
+  top: "10px",
+  right: "10px",
   cursor: "pointer",
   display: "flex",
   justifyContent: "center",
@@ -77,8 +83,9 @@ export default function Modal({
   trigger,
   children,
   sx = {},
-  fullScreen = false,
+  fullScreenModal = false,
   blurBackground = true,
+  fullScreenWrapper = false,
 }: ModalProps) {
   const { parentRef, modalRef, openModal, closeModal, isOpen } = useModal();
 
@@ -94,8 +101,6 @@ export default function Modal({
   const clonedChild = React.cloneElement(children, {
     width: "100%",
     height: "100%",
-    minWidth: "150px",
-    minHeight: "150px",
   });
 
   return (
@@ -105,7 +110,7 @@ export default function Modal({
         {isOpen && (
           <ModalMotion
             sx={sx}
-            fullScreen={fullScreen}
+            fullScreenModal={fullScreenModal}
             blurBackground={blurBackground}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -116,9 +121,9 @@ export default function Modal({
             aria-labelledby="modal-title"
             tabIndex={-1}
           >
-            <ModalWrapper ref={modalRef}>
+            <ModalWrapper ref={modalRef} fullScreenWrapper={fullScreenWrapper}>
               <CloseModalWrapper onClick={closeModal}>
-                <CloseIcon fontSize="medium" />
+                <CloseIcon fontSize="large" color="secondary" />
               </CloseModalWrapper>
               {clonedChild}
             </ModalWrapper>
