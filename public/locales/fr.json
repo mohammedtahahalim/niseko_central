@@ -3,5 +3,10 @@
   "auth_fails": {
     "try_again": "Essayer à nouveau",
     "return_homepage": "Retour à la page d'accueil"
+  },
+  "header": {
+    "login": "Connexion",
+    "signup": "Créer un compte",
+    "profile": "Mon profil"
   }
 }

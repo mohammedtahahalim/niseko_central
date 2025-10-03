@@ -3,5 +3,10 @@
   "auth_fails": {
     "try_again": "Try Again",
     "return_homepage": "Return to Homepage"
+  },
+  "header": {
+    "login": "Login",
+    "signup": "Create Account",
+    "profile": "My Profile"
   }
 }

@@ -56,7 +56,7 @@ export default function Header() {
       <Modal
         trigger={
           <MenuBarWrapper>
-            <MenuIcon fontSize="large" color="secondary" />
+            <MenuIcon fontSize="large" />
           </MenuBarWrapper>
         }
         fullScreenModal={true}

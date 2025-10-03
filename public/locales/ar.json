@@ -3,5 +3,10 @@
   "auth_fails": {
     "try_again": "حاول ثانية",
     "return_homepage": "العودة إلى الصفحة الرئيسية"
+  },
+  "header": {
+    "login": "تسجيل الدخول",
+    "signup": "إنشاء حساب",
+    "profile": "ملفي الشخصي"
   }
 }
