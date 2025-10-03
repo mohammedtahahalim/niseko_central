@@ -61,7 +61,11 @@ export default function useTheme({
         ...(currentTheme === "light" ? lightPalette : darkPalette),
       },
       components: {
-        // TODO: add custom component overrides here
+        MuiContainer: {
+          styleOverrides: {
+            root: {},
+          },
+        },
       },
     });
   }, [currentTheme]);
