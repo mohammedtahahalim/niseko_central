@@ -3,6 +3,8 @@ import useScroll from "./useScroll";
 import Logo from "./Logo";
 import MenuIcon from "@mui/icons-material/Menu";
 import Modal from "../modal/Modal";
+import MainHeader from "./MainHeader";
+import DesktopHeader from "./DesktopHeader";
 
 interface OnScrollProp {
   isScrolling: boolean;
@@ -60,9 +62,10 @@ export default function Header() {
         fullScreenModal={true}
         fullScreenWrapper={true}
       >
-        <div>Test</div>
+        <DesktopHeader />
       </Modal>
       <Logo />
+      <MainHeader />
     </HeaderWrapper>
   );
 }
