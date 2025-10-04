@@ -15,6 +15,62 @@
       { "path": "コンシェルジュ", "element": "/concierge" },
       { "path": "Q&A", "element": "/faq" },
       { "path": "お問合せ", "element": "/contact" }
+    ],
+    "mobile_nav_menu": [
+      {
+        "path": "宿泊",
+        "element": "/reservations",
+        "children": [
+          { "path": "特別プラン", "element": "/niseko-accommodation-deals" },
+          {
+            "path": "コンドミニアム",
+            "element": "niseko-accommodation?propertyType=condominiums"
+          },
+          {
+            "path": "リゾートホーム",
+            "element": "/niseko-accommodation?propertyType=resort-homes"
+          }
+        ]
+      },
+      {
+        "path": "お得情報",
+        "element": "/deals",
+        "children": [
+          { "path": "地図", "element": "/map" },
+          {
+            "path": "エクスプレスチェックイン",
+            "element": "/express-check-in"
+          },
+          { "path": "夏の長期滞在", "element": "/niseko-long-stay" },
+          { "path": "よくある質問", "element": "/faq" }
+        ]
+      },
+      {
+        "path": "コンシェルジュ",
+        "element": "/concierge",
+        "children": [
+          { "path": "冬", "element": "/concierge/winter" },
+          { "path": "送迎サービス", "element": "/concierge/niseko-transfers" },
+          { "path": "その他のサービス", "element": "/concierge/services" },
+          { "path": "夏", "element": "/concierge/summer" },
+          {
+            "path": "エクスペリエンスニセコパスポート",
+            "element": "/niseko-accommodation-deals/experience-niseko-passport"
+          }
+        ]
+      },
+      {
+        "path": "会社概要",
+        "element": "/about",
+        "children": [
+          { "path": "採用情報", "element": "/niseko-jobs" },
+          { "path": "ブログ", "element": "/blog" },
+          { "path": "ニセコ地域ガイド", "element": "/niseko-information" },
+          { "path": "ライブカメラ", "element": "/webcam" },
+          { "path": "天気", "element": "/niseko-weather" },
+          { "path": "お問い合わせ", "element": "/contact" }
+        ]
+      }
     ]
   }
 }

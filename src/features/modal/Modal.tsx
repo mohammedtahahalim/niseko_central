@@ -28,6 +28,7 @@ interface ModalProps {
   fullScreenModal?: boolean;
   fullScreenWrapper?: boolean;
   blurBackground?: boolean;
+  br?: boolean;
 }
 
 type ModalStyle = Omit<
@@ -54,22 +55,24 @@ const ModalContainer = styled(Box, {
 const ModalMotion = motion.create(ModalContainer);
 
 const ModalWrapper = styled(Box, {
-  shouldForwardProp: (prop) => prop !== "fullScreenWrapper",
-})<{ fullScreenWrapper: boolean }>(({ theme, fullScreenWrapper }) => ({
-  position: "relative",
-  width: fullScreenWrapper ? "100vw" : "fit-content",
-  height: fullScreenWrapper ? "100vh" : "fit-content",
-  minWidth: "150px",
-  minHeight: "150px",
-  backgroundColor: theme.palette.headfoot?.main,
-  color: theme.palette.primary.main,
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  borderRadius: "12px",
-  overflow: "hidden",
-  border: `1px solid ${theme.palette.divider}`,
-}));
+  shouldForwardProp: (prop) => prop !== "fullScreenWrapper" && prop !== "br",
+})<{ fullScreenWrapper: boolean; br: boolean }>(
+  ({ theme, fullScreenWrapper, br }) => ({
+    position: "relative",
+    width: fullScreenWrapper ? "100vw" : "fit-content",
+    height: fullScreenWrapper ? "100vh" : "fit-content",
+    minWidth: "150px",
+    minHeight: "150px",
+    backgroundColor: theme.palette.headfoot?.main,
+    color: theme.palette.primary.main,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: `${br ? 12 : 0}px`,
+    overflow: "hidden",
+    border: `1px solid ${theme.palette.divider}`,
+  })
+);
 
 const CloseModalWrapper = styled(Box)({
   position: "absolute",
@@ -89,6 +92,7 @@ export default function Modal({
   fullScreenModal = false,
   blurBackground = true,
   fullScreenWrapper = false,
+  br = false,
 }: ModalProps) {
   const { parentRef, modalRef, openModal, closeModal, isOpen } = useModal();
 
@@ -128,9 +132,13 @@ export default function Modal({
             aria-labelledby="modal-title"
             tabIndex={-1}
           >
-            <ModalWrapper ref={modalRef} fullScreenWrapper={fullScreenWrapper}>
+            <ModalWrapper
+              ref={modalRef}
+              fullScreenWrapper={fullScreenWrapper}
+              br={br}
+            >
               <CloseModalWrapper onClick={closeModal}>
-                <CloseIcon fontSize="medium" color="secondary" />
+                <CloseIcon fontSize="medium" color="action" />
               </CloseModalWrapper>
               {clonedChild}
             </ModalWrapper>

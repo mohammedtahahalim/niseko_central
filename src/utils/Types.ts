@@ -16,3 +16,8 @@ export type TBackendErrors = Record<
   (typeof possibleLanguages)[number],
   Record<THTTPCodes, string>
 >;
+export type MobileMenuItemType = {
+  path: string;
+  element: string;
+  children?: MobileMenuItemType[];
+};

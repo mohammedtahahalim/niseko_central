@@ -1,4 +1,4 @@
-import { Box, styled, alpha } from "@mui/material";
+import { Box, styled, alpha, Container } from "@mui/material";
 import useScroll from "./useScroll";
 import Logo from "./Logo";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -13,21 +13,25 @@ interface OnScrollProp {
 const HeaderWrapper = styled(Box, {
   shouldForwardProp: (prop) => prop !== "isScrolling",
 })<OnScrollProp>(({ theme, isScrolling }) => ({
-  height: isScrolling ? "75px" : "115px",
   width: "100%",
+  height: isScrolling ? "75px" : "115px",
   backgroundColor: isScrolling
     ? alpha(theme.palette.headfoot?.main || "", 0.9)
     : theme.palette.headfoot?.main,
-  borderBottom: `1px solid ${theme.palette.divider}`,
-  transition: "height 0.2s linear",
   position: "fixed",
   top: "0",
   left: "0",
+  borderBottom: `1px solid ${theme.palette.divider}`,
+  transition: "height 0.2s linear",
+}));
+
+const HeaderContainer = styled(Container)(({ theme }) => ({
+  height: "100%",
+  width: "100%",
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
   overflow: "hidden",
-  padding: "0px 15px",
   [theme.breakpoints.down("nav_break")]: {
     justifyContent: "center",
   },
@@ -53,19 +57,21 @@ export default function Header() {
   const { isScrolling } = useScroll();
   return (
     <HeaderWrapper isScrolling={isScrolling}>
-      <Modal
-        trigger={
-          <MenuBarWrapper>
-            <MenuIcon fontSize="large" />
-          </MenuBarWrapper>
-        }
-        fullScreenModal={true}
-        fullScreenWrapper={true}
-      >
-        <MobileHeader />
-      </Modal>
-      <Logo />
-      <MainHeader />
+      <HeaderContainer maxWidth={"xl"}>
+        <Modal
+          trigger={
+            <MenuBarWrapper>
+              <MenuIcon fontSize="large" />
+            </MenuBarWrapper>
+          }
+          fullScreenModal={true}
+          fullScreenWrapper={true}
+        >
+          <MobileHeader />
+        </Modal>
+        <Logo />
+        <MainHeader />
+      </HeaderContainer>
     </HeaderWrapper>
   );
 }

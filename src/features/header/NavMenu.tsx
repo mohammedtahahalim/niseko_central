@@ -45,6 +45,10 @@ const NavItem = styled(Link, {
   fontWeight: "600",
   color: isActive ? theme.palette.primary.main : "inherit",
   fontSize: "1.2rem",
+  "&:hover": {
+    color: theme.palette.primary.main,
+    transition: "color 0.1s ease-in-out",
+  },
 }));
 
 export default function NavMenu() {
@@ -76,6 +80,7 @@ export default function NavMenu() {
         }
         blurBackground={true}
         fullScreenModal={true}
+        br={true}
       >
         <div style={{}}>Test</div>
       </Modal>
