@@ -4,7 +4,6 @@ import SubAuth from "../auth/SubAuth";
 import ThemeComp from "../../components/ThemeComp";
 
 const SubHeaderWrapper = styled(Box)({
-  border: "1px solid black",
   width: "100%",
   height: "40px",
   display: "flex",

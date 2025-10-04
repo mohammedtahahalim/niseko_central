@@ -30,8 +30,10 @@ export default function SubAuth() {
   const { t } = useTranslation();
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
-    dispatch(checkAuthentication());
-  }, []);
+    if (isAuthenticated === null) {
+      dispatch(checkAuthentication());
+    }
+  }, [isAuthenticated, dispatch]);
   return (
     <SubAuthWrapper>
       {loading && (

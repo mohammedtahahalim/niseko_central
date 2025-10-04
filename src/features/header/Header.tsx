@@ -4,7 +4,7 @@ import Logo from "./Logo";
 import MenuIcon from "@mui/icons-material/Menu";
 import Modal from "../modal/Modal";
 import MainHeader from "./MainHeader";
-import DesktopHeader from "./DesktopHeader";
+import MobileHeader from "./MobileHeader";
 
 interface OnScrollProp {
   isScrolling: boolean;
@@ -27,15 +27,15 @@ const HeaderWrapper = styled(Box, {
   justifyContent: "space-between",
   alignItems: "center",
   overflow: "hidden",
-  padding: "0px 25px",
-  [theme.breakpoints.down("md")]: {
+  padding: "0px 15px",
+  [theme.breakpoints.down("nav_break")]: {
     justifyContent: "center",
   },
 }));
 
 const MenuBarWrapper = styled(Box)(({ theme }) => ({
   display: "none",
-  [theme.breakpoints.down("md")]: {
+  [theme.breakpoints.down("nav_break")]: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -62,7 +62,7 @@ export default function Header() {
         fullScreenModal={true}
         fullScreenWrapper={true}
       >
-        <DesktopHeader />
+        <MobileHeader />
       </Modal>
       <Logo />
       <MainHeader />

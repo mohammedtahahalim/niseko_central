@@ -1,4 +1,4 @@
-import { CssBaseline, ThemeProvider } from "@mui/material";
+import { CssBaseline, ThemeProvider, GlobalStyles } from "@mui/material";
 import { UIContext } from "./MiniContext";
 import useTheme from "../features/theme/useTheme";
 import useLanguage from "../features/languages/changeLanguage";
@@ -16,6 +16,13 @@ export default function ContextProvider({ children }: ContextProviderProps) {
     <ThemeProvider theme={NisekoTheme}>
       <UIContext.Provider value={{ changeTheme, changeLanguage, currentTheme }}>
         <CssBaseline />
+        <GlobalStyles
+          styles={{
+            "*": {
+              transition: "background-color 0.2s ease, color 0.3s ease",
+            },
+          }}
+        />
         {children}
       </UIContext.Provider>
     </ThemeProvider>

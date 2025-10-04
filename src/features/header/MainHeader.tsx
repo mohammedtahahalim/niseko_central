@@ -10,7 +10,7 @@ const MainHeaderWrapper = styled(Box)(({ theme }) => ({
   maxWidth: "75%",
   display: "flex",
   flexDirection: "column",
-  [theme.breakpoints.down("md")]: {
+  [theme.breakpoints.down("nav_break")]: {
     display: "none",
   },
 }));
