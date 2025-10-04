@@ -15,6 +15,62 @@
       { "path": "concierge", "element": "/concierge" },
       { "path": "FAQ", "element": "/faq" },
       { "path": "contact", "element": "/contact" }
+    ],
+    "mobile_nav_menu": [
+      {
+        "path": "Stay",
+        "element": "/reservations",
+        "children": [
+          {
+            "path": "Special Deals",
+            "element": "/niseko-accommodation-deals"
+          },
+          {
+            "path": "Condominiums",
+            "element": "niseko-accommodation?propertyType=condominiums"
+          },
+          {
+            "path": "Resort Homes",
+            "element": "/niseko-accommodation?propertyType=resort-homes"
+          }
+        ]
+      },
+      {
+        "path": "Deals",
+        "element": "/deals",
+        "children": [
+          { "path": "Map", "element": "/map" },
+          { "path": "Express Check-In", "element": "/express-check-in" },
+          { "path": "Summer Long Stay", "element": "/niseko-long-stay" },
+          { "path": "FAQ", "element": "/faq" }
+        ]
+      },
+      {
+        "path": "Concierge",
+        "element": "/concierge",
+        "children": [
+          { "path": "Winter", "element": "/concierge/winter" },
+          { "path": "Transfers", "element": "/concierge/niseko-transfers" },
+          { "path": "Other Services", "element": "/concierge/services" },
+          { "path": "Summer", "element": "/concierge/summer" },
+          {
+            "path": "Experience Niseko Passport",
+            "element": "/niseko-accommodation-deals/experience-niseko-passport"
+          }
+        ]
+      },
+      {
+        "path": "About",
+        "element": "/about",
+        "children": [
+          { "path": "Careers/Jobs", "element": "/niseko-jobs" },
+          { "path": "Blog", "element": "/blog" },
+          { "path": "Niseko Area Guide", "element": "/niseko-information" },
+          { "path": "Live Camera", "element": "/webcam" },
+          { "path": "Weather", "element": "/niseko-weather" },
+          { "path": "Contact", "element": "/contact" }
+        ]
+      }
     ]
   }
 }

@@ -15,6 +15,65 @@
       { "path": "concierge", "element": "/concierge" },
       { "path": "FAQ", "element": "/faq" },
       { "path": "contact", "element": "/contact" }
+    ],
+    "mobile_nav_menu": [
+      {
+        "path": "Séjour",
+        "element": "/reservations",
+        "children": [
+          {
+            "path": "Offres spéciales",
+            "element": "/niseko-accommodation-deals"
+          },
+          {
+            "path": "Condominiums",
+            "element": "niseko-accommodation?propertyType=condominiums"
+          },
+          {
+            "path": "Maisons de villégiature",
+            "element": "/niseko-accommodation?propertyType=resort-homes"
+          }
+        ]
+      },
+      {
+        "path": "Offres",
+        "element": "/deals",
+        "children": [
+          { "path": "Carte", "element": "/map" },
+          { "path": "Enregistrement express", "element": "/express-check-in" },
+          { "path": "Long séjour d’été", "element": "/niseko-long-stay" },
+          { "path": "FAQ", "element": "/faq" }
+        ]
+      },
+      {
+        "path": "Concierge",
+        "element": "/concierge",
+        "children": [
+          { "path": "Hiver", "element": "/concierge/winter" },
+          { "path": "Transferts", "element": "/concierge/niseko-transfers" },
+          { "path": "Autres services", "element": "/concierge/services" },
+          { "path": "Été", "element": "/concierge/summer" },
+          {
+            "path": "Passeport Experience Niseko",
+            "element": "/niseko-accommodation-deals/experience-niseko-passport"
+          }
+        ]
+      },
+      {
+        "path": "À propos",
+        "element": "/about",
+        "children": [
+          { "path": "Carrières / Emplois", "element": "/niseko-jobs" },
+          { "path": "Blog", "element": "/blog" },
+          {
+            "path": "Guide de la région de Niseko",
+            "element": "/niseko-information"
+          },
+          { "path": "Caméra en direct", "element": "/webcam" },
+          { "path": "Météo", "element": "/niseko-weather" },
+          { "path": "Contact", "element": "/contact" }
+        ]
+      }
     ]
   }
 }

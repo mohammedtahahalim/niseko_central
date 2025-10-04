@@ -15,6 +15,59 @@
       { "path": "بواب", "element": "/concierge" },
       { "path": "التعليمات", "element": "/faq" },
       { "path": "اتصال", "element": "/contact" }
+    ],
+    "mobile_nav_menu": [
+      {
+        "path": "الإقامة",
+        "element": "/reservations",
+        "children": [
+          { "path": "عروض خاصة", "element": "/niseko-accommodation-deals" },
+          {
+            "path": "شقق فندقية",
+            "element": "niseko-accommodation?propertyType=condominiums"
+          },
+          {
+            "path": "منازل منتجع",
+            "element": "/niseko-accommodation?propertyType=resort-homes"
+          }
+        ]
+      },
+      {
+        "path": "العروض",
+        "element": "/deals",
+        "children": [
+          { "path": "الخريطة", "element": "/map" },
+          { "path": "تسجيل الوصول السريع", "element": "/express-check-in" },
+          { "path": "إقامة طويلة في الصيف", "element": "/niseko-long-stay" },
+          { "path": "الأسئلة الشائعة", "element": "/faq" }
+        ]
+      },
+      {
+        "path": "الكونسيرج",
+        "element": "/concierge",
+        "children": [
+          { "path": "الشتاء", "element": "/concierge/winter" },
+          { "path": "خدمات النقل", "element": "/concierge/niseko-transfers" },
+          { "path": "خدمات أخرى", "element": "/concierge/services" },
+          { "path": "الصيف", "element": "/concierge/summer" },
+          {
+            "path": "جواز تجربة نيسيكو",
+            "element": "/niseko-accommodation-deals/experience-niseko-passport"
+          }
+        ]
+      },
+      {
+        "path": "حول",
+        "element": "/about",
+        "children": [
+          { "path": "الوظائف", "element": "/niseko-jobs" },
+          { "path": "المدونة", "element": "/blog" },
+          { "path": "دليل منطقة نيسيكو", "element": "/niseko-information" },
+          { "path": "كاميرا مباشرة", "element": "/webcam" },
+          { "path": "الطقس", "element": "/niseko-weather" },
+          { "path": "اتصل بنا", "element": "/contact" }
+        ]
+      }
     ]
   }
 }

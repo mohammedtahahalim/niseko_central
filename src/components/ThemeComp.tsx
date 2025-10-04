@@ -6,7 +6,6 @@ import { Box, styled } from "@mui/material";
 
 const ThemeCompWrapper = styled(Box)({
   height: "100%",
-  aspectRatio: "1",
   cursor: "pointer",
   display: "flex",
   justifyContent: "center",
