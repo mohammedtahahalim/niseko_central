@@ -13,7 +13,7 @@
       { "path": "stay", "element": "/reservations" },
       { "path": "deals", "element": "/deals" },
       { "path": "concierge", "element": "/concierge" },
-      { "path": "faq", "element": "/faq" },
+      { "path": "FAQ", "element": "/faq" },
       { "path": "contact", "element": "/contact" }
     ]
   }

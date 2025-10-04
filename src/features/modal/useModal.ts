@@ -60,11 +60,13 @@ export default function useModal<P extends HTMLElement, M extends HTMLElement>({
     window.addEventListener("keydown", handleEscapeClick);
     window.addEventListener("touchmove", stopOutsideEvents);
     window.addEventListener("scroll", stopOutsideEvents);
+    window.addEventListener("resize", closeModal);
     return () => {
       window.removeEventListener("click", handleClickOutside);
       window.removeEventListener("keydown", handleEscapeClick);
       window.removeEventListener("touchmove", stopOutsideEvents);
       window.removeEventListener("scroll", stopOutsideEvents);
+      window.removeEventListener("resize", closeModal);
       clearTimeout(timerRef.current);
     };
   }, [isOpen]);

@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { UIContext } from "../../context/MiniContext";
 
 const LogoWrapper = styled(Link)({
-  height: "100%",
+  height: "90%",
   overflow: "hidden",
   padding: "10px",
 });
