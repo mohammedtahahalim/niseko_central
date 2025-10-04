@@ -1,8 +1,9 @@
-import { Box, styled } from "@mui/material";
+import { styled } from "@mui/material";
+import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { UIContext } from "../../context/MiniContext";
 
-const LogoWrapper = styled(Box)({
+const LogoWrapper = styled(Link)({
   height: "100%",
   overflow: "hidden",
   padding: "10px",
@@ -11,7 +12,7 @@ const LogoWrapper = styled(Box)({
 export default function Logo() {
   const { currentTheme } = useContext(UIContext);
   return (
-    <LogoWrapper>
+    <LogoWrapper to={"/"}>
       <img
         src={
           currentTheme === "light"

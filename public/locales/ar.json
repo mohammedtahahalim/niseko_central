@@ -7,6 +7,14 @@
   "header": {
     "login": "تسجيل الدخول",
     "signup": "إنشاء حساب",
-    "profile": "ملفي الشخصي"
+    "profile": "ملفي الشخصي",
+    "plan_stay": "خطط لإقامتك",
+    "nav_menu": [
+      { "path": "حجز", "element": "/reservations" },
+      { "path": "الصفقات", "element": "/deals" },
+      { "path": "بواب", "element": "/concierge" },
+      { "path": "التعليمات", "element": "/faq" },
+      { "path": "اتصال", "element": "/contact" }
+    ]
   }
 }

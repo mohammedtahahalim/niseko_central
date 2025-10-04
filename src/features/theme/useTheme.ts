@@ -1,8 +1,20 @@
+import "@mui/material/styles";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import type { TTheme } from "../../utils/Types";
 import { lightPalette, darkPalette } from "./MuiSettings";
 import { createTheme, type Theme } from "@mui/material";
 import { debouncer } from "../../utils/Constants";
+
+declare module "@mui/material/styles" {
+  interface BreakpointOverrides {
+    xs: true;
+    sm: true;
+    md: true;
+    nav_break: true;
+    lg: true;
+    xl: true;
+  }
+}
 
 interface UseThemeProps {
   cooldown?: number;
@@ -56,6 +68,16 @@ export default function useTheme({
 
   const NisekoTheme = useMemo(() => {
     return createTheme({
+      breakpoints: {
+        values: {
+          xs: 0,
+          sm: 600,
+          md: 900,
+          nav_break: 1000,
+          lg: 1200,
+          xl: 1536,
+        },
+      },
       palette: {
         mode: currentTheme,
         ...(currentTheme === "light" ? lightPalette : darkPalette),

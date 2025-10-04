@@ -48,7 +48,7 @@ const ModalContainer = styled(Box, {
   justifyContent: "center",
   alignItems: "center",
   background: blurBackground ? "rgba(255, 255, 255, 0.15)" : "transparent",
-  backdropFilter: blurBackground ? "blur(10px)" : "blur(0px)",
+  backdropFilter: blurBackground ? "blur(3px)" : "blur(0px)",
 }));
 
 const ModalMotion = motion.create(ModalContainer);
@@ -61,11 +61,14 @@ const ModalWrapper = styled(Box, {
   height: fullScreenWrapper ? "100vh" : "fit-content",
   minWidth: "150px",
   minHeight: "150px",
-  backgroundColor: theme.palette.info.main,
+  backgroundColor: theme.palette.headfoot?.main,
   color: theme.palette.primary.main,
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
+  borderRadius: "12px",
+  overflow: "hidden",
+  border: `1px solid ${theme.palette.divider}`,
 }));
 
 const CloseModalWrapper = styled(Box)({
@@ -99,8 +102,12 @@ export default function Modal({
   });
 
   const clonedChild = React.cloneElement(children, {
-    width: "100%",
-    height: "100%",
+    style: {
+      width: "100%",
+      height: "100%",
+      minHeight: "150px",
+      ...(children.props.style || {}),
+    },
   });
 
   return (
@@ -123,7 +130,7 @@ export default function Modal({
           >
             <ModalWrapper ref={modalRef} fullScreenWrapper={fullScreenWrapper}>
               <CloseModalWrapper onClick={closeModal}>
-                <CloseIcon fontSize="large" color="secondary" />
+                <CloseIcon fontSize="medium" color="secondary" />
               </CloseModalWrapper>
               {clonedChild}
             </ModalWrapper>

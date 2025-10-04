@@ -7,6 +7,14 @@
   "header": {
     "login": "ログイン",
     "signup": "アカウント作成",
-    "profile": "マイプロフィール"
+    "profile": "マイプロフィール",
+    "plan_stay": "滞在を計画する",
+    "nav_menu": [
+      { "path": "宿泊施設", "element": "/reservations" },
+      { "path": "お得な情報", "element": "/deals" },
+      { "path": "コンシェルジュ", "element": "/concierge" },
+      { "path": "Q&A", "element": "/faq" },
+      { "path": "お問合せ", "element": "/contact" }
+    ]
   }
 }
