@@ -52,6 +52,11 @@ export default function useModal<P extends HTMLElement, M extends HTMLElement>({
         closeModal();
       }
     };
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
     const handleEscapeClick = (e: KeyboardEvent) => {
       if (!parentRef.current || !modalRef.current) return;
       if (e.key === "Escape") {
