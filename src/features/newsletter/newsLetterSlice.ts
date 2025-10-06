@@ -10,21 +10,23 @@ const newsLetterSchema = z.object({
   firstName: z
     .string()
     .trim()
-    .regex(/^[\p{L}' -]{2,50}$/u),
+    .regex(/^[\p{L}' -]{2,50}$/u, { message: "firstName" }),
   lastName: z
     .string()
     .trim()
-    .regex(/^[\p{L}' -]{2,50}$/u),
+    .regex(/^[\p{L}' -]{2,50}$/u, { message: "lastName" }),
   email: z
     .string()
     .trim()
-    .regex(/^[\p{L}0-9._%+-]+@[a-zA-Z0-9.-]+(\.[a-zA-Z]{2,})+$/u),
+    .regex(/^[\p{L}0-9._%+-]+@[a-zA-Z0-9.-]+(\.[a-zA-Z]{2,})+$/u, {
+      message: "email",
+    }),
 });
 
 export const signUpToNewsLetter = createAsyncThunk<
   void,
   void,
-  { state: RootState; rejectValue: string | string[] }
+  { state: RootState; rejectValue: string[] }
 >("newsletter/thunk", async (_, { signal, rejectWithValue, getState }) => {
   const { firstName, lastName, email } = getState().newsLetter;
   try {
@@ -51,12 +53,12 @@ export const signUpToNewsLetter = createAsyncThunk<
     return;
   } catch (err) {
     if (err instanceof DOMException && err.name === "AbortError") {
-      return rejectWithValue("network");
+      return rejectWithValue(["network"]);
     }
     if (err instanceof Error) {
-      return rejectWithValue(err as unknown as string);
+      return rejectWithValue([err] as unknown as string[]);
     }
-    return rejectWithValue("unknown");
+    return rejectWithValue(["unknown"]);
   }
 });
 
@@ -64,18 +66,18 @@ interface NewsLetterState {
   firstName: string;
   lastName: string;
   email: string;
-  error: string | string[] | null;
+  errors: string[] | null;
   loading: boolean;
-  isRegistered: boolean | null;
+  hasRegistered: boolean | null;
 }
 
 const initialState: NewsLetterState = {
   firstName: "",
   lastName: "",
   email: "",
-  error: null,
+  errors: null,
   loading: false,
-  isRegistered: null,
+  hasRegistered: null,
 };
 
 export const newsLetterSlice = createSlice({
@@ -97,16 +99,16 @@ export const newsLetterSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(signUpToNewsLetter.pending, (state) => {
-      (state.error = null), (state.loading = true);
+      (state.errors = null), (state.loading = true);
     });
     builder.addCase(signUpToNewsLetter.rejected, (state, action) => {
       state.loading = false;
-      state.error = action.payload ?? "unknown";
+      state.errors = action.payload ?? ["unknown"];
     });
     builder.addCase(signUpToNewsLetter.fulfilled, (state) => {
       state.loading = false;
-      state.error = null;
-      state.isRegistered = true;
+      state.errors = null;
+      state.hasRegistered = true;
     });
   },
 });

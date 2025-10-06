@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 
 interface UseModalProps {
   delay?: number;
+  disableScroll?: boolean;
 }
 
 interface UseModalReturns<P, M> {
@@ -15,6 +16,7 @@ interface UseModalReturns<P, M> {
 
 export default function useModal<P extends HTMLElement, M extends HTMLElement>({
   delay = 0,
+  disableScroll = false,
 }: UseModalProps = {}): UseModalReturns<P, M> {
   const parentRef = useRef<P | null>(null);
   const modalRef = useRef<M | null>(null);
@@ -52,10 +54,12 @@ export default function useModal<P extends HTMLElement, M extends HTMLElement>({
         closeModal();
       }
     };
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
+    if (disableScroll) {
+      if (isOpen) {
+        document.body.style.overflow = "hidden";
+      } else {
+        document.body.style.overflow = "";
+      }
     }
     const handleEscapeClick = (e: KeyboardEvent) => {
       if (!parentRef.current || !modalRef.current) return;

@@ -16,8 +16,8 @@ export default function ThemeComp() {
   const { currentTheme, changeTheme } = useContext(UIContext);
   return (
     <ThemeCompWrapper onClick={changeTheme}>
-      {currentTheme === "light" && <DarkModeIcon />}
-      {currentTheme === "dark" && <LightModeIcon />}
+      {currentTheme === "light" && <DarkModeIcon fontSize="small" />}
+      {currentTheme === "dark" && <LightModeIcon fontSize="small" />}
     </ThemeCompWrapper>
   );
 }

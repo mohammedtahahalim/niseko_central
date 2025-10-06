@@ -66,6 +66,7 @@ export default function Header() {
           }
           fullScreenModal={true}
           fullScreenWrapper={true}
+          disableScroll={true}
         >
           <MobileHeader />
         </Modal>
