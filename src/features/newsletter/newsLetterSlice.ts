@@ -7,9 +7,18 @@ import { z } from "zod";
 import type { RootState } from "../../app/store";
 
 const newsLetterSchema = z.object({
-  firstName: z.string().regex(/^\p{L}{4,50}$/u),
-  lastName: z.string().regex(/^\p{L}{4,50}$/u),
-  email: z.string().regex(/^$/),
+  firstName: z
+    .string()
+    .trim()
+    .regex(/^[\p{L}' -]{2,50}$/u),
+  lastName: z
+    .string()
+    .trim()
+    .regex(/^[\p{L}' -]{2,50}$/u),
+  email: z
+    .string()
+    .trim()
+    .regex(/^[\p{L}0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/u),
 });
 
 export const signUpToNewsLetter = createAsyncThunk<
@@ -75,13 +84,13 @@ export const newsLetterSlice = createSlice({
   name: "newsletter/slice",
   initialState,
   reducers: {
-    firstName: (state, action: PayloadAction<string>) => {
+    setFirstName: (state, action: PayloadAction<string>) => {
       state.firstName = action.payload;
     },
-    lastName: (state, action: PayloadAction<string>) => {
+    setLastName: (state, action: PayloadAction<string>) => {
       state.lastName = action.payload;
     },
-    email: (state, action: PayloadAction<string>) => {
+    setEmail: (state, action: PayloadAction<string>) => {
       state.email = action.payload;
     },
     reset: (state) => {
@@ -99,9 +108,12 @@ export const newsLetterSlice = createSlice({
     builder.addCase(signUpToNewsLetter.fulfilled, (state) => {
       state.loading = false;
       state.error = null;
-      state.isRegistered;
+      state.isRegistered = true;
     });
   },
 });
 
 export default newsLetterSlice.reducer;
+
+export const { setFirstName, setLastName, setEmail, reset } =
+  newsLetterSlice.actions;
