@@ -18,13 +18,13 @@ const newsLetterSchema = z.object({
   email: z
     .string()
     .trim()
-    .regex(/^[\p{L}0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/u),
+    .regex(/^[\p{L}0-9._%+-]+@[a-zA-Z0-9.-]+(\.[a-zA-Z]{2,})+$/u),
 });
 
 export const signUpToNewsLetter = createAsyncThunk<
   void,
   void,
-  { state: RootState; rejectValue: string }
+  { state: RootState; rejectValue: string | string[] }
 >("newsletter/thunk", async (_, { signal, rejectWithValue, getState }) => {
   const { firstName, lastName, email } = getState().newsLetter;
   try {
@@ -34,10 +34,8 @@ export const signUpToNewsLetter = createAsyncThunk<
       email,
     });
     if (!isValidFormat.success) {
-      const errors = isValidFormat.error.issues
-        .map((issue) => issue.message)
-        .join("\n");
-      throw new Error(errors);
+      const errors = isValidFormat.error.issues.map((issue) => issue.message);
+      return rejectWithValue(errors);
     }
     const options: RequestInit = {
       method: "post",
@@ -66,7 +64,7 @@ interface NewsLetterState {
   firstName: string;
   lastName: string;
   email: string;
-  error: string | null;
+  error: string | string[] | null;
   loading: boolean;
   isRegistered: boolean | null;
 }
