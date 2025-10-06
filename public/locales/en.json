@@ -72,5 +72,23 @@
         ]
       }
     ]
+  },
+  "footer": {
+    "newsletter": {
+      "title": "Stay in the Know",
+      "subtitle": "Subscribe for priority updates on bookings, local happenings, and seasonal news — delivered straight from Niseko to your inbox.",
+      "form": {
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "email": "Email",
+        "submit": "Subscribe",
+        "errors": {
+          "firstName": "First Name is Invalid",
+          "lastName": "Last Name is Invalid",
+          "email": "Email is Invalid"
+        },
+        "subsribed_message": "Thanks for subscribing! You’re now on our list and will hear from us soon."
+      }
+    }
   }
 }

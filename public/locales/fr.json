@@ -75,5 +75,23 @@
         ]
       }
     ]
+  },
+  "footer": {
+    "newsletter": {
+      "title": "Restez informé",
+      "subtitle": "Abonnez-vous pour recevoir des mises à jour prioritaires sur les réservations, les événements locaux et les actualités saisonnières, livrées directement de Niseko dans votre boîte de réception.",
+      "form": {
+        "firstName": "Prénom",
+        "lastName": "Nom de famille",
+        "email": "E-mail",
+        "submit": "S'abonner",
+        "errors": {
+          "firstName": "Le prénom est invalide",
+          "lastName": "Le nom de famille n'est pas valide",
+          "email": "L'e-mail est invalide"
+        },
+        "subsribed_message": "Merci de vous être abonné ! Vous êtes désormais sur notre liste et vous recevrez bientôt de nos nouvelles."
+      }
+    }
   }
 }

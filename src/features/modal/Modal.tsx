@@ -13,10 +13,13 @@ has been triggered.
 -- it accepts the following additional props, fullScreenModal a boolean value that determine if the wrapper
 around the modal takes the full screen width or not (the wrapper styling can be adjusted by using the
 sx prop)
+-- fullScreenWrapper that determine if the wrapper itself around your modal is full screen or not
 -- blurBackground a boolean value, needed if the wrapper is bigger than the modal content
 this will render the wrapper as blurry glass effect that mask the backround to highlight the modal
 -- sx an optional styling to style the wrapper of the modal (this is optional and had no default
 value)
+-- br an optional number value that sets the border of the wrapper
+-- disableScroll wether you want to disable scroll while modal is active or not, by default is false
 
 
 */
@@ -29,6 +32,7 @@ interface ModalProps {
   fullScreenWrapper?: boolean;
   blurBackground?: boolean;
   br?: boolean;
+  disableScroll?: boolean;
 }
 
 type ModalStyle = Omit<
@@ -93,8 +97,11 @@ export default function Modal({
   blurBackground = true,
   fullScreenWrapper = false,
   br = false,
+  disableScroll = false,
 }: ModalProps) {
-  const { parentRef, modalRef, openModal, closeModal, isOpen } = useModal();
+  const { parentRef, modalRef, openModal, closeModal, isOpen } = useModal({
+    disableScroll,
+  });
 
   const clonedTrigger = React.cloneElement(trigger, {
     ref: (node: HTMLElement) => {

@@ -12,10 +12,11 @@ const MobileMenuWrapper = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   alignItems: "flex-start",
-  padding: "50px",
+  padding: "40px 60px",
   gap: "10px",
+  margin: "0px auto",
   [theme.breakpoints.down("sm")]: {
-    padding: "50px 5px",
+    padding: "40px 10px",
   },
 }));
 

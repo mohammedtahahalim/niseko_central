@@ -14,6 +14,7 @@ const MainContainer = styled(Container)({
 const BodyWrapper = styled(Box)({
   flex: "1",
   marginTop: "115px",
+  minHeight: "100vh",
 });
 
 export default function Main() {
