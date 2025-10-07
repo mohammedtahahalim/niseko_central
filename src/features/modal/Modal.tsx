@@ -1,5 +1,6 @@
 import { Box, styled } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
+import { createPortal } from "react-dom";
 import React from "react";
 import useModal from "./useModal";
 import CloseIcon from "@mui/icons-material/Close";
@@ -28,7 +29,6 @@ interface ModalProps {
   trigger: React.ReactElement<any>;
   children: React.ReactElement<any>;
   sx?: React.CSSProperties;
-  fullScreenModal?: boolean;
   fullScreenWrapper?: boolean;
   blurBackground?: boolean;
   br?: boolean;
@@ -41,12 +41,11 @@ type ModalStyle = Omit<
 >;
 
 const ModalContainer = styled(Box, {
-  shouldForwardProp: (prop) =>
-    prop !== "fullScreenModal" && prop !== "blurBackground",
-})<ModalStyle>(({ blurBackground, fullScreenModal }) => ({
-  width: fullScreenModal ? "100vw" : "fit-content",
-  height: fullScreenModal ? "100vh" : "fit-content",
-  position: fullScreenModal ? "fixed" : "relative",
+  shouldForwardProp: (prop) => prop !== "blurBackground",
+})<ModalStyle>(({ blurBackground }) => ({
+  position: "fixed",
+  width: "100vw",
+  height: "100vh",
   top: "0",
   left: "0",
   display: "flex",
@@ -54,6 +53,7 @@ const ModalContainer = styled(Box, {
   alignItems: "center",
   background: blurBackground ? "rgba(255, 255, 255, 0.15)" : "transparent",
   backdropFilter: blurBackground ? "blur(3px)" : "blur(0px)",
+  zIndex: 9999,
 }));
 
 const ModalMotion = motion.create(ModalContainer);
@@ -81,7 +81,7 @@ const ModalWrapper = styled(Box, {
 const CloseModalWrapper = styled(Box)({
   position: "absolute",
   top: "10px",
-  right: "10px",
+  insetInlineEnd: "10px",
   cursor: "pointer",
   display: "flex",
   justifyContent: "center",
@@ -93,7 +93,6 @@ export default function Modal({
   trigger,
   children,
   sx = {},
-  fullScreenModal = false,
   blurBackground = true,
   fullScreenWrapper = false,
   br = false,
@@ -124,34 +123,35 @@ export default function Modal({
   return (
     <>
       {clonedTrigger}
-      <AnimatePresence>
-        {isOpen && (
-          <ModalMotion
-            sx={sx}
-            fullScreenModal={fullScreenModal}
-            blurBackground={blurBackground}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.3 }}
-            exit={{ opacity: 0 }}
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="modal-title"
-            tabIndex={-1}
-          >
-            <ModalWrapper
-              ref={modalRef}
-              fullScreenWrapper={fullScreenWrapper}
-              br={br}
+      {isOpen &&
+        createPortal(
+          <AnimatePresence>
+            <ModalMotion
+              sx={sx}
+              blurBackground={blurBackground}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
+              exit={{ opacity: 0 }}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="modal-title"
+              tabIndex={-1}
             >
-              <CloseModalWrapper onClick={closeModal}>
-                <CloseIcon fontSize="medium" color="action" />
-              </CloseModalWrapper>
-              {clonedChild}
-            </ModalWrapper>
-          </ModalMotion>
+              <ModalWrapper
+                ref={modalRef}
+                fullScreenWrapper={fullScreenWrapper}
+                br={br}
+              >
+                <CloseModalWrapper onClick={closeModal}>
+                  <CloseIcon fontSize="medium" color="action" />
+                </CloseModalWrapper>
+                {clonedChild}
+              </ModalWrapper>
+            </ModalMotion>
+          </AnimatePresence>,
+          document.body // key change: portal target
         )}
-      </AnimatePresence>
     </>
   );
 }

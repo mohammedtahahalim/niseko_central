@@ -15,7 +15,7 @@
 @font-face {
   font-family: "VAGRundschriftD";
   src: local("VAGRundschriftD"),
-    url("/public/fonts/VAGRundschriftD.ttf") format("ttf");
+    url("/fonts/VAGRundschriftD.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }

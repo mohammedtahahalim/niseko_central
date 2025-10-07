@@ -23,6 +23,7 @@ const HeaderWrapper = styled(Box, {
   left: "0",
   borderBottom: `1px solid ${theme.palette.divider}`,
   transition: "height 0.2s linear",
+  zIndex: 9999,
 }));
 
 const HeaderContainer = styled(Container)(({ theme }) => ({
@@ -55,6 +56,7 @@ const MenuBarWrapper = styled(Box)(({ theme }) => ({
 }));
 export default function Header() {
   const { isScrolling } = useScroll();
+
   return (
     <HeaderWrapper isScrolling={isScrolling}>
       <HeaderContainer maxWidth={"xl"}>
@@ -64,7 +66,6 @@ export default function Header() {
               <MenuIcon fontSize="large" />
             </MenuBarWrapper>
           }
-          fullScreenModal={true}
           fullScreenWrapper={true}
           disableScroll={true}
         >

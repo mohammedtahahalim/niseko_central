@@ -82,13 +82,7 @@ export default function useTheme({
         mode: currentTheme,
         ...(currentTheme === "light" ? lightPalette : darkPalette),
       },
-      components: {
-        MuiContainer: {
-          styleOverrides: {
-            root: {},
-          },
-        },
-      },
+      components: {},
     });
   }, [currentTheme]);
 
