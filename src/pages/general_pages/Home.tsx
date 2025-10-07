@@ -1,5 +1,5 @@
 import { Box, styled } from "@mui/material";
-import Plan from "../../features/header/Plan";
+import Plan from "../../components/Plan";
 
 const HomeWrapper = styled(Box)({
   width: "100%",
