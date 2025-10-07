@@ -96,6 +96,9 @@ export const newsLetterSlice = createSlice({
     reset: (state) => {
       (state.firstName = ""), (state.lastName = ""), (state.email = "");
     },
+    resetError: (state) => {
+      state.errors = null;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(signUpToNewsLetter.pending, (state) => {
@@ -115,5 +118,5 @@ export const newsLetterSlice = createSlice({
 
 export default newsLetterSlice.reducer;
 
-export const { setFirstName, setLastName, setEmail, reset } =
+export const { setFirstName, setLastName, setEmail, reset, resetError } =
   newsLetterSlice.actions;
