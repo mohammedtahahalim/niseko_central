@@ -1,6 +1,6 @@
 import { Box, styled, Button } from "@mui/material";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
-import Modal from "../modal/Modal";
+import Modal from "../features/modal/Modal";
 import { useTranslation } from "react-i18next";
 
 const PlanWrapper = styled(Box)(({ theme }) => ({

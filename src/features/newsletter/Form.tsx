@@ -15,6 +15,7 @@ const FormWrapper = styled("form")(({ theme }) => ({
   gap: "20px",
   justifyContent: "center",
   alignItems: "center",
+  padding: "10px 20px",
   [theme.breakpoints.down("md")]: {
     flexDirection: "column",
     gap: "10px",
@@ -22,6 +23,9 @@ const FormWrapper = styled("form")(({ theme }) => ({
 }));
 
 const StyledInput = styled(TextField)({
+  flex: "1",
+  width: "100%",
+  maxWidth: "450px",
   "& input": {
     padding: "10px",
     fontFamily: "Inter",
