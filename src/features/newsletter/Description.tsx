@@ -12,19 +12,19 @@ const DescriptionWrapper = styled(Box)({
   padding: "10px",
 });
 
-const Title = styled(Typography)({
-  fontFamily: "Segoe UI",
-  fontWeight: "800",
-  letterSpacing: "1.1px",
-  lineClamp: "1rem",
-});
+const Title = styled(Typography)(({ theme }) => ({
+  fontFamily: "VAGRundschriftD",
+  lineHeight: "2.25rem",
+  fontSize: "1.875rem",
+  color: theme.palette.textColor?.main,
+}));
 
-const Subtitle = styled(Typography)({
+const Subtitle = styled(Typography)(({ theme }) => ({
   textTransform: "capitalize",
-  fontFamily: "Inter",
-  letterSpacing: "1px",
-  lineClamp: "1rem",
-});
+  fontFamily: "Segoe UI",
+  color: theme.palette.textColor?.main,
+  fontWeight: "300",
+}));
 
 export default function Description() {
   const { t } = useTranslation();

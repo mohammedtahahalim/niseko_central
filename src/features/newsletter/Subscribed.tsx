@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 
 const SubscribedWrapper = styled(Box)(({ theme }) => ({
   color: theme.palette.success.main,
-  fontFamily: "Source Code Pro",
+  fontFamily: "VAGRundschriftD",
   fontStyle: "italic",
   padding: "18px",
   fontSize: "1.1rem",

@@ -10,12 +10,14 @@ declare module "@mui/material/styles" {
     hero?: PaletteColor;
     mainbody?: PaletteColor;
     icons?: PaletteColor;
+    textColor?: PaletteColor;
   }
   interface PaletteOptions {
     headfoot?: PaletteColorOptions;
     hero?: PaletteColorOptions;
     mainbody?: PaletteColorOptions;
     icons?: PaletteColorOptions;
+    textColor?: PaletteColorOptions;
   }
 }
 
@@ -45,6 +47,9 @@ export const lightPalette: PaletteOptions = {
   icons: {
     main: "#64748B",
   },
+  textColor: {
+    main: "#222",
+  },
 };
 
 export const darkPalette: PaletteOptions = {
@@ -72,5 +77,8 @@ export const darkPalette: PaletteOptions = {
   },
   icons: {
     main: "#94A3B8",
+  },
+  textColor: {
+    main: "#ddd",
   },
 };

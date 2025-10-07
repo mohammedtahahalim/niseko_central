@@ -1,10 +1,16 @@
 import { Box, styled } from "@mui/material";
+import Plan from "../../features/header/Plan";
 
 const HomeWrapper = styled(Box)({
   width: "100%",
-  overflowX: "hidden",
+  height: "100%",
+  minHeight: "100vh",
 });
 
 export default function Home() {
-  return <HomeWrapper>Home</HomeWrapper>;
+  return (
+    <HomeWrapper>
+      <Plan />
+    </HomeWrapper>
+  );
 }
