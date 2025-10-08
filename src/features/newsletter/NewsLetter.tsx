@@ -11,6 +11,7 @@ import { resetError } from "./newsLetterSlice";
 
 const NewsLetterWrapper = styled(Box)({
   width: "100%",
+  maxWidth: "900px",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",

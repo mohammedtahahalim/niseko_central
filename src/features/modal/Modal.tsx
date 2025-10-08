@@ -123,16 +123,16 @@ export default function Modal({
   return (
     <>
       {clonedTrigger}
-      {isOpen &&
-        createPortal(
-          <AnimatePresence>
+      {createPortal(
+        <AnimatePresence>
+          {isOpen && (
             <ModalMotion
               sx={sx}
               blurBackground={blurBackground}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.3 }}
               exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
               role="dialog"
               aria-modal="true"
               aria-labelledby="modal-title"
@@ -149,9 +149,10 @@ export default function Modal({
                 {clonedChild}
               </ModalWrapper>
             </ModalMotion>
-          </AnimatePresence>,
-          document.body // key change: portal target
-        )}
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
     </>
   );
 }

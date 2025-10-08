@@ -4,12 +4,13 @@ import Navigation from "./Navigation";
 
 const MenuWrapper = styled(Box)(({ theme }) => ({
   width: "100%",
-  border: "2px solid white",
+  maxWidth: "1300px",
   padding: "10px 20px",
   display: "flex",
   gap: "10px",
   [theme.breakpoints.down("nav_break")]: {
     flexDirection: "column-reverse",
+    gap: "50px",
   },
 }));
 export default function Menu() {

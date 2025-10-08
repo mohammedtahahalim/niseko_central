@@ -93,6 +93,56 @@
         "subsribed_message": "Merci de vous être abonné ! Vous êtes désormais sur notre liste et vous recevrez bientôt de nos nouvelles."
       }
     },
-    "trademark": "Niseko Central est un agent de voyages agréé et membre de l'All Nippon Travel Agents Association (licence n° 2-529)."
+    "trademark": "Niseko Central est un agent de voyages agréé et membre de l'All Nippon Travel Agents Association (licence n° 2-529).",
+    "menu": {
+      "stay": [
+        { "path": "Séjour", "element": "/niseko-accommodation" },
+        {
+          "path": "Offres spéciales",
+          "element": "/niseko-accommodation-deals"
+        },
+        {
+          "path": "Condos",
+          "element": "/niseko-accommodation?propertyType=condominiums"
+        },
+        {
+          "path": "Maisons de villégiature",
+          "element": "/niseko-accommodation?propertyType=resort-homes"
+        }
+      ],
+      "map": [
+        { "path": "Carte", "element": "/map" },
+        { "path": "Enregistrement express", "element": "/express-check-in" },
+        { "path": "Séjour long d’été", "element": "/niseko-long-stay" },
+        { "path": "FAQ", "element": "/faq" }
+      ],
+      "concierge": [
+        { "path": "Concierge", "element": "/concierge" },
+        { "path": "Hiver", "element": "/concierge/winter" },
+        { "path": "Transferts", "element": "/concierge/niseko-transfers" },
+        { "path": "Autres services", "element": "/concierge/services" },
+        { "path": "Été", "element": "/concierge/summer" },
+        {
+          "path": "Passeport Expérience Niseko",
+          "element": "/niseko-accommodation-deals/experience-niseko-passport"
+        }
+      ],
+      "about": [
+        { "path": "À propos", "element": "/about" },
+        { "path": "Carrières/Emplois", "element": "/niseko-jobs" },
+        { "path": "Blog", "element": "/blog" },
+        {
+          "path": "Guide de la région de Niseko",
+          "element": "/niseko-information"
+        },
+        { "path": "Caméra en direct", "element": "/webcam" },
+        { "path": "Météo", "element": "/niseko-weather" },
+        {
+          "path": "Propriétaires",
+          "element": "https://owners.nisekocentral.com/"
+        },
+        { "path": "Contact", "element": "/contact" }
+      ]
+    }
   }
 }
