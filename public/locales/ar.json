@@ -128,6 +128,9 @@
         { "path": "المالكون", "element": "https://owners.nisekocentral.com/" },
         { "path": "اتصل بنا", "element": "/contact" }
       ]
-    }
+    },
+    "terms": "الشروط والأحكام",
+    "privacy": "سياسة الخصوصية",
+    "rights": "جميع الحقوق محفوظة لشركة HTM KK."
   }
 }

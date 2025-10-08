@@ -6,7 +6,7 @@ import type { TRoutes } from "../utils/Types";
 
 export const item_pages: TRoutes[] = [
   {
-    path: "/deals/:deal_title",
+    path: "/niseko-accommodation-deals/:deal_title",
     element: Promotion,
   },
   {
@@ -14,7 +14,7 @@ export const item_pages: TRoutes[] = [
     element: Article,
   },
   {
-    path: "/reservations/:property_title",
+    path: "/niseko-accommodation/:property_title",
     element: Property,
   },
 ];

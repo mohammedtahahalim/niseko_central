@@ -22,7 +22,7 @@ export const general_pages: TRoutes[] = [
     element: Contact,
   },
   {
-    path: "/deals",
+    path: "/niseko-accommodation-deals",
     element: Deals,
   },
   {
@@ -34,7 +34,7 @@ export const general_pages: TRoutes[] = [
     element: NotFound,
   },
   {
-    path: "/reservations",
+    path: "/niseko-accommodation",
     element: Reservations,
   },
 ];

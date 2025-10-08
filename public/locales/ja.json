@@ -131,6 +131,9 @@
         { "path": "オーナー", "element": "https://owners.nisekocentral.com/" },
         { "path": "お問い合わせ", "element": "/contact" }
       ]
-    }
+    },
+    "terms": "利用規約",
+    "privacy": "プライバシーポリシー",
+    "rights": "HTM株式会社。無断複写・転載を禁じます。"
   }
 }
