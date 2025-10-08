@@ -1,6 +1,7 @@
 import { Box, styled } from "@mui/material";
 import NewsLetter from "../newsletter/NewsLetter";
 import Menu from "./Menu";
+import Copyrights from "./Copyrights";
 
 const FooterWrapper = styled(Box)(({ theme }) => ({
   width: "100%",
@@ -17,6 +18,7 @@ export default function Footer() {
     <FooterWrapper>
       <NewsLetter />
       <Menu />
+      <Copyrights />
     </FooterWrapper>
   );
 }

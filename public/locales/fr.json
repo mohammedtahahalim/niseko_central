@@ -143,6 +143,9 @@
         },
         { "path": "Contact", "element": "/contact" }
       ]
-    }
+    },
+    "terms": "Conditions générales",
+    "privacy": "Politique de confidentialité",
+    "rights": "HTM KK. Tous droits réservés."
   }
 }
