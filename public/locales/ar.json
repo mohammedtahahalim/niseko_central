@@ -87,6 +87,47 @@
         "subsribed_message": "شكرًا لاشتراكك! أنت الآن على قائمتنا، وسنتواصل معك قريبًا."
       }
     },
-    "trademark": "Niseko Central هي وكالة سفر مرخصة وعضو في جمعية وكلاء السفر اليابانية (رقم الترخيص 2-529)."
+    "trademark": "Niseko Central هي وكالة سفر مرخصة وعضو في جمعية وكلاء السفر اليابانية (رقم الترخيص 2-529).",
+    "menu": {
+      "stay": [
+        { "path": "الإقامة", "element": "/niseko-accommodation" },
+        { "path": "عروض خاصة", "element": "/niseko-accommodation-deals" },
+        {
+          "path": "شقق فندقية",
+          "element": "/niseko-accommodation?propertyType=condominiums"
+        },
+        {
+          "path": "منازل المنتجع",
+          "element": "/niseko-accommodation?propertyType=resort-homes"
+        }
+      ],
+      "map": [
+        { "path": "الخريطة", "element": "/map" },
+        { "path": "تسجيل الوصول السريع", "element": "/express-check-in" },
+        { "path": "إقامة طويلة في الصيف", "element": "/niseko-long-stay" },
+        { "path": "الأسئلة الشائعة", "element": "/faq" }
+      ],
+      "concierge": [
+        { "path": "الكونسيرج", "element": "/concierge" },
+        { "path": "الشتاء", "element": "/concierge/winter" },
+        { "path": "النقل", "element": "/concierge/niseko-transfers" },
+        { "path": "خدمات أخرى", "element": "/concierge/services" },
+        { "path": "الصيف", "element": "/concierge/summer" },
+        {
+          "path": "بطاقة تجربة نيسيكو",
+          "element": "/niseko-accommodation-deals/experience-niseko-passport"
+        }
+      ],
+      "about": [
+        { "path": "حول", "element": "/about" },
+        { "path": "الوظائف", "element": "/niseko-jobs" },
+        { "path": "المدونة", "element": "/blog" },
+        { "path": "دليل منطقة نيسيكو", "element": "/niseko-information" },
+        { "path": "كاميرا مباشرة", "element": "/webcam" },
+        { "path": "الطقس", "element": "/niseko-weather" },
+        { "path": "المالكون", "element": "https://owners.nisekocentral.com/" },
+        { "path": "اتصل بنا", "element": "/contact" }
+      ]
+    }
   }
 }

@@ -90,6 +90,47 @@
         "subsribed_message": "Thanks for subscribing! You’re now on our list and will hear from us soon."
       }
     },
-    "trademark": "Niseko Central is a licensed travel agent and a member of the All Nippon Travel Agents Association (License no 2-529)."
+    "trademark": "Niseko Central is a licensed travel agent and a member of the All Nippon Travel Agents Association (License no 2-529).",
+    "menu": {
+      "stay": [
+        { "path": "Stay", "element": "/niseko-accommodation" },
+        { "path": "Special Deals", "element": "/niseko-accommodation-deals" },
+        {
+          "path": "Condominiums",
+          "element": "/niseko-accommodation?propertyType=condominiums"
+        },
+        {
+          "path": "Resort Homes",
+          "element": "/niseko-accommodation?propertyType=resort-homes"
+        }
+      ],
+      "map": [
+        { "path": "Map", "element": "/map" },
+        { "path": "Express Check-In", "element": "/express-check-in" },
+        { "path": "Summer Long Stay", "element": "/niseko-long-stay" },
+        { "path": "FAQ", "element": "/faq" }
+      ],
+      "concierge": [
+        { "path": "Concierge", "element": "/concierge" },
+        { "path": "Winter", "element": "/concierge/winter" },
+        { "path": "Transfers", "element": "/concierge/niseko-transfers" },
+        { "path": "Other Services", "element": "/concierge/services" },
+        { "path": "Summer", "element": "/concierge/summer" },
+        {
+          "path": "Experience Niseko Passport",
+          "element": "/niseko-accommodation-deals/experience-niseko-passport"
+        }
+      ],
+      "about": [
+        { "path": "About", "element": "/about" },
+        { "path": "Careers/Jobs", "element": "/niseko-jobs" },
+        { "path": "Blog", "element": "/blog" },
+        { "path": "Niseko Area Guide", "element": "/niseko-information" },
+        { "path": "Live Camera", "element": "/webcam" },
+        { "path": "Weather", "element": "/niseko-weather" },
+        { "path": "Owners", "element": "https://owners.nisekocentral.com/" },
+        { "path": "Contact", "element": "/contact" }
+      ]
+    }
   }
 }

@@ -6,15 +6,20 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import XIcon from "@mui/icons-material/X";
 
-const SocialLinksWrapper = styled(Box)({
+const SocialLinksWrapper = styled(Box)(({ theme }) => ({
   maxWidth: "250px",
   width: "100%",
   minHeight: "100px",
-  alignSelf: "center",
   display: "flex",
   flexDirection: "column",
-  gap: "20px",
-});
+  marginLeft: "50px",
+  gap: "25px",
+  alignSelf: "center",
+  padding: "10px",
+  [theme.breakpoints.down("nav_break")]: {
+    marginLeft: "0px",
+  },
+}));
 
 const Logos = styled(Box)({
   width: "100%",
@@ -67,14 +72,14 @@ export default function SocialLinks() {
                 : "/img/niseko_logo_dark.webp"
             }
             alt="Niseko Logo"
-            style={{ maxWidth: "80%", objectFit: "contain" }}
+            style={{ width: "90%", objectFit: "contain" }}
           />
         </NisekoLogo>
         <AntaLogo>
           <img
             src="/img/anta.webp"
             alt="Anta Logo"
-            style={{ maxWidth: "70%", objectFit: "contain" }}
+            style={{ width: "90%", objectFit: "contain" }}
           />
         </AntaLogo>
       </Logos>
