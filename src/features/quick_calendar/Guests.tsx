@@ -17,6 +17,7 @@ const FieldWrapper = styled(Box)({
   display: "flex",
   flexDirection: "column",
   gap: "2px",
+  overflow: "hidden",
 });
 
 const StyledLabel = styled(Typography)(({ theme }) => ({
@@ -24,6 +25,10 @@ const StyledLabel = styled(Typography)(({ theme }) => ({
   alignSelf: "center",
   fontFamily: "Inter",
   fontStyle: "italic",
+  width: "100%",
+  textOverflow: "ellipsis",
+  whiteSpace: "nowrap",
+  overflow: "hidden",
 }));
 
 const StyledTextField = styled(TextField)({
