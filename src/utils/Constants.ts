@@ -1,3 +1,4 @@
+import type { TLanguage } from "../features/languages/changeLanguage";
 import type { TBackendErrors } from "./Types";
 
 export const debouncer = (callback: Function, cooldown: number) => {
@@ -57,4 +58,13 @@ export const backendErrors: TBackendErrors = {
     "500": "Erreur interne du serveur ; veuillez réessayer plus tard",
     "522": "Serveur en maintenance ; le service reprendra sous peu",
   },
+};
+
+export const convertDate = (d: Date, lang: TLanguage) => {
+  return d.toLocaleDateString(lang, {
+    weekday: "short",
+    month: "short",
+    day: "2-digit",
+    year: "numeric",
+  });
 };

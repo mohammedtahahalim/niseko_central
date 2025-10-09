@@ -1,11 +1,22 @@
+import "@mantine/core/styles.css";
+import "@mantine/dates/styles.css";
 import { Box, styled, TextField } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
+import { useDispatch, useSelector } from "react-redux";
+import type { AppDispatch, RootState } from "../app/store";
+import { DatePicker } from "@mantine/dates";
+import { MantineProvider } from "@mantine/core";
+import { DatesProvider } from "@mantine/dates";
+import {
+  setStartDate,
+  setEndDate,
+} from "../features/quick_calendar/quickReservationSlice";
+import { useTranslation } from "react-i18next";
+import { convertDate } from "../utils/Constants";
+import type { TLanguage } from "../features/languages/changeLanguage";
+import { useMediaQuery } from "@mantine/hooks";
 import useModal from "../features/modal/useModal";
-
-interface NisekoCalendarProps {
-  calendarType?: "single" | "double";
-  withInput?: boolean;
-}
+import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 
 const NisekoCalendarWrapper = styled(Box)({
   width: "100%",
@@ -16,10 +27,11 @@ const NisekoCalendarWrapper = styled(Box)({
 });
 
 const CalendarInput = styled(TextField)(({ theme }) => ({
-  width: "90%",
+  width: "100%",
   "& input": {
-    paddingLeft: "40px",
+    paddingLeft: "32px",
     cursor: "pointer",
+    fontFamily: "Inter",
   },
   "& > div": {
     borderRadius: "12px",
@@ -27,54 +39,95 @@ const CalendarInput = styled(TextField)(({ theme }) => ({
   },
 }));
 
+const CalendarIconContainer = styled(Box)(({ theme }) => ({
+  position: "absolute",
+  top: "50%",
+  left: "0px",
+  height: "60%",
+  translate: "0% -50%",
+  aspectRatio: "1",
+  zIndex: 9999,
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  color: theme.palette.icons?.main,
+}));
+
 const CalendarWrapper = styled(Box)({
   position: "absolute",
   top: "calc(100% + 2px)",
-  left: "5%",
+  left: "0%",
   padding: "10px",
-  border: "1px solid black",
-  width: "90%",
+  width: "100%",
   zIndex: 9999,
   backgroundColor: "whitesmoke",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
 });
 
 const CalendarMotion = motion.create(CalendarWrapper);
 
-export default function NisekoCalendar({
-  calendarType = "double",
-  withInput = true,
-}: NisekoCalendarProps) {
+export default function NisekoCalendar() {
   const { isOpen, openModal, modalRef, parentRef } = useModal<
     HTMLDivElement,
     HTMLDivElement
   >();
+  const { start_date, end_date } = useSelector(
+    (state: RootState) => state.quickReservation
+  );
+  const dispatch = useDispatch<AppDispatch>();
+  const { i18n } = useTranslation();
+  const isMobile = useMediaQuery("(max-width: 768px)");
+
   return (
-    <NisekoCalendarWrapper>
-      {withInput && (
-        <CalendarInput
-          type="text"
-          value={"Test"}
-          ref={parentRef}
-          InputProps={{
-            readOnly: true,
-          }}
-          onClick={openModal}
-        />
-      )}
-      <AnimatePresence>
-        {withInput && isOpen && (
-          <CalendarMotion
-            ref={modalRef}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-          >
-            Test
-          </CalendarMotion>
-        )}
-      </AnimatePresence>
-      {!withInput && <div>calendar</div>}
-    </NisekoCalendarWrapper>
+    <MantineProvider>
+      <DatesProvider settings={{ locale: i18n.language, firstDayOfWeek: 0 }}>
+        <NisekoCalendarWrapper>
+          <Box sx={{ width: "90%", height: "100%", position: "relative" }}>
+            <CalendarInput
+              type="text"
+              value={`${convertDate(
+                new Date(start_date),
+                i18n.language as TLanguage
+              )} - ${
+                end_date
+                  ? convertDate(new Date(end_date), i18n.language as TLanguage)
+                  : "..."
+              }`}
+              ref={parentRef}
+              InputProps={{
+                readOnly: true,
+              }}
+              onClick={openModal}
+            />
+            <CalendarIconContainer>
+              <CalendarMonthOutlinedIcon fontSize="medium" color="inherit" />
+            </CalendarIconContainer>
+          </Box>
+          <AnimatePresence>
+            {isOpen && (
+              <CalendarMotion
+                ref={modalRef}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                <DatePicker
+                  type="range"
+                  numberOfColumns={isMobile ? 1 : 2}
+                  value={[start_date, end_date]}
+                  onChange={([start, end]) => {
+                    dispatch(setStartDate(start as string));
+                    dispatch(setEndDate(end as string));
+                  }}
+                ></DatePicker>
+              </CalendarMotion>
+            )}
+          </AnimatePresence>
+        </NisekoCalendarWrapper>
+      </DatesProvider>
+    </MantineProvider>
   );
 }

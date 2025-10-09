@@ -52,8 +52,9 @@ export default function QuickReservation() {
           variant="subtitle2"
           textTransform={"capitalize"}
           color="textColor"
-          fontFamily={"VAGRundschriftD"}
+          fontFamily={"Inter"}
           fontSize={"0.9rem"}
+          fontWeight={"700"}
         >
           {t("quick_reservation.select_dates")}
         </Typography>

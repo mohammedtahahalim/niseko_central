@@ -1,8 +1,9 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import { convertDate } from "../../utils/Constants";
 
 interface QuickReservationState {
-  start_date: Date;
-  end_date: Date;
+  start_date: string;
+  end_date: string;
   adults: number;
   children: number;
   infants: number;
@@ -10,8 +11,11 @@ interface QuickReservationState {
 }
 
 const initialState: QuickReservationState = {
-  start_date: new Date(),
-  end_date: new Date(new Date().setDate(new Date().getDate() + 2)),
+  start_date: convertDate(new Date(), "en"),
+  end_date: convertDate(
+    new Date(new Date().setDate(new Date().getDate() + 2)),
+    "en"
+  ),
   adults: 2,
   children: 0,
   infants: 0,
@@ -22,10 +26,10 @@ const quickReservationSlice = createSlice({
   name: "quick/reservation",
   initialState,
   reducers: {
-    setStartDate: (state, action: PayloadAction<Date>) => {
+    setStartDate: (state, action: PayloadAction<string>) => {
       state.start_date = action.payload;
     },
-    setEndDate: (state, action: PayloadAction<Date>) => {
+    setEndDate: (state, action: PayloadAction<string>) => {
       state.end_date = action.payload;
     },
     setAdults: (state, action: PayloadAction<number>) => {
@@ -40,8 +44,8 @@ const quickReservationSlice = createSlice({
     submitReservation: (state) => {
       const queries = new URLSearchParams(
         Object.entries({
-          start_date: state.start_date.toISOString(),
-          end_date: state.end_date.toISOString(),
+          start_date: state.start_date,
+          end_date: state.end_date,
           adults: state.adults.toString(),
           children: state.children.toString(),
           infants: state.infants.toString(),
@@ -53,3 +57,11 @@ const quickReservationSlice = createSlice({
 });
 
 export default quickReservationSlice.reducer;
+export const {
+  setStartDate,
+  setEndDate,
+  setAdults,
+  setChildren,
+  setInfants,
+  submitReservation,
+} = quickReservationSlice.actions;
