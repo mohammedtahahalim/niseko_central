@@ -19,12 +19,15 @@ const TermsAndPrivacy = styled(Box)({
   gap: "10px",
 });
 
-const StyledLink = styled("a")({
+const StyledLink = styled("a")(({ theme }) => ({
   textDecoration: "none",
   fontFamily: "Inter",
   fontSize: "0.7rem",
   color: "inherit",
-});
+  "&:hover": {
+    color: theme.palette.primary.main,
+  },
+}));
 
 const Rights = styled(Box)({
   fontFamily: "Inter",

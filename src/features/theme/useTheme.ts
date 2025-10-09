@@ -73,7 +73,7 @@ export default function useTheme({
           xs: 0,
           sm: 600,
           md: 900,
-          nav_break: 1000,
+          nav_break: 1050,
           lg: 1200,
           xl: 1536,
         },
