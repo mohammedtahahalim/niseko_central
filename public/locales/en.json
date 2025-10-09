@@ -135,5 +135,12 @@
     "terms": "Terms & Conditions",
     "privacy": "Privacy Policy",
     "rights": "HTM KK. All rights reserved."
+  },
+  "quick_reservation": {
+    "title": "Check Availability",
+    "description": "Over 200 stays in the heart of Niseko, from luxury resort homes to value-packed accommodation!",
+    "select_dates": "Select dates",
+    "guests": ["adults", "chidren (7-15)", "infants (0-6)"],
+    "search": "Search"
   }
 }

@@ -73,7 +73,6 @@ const ModalWrapper = styled(Box, {
     justifyContent: "center",
     alignItems: "center",
     borderRadius: `${br ? 12 : 0}px`,
-    overflow: "hidden",
     border: `1px solid ${theme.palette.divider}`,
   })
 );

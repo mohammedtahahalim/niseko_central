@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Link, useLocation } from "react-router-dom";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import Modal from "../modal/Modal";
+import QuickReservation from "../quick_calendar/QuickReservation";
 
 interface IsNavActive {
   isActive: boolean;
@@ -84,7 +85,7 @@ export default function NavMenu() {
         blurBackground={true}
         br={true}
       >
-        <div style={{}}>Test</div>
+        <QuickReservation />
       </Modal>
     </NavMenuWrapper>
   );
