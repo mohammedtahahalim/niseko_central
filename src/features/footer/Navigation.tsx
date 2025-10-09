@@ -59,6 +59,9 @@ const LinkField = styled(Link)(({ theme }) => ({
   "&:first-of-type": {
     color: theme.palette.primary.main,
   },
+  "&:hover": {
+    color: theme.palette.primary.main,
+  },
 }));
 
 export default function Navigation() {

@@ -2,6 +2,7 @@ import { Box, styled, Button } from "@mui/material";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import Modal from "../features/modal/Modal";
 import { useTranslation } from "react-i18next";
+import QuickReservation from "../features/quick_calendar/QuickReservation";
 
 const PlanWrapper = styled(Box)(({ theme }) => ({
   display: "none",
@@ -41,7 +42,7 @@ export default function Plan() {
         disableScroll={false}
         br={true}
       >
-        <div style={{}}>Test</div>
+        <QuickReservation />
       </Modal>
     </PlanWrapper>
   );
