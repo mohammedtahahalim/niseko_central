@@ -1,9 +1,10 @@
 import { Box, styled } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
 import { createPortal } from "react-dom";
-import React from "react";
+import React, { useEffect } from "react";
 import useModal from "./useModal";
 import CloseIcon from "@mui/icons-material/Close";
+import { useLocation } from "react-router-dom";
 
 /* Read Carefully on how to use the modal */
 /*
@@ -100,6 +101,11 @@ export default function Modal({
   const { parentRef, modalRef, openModal, closeModal, isOpen } = useModal({
     disableScroll,
   });
+  const queries = useLocation().search;
+
+  useEffect(() => {
+    closeModal();
+  }, [queries]);
 
   const clonedTrigger = React.cloneElement(trigger, {
     ref: (node: HTMLElement) => {

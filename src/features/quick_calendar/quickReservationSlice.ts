@@ -1,5 +1,4 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-import { convertDate } from "../../utils/Constants";
 
 interface QuickReservationState {
   start_date: string;
@@ -11,11 +10,10 @@ interface QuickReservationState {
 }
 
 const initialState: QuickReservationState = {
-  start_date: convertDate(new Date(), "en"),
-  end_date: convertDate(
-    new Date(new Date().setDate(new Date().getDate() + 2)),
-    "en"
-  ),
+  start_date: new Date().toISOString().split("T")[0],
+  end_date: new Date(new Date().setDate(new Date().getDate() + 2))
+    .toISOString()
+    .split("T")[0],
   adults: 2,
   children: 0,
   infants: 0,
@@ -33,13 +31,13 @@ const quickReservationSlice = createSlice({
       state.end_date = action.payload;
     },
     setAdults: (state, action: PayloadAction<number>) => {
-      state.adults = action.payload;
+      state.adults = Math.max(action.payload, 1);
     },
     setChildren: (state, action: PayloadAction<number>) => {
-      state.children = action.payload;
+      state.children = Math.max(action.payload, 0);
     },
     setInfants: (state, action: PayloadAction<number>) => {
-      state.infants = action.payload;
+      state.infants = Math.max(action.payload, 0);
     },
     submitReservation: (state) => {
       const queries = new URLSearchParams(
@@ -51,7 +49,7 @@ const quickReservationSlice = createSlice({
           infants: state.infants.toString(),
         })
       );
-      state.reservationUrl = `/niseko-accomodation?${queries}`;
+      state.reservationUrl = `/niseko-accommodation?${queries}`;
     },
   },
 });

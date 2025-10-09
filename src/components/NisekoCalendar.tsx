@@ -1,6 +1,6 @@
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
-import { Box, styled, TextField } from "@mui/material";
+import { Box, styled, TextField, Button } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../app/store";
@@ -29,9 +29,10 @@ const NisekoCalendarWrapper = styled(Box)({
 const CalendarInput = styled(TextField)(({ theme }) => ({
   width: "100%",
   "& input": {
-    paddingLeft: "32px",
+    paddingLeft: "40px",
     cursor: "pointer",
     fontFamily: "Inter",
+    fontSize: "0.9rem",
   },
   "& > div": {
     borderRadius: "12px",
@@ -42,7 +43,7 @@ const CalendarInput = styled(TextField)(({ theme }) => ({
 const CalendarIconContainer = styled(Box)(({ theme }) => ({
   position: "absolute",
   top: "50%",
-  left: "0px",
+  left: "5px",
   height: "60%",
   translate: "0% -50%",
   aspectRatio: "1",
@@ -62,14 +63,20 @@ const CalendarWrapper = styled(Box)({
   zIndex: 9999,
   backgroundColor: "whitesmoke",
   display: "flex",
+  flexDirection: "column",
   justifyContent: "center",
   alignItems: "center",
+  gap: "5px",
+});
+
+const CloseButton = styled(Button)({
+  marginLeft: "auto",
 });
 
 const CalendarMotion = motion.create(CalendarWrapper);
 
 export default function NisekoCalendar() {
-  const { isOpen, openModal, modalRef, parentRef } = useModal<
+  const { isOpen, openModal, modalRef, parentRef, closeModal } = useModal<
     HTMLDivElement,
     HTMLDivElement
   >();
@@ -77,14 +84,14 @@ export default function NisekoCalendar() {
     (state: RootState) => state.quickReservation
   );
   const dispatch = useDispatch<AppDispatch>();
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
   const isMobile = useMediaQuery("(max-width: 768px)");
 
   return (
     <MantineProvider>
       <DatesProvider settings={{ locale: i18n.language, firstDayOfWeek: 0 }}>
         <NisekoCalendarWrapper>
-          <Box sx={{ width: "90%", height: "100%", position: "relative" }}>
+          <Box sx={{ width: "80%", height: "100%", position: "relative" }}>
             <CalendarInput
               type="text"
               value={`${convertDate(
@@ -102,7 +109,7 @@ export default function NisekoCalendar() {
               onClick={openModal}
             />
             <CalendarIconContainer>
-              <CalendarMonthOutlinedIcon fontSize="medium" color="inherit" />
+              <CalendarMonthOutlinedIcon fontSize="small" color="inherit" />
             </CalendarIconContainer>
           </Box>
           <AnimatePresence>
@@ -123,6 +130,13 @@ export default function NisekoCalendar() {
                     dispatch(setEndDate(end as string));
                   }}
                 ></DatePicker>
+                <CloseButton
+                  variant="contained"
+                  size="small"
+                  onClick={closeModal}
+                >
+                  {t("quick_reservation.close")}
+                </CloseButton>
               </CalendarMotion>
             )}
           </AnimatePresence>

@@ -1,16 +1,22 @@
 import { Box, styled, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import NisekoCalendar from "../../components/NisekoCalendar";
+import Guests from "./Guests";
+import Submit from "./Submit";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../app/store";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const QuickReservationWrapper = styled(Box)({
   width: "95vw",
   height: "100%",
   minHeight: "250px",
   maxWidth: "600px",
-  paddingTop: "40px",
+  padding: "40px 0px",
   display: "flex",
   flexDirection: "column",
-  gap: "10px",
+  gap: "20px",
 });
 
 const Title = styled(Typography)({
@@ -39,6 +45,15 @@ const CalendarWrapper = styled(Box)({
 
 export default function QuickReservation() {
   const { t } = useTranslation();
+  const { reservationUrl } = useSelector(
+    (state: RootState) => state.quickReservation
+  );
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (reservationUrl) {
+      navigate(reservationUrl);
+    }
+  }, [reservationUrl]);
   return (
     <QuickReservationWrapper>
       <Title variant="h6" color="textColor">
@@ -60,6 +75,8 @@ export default function QuickReservation() {
         </Typography>
         <NisekoCalendar />
       </CalendarWrapper>
+      <Guests />
+      <Submit />
     </QuickReservationWrapper>
   );
 }
