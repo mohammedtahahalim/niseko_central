@@ -1,5 +1,6 @@
 import { Box, styled } from "@mui/material";
 import Plan from "../../components/Plan";
+import Hero from "../../features/hero/Hero";
 
 const HomeWrapper = styled(Box)({
   width: "100%",
@@ -11,6 +12,7 @@ export default function Home() {
   return (
     <HomeWrapper>
       <Plan />
+      <Hero />
     </HomeWrapper>
   );
 }
