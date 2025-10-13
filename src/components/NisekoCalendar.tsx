@@ -67,6 +67,9 @@ const CalendarWrapper = styled(Box)({
   justifyContent: "center",
   alignItems: "center",
   gap: "5px",
+  "@media (max-height: 600px)": {
+    top: "calc(-100% + 2px)",
+  },
 });
 
 const CloseButton = styled(Button)({
