@@ -8,7 +8,8 @@ const PlanWrapper = styled(Box)(({ theme }) => ({
   display: "none",
   position: "sticky",
   width: "100%",
-  top: "calc(100vh - 65px)",
+  top: "calc(100vh - 60px)",
+  zIndex: 8888,
   [theme.breakpoints.down("nav_break")]: {
     display: "flex",
     justifyContent: "center",
