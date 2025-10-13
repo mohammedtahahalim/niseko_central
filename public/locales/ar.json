@@ -142,5 +142,34 @@
     "children": "أطفال(7-15)",
     "infants": "الرضع(0-6)",
     "search": "بحث"
+  },
+  "hero_slides": {
+    "content": [
+      {
+        "tag": "مزود الإقامة رقم 1 في نيسيكو",
+        "title": "ابقى. العب. جرب.",
+        "subtitle": "يمكنك الاختيار من بين أكثر من 200 إقامة في قلب نيسيكو هيرافو.",
+        "image": "https://d1z517741srsht.cloudfront.net/accommodation/_1280xAUTO_crop_center-center_none/337714/20240712_NisekoCentral_WhiskeyWoods_WW_Summer_LivingRoom_DSC5229_Lores_1.webp",
+        "more": "اكتشف المزيد",
+        "link": "https://www.nisekocentral.com/niseko-accommodation"
+      },
+      {
+        "tag": "مزود الإقامة رقم 1 في نيسيكو",
+        "title": "سيارة مجانية مع إقامتك.",
+        "subtitle": "استكشف مدينة نيسيكو والمناطق المحيطة بها المذهلة على طريقتك.",
+        "image": "https://d1z517741srsht.cloudfront.net/general/_1280xAUTO_crop_center-center_none/315569/Drone-Niseko-Central.webp",
+        "more": "اكتشف المزيد",
+        "link": "https://www.nisekocentral.com/niseko-accommodation"
+      },
+      {
+        "tag": "مزود الإقامة رقم 1 في نيسيكو",
+        "title": "ابقى لفترة أطول قليلاً، ووفر أكثر بكثير.",
+        "subtitle": "وفر أكثر مع إقامات أطول. احجز لياليك المجانية اليوم!",
+        "image": "https://d1z517741srsht.cloudfront.net/accommodation/_1280xAUTO_crop_center-center_none/332367/20240326_NisekoCentral_DT01_Winter_LivingRoom_DSC1274_Lores_1.webp",
+        "more": "اكتشف المزيد",
+        "link": "https://www.nisekocentral.com/niseko-accommodation"
+      }
+    ],
+    "more": "اكتشف المزيد"
   }
 }

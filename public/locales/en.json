@@ -145,5 +145,33 @@
     "children": "Children (7-15)",
     "infants": "Infants (0-6)",
     "search": "Search"
+  },
+  "hero_slides": {
+    "content": [
+      {
+        "tag": "Niseko's No. 1 Accommodation Provider",
+        "title": "Stay. Play. Experience.",
+        "subtitle": "Choose from over 200 stays in the heart of Niseko-Hirafu.",
+        "image": "https://d1z517741srsht.cloudfront.net/accommodation/_1280xAUTO_crop_center-center_none/337714/20240712_NisekoCentral_WhiskeyWoods_WW_Summer_LivingRoom_DSC5229_Lores_1.webp",
+        "more": "Find out more",
+        "link": "https://www.nisekocentral.com/niseko-accommodation"
+      },
+      {
+        "tag": "Niseko's No. 1 Accommodation Provider",
+        "title": "Complimentary Vehicle With Your Stay.",
+        "subtitle": "Explore Niseko and it's stunning surrounds your way.",
+        "image": "https://d1z517741srsht.cloudfront.net/general/_1280xAUTO_crop_center-center_none/315569/Drone-Niseko-Central.webp",
+        "more": "Find out more",
+        "link": "https://www.nisekocentral.com/blog/complimentary-vehicles-2025-26"
+      },
+      {
+        "tag": "Niseko's No. 1 Accommodation Provider",
+        "title": "Stay a little longer, save a lot more.",
+        "subtitle": "Unlock greater savings with longer stays. Secure your FREE nights today!",
+        "image": "https://d1z517741srsht.cloudfront.net/accommodation/_1280xAUTO_crop_center-center_none/332367/20240326_NisekoCentral_DT01_Winter_LivingRoom_DSC1274_Lores_1.webp",
+        "more": "Find out more",
+        "link": "https://www.nisekocentral.com/niseko-accommodation-deals/stay-and-save-winter-2025-26"
+      }
+    ]
   }
 }
