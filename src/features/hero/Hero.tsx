@@ -17,6 +17,7 @@ const HeroWrapper = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down("nav_break")]: {
     translate: "0% -65px",
   },
+  border: "1px solid white",
 }));
 
 const DesktopSliderWrapper = styled(Box)(({ theme }) => ({
