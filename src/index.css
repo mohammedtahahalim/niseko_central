@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap");
 .source-code-pro-niseko {
   font-family: "Source Code Pro", monospace;
   font-optical-sizing: auto;
@@ -10,6 +11,12 @@
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
   font-weight: 500;
+  font-style: normal;
+}
+.figtree-niseko {
+  font-family: "Figtree", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
   font-style: normal;
 }
 @font-face {

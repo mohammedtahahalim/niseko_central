@@ -157,5 +157,33 @@
     "children": "Enfants (7-15)",
     "infants": "Nourrissons (0-6)",
     "search": "Rechercher"
+  },
+  "hero_slides": {
+    "content": [
+      {
+        "tag": "Fournisseur d'hébergement n° 1 de Niseko",
+        "title": "Séjournez. Jouez. Vivez.",
+        "subtitle": "Choisissez parmi plus de 200 séjours au cœur de Niseko-Hirafu.",
+        "image": "https://d1z517741srsht.cloudfront.net/accommodation/_1280xAUTO_crop_center-center_none/337714/20240712_NisekoCentral_WhiskeyWoods_WW_Summer_LivingRoom_DSC5229_Lores_1.webp",
+        "more": "En savoir plus",
+        "link": "https://www.nisekocentral.com/niseko-accommodation"
+      },
+      {
+        "tag": "Fournisseur d'hébergement n° 1 de Niseko",
+        "title": "Véhicule gratuit avec votre séjour.",
+        "subtitle": "Explorez Niseko et ses environs époustouflants à votre façon.",
+        "image": "https://d1z517741srsht.cloudfront.net/general/_1280xAUTO_crop_center-center_none/315569/Drone-Niseko-Central.webp",
+        "more": "En savoir plus",
+        "link": "https://www.nisekocentral.com/niseko-accommodation"
+      },
+      {
+        "tag": "Fournisseur d'hébergement n° 1 de Niseko",
+        "title": "Restez un peu plus longtemps, économisez beaucoup plus.",
+        "subtitle": "Bénéficiez de plus d'économies pour vos longs séjours. Réservez vos nuits GRATUITES dès aujourd'hui !",
+        "image": "https://d1z517741srsht.cloudfront.net/accommodation/_1280xAUTO_crop_center-center_none/332367/20240326_NisekoCentral_DT01_Winter_LivingRoom_DSC1274_Lores_1.webp",
+        "more": "En savoir plus",
+        "link": "https://www.nisekocentral.com/niseko-accommodation"
+      }
+    ]
   }
 }

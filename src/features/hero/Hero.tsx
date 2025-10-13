@@ -6,6 +6,8 @@ import EastIcon from "@mui/icons-material/East";
 import WestIcon from "@mui/icons-material/West";
 import "swiper/css";
 import DesktopSlide from "./DesktopSlide";
+import { useTranslation } from "react-i18next";
+import type { THeroContent } from "../../utils/Types";
 
 const HeroWrapper = styled(Box)(({ theme }) => ({
   width: "100%",
@@ -43,14 +45,13 @@ const MobileSliderWrapper = styled(Box)(({ theme }) => ({
 const ControlNav = styled(Box)(({ theme }) => ({
   position: "absolute",
   bottom: "40px",
-  left: "8%",
+  left: "7%",
   translate: "-50% 0%",
   zIndex: 1,
   height: "29px",
   overflow: "hidden",
   display: "flex",
   gap: "15px",
-  cursor: "pointer",
   [theme.breakpoints.down("nav_break")]: {
     bottom: "-50px",
     left: "50%",
@@ -62,14 +63,16 @@ const NavButton = styled(Box)(({ theme }) => ({
   height: "100%",
   aspectRatio: 1,
   borderRadius: "50px",
-  border: `2px solid ${theme.palette.icons?.main}`,
+  border: `1px solid ${theme.palette.icons?.main}`,
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
+  cursor: "pointer",
 }));
 
 export default function Hero() {
   const swiperRef = useRef<SwiperType | null>(null);
+  const { t } = useTranslation();
 
   return (
     <HeroWrapper>
@@ -79,39 +82,30 @@ export default function Hero() {
         loop={true}
         style={{ width: "100%", height: "100%" }}
         spaceBetween={0}
+        speed={250}
         onSwiper={(swiper) => (swiperRef.current = swiper)}
       >
-        <SwiperSlide>
-          <>
-            <DesktopSliderWrapper>
-              <DesktopSlide />
-            </DesktopSliderWrapper>
-            <MobileSliderWrapper>Mobile</MobileSliderWrapper>
-          </>
-        </SwiperSlide>
-        <SwiperSlide>
-          <>
-            <DesktopSliderWrapper>
-              <DesktopSlide />
-            </DesktopSliderWrapper>
-            <MobileSliderWrapper>Mobile</MobileSliderWrapper>
-          </>
-        </SwiperSlide>
-        <SwiperSlide>
-          <>
-            <DesktopSliderWrapper>
-              <DesktopSlide />
-            </DesktopSliderWrapper>
-            <MobileSliderWrapper>Mobile</MobileSliderWrapper>
-          </>
-        </SwiperSlide>
+        {(
+          t("hero_slides.content", { returnObjects: true }) as THeroContent[]
+        ).map((slide) => {
+          return (
+            <SwiperSlide key={slide.title}>
+              <>
+                <DesktopSliderWrapper>
+                  <DesktopSlide {...slide} />
+                </DesktopSliderWrapper>
+                <MobileSliderWrapper>Mobile</MobileSliderWrapper>
+              </>
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
       <ControlNav>
         <NavButton onClick={() => swiperRef.current?.slidePrev()}>
-          <WestIcon fontSize="small" />
+          <WestIcon sx={{ fontSize: "1.05rem" }} />
         </NavButton>
         <NavButton onClick={() => swiperRef.current?.slideNext()}>
-          <EastIcon fontSize="small" />
+          <EastIcon sx={{ fontSize: "1.05rem" }} />
         </NavButton>
       </ControlNav>
     </HeroWrapper>

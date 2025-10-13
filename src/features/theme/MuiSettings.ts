@@ -62,8 +62,8 @@ export const darkPalette: PaletteOptions = {
     contrastText: "#E1E3E8",
   },
   info: {
-    main: "#F9FAFB",
-    contrastText: "#1F2937",
+    main: "#374151",
+    contrastText: "#ddd",
   },
   divider: "#1F2937",
   headfoot: {

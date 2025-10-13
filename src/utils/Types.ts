@@ -21,3 +21,12 @@ export type MobileMenuItemType = {
   element: string;
   children?: MobileMenuItemType[];
 };
+
+export type THeroContent = {
+  tag: string;
+  title: string;
+  subtitle: string;
+  image: string;
+  more: string;
+  link: string;
+};

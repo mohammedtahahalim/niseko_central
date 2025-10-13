@@ -145,5 +145,33 @@
     "children": "子供(7-15)",
     "infants": "乳児(0-6)",
     "search": "検索"
+  },
+  "hero_slides": {
+    "content": [
+      {
+        "tag": "ニセコNo.1の宿泊施設",
+        "title": "泊まる。遊ぶ。体験する。",
+        "subtitle": "ニセコひらふの中心部にある 200 以上の宿泊施設からお選びください。",
+        "image": "https://d1z517741srsht.cloudfront.net/accommodation/_1280xAUTO_crop_center-center_none/337714/20240712_NisekoCentral_WhiskeyWoods_WW_Summer_LivingRoom_DSC5229_Lores_1.webp",
+        "more": "詳細はこちら",
+        "link": "https://www.nisekocentral.com/niseko-accommodation"
+      },
+      {
+        "tag": "ニセコNo.1の宿泊施設",
+        "title": "ご宿泊のお客様は無料でお車をご利用になれます。",
+        "subtitle": "ニセコとその素晴らしい環境を思いのままに探検しましょう。",
+        "image": "https://d1z517741srsht.cloudfront.net/general/_1280xAUTO_crop_center-center_none/315569/Drone-Niseko-Central.webp",
+        "more": "詳細はこちら",
+        "link": "https://www.nisekocentral.com/niseko-accommodation"
+      },
+      {
+        "tag": "ニセコNo.1の宿泊施設",
+        "title": "もう少し長く滞在すれば、もっと節約できます。",
+        "subtitle": "長期滞在でさらにお得に。今すぐ無料宿泊をゲットしましょう！",
+        "image": "https://d1z517741srsht.cloudfront.net/accommodation/_1280xAUTO_crop_center-center_none/332367/20240326_NisekoCentral_DT01_Winter_LivingRoom_DSC1274_Lores_1.webp",
+        "more": "詳細はこちら",
+        "link": "https://www.nisekocentral.com/niseko-accommodation"
+      }
+    ]
   }
 }
