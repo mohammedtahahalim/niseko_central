@@ -8,6 +8,7 @@ import "swiper/css";
 import DesktopSlide from "./DesktopSlide";
 import { useTranslation } from "react-i18next";
 import type { THeroContent } from "../../utils/Types";
+import MobileSlide from "./MobileSlide";
 
 const HeroWrapper = styled(Box)(({ theme }) => ({
   width: "100%",
@@ -94,7 +95,9 @@ export default function Hero() {
                 <DesktopSliderWrapper>
                   <DesktopSlide {...slide} />
                 </DesktopSliderWrapper>
-                <MobileSliderWrapper>Mobile</MobileSliderWrapper>
+                <MobileSliderWrapper>
+                  <MobileSlide {...slide} />
+                </MobileSliderWrapper>
               </>
             </SwiperSlide>
           );
