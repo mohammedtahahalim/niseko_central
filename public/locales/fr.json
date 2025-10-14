@@ -185,5 +185,28 @@
         "link": "https://www.nisekocentral.com/niseko-accommodation"
       }
     ]
+  },
+  "home": {
+    "service_section": {
+      "title": "Avec plus de 200 séjours parmi lesquels choisir et plus de 20 ans d'expérience, nous sommes le premier fournisseur d'hébergement de Niseko. Nous sommes impatients de vous accueillir à Niseko.",
+      "services": [
+        {
+          "title": "Découvrez le passeport Niseko",
+          "body": "Les clients de Niseko Central bénéficient de réductions et d'autres avantages"
+        },
+        {
+          "title": "Services de conciergerie avant l'arrivée",
+          "body": "Organisez vos services clients avant votre arrivée pour gagner du temps"
+        },
+        {
+          "title": "Wi-Fi gratuit",
+          "body": "Accès Internet gratuit pour tous les clients séjournant à Niseko Central"
+        },
+        {
+          "title": "Réservez en toute confiance",
+          "body": "Agent de voyages agréé et membre de la All Nippon Travel Agents Association"
+        }
+      ]
+    }
   }
 }
