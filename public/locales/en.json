@@ -173,5 +173,28 @@
         "link": "https://www.nisekocentral.com/niseko-accommodation-deals/stay-and-save-winter-2025-26"
       }
     ]
+  },
+  "home": {
+    "service_section": {
+      "title": "With over 200 stays to choose from and over 20 years’ experience, we are Niseko’s premier accommodation provider. We look forward to welcoming you to Niseko.",
+      "services": [
+        {
+          "title": "Experience Niseko Passport",
+          "body": "Niseko Central guests receive discounts and other benefits"
+        },
+        {
+          "title": "Pre-Arrival Concierge Services",
+          "body": "Arrange your guest services ahead of your arrival to save time"
+        },
+        {
+          "title": "Complimentary WiFi",
+          "body": "Free internet access for all guests staying with Niseko Central"
+        },
+        {
+          "title": "Book with Confidence",
+          "body": "Licensed travel agent and member of the All Nippon Travel Agents Association"
+        }
+      ]
+    }
   }
 }

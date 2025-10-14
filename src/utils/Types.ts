@@ -30,3 +30,8 @@ export type THeroContent = {
   more: string;
   link: string;
 };
+
+export type ServiceContents = {
+  title: string;
+  body: string;
+};

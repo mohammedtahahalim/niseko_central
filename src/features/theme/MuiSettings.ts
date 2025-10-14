@@ -11,6 +11,7 @@ declare module "@mui/material/styles" {
     mainbody?: PaletteColor;
     icons?: PaletteColor;
     textColor?: PaletteColor;
+    service?: PaletteColor;
   }
   interface PaletteOptions {
     headfoot?: PaletteColorOptions;
@@ -18,6 +19,7 @@ declare module "@mui/material/styles" {
     mainbody?: PaletteColorOptions;
     icons?: PaletteColorOptions;
     textColor?: PaletteColorOptions;
+    service?: PaletteColorOptions;
   }
 }
 
@@ -50,6 +52,9 @@ export const lightPalette: PaletteOptions = {
   textColor: {
     main: "#222",
   },
+  service: {
+    main: "#F3F4F6",
+  },
 };
 
 export const darkPalette: PaletteOptions = {
@@ -80,5 +85,8 @@ export const darkPalette: PaletteOptions = {
   },
   textColor: {
     main: "#ddd",
+  },
+  service: {
+    main: "#374151",
   },
 };
