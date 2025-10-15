@@ -68,3 +68,7 @@ export const convertDate = (d: Date, lang: TLanguage) => {
     year: "numeric",
   });
 };
+
+export const swiperSlideCount = (basis: number): number => {
+  return Math.floor(basis / 650) + 1;
+};

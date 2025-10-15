@@ -3,12 +3,45 @@ import {
   createSlice,
   type PayloadAction,
 } from "@reduxjs/toolkit";
+import { possibleLanguages } from "../../utils/Constants";
+import { z } from "zod";
 
 interface FetchSuggestionsProps {
   queries?: Record<string, string | number>;
 }
 
-interface SuggestionsBookingsReturn {}
+export interface SuggestionBookingData {
+  booking_main_image: string;
+  booking_title: string;
+  booking_location: string;
+  distance: number;
+  max_capacity: number;
+  tag?: {
+    tag_title: string;
+    tag_subtitle: string;
+    tag_color: string;
+  };
+}
+
+type SuggestionsBookingsReturn = Record<
+  keyof typeof possibleLanguages,
+  SuggestionBookingData
+>;
+
+const suggestionsBookingSchema = z.object({
+  booking_main_image: z.string(),
+  booking_title: z.string(),
+  booking_location: z.string(),
+  distance: z.number(),
+  max_capacity: z.number(),
+  tag: z.optional(
+    z.object({
+      tag_title: z.string(),
+      tag_subtitle: z.string(),
+      tag_color: z.string(),
+    })
+  ),
+});
 
 export const fetchSuggestions = createAsyncThunk<
   SuggestionsBookingsReturn[],
@@ -32,8 +65,18 @@ export const fetchSuggestions = createAsyncThunk<
     if (!response.ok) {
       throw new Error(response.status.toString());
     }
-    const data = await response.json();
-    return data.bookings as SuggestionsBookingsReturn[];
+    const rawData = await response.json();
+    const data = rawData.bookings;
+    for (let booking of data) {
+      for (let lang of Object.keys(booking)) {
+        if (!possibleLanguages.includes(lang)) throw new Error("bad_format");
+        const isValidBooking = suggestionsBookingSchema.safeParse(
+          booking[lang]
+        );
+        if (!isValidBooking.success) throw new Error("bad_format");
+      }
+    }
+    return data as SuggestionsBookingsReturn[];
   } catch (err) {
     if (err instanceof DOMException && err.name === "AbortError") {
       return rejectWithValue("network");
@@ -48,7 +91,7 @@ export const fetchSuggestions = createAsyncThunk<
 interface FetchSuggestionState {
   loading: boolean;
   error: string;
-  bookings: FetchSuggestionsProps[];
+  bookings: SuggestionsBookingsReturn[];
 }
 
 const initialState: FetchSuggestionState = {

@@ -146,6 +146,9 @@
     "infants": "Infants (0-6)",
     "search": "Search"
   },
+  "suggestions": {
+    "title": "Featured Accomodation"
+  },
   "hero_slides": {
     "content": [
       {
