@@ -53,8 +53,8 @@ export default function QuickReservation() {
   const navigate = useNavigate();
   useEffect(() => {
     if (reservationUrl && shouldRedirect) {
-      navigate(reservationUrl);
       dispatch(resetSubmission());
+      navigate(reservationUrl);
     }
   }, [reservationUrl]);
   return (
