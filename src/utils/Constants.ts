@@ -70,5 +70,6 @@ export const convertDate = (d: Date, lang: TLanguage) => {
 };
 
 export const swiperSlideCount = (basis: number): number => {
+  if (basis < 750) return 1;
   return Math.floor(basis / 650) + 1;
 };
