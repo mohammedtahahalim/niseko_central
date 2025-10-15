@@ -54,7 +54,9 @@ export const fetchSuggestions = createAsyncThunk<
       .filter(([_, v]) => v !== undefined && v !== null)
       .map(([k, v]) => [k, String(v)])
   ).toString();
-  const fullURL: string = `${import.meta.env.VITE_API_URL}?${fullQueries}`;
+  const fullURL: string = `${
+    import.meta.env.VITE_API_URL
+  }/api/suggestions?${fullQueries}`;
   const fullOptions: RequestInit = {
     method: "get",
     signal,
