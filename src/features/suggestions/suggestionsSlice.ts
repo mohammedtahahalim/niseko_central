@@ -10,7 +10,7 @@ interface FetchSuggestionsProps {
   queries?: Record<string, string | number>;
 }
 
-interface SuggestionBookingData {
+export interface SuggestionBookingData {
   booking_main_image: string;
   booking_title: string;
   booking_location: string;

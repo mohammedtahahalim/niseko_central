@@ -1,11 +1,10 @@
 import { Box, styled, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import type { Swiper as SwiperType } from "swiper/types";
-import { useDispatch, useSelector } from "react-redux";
-import type { AppDispatch, RootState } from "../../app/store";
-import { fetchSuggestions } from "./suggestionsSlice";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../app/store";
 import useSlideCount from "./useSlideCount";
 import Card from "./Card";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
@@ -87,10 +86,6 @@ export default function Suggestions() {
   const { slideCount } = useSlideCount();
   const { bookings } = useSelector((state: RootState) => state.suggestions);
   const { i18n } = useTranslation();
-  const dispatch = useDispatch<AppDispatch>();
-  useEffect(() => {
-    dispatch(fetchSuggestions({ queries: { limit: 12, category: "general" } }));
-  }, []);
 
   return (
     <SuggestionsWrapper>
