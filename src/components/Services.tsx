@@ -59,7 +59,6 @@ const ServicesWrapper = styled(Box)(({ theme }) => ({
   gap: "10px",
   [theme.breakpoints.down("nav_break")]: {
     flexDirection: "column",
-    paddingBottom: "75px",
   },
 }));
 
