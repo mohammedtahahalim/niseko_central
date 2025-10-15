@@ -3,10 +3,11 @@ import { useTranslation } from "react-i18next";
 import NisekoCalendar from "../../components/NisekoCalendar";
 import Guests from "./Guests";
 import Submit from "./Submit";
-import { useSelector } from "react-redux";
-import type { RootState } from "../../app/store";
+import { useDispatch, useSelector } from "react-redux";
+import type { AppDispatch, RootState } from "../../app/store";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { resetSubmission } from "./quickReservationSlice";
 
 const QuickReservationWrapper = styled(Box)({
   width: "95vw",
@@ -45,13 +46,15 @@ const CalendarWrapper = styled(Box)({
 
 export default function QuickReservation() {
   const { t } = useTranslation();
-  const { reservationUrl } = useSelector(
+  const { reservationUrl, shouldRedirect } = useSelector(
     (state: RootState) => state.quickReservation
   );
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   useEffect(() => {
-    if (reservationUrl) {
+    if (reservationUrl && shouldRedirect) {
       navigate(reservationUrl);
+      dispatch(resetSubmission());
     }
   }, [reservationUrl]);
   return (

@@ -7,6 +7,7 @@ interface QuickReservationState {
   children: number;
   infants: number;
   reservationUrl: string;
+  shouldRedirect: boolean;
 }
 
 const initialState: QuickReservationState = {
@@ -18,6 +19,7 @@ const initialState: QuickReservationState = {
   children: 0,
   infants: 0,
   reservationUrl: "",
+  shouldRedirect: false,
 };
 
 const quickReservationSlice = createSlice({
@@ -50,6 +52,10 @@ const quickReservationSlice = createSlice({
         })
       );
       state.reservationUrl = `/niseko-accommodation?${queries}`;
+      state.shouldRedirect = true;
+    },
+    resetSubmission: (state) => {
+      state.shouldRedirect = false;
     },
   },
 });
@@ -62,4 +68,5 @@ export const {
   setChildren,
   setInfants,
   submitReservation,
+  resetSubmission,
 } = quickReservationSlice.actions;
