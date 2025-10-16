@@ -203,7 +203,8 @@
       ]
     },
     "news_section": {
-      "title": "What's new"
+      "title": "What's new",
+      "more": "More"
     }
   }
 }

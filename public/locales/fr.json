@@ -215,7 +215,8 @@
       ]
     },
     "news_section": {
-      "title": "Quoi de neuf"
+      "title": "Quoi de neuf",
+      "more": "Plus"
     }
   }
 }

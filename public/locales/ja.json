@@ -203,7 +203,8 @@
       ]
     },
     "news_section": {
-      "title": "新着情報"
+      "title": "新着情報",
+      "more": "もっと"
     }
   }
 }

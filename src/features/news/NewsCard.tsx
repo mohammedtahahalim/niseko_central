@@ -1,0 +1,109 @@
+import { Box, Button, styled, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
+import EastIcon from "@mui/icons-material/East";
+import { useNavigate } from "react-router-dom";
+import { sanitizeURL } from "../../utils/Constants";
+import { useState } from "react";
+
+interface NewsCardProps {
+  image: string;
+  title: string;
+  link: string;
+}
+
+const NewsCardWrapper = styled(Box)({
+  width: "99%",
+  height: "99%",
+  borderRadius: "12px",
+  overflow: "hidden",
+  position: "relative",
+  display: "flex",
+  alignItems: "flex-end",
+});
+
+const ImageContainer = styled(Box)({
+  position: "absolute",
+  top: "0",
+  left: "0",
+  width: "100%",
+  height: "100%",
+  zIndex: 1,
+  overflow: "hidden",
+});
+
+const ShadeLayer = styled(Box)({
+  position: "absolute",
+  top: "0",
+  left: "0",
+  width: "100%",
+  height: "100%",
+  zIndex: 111,
+  cursor: "pointer",
+  backgroundColor: "rgba(0, 0, 0, 0.4)",
+});
+
+const InformationBox = styled(Box)({
+  zIndex: 999,
+  width: "75%",
+  padding: "15px",
+  display: "flex",
+  flexDirection: "column",
+  gap: "10px",
+});
+
+const Title = styled(Typography)({
+  fontSize: "1.3rem",
+  textWrap: "wrap",
+  fontFamily: "VAGRundschriftD",
+  letterSpacing: "1px",
+  color: "whitesmoke",
+});
+
+const More = styled(Button)({
+  width: "fit-content",
+  borderRadius: "50px",
+  padding: "5px 20px",
+  textTransform: "capitalize",
+  fontFamily: "Inter",
+  fontSize: "0.85rem",
+  fontStyle: "italic",
+});
+
+export default function NewsCard({ image, title }: NewsCardProps) {
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+  const [onHover, setOnHover] = useState<boolean>(false);
+  return (
+    <NewsCardWrapper>
+      <ImageContainer>
+        <img
+          src={image}
+          alt="News Article Image"
+          style={{
+            objectFit: "cover",
+            width: "100%",
+            height: "100%",
+            scale: onHover ? "1.1" : "1",
+            transition: "all 0.35s ease-in-out",
+          }}
+        />
+      </ImageContainer>
+      <ShadeLayer
+        onMouseOver={() => setOnHover(true)}
+        onMouseLeave={() => setOnHover(false)}
+      ></ShadeLayer>
+      <InformationBox>
+        <Title>{title || "Taha"}</Title>
+        <More
+          variant="contained"
+          endIcon={<EastIcon />}
+          onClick={() =>
+            navigate(`/niseko-accommodation-deals/${sanitizeURL(title)}`)
+          }
+        >
+          {t("home.news_section.more")}
+        </More>
+      </InformationBox>
+    </NewsCardWrapper>
+  );
+}

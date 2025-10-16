@@ -8,8 +8,8 @@ import type { RootState } from "../../app/store";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import EastIcon from "@mui/icons-material/East";
 import WestIcon from "@mui/icons-material/West";
-import useSlideCount from "../suggestions/useSlideCount";
-import Card from "../suggestions/Card";
+import useSlideAndHeightCount from "./useSlideAndHeightCount";
+import NewsCard from "./NewsCard";
 
 const NewsWrapper = styled(Box)({
   width: "100%",
@@ -77,16 +77,18 @@ const NewsSlider = styled(Swiper)(({ theme }) => ({
   },
 }));
 
-const NewsSlide = styled(SwiperSlide)({
-  height: "100%",
-});
+const NewsSlide = styled(SwiperSlide, {
+  shouldForwardProp: (prop) => prop !== "maxHeight",
+})<{ maxHeight: string }>(({ maxHeight }) => ({
+  aspectRatio: "1",
+  maxHeight,
+}));
 
 export default function News() {
   const { t } = useTranslation();
   const swiperRef = useRef<SwiperType | null>(null);
-  const { slideCount } = useSlideCount();
   const { bookings } = useSelector((state: RootState) => state.suggestions);
-  const { i18n } = useTranslation();
+  const { slideCount, maxHeight } = useSlideAndHeightCount();
 
   return (
     <NewsWrapper>
@@ -112,10 +114,14 @@ export default function News() {
         speed={250}
         spaceBetween={12}
       >
-        {bookings.map((booking, idx) => {
+        {bookings.map((_, idx) => {
           return (
-            <NewsSlide key={idx}>
-              <Card {...booking[i18n.language as keyof typeof booking]} />
+            <NewsSlide key={idx} maxHeight={maxHeight}>
+              <NewsCard
+                title="Selected Properties Come with a Complimentary Shuttle Service 2025-26"
+                image="https://d1z517741srsht.cloudfront.net/blog/_1280xAUTO_crop_center-center_none/270844/20240516_Niseko_Flower_Nature_Stock_%E4%B8%89%E5%B3%B6_DSC9946_Lores_5.webp"
+                link=""
+              />
             </NewsSlide>
           );
         })}
