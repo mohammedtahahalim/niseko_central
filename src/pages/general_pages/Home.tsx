@@ -51,7 +51,11 @@ export default function Home() {
           <Loader />
         </SuggestionLoader>
       )}
-      {bookings.length !== 0 && <Suggestions />}
+      {bookings.length !== 0 && (
+        <RenderOnView>
+          <Suggestions />
+        </RenderOnView>
+      )}
     </HomeWrapper>
   );
 }

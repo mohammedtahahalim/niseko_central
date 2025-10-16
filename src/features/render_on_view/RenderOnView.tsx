@@ -13,9 +13,15 @@ interface RenderProps {
   children: React.ReactElement;
 }
 
+const Placeholder = styled(Box)({
+  width: "100%",
+  minHeight: "250px",
+  display: "flex",
+  flexDirection: "column",
+});
+
 const RenderWrapper = styled(Box)({
-  width: "fit-content",
-  height: "fit-content",
+  width: "100%",
 });
 
 const RenderMotion = motion.create(RenderWrapper);
@@ -46,7 +52,7 @@ export default function RenderOnView({
     [animationDirection, offset]
   );
   return (
-    <>
+    <Placeholder>
       <RenderLine ref={componentRef}></RenderLine>
       <AnimatePresence>
         {isVisible && (
@@ -69,6 +75,6 @@ export default function RenderOnView({
           </RenderMotion>
         )}
       </AnimatePresence>
-    </>
+    </Placeholder>
   );
 }
