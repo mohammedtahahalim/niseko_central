@@ -213,6 +213,10 @@
           "body": "Agent de voyages agréé et membre de la All Nippon Travel Agents Association"
         }
       ]
+    },
+    "news_section": {
+      "title": "Quoi de neuf",
+      "more": "Plus"
     }
   }
 }

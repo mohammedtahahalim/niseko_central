@@ -9,6 +9,7 @@ import { fetchSuggestions } from "../../features/suggestions/suggestionsSlice";
 import { useEffect } from "react";
 import Loader from "../../components/Loader";
 import RenderOnView from "../../features/render_on_view/RenderOnView";
+import News from "../../features/news/News";
 
 const HomeWrapper = styled(Box)(({ theme }) => ({
   width: "100%",
@@ -43,7 +44,7 @@ export default function Home() {
     <HomeWrapper>
       <Plan />
       <Hero />
-      <RenderOnView>
+      <RenderOnView animationDirection="top">
         <Services />
       </RenderOnView>
       {loading && (
@@ -51,7 +52,14 @@ export default function Home() {
           <Loader />
         </SuggestionLoader>
       )}
-      {bookings.length !== 0 && <Suggestions />}
+      {bookings.length !== 0 && (
+        <RenderOnView animationDirection="left">
+          <Suggestions />
+        </RenderOnView>
+      )}
+      <RenderOnView animationDirection="right">
+        <News />
+      </RenderOnView>
     </HomeWrapper>
   );
 }

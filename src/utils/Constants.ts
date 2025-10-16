@@ -89,3 +89,10 @@ export const RenderAnimationStyle = (
     },
   };
 };
+
+export const sanitizeURL = (url: string): string => {
+  const sanitizedURL = encodeURIComponent(
+    url.toLowerCase().split(/\s+/).join("-")
+  );
+  return sanitizedURL;
+};
