@@ -102,6 +102,8 @@ export default function DesktopSlide({
           src={image}
           alt="Slider Image"
           style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          decoding="async"
+          loading="lazy"
         />
       </ImageSlide>
     </DesktopSlideWrapper>
