@@ -8,6 +8,7 @@ import type { AppDispatch, RootState } from "../../app/store";
 import { fetchSuggestions } from "../../features/suggestions/suggestionsSlice";
 import { useEffect } from "react";
 import Loader from "../../components/Loader";
+import RenderOnView from "../../features/render_on_view/RenderOnView";
 
 const HomeWrapper = styled(Box)(({ theme }) => ({
   width: "100%",
@@ -42,7 +43,9 @@ export default function Home() {
     <HomeWrapper>
       <Plan />
       <Hero />
-      <Services />
+      <RenderOnView>
+        <Services />
+      </RenderOnView>
       {loading && (
         <SuggestionLoader>
           <Loader />

@@ -73,3 +73,19 @@ export const swiperSlideCount = (basis: number): number => {
   if (basis < 750) return 1;
   return Math.floor(basis / 650) + 1;
 };
+
+export const RenderAnimationStyle = (
+  direction: "top" | "right" | "bottom" | "left",
+  offset: number
+) => {
+  const axis = direction === "top" || direction === "bottom" ? "y" : "x";
+  const charge = direction === "top" || direction === "left" ? "+" : "-";
+  return {
+    initial: {
+      [axis]: Number(`${charge}${offset}`),
+    },
+    animate: {
+      [axis]: 0,
+    },
+  };
+};
