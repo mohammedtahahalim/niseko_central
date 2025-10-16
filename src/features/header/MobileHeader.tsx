@@ -13,12 +13,11 @@ const MobileHeaderWrapper = styled(Box)({
   height: "100%",
   display: "flex",
   flexDirection: "column",
-  gap: "5px",
 });
 
 const LogoWrapper = styled(Box)(({ theme }) => ({
   width: "100%",
-  maxHeight: "115px",
+  height: "75px",
   overflow: "hidden",
   display: "flex",
   justifyContent: "center",
@@ -33,10 +32,11 @@ const MainMenuWrapper = styled(Box)({
   gridTemplateColumns: "repeat(2, 1fr)",
   gridTemplateRows: "repeat(2, 1fr)",
   gap: "10px",
+  maxHeight: "calc(100vh - 125px)",
 });
 
 const ControlWrapper = styled(Box)(({ theme }) => ({
-  height: "75px",
+  height: "50px",
   width: "100%",
   color: theme.palette.icons?.main,
   padding: "0px 25px",

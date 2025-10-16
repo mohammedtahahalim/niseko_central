@@ -158,6 +158,12 @@
     "infants": "Nourrissons (0-6)",
     "search": "Rechercher"
   },
+  "suggestions": {
+    "title": "Hébergement en vedette",
+    "book_now": "Réserver maintenant",
+    "more": "Plus",
+    "guests": "Guests"
+  },
   "hero_slides": {
     "content": [
       {

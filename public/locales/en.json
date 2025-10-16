@@ -147,7 +147,10 @@
     "search": "Search"
   },
   "suggestions": {
-    "title": "Featured Accomodation"
+    "title": "Featured Accomodation",
+    "book_now": "Book Now",
+    "more": "More",
+    "guests": "Guests"
   },
   "hero_slides": {
     "content": [
