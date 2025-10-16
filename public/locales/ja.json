@@ -146,6 +146,12 @@
     "infants": "乳児(0-6)",
     "search": "検索"
   },
+  "suggestions": {
+    "title": "おすすめの宿泊施設",
+    "book_now": "今すぐ予約",
+    "more": "その他",
+    "guests": "ゲスト"
+  },
   "hero_slides": {
     "content": [
       {
