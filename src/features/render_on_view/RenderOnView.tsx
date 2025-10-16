@@ -2,7 +2,7 @@ import { Box, styled } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
 import useIntersectionObserver from "./useIntersectionObserver";
 import { RenderAnimationStyle } from "../../utils/Constants";
-import React from "react";
+import React, { useMemo } from "react";
 
 interface RenderProps {
   threshold?: number;
@@ -37,6 +37,14 @@ export default function RenderOnView({
   const { isVisible, componentRef } = useIntersectionObserver<HTMLDivElement>({
     threshold,
   });
+  const initialPosition = useMemo(
+    () => RenderAnimationStyle(animationDirection, offset)["initial"],
+    [animationDirection, offset]
+  );
+  const animatePosition = useMemo(
+    () => RenderAnimationStyle(animationDirection, offset)["animate"],
+    [animationDirection, offset]
+  );
   return (
     <>
       <RenderLine ref={componentRef}></RenderLine>
@@ -45,15 +53,15 @@ export default function RenderOnView({
           <RenderMotion
             initial={{
               ...(withOpacity ? { opacity: 0 } : {}),
-              ...RenderAnimationStyle(animationDirection, offset)["initial"],
+              ...initialPosition,
             }}
             animate={{
               ...(withOpacity ? { opacity: 1 } : {}),
-              ...RenderAnimationStyle(animationDirection, offset)["animate"],
+              ...animatePosition,
             }}
             exit={{
               ...(withOpacity ? { opacity: 0 } : {}),
-              ...RenderAnimationStyle(animationDirection, offset)["initial"],
+              ...initialPosition,
             }}
             transition={{ duration: animationSpeed }}
           >
