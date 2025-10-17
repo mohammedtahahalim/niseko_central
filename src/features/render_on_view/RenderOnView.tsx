@@ -35,7 +35,7 @@ const RenderLine = styled(Box)({
 export default function RenderOnView({
   threshold = 0.1,
   animationDirection = "top",
-  animationSpeed = 1,
+  animationSpeed = 1.5,
   offset = 75,
   withOpacity = true,
   children,
