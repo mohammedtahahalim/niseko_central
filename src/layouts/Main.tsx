@@ -8,6 +8,8 @@ const MainContainer = styled(Container)({
   minHeight: "100vh",
   display: "flex",
   flexDirection: "column",
+  maxWidth: "100vw",
+  overflowX: "hidden",
 });
 
 const BodyWrapper = styled(Box)({

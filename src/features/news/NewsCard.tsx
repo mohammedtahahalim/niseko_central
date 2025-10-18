@@ -1,14 +1,13 @@
 import { Box, Button, styled, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import EastIcon from "@mui/icons-material/East";
 import { useNavigate } from "react-router-dom";
 import { sanitizeURL } from "../../utils/Constants";
 import { useState } from "react";
+import EastIcon from "@mui/icons-material/East";
 
 interface NewsCardProps {
   image: string;
   title: string;
-  link: string;
 }
 
 const NewsCardWrapper = styled(Box)({

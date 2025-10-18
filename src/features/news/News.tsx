@@ -10,6 +10,8 @@ import EastIcon from "@mui/icons-material/East";
 import WestIcon from "@mui/icons-material/West";
 import useSlideAndHeightCount from "./useSlideAndHeightCount";
 import NewsCard from "./NewsCard";
+import Loader from "../../components/Loader";
+import type { TLanguage } from "../languages/changeLanguage";
 
 const NewsWrapper = styled(Box)({
   width: "100%",
@@ -85,10 +87,12 @@ const NewsSlide = styled(SwiperSlide, {
 }));
 
 export default function News() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const swiperRef = useRef<SwiperType | null>(null);
-  const { bookings } = useSelector((state: RootState) => state.suggestions);
   const { slideCount, maxHeight } = useSlideAndHeightCount();
+  const { latestNews, loading } = useSelector(
+    (state: RootState) => state.latestNews
+  );
 
   return (
     <NewsWrapper>
@@ -110,21 +114,21 @@ export default function News() {
         slidesPerView={slideCount}
         style={{ display: "flex" }}
         onSwiper={(swiper) => (swiperRef.current = swiper)}
-        loop={true}
         speed={250}
         spaceBetween={12}
       >
-        {bookings.map((_, idx) => {
-          return (
-            <NewsSlide key={idx} maxHeight={maxHeight}>
-              <NewsCard
-                title="Selected Properties Come with a Complimentary Shuttle Service 2025-26"
-                image="https://d1z517741srsht.cloudfront.net/blog/_1280xAUTO_crop_center-center_none/270844/20240516_Niseko_Flower_Nature_Stock_%E4%B8%89%E5%B3%B6_DSC9946_Lores_5.webp"
-                link=""
-              />
-            </NewsSlide>
-          );
-        })}
+        {loading && <Loader />}
+        {!loading &&
+          latestNews.map((news, idx) => {
+            return (
+              <NewsSlide key={idx} maxHeight={maxHeight}>
+                <NewsCard
+                  title={news[i18n.language as TLanguage]}
+                  image={news["image"]}
+                />
+              </NewsSlide>
+            );
+          })}
       </NewsSlider>
     </NewsWrapper>
   );

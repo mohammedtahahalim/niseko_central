@@ -6,6 +6,7 @@ import Suggestions from "../../features/suggestions/Suggestions";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../../app/store";
 import { fetchSuggestions } from "../../features/suggestions/suggestionsSlice";
+import { fetchNews } from "../../features/news/newsSlice";
 import { useEffect } from "react";
 import Loader from "../../components/Loader";
 import RenderOnView from "../../features/render_on_view/RenderOnView";
@@ -39,10 +40,10 @@ export default function Home() {
   );
   useEffect(() => {
     dispatch(fetchSuggestions({ queries: { limit: 14, category: "general" } }));
+    dispatch(fetchNews({}));
   }, []);
   return (
     <HomeWrapper>
-      <Plan />
       <Hero />
       <RenderOnView animationDirection="top">
         <Services />
@@ -60,6 +61,7 @@ export default function Home() {
       <RenderOnView animationDirection="right">
         <News />
       </RenderOnView>
+      <Plan />
     </HomeWrapper>
   );
 }
