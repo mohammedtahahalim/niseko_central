@@ -6,13 +6,13 @@ import QuickReservation from "../features/quick_calendar/QuickReservation";
 
 const PlanWrapper = styled(Box)(({ theme }) => ({
   display: "none",
-  position: "sticky",
+  justifyContent: "center",
+  position: "fixed",
   width: "100%",
-  top: "calc(100vh - 60px)",
+  top: "calc(100vh - 65px)",
   zIndex: 8888,
   [theme.breakpoints.down("nav_break")]: {
     display: "flex",
-    justifyContent: "center",
     padding: "10px",
   },
 }));
@@ -30,6 +30,7 @@ const PlanStayWrapper = styled(Button)({
 
 export default function Plan() {
   const { t } = useTranslation();
+
   return (
     <PlanWrapper>
       <Modal
