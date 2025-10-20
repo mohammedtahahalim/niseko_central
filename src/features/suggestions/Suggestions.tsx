@@ -84,7 +84,9 @@ export default function Suggestions() {
   const { t } = useTranslation();
   const swiperRef = useRef<SwiperType | null>(null);
   const { slideCount } = useSlideCount();
-  const { bookings } = useSelector((state: RootState) => state.suggestions);
+  const { suggestionsBookings } = useSelector(
+    (state: RootState) => state.suggestions
+  );
   const { i18n } = useTranslation();
 
   return (
@@ -111,7 +113,7 @@ export default function Suggestions() {
         speed={250}
         spaceBetween={12}
       >
-        {bookings.map((booking, idx) => {
+        {suggestionsBookings.map((booking, idx) => {
           return (
             <SuggestionSlide key={idx}>
               <Card {...booking[i18n.language as keyof typeof booking]} />

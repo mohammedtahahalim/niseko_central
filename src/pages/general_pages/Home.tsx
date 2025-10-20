@@ -24,7 +24,7 @@ const HomeWrapper = styled(Box)(({ theme }) => ({
   },
 }));
 
-const SuggestionLoader = styled(Box)({
+const LoaderWrapper = styled(Box)({
   width: "100%",
   padding: "25px 15px",
   minHeight: "250px",
@@ -35,32 +35,44 @@ const SuggestionLoader = styled(Box)({
 
 export default function Home() {
   const dispatch = useDispatch<AppDispatch>();
-  const { bookings, loading } = useSelector(
+  const { suggestionsBookings, suggestionsLoading } = useSelector(
     (state: RootState) => state.suggestions
   );
+  const { newsLoading, latestNews } = useSelector(
+    (state: RootState) => state.latestNews
+  );
+
   useEffect(() => {
     dispatch(fetchSuggestions({ queries: { limit: 14, category: "general" } }));
     dispatch(fetchNews({}));
   }, []);
+
   return (
     <HomeWrapper>
       <Hero />
       <RenderOnView animationDirection="top">
         <Services />
       </RenderOnView>
-      {loading && (
-        <SuggestionLoader>
+      {suggestionsLoading && (
+        <LoaderWrapper>
           <Loader />
-        </SuggestionLoader>
+        </LoaderWrapper>
       )}
-      {bookings.length !== 0 && (
+      {suggestionsBookings.length !== 0 && (
         <RenderOnView animationDirection="left">
           <Suggestions />
         </RenderOnView>
       )}
-      <RenderOnView animationDirection="right">
-        <News />
-      </RenderOnView>
+      {newsLoading && (
+        <LoaderWrapper>
+          <Loader />
+        </LoaderWrapper>
+      )}
+      {latestNews.length !== 0 && (
+        <RenderOnView animationDirection="right">
+          <News />
+        </RenderOnView>
+      )}
       <Plan />
     </HomeWrapper>
   );

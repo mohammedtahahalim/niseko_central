@@ -91,15 +91,15 @@ export const fetchSuggestions = createAsyncThunk<
 });
 
 interface FetchSuggestionState {
-  loading: boolean;
+  suggestionsLoading: boolean;
   error: string;
-  bookings: SuggestionsBookingsReturn[];
+  suggestionsBookings: SuggestionsBookingsReturn[];
 }
 
 const initialState: FetchSuggestionState = {
-  loading: false,
+  suggestionsLoading: false,
   error: "",
-  bookings: [],
+  suggestionsBookings: [],
 };
 
 export const suggestionSlice = createSlice({
@@ -108,19 +108,19 @@ export const suggestionSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchSuggestions.pending, (state) => {
-      state.loading = true;
+      state.suggestionsLoading = true;
       state.error = "";
     });
     builder.addCase(fetchSuggestions.rejected, (state, action) => {
-      state.loading = false;
+      state.suggestionsLoading = false;
       state.error = action.payload ?? "unknown";
     });
     builder.addCase(
       fetchSuggestions.fulfilled,
       (state, action: PayloadAction<SuggestionsBookingsReturn[]>) => {
-        state.loading = false;
+        state.suggestionsLoading = false;
         state.error = "";
-        state.bookings = action.payload;
+        state.suggestionsBookings = action.payload;
       }
     );
   },
