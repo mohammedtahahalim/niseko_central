@@ -10,7 +10,6 @@ import EastIcon from "@mui/icons-material/East";
 import WestIcon from "@mui/icons-material/West";
 import useSlideAndHeightCount from "./useSlideAndHeightCount";
 import NewsCard from "./NewsCard";
-import Loader from "../../components/Loader";
 import type { TLanguage } from "../languages/changeLanguage";
 
 const NewsWrapper = styled(Box)({
@@ -90,9 +89,7 @@ export default function News() {
   const { t, i18n } = useTranslation();
   const swiperRef = useRef<SwiperType | null>(null);
   const { slideCount, maxHeight } = useSlideAndHeightCount();
-  const { latestNews, loading } = useSelector(
-    (state: RootState) => state.latestNews
-  );
+  const { latestNews } = useSelector((state: RootState) => state.latestNews);
 
   return (
     <NewsWrapper>
@@ -117,18 +114,16 @@ export default function News() {
         speed={250}
         spaceBetween={12}
       >
-        {loading && <Loader />}
-        {!loading &&
-          latestNews.map((news, idx) => {
-            return (
-              <NewsSlide key={idx} maxHeight={maxHeight}>
-                <NewsCard
-                  title={news[i18n.language as TLanguage]}
-                  image={news["image"]}
-                />
-              </NewsSlide>
-            );
-          })}
+        {latestNews.map((news, idx) => {
+          return (
+            <NewsSlide key={idx} maxHeight={maxHeight}>
+              <NewsCard
+                title={news[i18n.language as TLanguage]}
+                image={news["image"]}
+              />
+            </NewsSlide>
+          );
+        })}
       </NewsSlider>
     </NewsWrapper>
   );
