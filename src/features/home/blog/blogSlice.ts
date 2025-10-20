@@ -8,13 +8,19 @@ import z from "zod";
 type FetchBlogArgs = Record<string, string | number>;
 
 interface BlogSnippet {
-  title: string;
+  en: string;
+  ja: string;
+  ar: string;
+  fr: string;
   image: string;
   date: string;
 }
 
 const blogSchema = z.object({
-  title: z.string().nonempty(),
+  en: z.string().nonempty(),
+  ja: z.string().nonempty(),
+  ar: z.string().nonempty(),
+  fr: z.string().nonempty(),
   image: z.string().nonempty(),
   date: z.string().nonempty(),
 });

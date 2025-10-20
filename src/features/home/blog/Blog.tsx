@@ -10,6 +10,7 @@ import WestIcon from "@mui/icons-material/West";
 import Article from "./Article";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../../app/store";
+import type { TLanguage } from "../../languages/changeLanguage";
 
 const BlogWrapper = styled(Box)(({ theme }) => ({
   width: "100%",
@@ -84,11 +85,10 @@ const BlogSlide = styled(SwiperSlide)({
 });
 
 export default function Blog() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { slideCount } = useSlideCount();
   const swiperRef = useRef<SwiperType | null>(null);
   const { blogs } = useSelector((state: RootState) => state.latestBlogs);
-  console.log(blogs);
 
   return (
     <BlogWrapper>
@@ -116,7 +116,7 @@ export default function Blog() {
         {blogs.map((blog, idx) => {
           return (
             <BlogSlide key={idx}>
-              <Article {...blog} />
+              <Article {...blog} title={blog[i18n.language as TLanguage]} />
             </BlogSlide>
           );
         })}
