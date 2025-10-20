@@ -12,6 +12,8 @@ import Loader from "../../components/Loader";
 import RenderOnView from "../../features/render_on_view/RenderOnView";
 import News from "../../features/home/news/News";
 import NisekoPassport from "../../components/NisekoPassport";
+import Blog from "../../features/home/blog/Blog";
+import { fetchBlogs } from "../../features/home/blog/blogSlice";
 
 const HomeWrapper = styled(Box)(({ theme }) => ({
   width: "100%",
@@ -42,10 +44,14 @@ export default function Home() {
   const { newsLoading, latestNews } = useSelector(
     (state: RootState) => state.latestNews
   );
+  const { blogLoading, blogs } = useSelector(
+    (state: RootState) => state.latestBlogs
+  );
 
   useEffect(() => {
     dispatch(fetchSuggestions({ queries: { limit: 14, category: "general" } }));
     dispatch(fetchNews({}));
+    dispatch(fetchBlogs({}));
   }, []);
 
   return (
@@ -78,6 +84,16 @@ export default function Home() {
       <RenderOnView animationDirection="bottom">
         <NisekoPassport />
       </RenderOnView>
+      {blogLoading && (
+        <LoaderWrapper>
+          <Loader />
+        </LoaderWrapper>
+      )}
+      {blogs.length !== 0 && (
+        <RenderOnView animationDirection="top">
+          <Blog />
+        </RenderOnView>
+      )}
     </HomeWrapper>
   );
 }

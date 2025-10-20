@@ -4,6 +4,7 @@ import authSlice from "../features/auth/authSlice";
 import newsLetterSlice from "../features/newsletter/newsLetterSlice";
 import quickReservationSlice from "../features/quick_calendar/quickReservationSlice";
 import suggestionSlice from "../features/home/suggestions/suggestionsSlice";
+import blogSlice from "../features/home/blog/blogSlice";
 
 export const NisekoStore = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const NisekoStore = configureStore({
     quickReservation: quickReservationSlice,
     suggestions: suggestionSlice,
     latestNews: newsSlice,
+    latestBlogs: blogSlice,
   },
 });
 
