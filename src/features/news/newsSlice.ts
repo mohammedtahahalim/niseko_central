@@ -61,13 +61,13 @@ export const fetchNews = createAsyncThunk<
 });
 
 interface NewsState {
-  loading: boolean;
+  newsLoading: boolean;
   error: string | null;
   latestNews: NewsData;
 }
 
 const initialState: NewsState = {
-  loading: false,
+  newsLoading: false,
   error: null,
   latestNews: [],
 };
@@ -78,18 +78,18 @@ const newsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchNews.pending, (state) => {
-      state.loading = true;
+      state.newsLoading = true;
       state.error = null;
     });
     builder.addCase(
       fetchNews.rejected,
       (state, action: PayloadAction<string | void>) => {
-        state.loading = false;
+        state.newsLoading = false;
         state.error = action.payload ?? null;
       }
     );
     builder.addCase(fetchNews.fulfilled, (state, action) => {
-      state.loading = false;
+      state.newsLoading = false;
       state.latestNews = action.payload;
     });
   },
