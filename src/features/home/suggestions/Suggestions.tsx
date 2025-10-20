@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { useRef } from "react";
 import type { Swiper as SwiperType } from "swiper/types";
 import { useSelector } from "react-redux";
-import type { RootState } from "../../app/store";
+import type { RootState } from "../../../app/store";
 import useSlideCount from "./useSlideCount";
 import Card from "./Card";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";

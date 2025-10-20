@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { debouncer } from "../../utils/Constants";
+import { debouncer } from "../../../utils/Constants";
 
 export default function useSlideAndHeightCount() {
   const [slideCount, setSlideCount] = useState<number>(2);

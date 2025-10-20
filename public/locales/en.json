@@ -205,6 +205,13 @@
     "news_section": {
       "title": "What's new",
       "more": "More"
+    },
+    "niseko_passport": {
+      "title": "Unlock Great Resort Discounts",
+      "subtitle_1": "As a Niseko Central guest, your complimentary",
+      "link": "Experience Niseko Passport",
+      "subtitle_2": "card unlocks fantastic discounts in and around the resort",
+      "find_out": "Find out more"
     }
   }
 }

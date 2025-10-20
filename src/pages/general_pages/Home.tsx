@@ -1,16 +1,17 @@
 import { Box, styled } from "@mui/material";
 import Plan from "../../components/Plan";
-import Hero from "../../features/hero/Hero";
+import Hero from "../../features/home/hero/Hero";
 import Services from "../../components/Services";
-import Suggestions from "../../features/suggestions/Suggestions";
+import Suggestions from "../../features/home/suggestions/Suggestions";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../../app/store";
-import { fetchSuggestions } from "../../features/suggestions/suggestionsSlice";
-import { fetchNews } from "../../features/news/newsSlice";
+import { fetchSuggestions } from "../../features/home/suggestions/suggestionsSlice";
+import { fetchNews } from "../../features/home/news/newsSlice";
 import { useEffect } from "react";
 import Loader from "../../components/Loader";
 import RenderOnView from "../../features/render_on_view/RenderOnView";
-import News from "../../features/news/News";
+import News from "../../features/home/news/News";
+import NisekoPassport from "../../components/NisekoPassport";
 
 const HomeWrapper = styled(Box)(({ theme }) => ({
   width: "100%",
@@ -49,6 +50,7 @@ export default function Home() {
 
   return (
     <HomeWrapper>
+      <Plan />
       <Hero />
       <RenderOnView animationDirection="top">
         <Services />
@@ -73,7 +75,9 @@ export default function Home() {
           <News />
         </RenderOnView>
       )}
-      <Plan />
+      <RenderOnView animationDirection="bottom">
+        <NisekoPassport />
+      </RenderOnView>
     </HomeWrapper>
   );
 }

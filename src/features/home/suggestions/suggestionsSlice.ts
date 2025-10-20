@@ -3,7 +3,7 @@ import {
   createSlice,
   type PayloadAction,
 } from "@reduxjs/toolkit";
-import { possibleLanguages } from "../../utils/Constants";
+import { possibleLanguages } from "../../../utils/Constants";
 import { z } from "zod";
 
 interface FetchSuggestionsProps {

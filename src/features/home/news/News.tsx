@@ -4,13 +4,13 @@ import { useRef } from "react";
 import type { Swiper as SwiperType } from "swiper/types";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useSelector } from "react-redux";
-import type { RootState } from "../../app/store";
+import type { RootState } from "../../../app/store";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import EastIcon from "@mui/icons-material/East";
 import WestIcon from "@mui/icons-material/West";
 import useSlideAndHeightCount from "./useSlideAndHeightCount";
 import NewsCard from "./NewsCard";
-import type { TLanguage } from "../languages/changeLanguage";
+import type { TLanguage } from "../../languages/changeLanguage";
 
 const NewsWrapper = styled(Box)({
   width: "100%",

@@ -1,5 +1,5 @@
 import { Box, Button, styled, Typography } from "@mui/material";
-import type { THeroContent } from "../../utils/Types";
+import type { THeroContent } from "../../../utils/Types";
 import { useNavigate } from "react-router-dom";
 import EastIcon from "@mui/icons-material/East";
 

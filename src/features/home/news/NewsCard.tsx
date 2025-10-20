@@ -1,7 +1,7 @@
 import { Box, Button, styled, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { sanitizeURL } from "../../utils/Constants";
+import { sanitizeURL } from "../../../utils/Constants";
 import { useState } from "react";
 import EastIcon from "@mui/icons-material/East";
 
