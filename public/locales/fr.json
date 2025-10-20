@@ -217,6 +217,13 @@
     "news_section": {
       "title": "Quoi de neuf",
       "more": "Plus"
+    },
+    "niseko_passport": {
+      "title": "Bénéficiez de réductions exceptionnelles sur les complexes hôteliers",
+      "subtitle_1": "En tant que client de Niseko Central, votre",
+      "link": "Découvrez le passeport Niseko",
+      "subtitle_2": "la carte débloque des réductions fantastiques dans et autour de la station",
+      "find_out": "En savoir plus"
     }
   }
 }

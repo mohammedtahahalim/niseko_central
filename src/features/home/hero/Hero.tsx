@@ -7,7 +7,7 @@ import WestIcon from "@mui/icons-material/West";
 import "swiper/css";
 import DesktopSlide from "./DesktopSlide";
 import { useTranslation } from "react-i18next";
-import type { THeroContent } from "../../utils/Types";
+import type { THeroContent } from "../../../utils/Types";
 import MobileSlide from "./MobileSlide";
 
 const HeroWrapper = styled(Box)(({ theme }) => ({

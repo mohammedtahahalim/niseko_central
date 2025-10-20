@@ -4,7 +4,7 @@ import {
   type PayloadAction,
 } from "@reduxjs/toolkit";
 import z from "zod";
-import type { TLanguage } from "../languages/changeLanguage";
+import type { TLanguage } from "../../languages/changeLanguage";
 
 type NewsArticle = Record<TLanguage, string> & { image: string };
 
