@@ -3,14 +3,15 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperType } from "swiper/types";
 import { useTranslation } from "react-i18next";
 import { useRef } from "react";
-import useSlideCount from "./useSlideCount";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import EastIcon from "@mui/icons-material/East";
-import WestIcon from "@mui/icons-material/West";
-import Article from "./Article";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../../app/store";
 import type { TLanguage } from "../../languages/changeLanguage";
+import useSlideCount from "./useSlideCount";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import EastIcon from "@mui/icons-material/East";
+import WestIcon from "@mui/icons-material/West";
+import Article from "./Article";
 
 const BlogWrapper = styled(Box)(({ theme }) => ({
   width: "100%",
@@ -44,13 +45,16 @@ const Title = styled(Typography)(({ theme }) => ({
   },
 }));
 
-const NavControl = styled(Box)(({ theme }) => ({
+const NavControl = styled(Box, {
+  shouldForwardProp: (prop) => prop !== "isArabic",
+})<{ isArabic: boolean }>(({ theme, isArabic }) => ({
   position: "absolute",
-  right: "0px",
+  ...(isArabic ? { left: "0px" } : { right: "0px" }),
   top: "0px",
   height: "100%",
   padding: "10px",
   display: "flex",
+  flexDirection: isArabic ? "row-reverse" : "row",
   justifyContent: "space-between",
   gap: "10px",
   alignItems: "center",
@@ -89,6 +93,7 @@ export default function Blog() {
   const { slideCount } = useSlideCount();
   const swiperRef = useRef<SwiperType | null>(null);
   const { blogs } = useSelector((state: RootState) => state.latestBlogs);
+  const isArabic = i18n.language === "ar";
 
   return (
     <BlogWrapper>
@@ -96,8 +101,12 @@ export default function Blog() {
         <Title variant="h6" color="inherit">
           {t("home.blog.title")}
         </Title>
-        <ArrowForwardIosIcon sx={{ fontSize: "0.95rem" }} />
-        <NavControl>
+        {isArabic ? (
+          <ArrowBackIosIcon sx={{ fontSize: "0.95rem" }} />
+        ) : (
+          <ArrowForwardIosIcon sx={{ fontSize: "0.95rem" }} />
+        )}
+        <NavControl isArabic={isArabic}>
           <ControlButton onClick={() => swiperRef.current?.slidePrev()}>
             <WestIcon fontSize="small" color="inherit" />
           </ControlButton>

@@ -43,19 +43,22 @@ const MobileSliderWrapper = styled(Box)(({ theme }) => ({
   },
 }));
 
-const ControlNav = styled(Box)(({ theme }) => ({
+const ControlNav = styled(Box, {
+  shouldForwardProp: (prop) => prop !== "isArabic",
+})<{ isArabic: boolean }>(({ theme, isArabic }) => ({
   position: "absolute",
   bottom: "40px",
-  left: "7%",
+  ...(isArabic ? { right: "7%" } : { left: "7%" }),
   translate: "-50% 0%",
   zIndex: 1,
   height: "29px",
   overflow: "hidden",
   display: "flex",
+  ...(isArabic ? { flexDirection: "row-reverse" } : { flexDirection: "row" }),
   gap: "15px",
   [theme.breakpoints.down("nav_break")]: {
     bottom: "-50px",
-    left: "50%",
+    ...(isArabic ? { right: "35%" } : { left: "50%" }),
   },
 }));
 
@@ -73,7 +76,7 @@ const NavButton = styled(Box)(({ theme }) => ({
 
 export default function Hero() {
   const swiperRef = useRef<SwiperType | null>(null);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   return (
     <HeroWrapper>
@@ -103,7 +106,7 @@ export default function Hero() {
           );
         })}
       </Swiper>
-      <ControlNav>
+      <ControlNav isArabic={i18n.language === "ar"}>
         <NavButton onClick={() => swiperRef.current?.slidePrev()}>
           <WestIcon sx={{ fontSize: "1.05rem" }} />
         </NavButton>

@@ -8,6 +8,7 @@ import type { RootState } from "../../../app/store";
 import useSlideCount from "./useSlideCount";
 import Card from "./Card";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import EastIcon from "@mui/icons-material/East";
 import WestIcon from "@mui/icons-material/West";
 
@@ -40,13 +41,16 @@ const Title = styled(Typography)(({ theme }) => ({
   },
 }));
 
-const NavControl = styled(Box)(({ theme }) => ({
+const NavControl = styled(Box, {
+  shouldForwardProp: (prop) => prop !== "isArabic",
+})<{ isArabic: boolean }>(({ theme, isArabic }) => ({
   position: "absolute",
-  right: "0px",
+  ...(isArabic ? { left: "0px" } : { right: "0px" }),
   top: "0px",
   height: "100%",
   padding: "10px",
   display: "flex",
+  flexDirection: isArabic ? "row-reverse" : "row",
   justifyContent: "space-between",
   gap: "10px",
   alignItems: "center",
@@ -81,13 +85,13 @@ const SuggestionSlide = styled(SwiperSlide)({
 });
 
 export default function Suggestions() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const swiperRef = useRef<SwiperType | null>(null);
   const { slideCount } = useSlideCount();
   const { suggestionsBookings } = useSelector(
     (state: RootState) => state.suggestions
   );
-  const { i18n } = useTranslation();
+  const isArabic = i18n.language === "ar";
 
   return (
     <SuggestionsWrapper>
@@ -95,8 +99,12 @@ export default function Suggestions() {
         <Title variant="h6" color="inherit">
           {t("suggestions.title")}
         </Title>
-        <ArrowForwardIosIcon sx={{ fontSize: "0.95rem" }} />
-        <NavControl>
+        {isArabic ? (
+          <ArrowBackIosIcon sx={{ fontSize: "0.95rem" }} />
+        ) : (
+          <ArrowForwardIosIcon sx={{ fontSize: "0.95rem" }} />
+        )}
+        <NavControl isArabic={isArabic}>
           <ControlButton onClick={() => swiperRef.current?.slidePrev()}>
             <WestIcon fontSize="small" color="inherit" />
           </ControlButton>

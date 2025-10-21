@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { sanitizeURL } from "../../../utils/Constants";
 import { useState } from "react";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
+import { useTranslation } from "react-i18next";
 
 interface ArticleProps {
   title: string;
@@ -41,10 +42,12 @@ const ShadeOverlay = styled(Box)({
   backgroundColor: "rgba(0, 0, 0, 0.25)",
 });
 
-const BlogContent = styled(Box)({
+const BlogContent = styled(Box, {
+  shouldForwardProp: (prop) => prop !== "isArabic",
+})<{ isArabic: boolean }>(({ isArabic }) => ({
   position: "absolute",
   bottom: "0",
-  left: "0",
+  ...(isArabic ? { right: "0px" } : { left: "0px" }),
   width: "100%",
   height: "fit-content",
   overflow: "hidden",
@@ -53,17 +56,19 @@ const BlogContent = styled(Box)({
   display: "flex",
   flexDirection: "column",
   gap: "10px",
-});
+}));
 
-const Title = styled(Typography)({
+const Title = styled(Typography, {
+  shouldForwardProp: (prop) => prop !== "isArabic",
+})<{ isArabic: boolean }>(({ isArabic }) => ({
   fontFamily: "Source Code Pro",
   fontSize: "1.25rem",
   fontWeight: "bold",
   letterSpacing: "1.1px",
   flexWrap: "wrap",
   color: "whitesmoke",
-  paddingRight: "75px",
-});
+  ...(isArabic ? { paddingLeft: "75px" } : { paddingRight: "75px" }),
+}));
 
 const Date = styled(Typography)({
   fontFamily: "Source Code Pro",
@@ -78,6 +83,7 @@ const Date = styled(Typography)({
 export default function Article({ title, image, date }: ArticleProps) {
   const [isHovering, setIsHovering] = useState<boolean>(false);
   const navigate = useNavigate();
+  const { i18n } = useTranslation();
 
   return (
     <ArticleWrapper
@@ -99,8 +105,10 @@ export default function Article({ title, image, date }: ArticleProps) {
         />
       </ImageWrapper>
       <ShadeOverlay />
-      <BlogContent>
-        <Title variant="h6">{title}</Title>
+      <BlogContent isArabic={i18n.language === "ar"}>
+        <Title variant="h6" isArabic={i18n.language === "ar"}>
+          {title}
+        </Title>
         <Date>
           <CalendarMonthOutlinedIcon fontSize="small" />
           {date}

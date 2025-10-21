@@ -5,12 +5,13 @@ import type { Swiper as SwiperType } from "swiper/types";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../../app/store";
+import type { TLanguage } from "../../languages/changeLanguage";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import EastIcon from "@mui/icons-material/East";
 import WestIcon from "@mui/icons-material/West";
 import useSlideAndHeightCount from "./useSlideAndHeightCount";
 import NewsCard from "./NewsCard";
-import type { TLanguage } from "../../languages/changeLanguage";
 
 const NewsWrapper = styled(Box)({
   width: "100%",
@@ -42,13 +43,16 @@ const Title = styled(Typography)(({ theme }) => ({
   },
 }));
 
-const NavControl = styled(Box)(({ theme }) => ({
+const NavControl = styled(Box, {
+  shouldForwardProp: (prop) => prop !== "isArabic",
+})<{ isArabic: boolean }>(({ theme, isArabic }) => ({
   position: "absolute",
-  right: "0px",
+  ...(isArabic ? { left: "0px" } : { right: "0px" }),
   top: "0px",
   height: "100%",
   padding: "10px",
   display: "flex",
+  flexDirection: isArabic ? "row-reverse" : "row",
   justifyContent: "space-between",
   gap: "10px",
   alignItems: "center",
@@ -90,6 +94,7 @@ export default function News() {
   const swiperRef = useRef<SwiperType | null>(null);
   const { slideCount, maxHeight } = useSlideAndHeightCount();
   const { latestNews } = useSelector((state: RootState) => state.latestNews);
+  const isArabic = i18n.language === "ar";
 
   return (
     <NewsWrapper>
@@ -97,8 +102,12 @@ export default function News() {
         <Title variant="h6" color="inherit">
           {t("home.news_section.title")}
         </Title>
-        <ArrowForwardIosIcon sx={{ fontSize: "0.95rem" }} />
-        <NavControl>
+        {isArabic ? (
+          <ArrowBackIosIcon sx={{ fontSize: "0.95rem" }} />
+        ) : (
+          <ArrowForwardIosIcon sx={{ fontSize: "0.95rem" }} />
+        )}
+        <NavControl isArabic={isArabic}>
           <ControlButton onClick={() => swiperRef.current?.slidePrev()}>
             <WestIcon fontSize="small" color="inherit" />
           </ControlButton>

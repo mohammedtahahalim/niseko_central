@@ -1,7 +1,9 @@
 import { Box, Button, styled, Typography } from "@mui/material";
 import type { THeroContent } from "../../../utils/Types";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import EastIcon from "@mui/icons-material/East";
+import WestIcon from "@mui/icons-material/West";
 
 const DesktopSlideWrapper = styled(Box)({
   width: "100%",
@@ -69,6 +71,7 @@ const More = styled(Button)({
   fontFamily: "VAGRundschriftD",
   padding: "8px 18px",
   letterSpacing: "1.2px",
+  gap: "8px",
 });
 
 export default function DesktopSlide({
@@ -80,6 +83,8 @@ export default function DesktopSlide({
   link,
 }: THeroContent) {
   const navigate = useNavigate();
+  const { i18n } = useTranslation();
+  const isArabic = i18n.language === "ar";
   return (
     <DesktopSlideWrapper>
       <InfoSlide>
@@ -91,7 +96,13 @@ export default function DesktopSlide({
         <More
           variant="contained"
           color="info"
-          endIcon={<EastIcon color="inherit" sx={{ maxHeight: "16px" }} />}
+          endIcon={
+            isArabic ? (
+              <WestIcon color="inherit" sx={{ maxHeight: "16px" }} />
+            ) : (
+              <EastIcon color="inherit" sx={{ maxHeight: "16px" }} />
+            )
+          }
           onClick={() => navigate(link)}
         >
           {more}
