@@ -2,6 +2,7 @@ import { Box, Button, styled, Typography } from "@mui/material";
 import type { SuggestionBookingData } from "./suggestionsSlice";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import i18n from "../../languages/i18n";
 
 const MountainIcon = (
   <svg
@@ -57,15 +58,25 @@ const ShadeOverlay = styled(Box)({
   cursor: "pointer",
 });
 
-const TagContainer = styled(Box)(({ theme }) => ({
+const TagContainer = styled(Box, {
+  shouldForwardProp: (prop) => prop !== "isArabic",
+})<{ isArabic: boolean }>(({ theme, isArabic }) => ({
   position: "absolute",
   top: "25px",
-  left: "0",
+  ...(isArabic
+    ? {
+        right: "0px",
+        borderTopLeftRadius: "8px",
+        borderBottomLeftRadius: "8px",
+      }
+    : {
+        left: "0px",
+        borderTopRightRadius: "8px",
+        borderBottomRightRadius: "8px",
+      }),
   zIndex: 222,
   maxWidth: "150px",
   maxHeight: "55px",
-  borderTopRightRadius: "8px",
-  borderBottomRightRadius: "8px",
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
@@ -92,10 +103,12 @@ const TagSubtitle = styled(Typography)({
   whiteSpace: "nowrap",
 });
 
-const BookingInformation = styled(Box)({
+const BookingInformation = styled(Box, {
+  shouldForwardProp: (prop) => prop !== "isArabic",
+})<{ isArabic: boolean }>(({ isArabic }) => ({
   position: "absolute",
   bottom: "0",
-  left: "0",
+  ...(isArabic ? { right: "0px" } : { left: "0px" }),
   width: "99%",
   height: "35%",
   maxHeight: "150px",
@@ -104,7 +117,7 @@ const BookingInformation = styled(Box)({
   justifyContent: "center",
   padding: "5px 10px",
   zIndex: 9999,
-});
+}));
 
 const PropertyTitle = styled(Typography)({
   fontSize: "1.4rem",
@@ -212,11 +225,11 @@ export default function Card({
         onMouseMove={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}
       />
-      <TagContainer>
+      <TagContainer isArabic={i18n.language === "ar"}>
         <TagTitle variant="subtitle1">{tag?.tag_title}</TagTitle>
         <TagSubtitle variant="body1">{tag?.tag_subtitle}</TagSubtitle>
       </TagContainer>
-      <BookingInformation>
+      <BookingInformation isArabic={i18n.language === "ar"}>
         <PropertyTitle>{booking_title}</PropertyTitle>
         <PropertyLocation>{booking_location}</PropertyLocation>
         <AmenitiesWrapper>

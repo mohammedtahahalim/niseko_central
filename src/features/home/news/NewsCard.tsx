@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { sanitizeURL } from "../../../utils/Constants";
 import { useState } from "react";
 import EastIcon from "@mui/icons-material/East";
+import WestIcon from "@mui/icons-material/West";
 
 interface NewsCardProps {
   image: string;
@@ -66,12 +67,15 @@ const More = styled(Button)({
   fontFamily: "Inter",
   fontSize: "0.85rem",
   fontStyle: "italic",
+  gap: "8px",
 });
 
 export default function NewsCard({ image, title }: NewsCardProps) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const [onHover, setOnHover] = useState<boolean>(false);
+  const isArabic = i18n.language === "ar";
+
   return (
     <NewsCardWrapper>
       <ImageContainer>
@@ -95,7 +99,7 @@ export default function NewsCard({ image, title }: NewsCardProps) {
         <Title>{title || "Taha"}</Title>
         <More
           variant="contained"
-          endIcon={<EastIcon />}
+          endIcon={isArabic ? <WestIcon /> : <EastIcon />}
           onClick={() =>
             navigate(`/niseko-accommodation-deals/${sanitizeURL(title)}`)
           }
