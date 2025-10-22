@@ -22,6 +22,7 @@ export default function Logo() {
         alt="Niseko Logo"
         width={"100%"}
         height={"100%"}
+        role="Niseko Logo"
       />
     </LogoWrapper>
   );
