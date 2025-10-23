@@ -9,6 +9,7 @@ import DesktopSlide from "./DesktopSlide";
 import { useTranslation } from "react-i18next";
 import type { THeroContent } from "../../../utils/Types";
 import MobileSlide from "./MobileSlide";
+import { Keyboard } from "swiper/modules";
 
 const HeroWrapper = styled(Box)(({ theme }) => ({
   width: "100%",
@@ -81,6 +82,7 @@ export default function Hero() {
   return (
     <HeroWrapper>
       <Swiper
+        modules={[Keyboard]}
         slidesPerView={1}
         autoplay={true}
         loop={true}
@@ -88,12 +90,20 @@ export default function Hero() {
         spaceBetween={0}
         speed={250}
         onSwiper={(swiper) => (swiperRef.current = swiper)}
+        keyboard={{ enabled: true, onlyInViewport: true }}
+        role="region"
+        aria-label="Hero Slider"
+        tabIndex={0}
       >
         {(
           t("hero_slides.content", { returnObjects: true }) as THeroContent[]
         ).map((slide) => {
           return (
-            <SwiperSlide key={slide.title}>
+            <SwiperSlide
+              key={slide.title}
+              aria-roledescription="slide"
+              aria-label={slide.title}
+            >
               <>
                 <DesktopSliderWrapper>
                   <DesktopSlide {...slide} />
@@ -106,7 +116,7 @@ export default function Hero() {
           );
         })}
       </Swiper>
-      <ControlNav isArabic={i18n.language === "ar"}>
+      <ControlNav isArabic={i18n.language === "ar"} role="navigation">
         <NavButton onClick={() => swiperRef.current?.slidePrev()}>
           <WestIcon sx={{ fontSize: "1.05rem" }} />
         </NavButton>

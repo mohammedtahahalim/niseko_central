@@ -85,6 +85,7 @@ export default function DesktopSlide({
   const navigate = useNavigate();
   const { i18n } = useTranslation();
   const isArabic = i18n.language === "ar";
+
   return (
     <DesktopSlideWrapper>
       <InfoSlide>

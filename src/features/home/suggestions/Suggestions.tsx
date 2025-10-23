@@ -11,6 +11,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import EastIcon from "@mui/icons-material/East";
 import WestIcon from "@mui/icons-material/West";
+import { Keyboard } from "swiper/modules";
 
 const SuggestionsWrapper = styled(Box)({
   width: "100%",
@@ -114,12 +115,17 @@ export default function Suggestions() {
         </NavControl>
       </TitleContainer>
       <SuggestionSlider
+        modules={[Keyboard]}
         slidesPerView={slideCount}
         style={{ display: "flex" }}
         onSwiper={(swiper) => (swiperRef.current = swiper)}
         loop={true}
         speed={250}
         spaceBetween={12}
+        keyboard={{ enabled: true, onlyInViewport: true }}
+        role="region"
+        aria-label="Property Slider"
+        tabIndex={0}
       >
         {suggestionsBookings.map((booking, idx) => {
           return (

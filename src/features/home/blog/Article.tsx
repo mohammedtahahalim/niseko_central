@@ -90,6 +90,12 @@ export default function Article({ title, image, date }: ArticleProps) {
       onClick={() => navigate(`${sanitizeURL(title)}`)}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
+      tabIndex={0}
+      onKeyDown={(e: React.KeyboardEvent) => {
+        if (e.key === "Enter" || e.key === "") {
+          navigate(`${sanitizeURL(title)}`);
+        }
+      }}
     >
       <ImageWrapper>
         <img
