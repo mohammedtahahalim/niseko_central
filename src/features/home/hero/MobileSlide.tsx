@@ -84,7 +84,17 @@ export default function MobileSlide({
   const isArabic = i18n.language === "ar";
 
   return (
-    <MobileSlideWrapper src={image}>
+    <MobileSlideWrapper
+      src={image}
+      role="region"
+      aria-label={title}
+      tabIndex={0}
+      onKeyDown={(e: React.KeyboardEvent) => {
+        if (e.key === "Enter" || e.key === "") {
+          navigate("/niseko-accomodation");
+        }
+      }}
+    >
       <ShadeLayer></ShadeLayer>
       <ContentLayer>
         <Title>{title}</Title>
@@ -100,6 +110,7 @@ export default function MobileSlide({
             )
           }
           onClick={() => navigate(link)}
+          tabIndex={-1}
         >
           {more}
         </More>

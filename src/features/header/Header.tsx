@@ -62,7 +62,7 @@ export default function Header() {
       <HeaderContainer maxWidth={"xl"}>
         <Modal
           trigger={
-            <MenuBarWrapper>
+            <MenuBarWrapper role="button" aria-label="Open Menu" tabIndex={0}>
               <MenuIcon fontSize="large" />
             </MenuBarWrapper>
           }

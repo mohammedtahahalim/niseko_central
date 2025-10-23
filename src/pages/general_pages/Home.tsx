@@ -1,19 +1,19 @@
 import { Box, styled } from "@mui/material";
-import Plan from "../../components/Plan";
-import Hero from "../../features/home/hero/Hero";
-import Services from "../../components/Services";
-import Suggestions from "../../features/home/suggestions/Suggestions";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../../app/store";
 import { fetchSuggestions } from "../../features/home/suggestions/suggestionsSlice";
 import { fetchNews } from "../../features/home/news/newsSlice";
+import { fetchBlogs } from "../../features/home/blog/blogSlice";
 import { useEffect } from "react";
+import Plan from "../../components/Plan";
+import Hero from "../../features/home/hero/Hero";
+import Services from "../../components/Services";
+import Suggestions from "../../features/home/suggestions/Suggestions";
 import Loader from "../../components/Loader";
 import RenderOnView from "../../features/render_on_view/RenderOnView";
 import News from "../../features/home/news/News";
 import NisekoPassport from "../../components/NisekoPassport";
 import Blog from "../../features/home/blog/Blog";
-import { fetchBlogs } from "../../features/home/blog/blogSlice";
 
 const HomeWrapper = styled(Box)(({ theme }) => ({
   width: "100%",
