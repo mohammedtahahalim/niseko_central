@@ -67,14 +67,25 @@ export default function useModal<P extends HTMLElement, M extends HTMLElement>({
         closeModal();
       }
     };
+    const handleAccessbilityClick = (e: KeyboardEvent) => {
+      if (
+        parentRef.current &&
+        document.activeElement === parentRef.current &&
+        e.key === "Enter"
+      ) {
+        openModal();
+      }
+    };
     window.addEventListener("click", handleClickOutside);
     window.addEventListener("keydown", handleEscapeClick);
+    window.addEventListener("keydown", handleAccessbilityClick);
     window.addEventListener("touchmove", stopOutsideEvents);
     window.addEventListener("scroll", stopOutsideEvents);
     window.addEventListener("resize", closeModal);
     return () => {
       window.removeEventListener("click", handleClickOutside);
       window.removeEventListener("keydown", handleEscapeClick);
+      window.removeEventListener("keydown", handleAccessbilityClick);
       window.removeEventListener("touchmove", stopOutsideEvents);
       window.removeEventListener("scroll", stopOutsideEvents);
       window.removeEventListener("resize", closeModal);

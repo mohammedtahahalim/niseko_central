@@ -99,11 +99,7 @@ export default function Hero() {
           t("hero_slides.content", { returnObjects: true }) as THeroContent[]
         ).map((slide) => {
           return (
-            <SwiperSlide
-              key={slide.title}
-              aria-roledescription="slide"
-              aria-label={slide.title}
-            >
+            <SwiperSlide key={slide.title} aria-roledescription="slide">
               <>
                 <DesktopSliderWrapper>
                   <DesktopSlide {...slide} />

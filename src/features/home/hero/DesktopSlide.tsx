@@ -87,7 +87,16 @@ export default function DesktopSlide({
   const isArabic = i18n.language === "ar";
 
   return (
-    <DesktopSlideWrapper>
+    <DesktopSlideWrapper
+      tabIndex={0}
+      onKeyDown={(e: React.KeyboardEvent) => {
+        if (e.key === "Enter" || e.key === "") {
+          navigate("/niseko-accomodation");
+        }
+      }}
+      role="region"
+      aria-label={title}
+    >
       <InfoSlide>
         <Tag>{tag}</Tag>
         <ContentContainer>
@@ -105,6 +114,7 @@ export default function DesktopSlide({
             )
           }
           onClick={() => navigate(link)}
+          tabIndex={-1}
         >
           {more}
         </More>
