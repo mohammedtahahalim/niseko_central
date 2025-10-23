@@ -71,27 +71,42 @@ export default function SocialLinks() {
                 ? "/img/niseko_logo_light.webp"
                 : "/img/niseko_logo_dark.webp"
             }
-            alt="Niseko Logo"
+            alt=""
             style={{ width: "90%", objectFit: "contain" }}
           />
         </NisekoLogo>
         <AntaLogo>
           <img
             src="/img/anta.webp"
-            alt="Anta Logo"
+            alt=""
             style={{ width: "90%", objectFit: "contain" }}
           />
         </AntaLogo>
       </Logos>
       <Trademark>{t("footer.trademark")}</Trademark>
       <SocialMedia>
-        <Link href="https://www.instagram.com/nisekocentral/" target="_blank">
+        <Link
+          href="https://www.instagram.com/nisekocentral/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Instagram"
+        >
           <InstagramIcon fontSize="medium" color="inherit" />
         </Link>
-        <Link href="https://www.facebook.com/nisekocentral/" target="_blank">
+        <Link
+          href="https://www.facebook.com/nisekocentral/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Facebook"
+        >
           <FacebookIcon fontSize="medium" color="inherit" />
         </Link>
-        <Link href="https://vimeo.com/nisekocentral" target="_blank">
+        <Link
+          href="https://vimeo.com/nisekocentral"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="X"
+        >
           <XIcon fontSize="small" color="inherit" />
         </Link>
       </SocialMedia>

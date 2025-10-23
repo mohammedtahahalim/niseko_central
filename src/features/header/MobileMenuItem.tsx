@@ -44,7 +44,11 @@ export default function MobileMenuItem({
 }: MobileMenuItemType) {
   return (
     <MobileMenuWrapper>
-      <MobileMenuLink isHeadLink={true} to={element}>
+      <MobileMenuLink
+        isHeadLink={true}
+        to={element}
+        aria-label="Navigation Header"
+      >
         {path}
       </MobileMenuLink>
       {children?.map((link) => {

@@ -1,5 +1,8 @@
 import { Box, styled, Typography } from "@mui/material";
-import { possibleLanguages } from "../../utils/Constants";
+import {
+  accessibility_language_map,
+  possibleLanguages,
+} from "../../utils/Constants";
 import { useTranslation } from "react-i18next";
 import { useContext } from "react";
 import type { TLanguage } from "./changeLanguage";
@@ -31,6 +34,14 @@ const LanguageWrapper = styled(Typography, {
 export default function Languages() {
   const { i18n } = useTranslation();
   const { changeLanguage } = useContext(UIContext);
+
+  const handleKeyDown = (e: React.KeyboardEvent, lang: TLanguage) => {
+    if (e.key === "Enter" || e.key === "") {
+      e.preventDefault();
+      changeLanguage(lang);
+    }
+  };
+
   return (
     <LanguagesWrapper>
       <TranslateIcon sx={{ fontSize: "0.9rem" }} />
@@ -40,6 +51,11 @@ export default function Languages() {
             isActive={language === i18n.language}
             key={language}
             onClick={() => changeLanguage(language as TLanguage)}
+            role="button"
+            lang={language}
+            aria-label={accessibility_language_map[language as TLanguage]}
+            tabIndex={0}
+            onKeyDown={(e) => handleKeyDown(e, language as TLanguage)}
           >
             {language}
           </LanguageWrapper>

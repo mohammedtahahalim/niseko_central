@@ -12,17 +12,16 @@ const LogoWrapper = styled(Link)({
 export default function Logo() {
   const { currentTheme } = useContext(UIContext);
   return (
-    <LogoWrapper to={"/"}>
+    <LogoWrapper to={"/"} aria-label="Home - Niseko Central">
       <img
         src={
           currentTheme === "light"
             ? "/img/niseko_logo_light.webp"
             : "/img/niseko_logo_dark.webp"
         }
-        alt="Niseko Logo"
+        alt="Niseko Central"
         width={"100%"}
         height={"100%"}
-        role="Niseko Logo"
       />
     </LogoWrapper>
   );

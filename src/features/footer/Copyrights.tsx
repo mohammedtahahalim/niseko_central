@@ -43,12 +43,14 @@ export default function Copyrights() {
         <StyledLink
           href="https://www.nisekocentral.com/terms-and-conditions"
           target="_blank"
+          rel="noreferrer noopener"
         >
           {t("footer.terms")}
         </StyledLink>
         <StyledLink
           href="https://www.nisekocentral.com/privacy-policy"
           target="_blank"
+          rel="noreferrer noopener"
         >
           {t("footer.privacy")}
         </StyledLink>

@@ -26,7 +26,7 @@ const ErrorMessage = styled("li")(({ theme }) => ({
 export default function Errors({ errors }: ErrorsProps) {
   const { t } = useTranslation();
   return (
-    <ErrorWrapper>
+    <ErrorWrapper role="alert">
       {errors.map((error: string) => {
         return (
           <ErrorMessage key={error}>

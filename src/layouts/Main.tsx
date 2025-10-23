@@ -24,7 +24,7 @@ export default function Main() {
   return (
     <MainContainer maxWidth="xl" disableGutters>
       <Header />
-      <BodyWrapper>
+      <BodyWrapper role="main">
         <Outlet />
       </BodyWrapper>
       <Footer />

@@ -65,7 +65,7 @@ export default function MobileHeader() {
       <LogoWrapper>
         <Logo />
       </LogoWrapper>
-      <MainMenuWrapper>
+      <MainMenuWrapper role="navigation">
         {(
           t("header.mobile_nav_menu", {
             returnObjects: true,
