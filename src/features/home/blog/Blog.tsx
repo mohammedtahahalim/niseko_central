@@ -12,6 +12,7 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import EastIcon from "@mui/icons-material/East";
 import WestIcon from "@mui/icons-material/West";
 import Article from "./Article";
+import { Keyboard } from "swiper/modules";
 
 const BlogWrapper = styled(Box)(({ theme }) => ({
   width: "100%",
@@ -116,11 +117,16 @@ export default function Blog() {
         </NavControl>
       </TitleContainer>
       <BlogSlider
+        modules={[Keyboard]}
         slidesPerView={slideCount}
         style={{ display: "flex" }}
         onSwiper={(swiper) => (swiperRef.current = swiper)}
         speed={250}
         spaceBetween={12}
+        keyboard={{ enabled: true, onlyInViewport: true }}
+        role="region"
+        aria-label="Blog Slider"
+        tabIndex={0}
       >
         {blogs.map((blog, idx) => {
           return (

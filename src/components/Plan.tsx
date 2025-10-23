@@ -1,19 +1,18 @@
+import { useRef, useState, useEffect } from "react";
 import { Box, styled, Button } from "@mui/material";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import Modal from "../features/modal/Modal";
-import { useTranslation } from "react-i18next";
 import QuickReservation from "../features/quick_calendar/QuickReservation";
+import { useTranslation } from "react-i18next";
 
 const PlanWrapper = styled(Box)(({ theme }) => ({
   display: "none",
-  justifyContent: "center",
-  position: "fixed",
-  width: "100%",
-  top: "calc(100vh - 65px)",
-  zIndex: 8888,
   [theme.breakpoints.down("nav_break")]: {
     display: "flex",
-    padding: "10px",
+    justifyContent: "center",
+    width: "100%",
+    zIndex: 8888,
+    transition: "top 0.2s ease",
   },
 }));
 
@@ -30,9 +29,40 @@ const PlanStayWrapper = styled(Button)({
 
 export default function Plan() {
   const { t } = useTranslation();
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const [fixed, setFixed] = useState(true);
+  const [offsetTop, setOffsetTop] = useState(0);
+
+  useEffect(() => {
+    const wrapper = wrapperRef.current;
+    if (!wrapper) return;
+    const parent = wrapper.parentElement;
+    if (!parent) return;
+    const handleScroll = () => {
+      const parentBottom = parent.getBoundingClientRect().bottom;
+      const viewportHeight = window.innerHeight;
+      if (parentBottom <= viewportHeight) {
+        setFixed(false);
+        setOffsetTop(parentBottom - wrapper.offsetHeight);
+      } else {
+        setFixed(true);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <PlanWrapper>
+    <PlanWrapper
+      ref={wrapperRef}
+      sx={{
+        position: fixed ? "fixed" : "",
+        bottom: fixed ? "0px" : "auto",
+        top: fixed ? "auto" : offsetTop,
+        paddingBottom: fixed ? "15px" : "25px",
+      }}
+    >
       <Modal
         trigger={
           <PlanStayWrapper variant="contained" color="primary">

@@ -60,7 +60,7 @@ export default function NavMenu() {
   const currentPath = useLocation().pathname;
   return (
     <NavMenuWrapper>
-      <NavElements>
+      <NavElements role="navigation">
         {(t("header.nav_menu", { returnObjects: true }) as any[]).map(
           (navItem) => {
             return (
@@ -68,6 +68,7 @@ export default function NavMenu() {
                 key={navItem.path}
                 to={navItem.element}
                 isActive={currentPath === navItem.element}
+                aria-label={`Go to ${navItem.path} page`}
               >
                 {navItem.path}
               </NavItem>

@@ -20,7 +20,7 @@ const SubHeaderMotion = motion.create(SubHeader);
 export default function MainHeader() {
   const { isScrolling } = useScroll();
   return (
-    <MainHeaderWrapper>
+    <MainHeaderWrapper role="navigation" aria-label="Navigation Menu">
       <AnimatePresence>
         {!isScrolling && (
           <SubHeaderMotion

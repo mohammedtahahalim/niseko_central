@@ -20,11 +20,6 @@ const HomeWrapper = styled(Box)(({ theme }) => ({
   height: "100%",
   minHeight: "100vh",
   backgroundColor: theme.palette.mainbody?.main,
-  [theme.breakpoints.down("nav_break")]: {
-    "& > :last-of-type": {
-      paddingBottom: "75px",
-    },
-  },
 }));
 
 const LoaderWrapper = styled(Box)({
@@ -56,7 +51,6 @@ export default function Home() {
 
   return (
     <HomeWrapper>
-      <Plan />
       <Hero />
       <RenderOnView animationDirection="top">
         <Services />
@@ -94,6 +88,7 @@ export default function Home() {
           <Blog />
         </RenderOnView>
       )}
+      <Plan />
     </HomeWrapper>
   );
 }

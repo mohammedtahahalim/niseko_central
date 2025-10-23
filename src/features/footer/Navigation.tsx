@@ -67,7 +67,7 @@ const LinkField = styled(Link)(({ theme }) => ({
 export default function Navigation() {
   const { t } = useTranslation();
   return (
-    <NavigationWrapper>
+    <NavigationWrapper role="navigation">
       <StayWrapper>
         <Wrapper>
           {(t("footer.menu.stay", { returnObjects: true }) as any[]).map(

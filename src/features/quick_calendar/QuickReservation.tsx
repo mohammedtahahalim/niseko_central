@@ -58,7 +58,7 @@ export default function QuickReservation() {
     }
   }, [reservationUrl]);
   return (
-    <QuickReservationWrapper>
+    <QuickReservationWrapper aria-modal={true}>
       <Title variant="h6" color="textColor">
         {t("quick_reservation.title")}
       </Title>

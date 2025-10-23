@@ -14,8 +14,20 @@ const ThemeCompWrapper = styled(Box)({
 
 export default function ThemeComp() {
   const { currentTheme, changeTheme } = useContext(UIContext);
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      changeTheme();
+    }
+  };
   return (
-    <ThemeCompWrapper onClick={changeTheme}>
+    <ThemeCompWrapper
+      onClick={changeTheme}
+      role="button"
+      aria-label="Change Theme"
+      tabIndex={0}
+      onKeyDown={handleKeyDown}
+    >
       {currentTheme === "light" && <DarkModeIcon fontSize="small" />}
       {currentTheme === "dark" && <LightModeIcon fontSize="small" />}
     </ThemeCompWrapper>

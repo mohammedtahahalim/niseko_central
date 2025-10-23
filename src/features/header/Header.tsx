@@ -10,7 +10,7 @@ interface OnScrollProp {
   isScrolling: boolean;
 }
 
-const HeaderWrapper = styled(Box, {
+const HeaderWrapper = styled("header", {
   shouldForwardProp: (prop) => prop !== "isScrolling",
 })<OnScrollProp>(({ theme, isScrolling }) => ({
   width: "100%",
@@ -58,7 +58,7 @@ export default function Header() {
   const { isScrolling } = useScroll();
 
   return (
-    <HeaderWrapper isScrolling={isScrolling}>
+    <HeaderWrapper isScrolling={isScrolling} role="banner">
       <HeaderContainer maxWidth={"xl"}>
         <Modal
           trigger={

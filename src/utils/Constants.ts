@@ -96,3 +96,10 @@ export const sanitizeURL = (url: string): string => {
   );
   return sanitizedURL;
 };
+
+export const accessibility_language_map = {
+  en: "English",
+  fr: "Français",
+  ja: "日本語",
+  ar: "العربية",
+};

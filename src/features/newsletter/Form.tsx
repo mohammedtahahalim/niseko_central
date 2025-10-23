@@ -52,6 +52,7 @@ export default function Form() {
         variant="standard"
         type="text"
         size="medium"
+        label={t("footer.newsletter.form.firstName")}
         placeholder={t("footer.newsletter.form.firstName")}
         value={firstName}
         onChange={(e) => dispatch(setFirstName(e.target.value))}
@@ -60,6 +61,7 @@ export default function Form() {
         variant="standard"
         type="text"
         size="medium"
+        label={t("footer.newsletter.form.lastName")}
         placeholder={t("footer.newsletter.form.lastName")}
         value={lastName}
         onChange={(e) => dispatch(setLastName(e.target.value))}
@@ -68,6 +70,7 @@ export default function Form() {
         variant="standard"
         type="email"
         size="medium"
+        label={t("footer.newsletter.form.email")}
         placeholder={t("footer.newsletter.form.email")}
         value={email}
         onChange={(e) => dispatch(setEmail(e.target.value))}
