@@ -9,12 +9,17 @@ i18n
   .use(initReactI18next)
   .init({
     fallbackLng: "en",
-    backend: {
-      loadPath: "/locales/{{lng}}.json",
-    },
-    react: {
-      useSuspense: false,
-    },
+    supportedLngs: ["en", "fr", "es"],
+    interpolation: { escapeValue: false },
+    backend: { loadPath: "/locales/{{lng}}.json" },
+    react: { useSuspense: false },
   });
+
+i18n.on("languageChanged", (lng) => {
+  const short = lng.split("-")[0];
+  if (lng !== short) {
+    i18n.changeLanguage(short);
+  }
+});
 
 export default i18n;
