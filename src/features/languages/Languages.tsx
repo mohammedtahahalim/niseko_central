@@ -4,7 +4,7 @@ import {
   possibleLanguages,
 } from "../../utils/Constants";
 import { useTranslation } from "react-i18next";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import type { TLanguage } from "./changeLanguage";
 import TranslateIcon from "@mui/icons-material/Translate";
 import { UIContext } from "../../context/MiniContext";
@@ -32,7 +32,7 @@ const LanguageWrapper = styled(Typography, {
 }));
 
 export default function Languages() {
-  const { i18n } = useTranslation();
+  const { i18n, ready } = useTranslation();
   const { changeLanguage } = useContext(UIContext);
 
   const handleKeyDown = (e: React.KeyboardEvent, lang: TLanguage) => {
@@ -41,6 +41,14 @@ export default function Languages() {
       changeLanguage(lang);
     }
   };
+
+  useEffect(() => {
+    if (i18n.language === "en-US") {
+      changeLanguage("en");
+    }
+  }, [i18n]);
+
+  if (!ready) return null;
 
   return (
     <LanguagesWrapper>
