@@ -35,6 +35,8 @@ export default function Languages() {
   const { i18n } = useTranslation();
   const { changeLanguage } = useContext(UIContext);
 
+  console.log(i18n.language);
+
   const handleKeyDown = (e: React.KeyboardEvent, lang: TLanguage) => {
     if (e.key === "Enter" || e.key === "") {
       e.preventDefault();
