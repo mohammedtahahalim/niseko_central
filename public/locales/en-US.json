@@ -1,0 +1,220 @@
+{
+  "title": "Niseko Accommodation | Niseko Central",
+  "auth_fails": {
+    "try_again": "Try Again",
+    "return_homepage": "Return to Homepage"
+  },
+  "header": {
+    "login": "Login",
+    "signup": "Create Account",
+    "profile": "My Profile",
+    "plan_stay": "Plan Your Stay",
+    "nav_menu": [
+      { "path": "stay", "element": "/niseko-accommodation" },
+      { "path": "deals", "element": "/niseko-accommodation-deals" },
+      { "path": "concierge", "element": "/concierge" },
+      { "path": "FAQ", "element": "/faq" },
+      { "path": "contact", "element": "/contact" }
+    ],
+    "mobile_nav_menu": [
+      {
+        "path": "Stay",
+        "element": "/niseko-accommodation",
+        "children": [
+          {
+            "path": "Special Deals",
+            "element": "/niseko-accommodation-deals"
+          },
+          {
+            "path": "Condominiums",
+            "element": "/niseko-accommodation?propertyType=condominiums"
+          },
+          {
+            "path": "Resort Homes",
+            "element": "/niseko-accommodation?propertyType=resort-homes"
+          }
+        ]
+      },
+      {
+        "path": "Deals",
+        "element": "/deals",
+        "children": [
+          { "path": "Map", "element": "/map" },
+          { "path": "Express Check-In", "element": "/express-check-in" },
+          { "path": "Summer Long Stay", "element": "/niseko-long-stay" },
+          { "path": "FAQ", "element": "/faq" }
+        ]
+      },
+      {
+        "path": "Concierge",
+        "element": "/concierge",
+        "children": [
+          { "path": "Winter", "element": "/concierge/winter" },
+          { "path": "Transfers", "element": "/concierge/niseko-transfers" },
+          { "path": "Other Services", "element": "/concierge/services" },
+          { "path": "Summer", "element": "/concierge/summer" },
+          {
+            "path": "Experience Niseko Passport",
+            "element": "/niseko-accommodation-deals/experience-niseko-passport"
+          }
+        ]
+      },
+      {
+        "path": "About",
+        "element": "/about",
+        "children": [
+          { "path": "Careers/Jobs", "element": "/niseko-jobs" },
+          { "path": "Blog", "element": "/blog" },
+          { "path": "Niseko Area Guide", "element": "/niseko-information" },
+          { "path": "Live Camera", "element": "/webcam" },
+          { "path": "Weather", "element": "/niseko-weather" },
+          { "path": "Contact", "element": "/contact" }
+        ]
+      }
+    ]
+  },
+  "footer": {
+    "newsletter": {
+      "title": "Stay in the Know",
+      "subtitle": "Subscribe for priority updates on bookings, local happenings, and seasonal news — delivered straight from Niseko to your inbox.",
+      "form": {
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "email": "Email",
+        "submit": "Subscribe",
+        "errors": {
+          "firstName": "First Name is Invalid",
+          "lastName": "Last Name is Invalid",
+          "email": "Email is Invalid"
+        },
+        "subsribed_message": "Thanks for subscribing! You’re now on our list and will hear from us soon."
+      }
+    },
+    "trademark": "Niseko Central is a licensed travel agent and a member of the All Nippon Travel Agents Association (License no 2-529).",
+    "menu": {
+      "stay": [
+        { "path": "Stay", "element": "/niseko-accommodation" },
+        { "path": "Special Deals", "element": "/niseko-accommodation-deals" },
+        {
+          "path": "Condominiums",
+          "element": "/niseko-accommodation?propertyType=condominiums"
+        },
+        {
+          "path": "Resort Homes",
+          "element": "/niseko-accommodation?propertyType=resort-homes"
+        }
+      ],
+      "map": [
+        { "path": "Map", "element": "/map" },
+        { "path": "Express Check-In", "element": "/express-check-in" },
+        { "path": "Summer Long Stay", "element": "/niseko-long-stay" },
+        { "path": "FAQ", "element": "/faq" }
+      ],
+      "concierge": [
+        { "path": "Concierge", "element": "/concierge" },
+        { "path": "Winter", "element": "/concierge/winter" },
+        { "path": "Transfers", "element": "/concierge/niseko-transfers" },
+        { "path": "Other Services", "element": "/concierge/services" },
+        { "path": "Summer", "element": "/concierge/summer" },
+        {
+          "path": "Experience Niseko Passport",
+          "element": "/niseko-accommodation-deals/experience-niseko-passport"
+        }
+      ],
+      "about": [
+        { "path": "About", "element": "/about" },
+        { "path": "Careers/Jobs", "element": "/niseko-jobs" },
+        { "path": "Blog", "element": "/blog" },
+        { "path": "Niseko Area Guide", "element": "/niseko-information" },
+        { "path": "Live Camera", "element": "/webcam" },
+        { "path": "Weather", "element": "/niseko-weather" },
+        { "path": "Owners", "element": "https://owners.nisekocentral.com/" },
+        { "path": "Contact", "element": "/contact" }
+      ]
+    },
+    "terms": "Terms & Conditions",
+    "privacy": "Privacy Policy",
+    "rights": "HTM KK. All rights reserved."
+  },
+  "quick_reservation": {
+    "title": "Check Availability",
+    "description": "Over 200 stays in the heart of Niseko, from luxury resort homes to value-packed accommodation!",
+    "select_dates": "Select dates",
+    "close": "Close",
+    "adults": "Adults",
+    "children": "Children (7-15)",
+    "infants": "Infants (0-6)",
+    "search": "Search"
+  },
+  "suggestions": {
+    "title": "Featured Accomodation",
+    "book_now": "Book Now",
+    "more": "More",
+    "guests": "Guests"
+  },
+  "hero_slides": {
+    "content": [
+      {
+        "tag": "Niseko's No. 1 Accommodation Provider",
+        "title": "Stay. Play. Experience.",
+        "subtitle": "Choose from over 200 stays in the heart of Niseko-Hirafu.",
+        "image": "https://d1z517741srsht.cloudfront.net/accommodation/_1280xAUTO_crop_center-center_none/337714/20240712_NisekoCentral_WhiskeyWoods_WW_Summer_LivingRoom_DSC5229_Lores_1.webp",
+        "more": "Find out more",
+        "link": "https://www.nisekocentral.com/niseko-accommodation"
+      },
+      {
+        "tag": "Niseko's No. 1 Accommodation Provider",
+        "title": "Complimentary Vehicle With Your Stay.",
+        "subtitle": "Explore Niseko and it's stunning surrounds your way.",
+        "image": "https://d1z517741srsht.cloudfront.net/general/_1280xAUTO_crop_center-center_none/315569/Drone-Niseko-Central.webp",
+        "more": "Find out more",
+        "link": "https://www.nisekocentral.com/blog/complimentary-vehicles-2025-26"
+      },
+      {
+        "tag": "Niseko's No. 1 Accommodation Provider",
+        "title": "Stay a little longer, save a lot more.",
+        "subtitle": "Unlock greater savings with longer stays. Secure your FREE nights today!",
+        "image": "https://d1z517741srsht.cloudfront.net/accommodation/_1280xAUTO_crop_center-center_none/332367/20240326_NisekoCentral_DT01_Winter_LivingRoom_DSC1274_Lores_1.webp",
+        "more": "Find out more",
+        "link": "https://www.nisekocentral.com/niseko-accommodation-deals/stay-and-save-winter-2025-26"
+      }
+    ]
+  },
+  "home": {
+    "service_section": {
+      "title": "With over 200 stays to choose from and over 20 years’ experience, we are Niseko’s premier accommodation provider. We look forward to welcoming you to Niseko.",
+      "services": [
+        {
+          "title": "Experience Niseko Passport",
+          "body": "Niseko Central guests receive discounts and other benefits"
+        },
+        {
+          "title": "Pre-Arrival Concierge Services",
+          "body": "Arrange your guest services ahead of your arrival to save time"
+        },
+        {
+          "title": "Complimentary WiFi",
+          "body": "Free internet access for all guests staying with Niseko Central"
+        },
+        {
+          "title": "Book with Confidence",
+          "body": "Licensed travel agent and member of the All Nippon Travel Agents Association"
+        }
+      ]
+    },
+    "news_section": {
+      "title": "What's new",
+      "more": "More"
+    },
+    "niseko_passport": {
+      "title": "Unlock Great Resort Discounts",
+      "subtitle_1": "As a Niseko Central guest, your complimentary",
+      "link": "Experience Niseko Passport",
+      "subtitle_2": "card unlocks fantastic discounts in and around the resort",
+      "find_out": "Find out more"
+    },
+    "blog": {
+      "title": "From The Blog"
+    }
+  }
+}
