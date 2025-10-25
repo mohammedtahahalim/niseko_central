@@ -225,6 +225,174 @@
     "title": {
       "head_title": "Stay",
       "content": "Select from a superb range of Niseko accommodation from Niseko's most experienced accommodation provider."
-    }
+    },
+    "filters": [
+      {
+        "label": "Property Type",
+        "placeholder": "Select property type",
+        "elements": [
+          {
+            "key": "all",
+            "value": "all property types"
+          },
+          {
+            "key": "condominiums",
+            "value": "condominiums"
+          },
+          {
+            "key": "resort",
+            "value": "resort homes"
+          },
+          {
+            "key": "premier",
+            "value": "premier collection"
+          }
+        ]
+      },
+      {
+        "label": "adults",
+        "placeholder": "choose number of adults",
+        "elements": [
+          {
+            "key": "1",
+            "value": "1"
+          },
+          {
+            "key": "2",
+            "value": "2"
+          },
+          {
+            "key": "3",
+            "value": "3"
+          },
+          {
+            "key": "4",
+            "value": "4"
+          },
+          {
+            "key": "5",
+            "value": "5"
+          },
+          {
+            "key": "6",
+            "value": "6"
+          },
+          {
+            "key": "7",
+            "value": "7"
+          },
+          {
+            "key": "8",
+            "value": "8"
+          },
+          {
+            "key": "9",
+            "value": "9"
+          },
+          {
+            "key": "10",
+            "value": "10"
+          },
+          {
+            "key": "11",
+            "value": "11"
+          },
+          {
+            "key": "12",
+            "value": "12+"
+          }
+        ]
+      },
+      {
+        "label": "property name",
+        "placeholder": "choose property name",
+        "elements": [
+          {
+            "key": "all",
+            "value": "all properties"
+          },
+          {
+            "key": "",
+            "value": ""
+          },
+          {
+            "key": "",
+            "value": ""
+          },
+          {
+            "key": "",
+            "value": ""
+          },
+          {
+            "key": "",
+            "value": ""
+          },
+          {
+            "key": "",
+            "value": ""
+          },
+          {
+            "key": "",
+            "value": ""
+          },
+          {
+            "key": "",
+            "value": ""
+          },
+          {
+            "key": "",
+            "value": ""
+          },
+          {
+            "key": "",
+            "value": ""
+          },
+          {
+            "key": "",
+            "value": ""
+          },
+          {
+            "key": "",
+            "value": ""
+          },
+          {
+            "key": "",
+            "value": ""
+          },
+          {
+            "key": "",
+            "value": ""
+          },
+          {
+            "key": "",
+            "value": ""
+          },
+          {
+            "key": "",
+            "value": ""
+          },
+          {
+            "key": "",
+            "value": ""
+          },
+          {
+            "key": "",
+            "value": ""
+          },
+          {
+            "key": "",
+            "value": ""
+          },
+          {
+            "key": "",
+            "value": ""
+          },
+          {
+            "key": "",
+            "value": ""
+          }
+        ]
+      }
+    ]
   }
 }

@@ -1,7 +1,7 @@
 import { Box, styled } from "@mui/material";
 import LinkTitle from "../../features/accomodation/LinkTitle";
 import Title from "../../features/accomodation/Title";
-import Categories from "../../features/accomodation/Categories";
+import Filters from "../../features/accomodation/Filters";
 import Sorters from "../../features/accomodation/Sorters";
 import Bookings from "../../features/accomodation/Bookings";
 
@@ -24,7 +24,7 @@ export default function Reservations() {
     <ReservationsWrapper>
       <LinkTitle />
       <Title />
-      <Categories />
+      <Filters />
       <Sorters />
       <Bookings />
     </ReservationsWrapper>

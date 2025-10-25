@@ -1,6 +1,6 @@
 import { Box, Select, styled, Typography } from "@mui/material";
 
-const CategoriesContainer = styled(Box)(({ theme }) => ({
+const FiltersContainer = styled(Box)(({ theme }) => ({
   width: "100%",
   display: "flex",
   gap: "10px",
@@ -9,7 +9,7 @@ const CategoriesContainer = styled(Box)(({ theme }) => ({
   },
 }));
 
-const CategoryWrapper = styled(Box)({
+const FilterWrapper = styled(Box)({
   flex: "1",
   display: "flex",
   flexDirection: "column",
@@ -25,21 +25,21 @@ const Input = styled(Select)({
   whiteSpace: "nowrap",
 });
 
-export default function Categories() {
+export default function Filters() {
   return (
-    <CategoriesContainer>
-      <CategoryWrapper>
+    <FiltersContainer>
+      <FilterWrapper>
         <Label variant="body2">1</Label>
         <Input size="small"></Input>
-      </CategoryWrapper>
-      <CategoryWrapper>
+      </FilterWrapper>
+      <FilterWrapper>
         <Label variant="body2">2</Label>
         <Input size="small"></Input>
-      </CategoryWrapper>
-      <CategoryWrapper>
+      </FilterWrapper>
+      <FilterWrapper>
         <Label variant="body2">3</Label>
         <Input size="small"></Input>
-      </CategoryWrapper>
-    </CategoriesContainer>
+      </FilterWrapper>
+    </FiltersContainer>
   );
 }
