@@ -228,5 +228,15 @@
     "blog": {
       "title": "Du blog"
     }
+  },
+  "accomodation": {
+    "link_title": {
+      "home": "accueil",
+      "niseko": "Hébergement à Niseko"
+    },
+    "title": {
+      "head_title": "Rester",
+      "content": "Choisissez parmi une superbe gamme d'hébergements à Niseko auprès du fournisseur d'hébergement le plus expérimenté de Niseko."
+    }
   }
 }
