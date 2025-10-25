@@ -103,3 +103,10 @@ export const accessibility_language_map = {
   ja: "日本語",
   ar: "العربية",
 };
+
+export const formatLinkUrl = (linkURL: string): string[] => {
+  return linkURL
+    .split("/")
+    .slice(1)
+    .map((link) => link.replaceAll(/[^a-zA-Z0-9]+/g, " "));
+};

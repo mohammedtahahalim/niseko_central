@@ -216,5 +216,15 @@
     "blog": {
       "title": "From The Blog"
     }
+  },
+  "accomodation": {
+    "link_title": {
+      "home": "Home",
+      "niseko": "Niseko Accommodation"
+    },
+    "title": {
+      "head_title": "Stay",
+      "content": "Select from a superb range of Niseko accommodation from Niseko's most experienced accommodation provider."
+    }
   }
 }
