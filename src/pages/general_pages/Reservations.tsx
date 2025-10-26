@@ -13,6 +13,7 @@ const ReservationsWrapper = styled(Box)(({ theme }) => ({
   flexDirection: "column",
   gap: "10px",
   padding: "5px 25px",
+  backgroundColor: theme.palette.mainbody?.main,
   [theme.breakpoints.down("md")]: {
     padding: "5px",
     gap: "15px",
