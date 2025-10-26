@@ -237,6 +237,62 @@
     "title": {
       "head_title": "Rester",
       "content": "Choisissez parmi une superbe gamme d'hébergements à Niseko auprès du fournisseur d'hébergement le plus expérimenté de Niseko."
-    }
+    },
+    "filters": [
+      {
+        "label": "Type de propriété",
+        "placeholder": "Sélectionnez le type de propriété",
+        "options": [
+          { "key": "", "value": "Tous les types de propriétés" },
+          { "key": "5", "value": "Condominiums" },
+          { "key": "6", "value": "Maisons de villégiature" },
+          { "key": "7", "value": "Collection Prestige" }
+        ]
+      },
+      {
+        "label": "Adultes",
+        "placeholder": "Choisissez le nombre d'adultes",
+        "options": [
+          { "key": "1", "value": "1" },
+          { "key": "2", "value": "2" },
+          { "key": "3", "value": "3" },
+          { "key": "4", "value": "4" },
+          { "key": "5", "value": "5" },
+          { "key": "6", "value": "6" },
+          { "key": "7", "value": "7" },
+          { "key": "8", "value": "8" },
+          { "key": "9", "value": "9" },
+          { "key": "10", "value": "10" },
+          { "key": "11", "value": "11" },
+          { "key": "12", "value": "12 ou plus" }
+        ]
+      },
+      {
+        "label": "Nom de la propriété",
+        "placeholder": "Choisissez le nom de la propriété",
+        "options": [
+          { "key": "", "value": "Toutes les propriétés" },
+          { "key": "40", "value": "Pistes Profondes" },
+          { "key": "41", "value": "Ezo 365" },
+          { "key": "38", "value": "Maison Hirafu" },
+          { "key": "37", "value": "Maisons de Ville Horizon" },
+          { "key": "12709", "value": "Bois d’Hirafu" },
+          { "key": "36", "value": "Maison J" },
+          { "key": "35", "value": "Chalet Kashi" },
+          { "key": "33", "value": "Kisetsukan" },
+          { "key": "32", "value": "Béton" },
+          { "key": "31", "value": "Vue Panoramique" },
+          { "key": "30", "value": "Belle Neige" },
+          { "key": "29", "value": "Maisons de la Forêt" },
+          { "key": "28", "value": "Pistes de Poudreuse" },
+          { "key": "27", "value": "Pavillon Sekka" },
+          { "key": "26", "value": "Bouleau Blanc" },
+          { "key": "9463", "value": "Grue" },
+          { "key": "21", "value": "Bois du Whisky" },
+          { "key": "42", "value": "Montagne Naturelle" },
+          { "key": "24", "value": "Pistes du Yōtei" }
+        ]
+      }
+    ]
   }
 }

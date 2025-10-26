@@ -225,6 +225,170 @@
     "title": {
       "head_title": "Stay",
       "content": "Select from a superb range of Niseko accommodation from Niseko's most experienced accommodation provider."
-    }
+    },
+    "filters": [
+      {
+        "label": "Property Type",
+        "placeholder": "Select Property Type",
+        "options": [
+          {
+            "key": "",
+            "value": "All Property Types"
+          },
+          {
+            "key": "5",
+            "value": "Condominiums"
+          },
+          {
+            "key": "6",
+            "value": "Resort Homes"
+          },
+          {
+            "key": "7",
+            "value": "Premier Collection"
+          }
+        ]
+      },
+      {
+        "label": "Adults",
+        "placeholder": "Choose Number Of Adults",
+        "options": [
+          {
+            "key": "1",
+            "value": "1"
+          },
+          {
+            "key": "2",
+            "value": "2"
+          },
+          {
+            "key": "3",
+            "value": "3"
+          },
+          {
+            "key": "4",
+            "value": "4"
+          },
+          {
+            "key": "5",
+            "value": "5"
+          },
+          {
+            "key": "6",
+            "value": "6"
+          },
+          {
+            "key": "7",
+            "value": "7"
+          },
+          {
+            "key": "8",
+            "value": "8"
+          },
+          {
+            "key": "9",
+            "value": "9"
+          },
+          {
+            "key": "10",
+            "value": "10"
+          },
+          {
+            "key": "11",
+            "value": "11"
+          },
+          {
+            "key": "12",
+            "value": "12+"
+          }
+        ]
+      },
+      {
+        "label": "Property Name",
+        "placeholder": "Choose Property Name",
+        "options": [
+          {
+            "key": "",
+            "value": "All Properties"
+          },
+          {
+            "key": "40",
+            "value": "Deep Tracks"
+          },
+          {
+            "key": "41",
+            "value": "Ezo 365"
+          },
+          {
+            "key": "38",
+            "value": "Hirafu House"
+          },
+          {
+            "key": "37",
+            "value": "Horizon Townhouses"
+          },
+          {
+            "key": "12709",
+            "value": "Hirafu Woods"
+          },
+          {
+            "key": "36",
+            "value": "J House"
+          },
+          {
+            "key": "35",
+            "value": "Kashi Lodge"
+          },
+          {
+            "key": "33",
+            "value": "Kisetsukan"
+          },
+          {
+            "key": "32",
+            "value": "Konkuriito"
+          },
+          {
+            "key": "31",
+            "value": "Miharashi"
+          },
+          {
+            "key": "30",
+            "value": "Miyuki"
+          },
+          {
+            "key": "29",
+            "value": "Mori Houses"
+          },
+          {
+            "key": "28",
+            "value": "Powder Tracks"
+          },
+          {
+            "key": "27",
+            "value": "Sekka Kan"
+          },
+          {
+            "key": "26",
+            "value": "Shirakaba"
+          },
+          {
+            "key": "9463",
+            "value": "Tsuru"
+          },
+          {
+            "key": "21",
+            "value": "Whiskey Woods"
+          },
+          {
+            "key": "42",
+            "value": "Yama Shizen"
+          },
+          {
+            "key": "24",
+            "value": "Youtei Tracks"
+          }
+        ]
+      }
+    ]
   }
 }
