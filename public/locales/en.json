@@ -229,30 +229,30 @@
     "filters": [
       {
         "label": "Property Type",
-        "placeholder": "Select property type",
-        "elements": [
+        "placeholder": "Select Property Type",
+        "options": [
           {
-            "key": "all",
-            "value": "all property types"
+            "key": "",
+            "value": "All Property Types"
           },
           {
-            "key": "condominiums",
-            "value": "condominiums"
+            "key": "5",
+            "value": "Condominiums"
           },
           {
-            "key": "resort",
-            "value": "resort homes"
+            "key": "6",
+            "value": "Resort Homes"
           },
           {
-            "key": "premier",
-            "value": "premier collection"
+            "key": "7",
+            "value": "Premier Collection"
           }
         ]
       },
       {
-        "label": "adults",
-        "placeholder": "choose number of adults",
-        "elements": [
+        "label": "Adults",
+        "placeholder": "Choose Number Of Adults",
+        "options": [
           {
             "key": "1",
             "value": "1"
@@ -304,92 +304,88 @@
         ]
       },
       {
-        "label": "property name",
-        "placeholder": "choose property name",
-        "elements": [
-          {
-            "key": "all",
-            "value": "all properties"
-          },
+        "label": "Property Name",
+        "placeholder": "Choose Property Name",
+        "options": [
           {
             "key": "",
-            "value": ""
+            "value": "All Properties"
           },
           {
-            "key": "",
-            "value": ""
+            "key": "40",
+            "value": "Deep Tracks"
           },
           {
-            "key": "",
-            "value": ""
+            "key": "41",
+            "value": "Ezo 365"
           },
           {
-            "key": "",
-            "value": ""
+            "key": "38",
+            "value": "Hirafu House"
           },
           {
-            "key": "",
-            "value": ""
+            "key": "37",
+            "value": "Horizon Townhouses"
           },
           {
-            "key": "",
-            "value": ""
+            "key": "12709",
+            "value": "Hirafu Woods"
           },
           {
-            "key": "",
-            "value": ""
+            "key": "36",
+            "value": "J House"
           },
           {
-            "key": "",
-            "value": ""
+            "key": "35",
+            "value": "Kashi Lodge"
           },
           {
-            "key": "",
-            "value": ""
+            "key": "33",
+            "value": "Kisetsukan"
           },
           {
-            "key": "",
-            "value": ""
+            "key": "32",
+            "value": "Konkuriito"
           },
           {
-            "key": "",
-            "value": ""
+            "key": "31",
+            "value": "Miharashi"
           },
           {
-            "key": "",
-            "value": ""
+            "key": "30",
+            "value": "Miyuki"
           },
           {
-            "key": "",
-            "value": ""
+            "key": "29",
+            "value": "Mori Houses"
           },
           {
-            "key": "",
-            "value": ""
+            "key": "28",
+            "value": "Powder Tracks"
           },
           {
-            "key": "",
-            "value": ""
+            "key": "27",
+            "value": "Sekka Kan"
           },
           {
-            "key": "",
-            "value": ""
+            "key": "26",
+            "value": "Shirakaba"
           },
           {
-            "key": "",
-            "value": ""
+            "key": "9463",
+            "value": "Tsuru"
           },
           {
-            "key": "",
-            "value": ""
+            "key": "21",
+            "value": "Whiskey Woods"
           },
           {
-            "key": "",
-            "value": ""
+            "key": "42",
+            "value": "Yama Shizen"
           },
           {
-            "key": "",
-            "value": ""
+            "key": "24",
+            "value": "Youtei Tracks"
           }
         ]
       }

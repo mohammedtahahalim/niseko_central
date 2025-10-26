@@ -1,4 +1,14 @@
-import { Box, Select, styled, Typography } from "@mui/material";
+import { Box, MenuItem, Select, styled, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
+
+interface FilterOption {
+  label: string;
+  placeholder: string;
+  options: {
+    key: string;
+    value: string;
+  }[];
+}
 
 const FiltersContainer = styled(Box)(({ theme }) => ({
   width: "100%",
@@ -16,30 +26,59 @@ const FilterWrapper = styled(Box)({
   gap: "5px",
 });
 
-const Label = styled(Typography)({});
+const Label = styled(Typography)({
+  textTransform: "capitalize",
+  fontFamily: "Inter",
+  paddingLeft: "2px",
+  fontSize: "0.75rem",
+});
 
 const Input = styled(Select)({
   flex: "1",
   overflow: "hidden",
   textOverflow: "ellipsis",
   whiteSpace: "nowrap",
+  borderRadius: "8px",
+});
+
+const Option = styled(MenuItem)({
+  fontSize: "0.85rem",
+  fontFamily: "Inter",
+  textTransform: "capitalize",
 });
 
 export default function Filters() {
+  const { t } = useTranslation();
   return (
     <FiltersContainer>
-      <FilterWrapper>
-        <Label variant="body2">1</Label>
-        <Input size="small"></Input>
-      </FilterWrapper>
-      <FilterWrapper>
-        <Label variant="body2">2</Label>
-        <Input size="small"></Input>
-      </FilterWrapper>
-      <FilterWrapper>
-        <Label variant="body2">3</Label>
-        <Input size="small"></Input>
-      </FilterWrapper>
+      {(
+        t("accomodation.filters", { returnObjects: true }) as FilterOption[]
+      ).map((filter) => {
+        return (
+          <FilterWrapper key={filter.label}>
+            <Label variant="body2">{filter.label}</Label>
+            <Input
+              size="small"
+              aria-label={filter.placeholder}
+              tabIndex={0}
+              value={""}
+              onChange={(e) => console.log(e.target.value)}
+            >
+              {filter.options.map((option) => {
+                return (
+                  <Option
+                    value={option.key}
+                    sx={{ fontSize: "0.85rem" }}
+                    tabIndex={0}
+                  >
+                    {option.value}
+                  </Option>
+                );
+              })}
+            </Input>
+          </FilterWrapper>
+        );
+      })}
     </FiltersContainer>
   );
 }
