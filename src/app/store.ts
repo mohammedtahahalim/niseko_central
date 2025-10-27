@@ -5,6 +5,7 @@ import newsLetterSlice from "../features/newsletter/newsLetterSlice";
 import quickReservationSlice from "../features/quick_calendar/quickReservationSlice";
 import suggestionSlice from "../features/home/suggestions/suggestionsSlice";
 import blogSlice from "../features/home/blog/blogSlice";
+import bookingSlice from "../features/accomodation/bookingsSlice";
 
 export const NisekoStore = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export const NisekoStore = configureStore({
     suggestions: suggestionSlice,
     latestNews: newsSlice,
     latestBlogs: blogSlice,
+    bookings: bookingSlice,
   },
 });
 

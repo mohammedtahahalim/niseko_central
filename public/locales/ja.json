@@ -230,6 +230,7 @@
       {
         "label": "物件タイプ",
         "placeholder": "物件タイプを選択",
+        "key": "type",
         "options": [
           { "key": "", "value": "すべての物件タイプ" },
           { "key": "5", "value": "コンドミニアム" },
@@ -240,6 +241,7 @@
       {
         "label": "大人",
         "placeholder": "大人の人数を選択",
+        "key": "guests",
         "options": [
           { "key": "1", "value": "一" },
           { "key": "2", "value": "二" },
@@ -258,6 +260,7 @@
       {
         "label": "物件名",
         "placeholder": "物件名を選択",
+        "key": "property",
         "options": [
           { "key": "", "value": "すべての物件" },
           { "key": "40", "value": "ディープ・トラックス" },

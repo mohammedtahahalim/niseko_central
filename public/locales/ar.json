@@ -228,6 +228,7 @@
       {
         "label": "نوع العقار",
         "placeholder": "اختر نوع العقار",
+        "key": "type",
         "options": [
           { "key": "", "value": "جميع أنواع العقارات" },
           { "key": "5", "value": "شقق سكنية" },
@@ -238,6 +239,7 @@
       {
         "label": "عدد البالغين",
         "placeholder": "اختر عدد البالغين",
+        "key": "guests",
         "options": [
           { "key": "1", "value": "١" },
           { "key": "2", "value": "٢" },
@@ -256,6 +258,7 @@
       {
         "label": "اسم العقار",
         "placeholder": "اختر اسم العقار",
+        "key": "property",
         "options": [
           { "key": "", "value": "جميع العقارات" },
           { "key": "40", "value": "المسارات العميقة" },
