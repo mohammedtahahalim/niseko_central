@@ -11,7 +11,7 @@ const ReservationsWrapper = styled(Box)(({ theme }) => ({
   minHeight: "100vh",
   display: "flex",
   flexDirection: "column",
-  gap: "10px",
+  gap: "9px",
   padding: "5px 25px",
   backgroundColor: theme.palette.mainbody?.main,
   [theme.breakpoints.down("md")]: {

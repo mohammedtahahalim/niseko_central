@@ -19,7 +19,7 @@ interface FilterOption {
 const FiltersContainer = styled(Box)(({ theme }) => ({
   width: "100%",
   display: "flex",
-  gap: "10px",
+  gap: "15px",
   [theme.breakpoints.down("sm")]: {
     flexDirection: "column",
   },

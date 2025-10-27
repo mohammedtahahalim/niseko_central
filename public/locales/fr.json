@@ -296,6 +296,28 @@
           { "key": "24", "value": "Pistes du Yōtei" }
         ]
       }
+    ],
+    "sorters": [
+      {
+        "sort_key": "price",
+        "sort_value": "Prix"
+      },
+      {
+        "sort_key": "name",
+        "sort_value": "Nom"
+      },
+      {
+        "sort_key": "size",
+        "sort_value": "Taille"
+      },
+      {
+        "sort_key": "discount",
+        "sort_value": "Remise"
+      },
+      {
+        "sort_key": "bedrooms",
+        "sort_value": "Chambres"
+      }
     ]
   }
 }

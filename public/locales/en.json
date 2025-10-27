@@ -392,6 +392,28 @@
           }
         ]
       }
+    ],
+    "sorters": [
+      {
+        "sort_key": "price",
+        "sort_value": "Price"
+      },
+      {
+        "sort_key": "name",
+        "sort_value": "Name"
+      },
+      {
+        "sort_key": "size",
+        "sort_value": "Size"
+      },
+      {
+        "sort_key": "discount",
+        "sort_value": "Discount"
+      },
+      {
+        "sort_key": "bedrooms",
+        "sort_value": "Bedrooms"
+      }
     ]
   }
 }
