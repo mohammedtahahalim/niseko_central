@@ -35,3 +35,8 @@ export type ServiceContents = {
   title: string;
   body: string;
 };
+
+export type FilterValue = {
+  filter: "type" | "guests" | "property";
+  value: number;
+};

@@ -230,6 +230,7 @@
       {
         "label": "Property Type",
         "placeholder": "Select Property Type",
+        "key": "type",
         "options": [
           {
             "key": "",
@@ -252,6 +253,7 @@
       {
         "label": "Adults",
         "placeholder": "Choose Number Of Adults",
+        "key": "guests",
         "options": [
           {
             "key": "1",
@@ -306,6 +308,7 @@
       {
         "label": "Property Name",
         "placeholder": "Choose Property Name",
+        "key": "property",
         "options": [
           {
             "key": "",
