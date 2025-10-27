@@ -284,6 +284,28 @@
           { "key": "24", "value": "羊蹄トラックス" }
         ]
       }
+    ],
+    "sorters": [
+      {
+        "sort_key": "price",
+        "sort_value": "価格"
+      },
+      {
+        "sort_key": "name",
+        "sort_value": "名前"
+      },
+      {
+        "sort_key": "size",
+        "sort_value": "サイズ"
+      },
+      {
+        "sort_key": "discount",
+        "sort_value": "割引"
+      },
+      {
+        "sort_key": "bedrooms",
+        "sort_value": "寝室"
+      }
     ]
   }
 }

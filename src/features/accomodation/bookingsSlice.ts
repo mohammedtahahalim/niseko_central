@@ -3,7 +3,7 @@ import {
   createSlice,
   type PayloadAction,
 } from "@reduxjs/toolkit";
-import type { FilterValue } from "../../utils/Types";
+import type { FilterValue, SortingType } from "../../utils/Types";
 
 interface Property {}
 
@@ -17,7 +17,8 @@ interface BookingState<T extends Object> {
     guests: number;
     property: number;
   };
-  sort_order: "asc" | "desc";
+  sort_order: boolean;
+  previous_sort: SortingType | null;
 }
 
 export const fetchBookings = createAsyncThunk<
@@ -36,7 +37,8 @@ const initialState: BookingState<Property> = {
     guests: 0,
     property: 0,
   },
-  sort_order: "desc",
+  sort_order: true,
+  previous_sort: null,
 };
 
 export const bookingSlice = createSlice({
@@ -53,6 +55,25 @@ export const bookingSlice = createSlice({
         state.filters.property = value;
       }
     },
+    sortBookings: (state, action: PayloadAction<SortingType>) => {
+      if (state.previous_sort === action.payload) {
+        state.sort_order = !state.sort_order;
+      } else {
+        state.sort_order = true;
+      }
+      switch (action.payload) {
+        case "price":
+          break;
+        case "name":
+          break;
+        case "size":
+          break;
+        case "bedrooms":
+          break;
+        case "discount":
+          break;
+      }
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchBookings.pending, () => {});
@@ -62,4 +83,4 @@ export const bookingSlice = createSlice({
 });
 
 export default bookingSlice.reducer;
-export const { setFilter } = bookingSlice.actions;
+export const { setFilter, sortBookings } = bookingSlice.actions;

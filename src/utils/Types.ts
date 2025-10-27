@@ -40,3 +40,5 @@ export type FilterValue = {
   filter: "type" | "guests" | "property";
   value: number;
 };
+
+export type SortingType = "price" | "name" | "size" | "discount" | "bedrooms";

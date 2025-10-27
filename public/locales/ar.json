@@ -282,6 +282,28 @@
           { "key": "24", "value": "مسارات يوتي" }
         ]
       }
+    ],
+    "sorters": [
+      {
+        "sort_key": "price",
+        "sort_value": "السعر"
+      },
+      {
+        "sort_key": "name",
+        "sort_value": "الاسم"
+      },
+      {
+        "sort_key": "size",
+        "sort_value": "الحجم"
+      },
+      {
+        "sort_key": "discount",
+        "sort_value": "الخصم"
+      },
+      {
+        "sort_key": "bedrooms",
+        "sort_value": "غرف النوم"
+      }
     ]
   }
 }
