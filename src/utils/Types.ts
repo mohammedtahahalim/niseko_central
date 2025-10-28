@@ -37,7 +37,7 @@ export type ServiceContents = {
 };
 
 export type FilterValue = {
-  filter: "type" | "guests" | "property";
+  filter: "type" | "max_pax" | "property";
   value: number;
 };
 

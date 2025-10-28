@@ -241,7 +241,7 @@
       {
         "label": "大人",
         "placeholder": "大人の人数を選択",
-        "key": "guests",
+        "key": "max_pax",
         "options": [
           { "key": "1", "value": "一" },
           { "key": "2", "value": "二" },

@@ -253,7 +253,7 @@
       {
         "label": "Adultes",
         "placeholder": "Choisissez le nombre d'adultes",
-        "key": "guests",
+        "key": "max_pax",
         "options": [
           { "key": "1", "value": "1" },
           { "key": "2", "value": "2" },
