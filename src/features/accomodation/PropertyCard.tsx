@@ -1,6 +1,6 @@
 import { Box, styled } from "@mui/material";
 
-const PropertyWrapper = styled(Box)({
+const PropertyCardWrapper = styled(Box)({
   minWidth: "min(100%, 400px)",
   border: "1px solid white",
   aspectRatio: "1",
@@ -8,6 +8,6 @@ const PropertyWrapper = styled(Box)({
   overflow: "hidden",
 });
 
-export default function Property() {
-  return <PropertyWrapper tabIndex={0}>Property</PropertyWrapper>;
+export default function PropertyCard() {
+  return <PropertyCardWrapper tabIndex={0}>Property</PropertyCardWrapper>;
 }

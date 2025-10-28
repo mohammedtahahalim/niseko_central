@@ -1,5 +1,5 @@
 import { Box, styled } from "@mui/material";
-import Property from "./Property";
+import PropertyCard from "./PropertyCard";
 
 const BookingsWrapper = styled(Box)({
   width: "100%",
@@ -12,13 +12,13 @@ const BookingsWrapper = styled(Box)({
 export default function Bookings() {
   return (
     <BookingsWrapper>
-      <Property />
-      <Property />
-      <Property />
-      <Property />
-      <Property />
-      <Property />
-      <Property />
+      <PropertyCard />
+      <PropertyCard />
+      <PropertyCard />
+      <PropertyCard />
+      <PropertyCard />
+      <PropertyCard />
+      <PropertyCard />
     </BookingsWrapper>
   );
 }
