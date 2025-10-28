@@ -239,7 +239,7 @@
       {
         "label": "عدد البالغين",
         "placeholder": "اختر عدد البالغين",
-        "key": "guests",
+        "key": "max_pax",
         "options": [
           { "key": "1", "value": "١" },
           { "key": "2", "value": "٢" },

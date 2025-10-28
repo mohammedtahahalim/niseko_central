@@ -3,16 +3,17 @@ import { Box, Container, styled } from "@mui/material";
 import Header from "../features/header/Header";
 import Footer from "../features/footer/Footer";
 
-const MainContainer = styled(Container)({
+const MainContainer = styled(Box)(({ theme }) => ({
   width: "100%",
   minHeight: "100vh",
+  backgroundColor: theme.palette.mainbody?.main,
   display: "flex",
   flexDirection: "column",
   maxWidth: "100vw",
   overflowX: "hidden",
-});
+}));
 
-const BodyWrapper = styled(Box)({
+const BodyWrapper = styled(Container)({
   flex: "1",
   marginTop: "115px",
   "@media (max-height: 600px)": {
@@ -22,9 +23,9 @@ const BodyWrapper = styled(Box)({
 
 export default function Main() {
   return (
-    <MainContainer maxWidth="xl" disableGutters>
+    <MainContainer>
       <Header />
-      <BodyWrapper role="main">
+      <BodyWrapper role="main" maxWidth={"xl"}>
         <Outlet />
       </BodyWrapper>
       <Footer />
