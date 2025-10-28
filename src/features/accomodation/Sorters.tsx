@@ -42,7 +42,7 @@ const Sorter = styled(Box, {
 export default function Sorters() {
   const { t } = useTranslation();
   const [isActive, setIsActive] = useState<number | null>(null);
-  const { type, guests, property } = useSelector(
+  const { type, max_pax, property } = useSelector(
     (state: RootState) => state.bookings.filters
   );
   const { previous_sort, sort_order } = useSelector(
@@ -52,7 +52,7 @@ export default function Sorters() {
 
   useEffect(() => {
     setIsActive(null);
-  }, [type, guests, property]);
+  }, [type, max_pax, property]);
 
   return (
     <SortersWrapper>
