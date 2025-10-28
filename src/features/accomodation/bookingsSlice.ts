@@ -59,6 +59,7 @@ export const bookingSlice = createSlice({
       if (state.previous_sort === action.payload) {
         state.sort_order = !state.sort_order;
       } else {
+        state.previous_sort = action.payload;
         state.sort_order = true;
       }
       switch (action.payload) {
