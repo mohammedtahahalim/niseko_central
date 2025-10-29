@@ -7,16 +7,23 @@ interface UseScrollProps {
 
 interface UseScrollReturn {
   isScrolling: boolean;
+  barWidth?: number;
 }
 
 export default function useScroll({
   delay,
 }: UseScrollProps = {}): UseScrollReturn {
   const [isScrolling, setIsScrolling] = useState<boolean>(window.scrollY !== 0);
+  const [barWidth, setBarWidth] = useState<number>(0);
 
   useEffect(() => {
     const onScrollEvent = debouncer(() => {
-      setIsScrolling(window.scrollY !== 0);
+      const scrollTop = window.scrollY;
+      const scrollableHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / scrollableHeight) * 100;
+      setIsScrolling(scrollTop !== 0);
+      setBarWidth(scrollPercent);
     }, delay ?? 0);
     window.addEventListener("scroll", onScrollEvent);
     return () => {
@@ -24,5 +31,5 @@ export default function useScroll({
     };
   }, []);
 
-  return { isScrolling };
+  return { isScrolling, barWidth };
 }

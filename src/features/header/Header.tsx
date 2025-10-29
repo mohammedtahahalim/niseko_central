@@ -54,11 +54,24 @@ const MenuBarWrapper = styled(Box)(({ theme }) => ({
     aspectRatio: "1",
   },
 }));
+
+const ScrollAnimation = styled(Box, {
+  shouldForwardProp: (prop) => prop !== "isWidth",
+})<{ isWidth: number }>(({ isWidth, theme }) => ({
+  height: "3px",
+  position: "absolute",
+  top: "0",
+  left: "0",
+  width: `${isWidth}vw`,
+  backgroundColor: theme.palette.primary.main,
+}));
+
 export default function Header() {
-  const { isScrolling } = useScroll();
+  const { isScrolling, barWidth } = useScroll();
 
   return (
     <HeaderWrapper isScrolling={isScrolling} role="banner">
+      <ScrollAnimation isWidth={barWidth ?? 0} />
       <HeaderContainer maxWidth={"xl"}>
         <Modal
           trigger={
