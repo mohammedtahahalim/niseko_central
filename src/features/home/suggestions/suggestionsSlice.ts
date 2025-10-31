@@ -56,7 +56,7 @@ export const fetchSuggestions = createAsyncThunk<
   ).toString();
   const fullURL: string = `${
     import.meta.env.VITE_API_URL
-  }/api/suggestions?${fullQueries}`;
+  }/api/bookings?${fullQueries}`;
   const fullOptions: RequestInit = {
     method: "get",
     signal,
@@ -68,7 +68,7 @@ export const fetchSuggestions = createAsyncThunk<
       throw new Error(response.status.toString());
     }
     const rawData = await response.json();
-    const data = rawData.bookings;
+    const data = rawData.properties;
     for (let booking of data) {
       for (let lang of Object.keys(booking)) {
         if (!possibleLanguages.includes(lang)) throw new Error("bad_format");
