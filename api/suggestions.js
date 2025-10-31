@@ -1,61 +1,39 @@
-const languages = ["en", "ja", "ar", "fr"];
-const fakeContent = {
-  en: {
-    booking_title: "4 Bedroom House",
-    booking_location: "Hirafu Woods",
-  },
-  ja: {
-    booking_title: "4ベッドルームハウス",
-    booking_location: "ヒラフの森",
-  },
-  ar: {
-    booking_title: "منزل مكون من 4 غرف نوم",
-    booking_location: "غابات هيرافو",
-  },
-  fr: {
-    booking_title: "Maison de 4 chambres",
-    booking_location: "Bois d'Hirafu",
-  },
-};
-const fakeTags = {
-  en: {
-    tag_title: "Vehicle Included",
-    tag_subtitle: "Winter Only",
-    tag_color: "primary",
-  },
-  ja: {
-    tag_title: "車両を含む",
-    tag_subtitle: "冬季限定",
-    tag_color: "primary",
-  },
-  ar: {
-    tag_title: "السيارة متضمنة",
-    tag_subtitle: "الشتاء فقط",
-    tag_color: "primary",
-  },
-  fr: {
-    tag_title: "Véhicule inclus",
-    tag_subtitle: "Hiver seulement",
-    tag_color: "primary",
-  },
-};
+import dbConnection from "../helpers/dbConnection.js";
+
 export default async function handler(req, res) {
-  if (req.method !== "GET")
-    return res.status(405).json({ message: "Method Not Allowed" });
-  const { limit = 10 } = req.query;
-  const bookings = Array.from({ length: Number(limit) }, () => {
-    const temp = {};
-    languages.forEach((lang) => {
-      temp[lang] = {
-        booking_main_image:
-          "https://d1z517741srsht.cloudfront.net/accommodation/_1536xAUTO_crop_center-center_none/12710/Hirafu-Woods-April-2019-Shoot-LR.webp",
-        ...fakeContent[lang],
-        distance: 1000,
-        max_capacity: 10,
-        tag: fakeTags[lang],
+  if (req.method !== "GET") {
+    return res.status(405).json({ message: "Method Not Allowed ..." });
+  }
+  let { limit } = req.query;
+  if (limit && isNaN(Number(limit))) {
+    return res.status(403).json({ message: "Bad Request ..." });
+  }
+  const randomDenom = Math.floor(Math.random() * Math.floor(limit / 3));
+  try {
+    const connection = dbConnection();
+    const query = `
+        SELECT p.id, p.images, p.max_pax, p.lifts_distance, JSON_OBJECTAGG(pt.language_code, JSON_OBJECT('title', pt.title, 'type', pt.type)) as translations
+        FROM property p INNER JOIN property_translations pt ON p.id = pt.property_id
+        GROUP BY p.id
+        ORDER BY RAND()
+        LIMIT ?
+    `;
+    const [result] = await connection.query(query, [Number(limit)]);
+    if (!result.length) {
+      return res.status(404).json({ message: "No Bookings Found ..." });
+    }
+    const filteredResults = result.map((property, idx) => {
+      return {
+        id: property.id,
+        image: JSON.parse(property.images)[0],
+        max_pax: property.max_pax,
+        lifts_distance: property.lifts_distance,
+        ...property.translations,
+        tag: Math.floor(Math.random() * 3),
       };
     });
-    return temp;
-  });
-  return res.status(200).json({ bookings });
+    return res.status(200).json({ properties: filteredResults });
+  } catch (err) {
+    console.log(err);
+  }
 }

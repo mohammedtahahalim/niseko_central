@@ -110,3 +110,17 @@ export const formatLinkUrl = (linkURL: string): string[] => {
     .slice(1)
     .map((link) => link.replaceAll(/[^a-zA-Z0-9]+/g, " "));
 };
+
+export const tags = {
+  en: ["Vehicle Included", "Shutter Included"],
+  ar: ["المركبة متضمنة", "الغالق متضمن"],
+  ja: ["車両付属", "シャッター付属"],
+  fr: ["Véhicule inclus", "Volet inclus"],
+};
+
+export const subTag = {
+  en: "Winter Only",
+  ar: "الشتاء فقط",
+  fr: "Hiver seulement",
+  ja: "冬季限定",
+};

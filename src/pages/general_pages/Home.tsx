@@ -44,7 +44,7 @@ export default function Home() {
   );
 
   useEffect(() => {
-    dispatch(fetchSuggestions({ queries: { limit: 14, category: "general" } }));
+    dispatch(fetchSuggestions({ queries: { limit: 10 } }));
     dispatch(fetchNews({}));
     dispatch(fetchBlogs({}));
   }, []);
