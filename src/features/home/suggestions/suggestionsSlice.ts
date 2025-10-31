@@ -3,48 +3,31 @@ import {
   createSlice,
   type PayloadAction,
 } from "@reduxjs/toolkit";
-import { possibleLanguages } from "../../../utils/Constants";
 import { z } from "zod";
 
 interface FetchSuggestionsProps {
   queries?: Record<string, string | number>;
 }
 
-export interface SuggestionBookingData {
-  booking_main_image: string;
-  booking_title: string;
-  booking_location: string;
-  distance: number;
-  max_capacity: number;
-  tag?: {
-    tag_title: string;
-    tag_subtitle: string;
-    tag_color: string;
-  };
-}
-
-type SuggestionsBookingsReturn = Record<
-  keyof typeof possibleLanguages,
-  SuggestionBookingData
->;
-
 const suggestionsBookingSchema = z.object({
-  booking_main_image: z.string(),
-  booking_title: z.string(),
-  booking_location: z.string(),
-  distance: z.number(),
-  max_capacity: z.number(),
-  tag: z.optional(
-    z.object({
-      tag_title: z.string(),
-      tag_subtitle: z.string(),
-      tag_color: z.string(),
-    })
-  ),
+  id: z.number().nonnegative(),
+  image: z.string(),
+  max_pax: z.number(),
+  lifts_distance: z.number(),
+  tag: z.number(),
+  ar: z.object({
+    type: z.string(),
+    title: z.string(),
+  }),
+  fr: z.object({ type: z.string(), title: z.string() }),
+  en: z.object({ type: z.string(), title: z.string() }),
+  ja: z.object({ type: z.string(), title: z.string() }),
 });
 
+export type SuggestionBookingData = z.infer<typeof suggestionsBookingSchema>;
+
 export const fetchSuggestions = createAsyncThunk<
-  SuggestionsBookingsReturn[],
+  SuggestionBookingData[],
   FetchSuggestionsProps,
   { rejectValue: string }
 >("suggestions/thunk", async (args, { rejectWithValue, signal }) => {
@@ -56,11 +39,10 @@ export const fetchSuggestions = createAsyncThunk<
   ).toString();
   const fullURL: string = `${
     import.meta.env.VITE_API_URL
-  }/api/bookings?${fullQueries}`;
+  }/api/suggestions?${fullQueries}`;
   const fullOptions: RequestInit = {
     method: "get",
     signal,
-    credentials: "include", // if credentials exists, backend should respond with targeted recommendation
   };
   try {
     const response = await fetch(fullURL, fullOptions);
@@ -68,17 +50,11 @@ export const fetchSuggestions = createAsyncThunk<
       throw new Error(response.status.toString());
     }
     const rawData = await response.json();
-    const data = rawData.properties;
-    for (let booking of data) {
-      for (let lang of Object.keys(booking)) {
-        if (!possibleLanguages.includes(lang)) throw new Error("bad_format");
-        const isValidBooking = suggestionsBookingSchema.safeParse(
-          booking[lang]
-        );
-        if (!isValidBooking.success) throw new Error("bad_format");
-      }
-    }
-    return data as SuggestionsBookingsReturn[];
+    const data = rawData.properties.filter(
+      (property: SuggestionBookingData) =>
+        suggestionsBookingSchema.safeParse(property).success
+    );
+    return data as SuggestionBookingData[];
   } catch (err) {
     if (err instanceof DOMException && err.name === "AbortError") {
       return rejectWithValue("network");
@@ -93,7 +69,7 @@ export const fetchSuggestions = createAsyncThunk<
 interface FetchSuggestionState {
   suggestionsLoading: boolean;
   error: string;
-  suggestionsBookings: SuggestionsBookingsReturn[];
+  suggestionsBookings: SuggestionBookingData[];
 }
 
 const initialState: FetchSuggestionState = {
@@ -117,7 +93,7 @@ export const suggestionSlice = createSlice({
     });
     builder.addCase(
       fetchSuggestions.fulfilled,
-      (state, action: PayloadAction<SuggestionsBookingsReturn[]>) => {
+      (state, action: PayloadAction<SuggestionBookingData[]>) => {
         state.suggestionsLoading = false;
         state.error = "";
         state.suggestionsBookings = action.payload;

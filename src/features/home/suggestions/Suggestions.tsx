@@ -130,7 +130,27 @@ export default function Suggestions() {
         {suggestionsBookings.map((booking, idx) => {
           return (
             <SuggestionSlide key={idx}>
-              <Card {...booking[i18n.language as keyof typeof booking]} />
+              <Card
+                id={booking.id}
+                image={booking.image}
+                lifts_ditance={booking.lifts_distance}
+                max_pax={booking.max_pax}
+                tag={booking.tag}
+                title={
+                  (
+                    booking[i18n.language as keyof typeof booking] as {
+                      title: string;
+                    }
+                  ).title
+                }
+                type={
+                  (
+                    booking[i18n.language as keyof typeof booking] as {
+                      type: string;
+                    }
+                  ).type
+                }
+              />
             </SuggestionSlide>
           );
         })}

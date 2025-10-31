@@ -1,8 +1,18 @@
 import { Box, Button, styled, Typography } from "@mui/material";
-import type { SuggestionBookingData } from "./suggestionsSlice";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import i18n from "../../languages/i18n";
+import { useNavigate } from "react-router-dom";
+import { subTag, tags } from "../../../utils/Constants";
+
+interface CardProps {
+  id: number;
+  image: string;
+  lifts_ditance: number;
+  max_pax: number;
+  title: string;
+  type: string;
+  tag: number;
+}
 
 const MountainIcon = (
   <svg
@@ -196,21 +206,26 @@ const Distance = styled(Typography)({
 });
 
 export default function Card({
-  booking_main_image,
-  booking_title,
-  booking_location,
-  distance,
-  max_capacity,
+  id,
+  image,
+  lifts_ditance,
+  max_pax,
+  title,
+  type,
   tag,
-}: SuggestionBookingData) {
-  const { t } = useTranslation();
+}: CardProps) {
+  const { t, i18n } = useTranslation();
   const [isHovering, setIsHovering] = useState<boolean>(false);
+  const navigate = useNavigate();
+
   return (
-    <CardContainer>
+    <CardContainer
+      onClick={() => navigate(`/niseko-accomodation?location=${id}`)}
+    >
       <ImageContainer>
         <img
-          src={booking_main_image}
-          alt={booking_title}
+          src={image}
+          alt={title}
           width={"100%"}
           height={"100%"}
           style={{
@@ -225,13 +240,19 @@ export default function Card({
         onMouseMove={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}
       />
-      <TagContainer isArabic={i18n.language === "ar"}>
-        <TagTitle variant="subtitle1">{tag?.tag_title}</TagTitle>
-        <TagSubtitle variant="body1">{tag?.tag_subtitle}</TagSubtitle>
-      </TagContainer>
+      {tag !== 0 && (
+        <TagContainer isArabic={i18n.language === "ar"}>
+          <TagTitle variant="subtitle1">
+            {tags[i18n.language as keyof typeof tags][tag - 1]}
+          </TagTitle>
+          <TagSubtitle variant="body1">
+            {subTag[i18n.language as keyof typeof subTag]}
+          </TagSubtitle>
+        </TagContainer>
+      )}
       <BookingInformation isArabic={i18n.language === "ar"}>
-        <PropertyTitle>{booking_title}</PropertyTitle>
-        <PropertyLocation>{booking_location}</PropertyLocation>
+        <PropertyTitle>{type}</PropertyTitle>
+        <PropertyLocation>{title}</PropertyLocation>
         <AmenitiesWrapper>
           <ActionButtons>
             <BookNow variant="contained" color="primary">
@@ -245,12 +266,12 @@ export default function Card({
             <Amenety>
               {PeopleIcon}
               <MaxCapacity>
-                {max_capacity} {t("suggestions.guests")}
+                {max_pax} {t("suggestions.guests")}
               </MaxCapacity>
             </Amenety>
             <Amenety>
               {MountainIcon}
-              <Distance>{distance}m</Distance>
+              <Distance>{lifts_ditance}m</Distance>
             </Amenety>
           </PropertyAmentities>
         </AmenitiesWrapper>
