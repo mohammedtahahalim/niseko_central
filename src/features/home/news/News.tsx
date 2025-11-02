@@ -13,6 +13,7 @@ import WestIcon from "@mui/icons-material/West";
 import useSlideAndHeightCount from "./useSlideAndHeightCount";
 import NewsCard from "./NewsCard";
 import { Keyboard } from "swiper/modules";
+import Skelton from "../../../components/Skelton";
 
 const NewsWrapper = styled(Box)({
   width: "100%",
@@ -94,7 +95,9 @@ export default function News() {
   const { t, i18n } = useTranslation();
   const swiperRef = useRef<SwiperType | null>(null);
   const { slideCount, maxHeight } = useSlideAndHeightCount();
-  const { latestNews } = useSelector((state: RootState) => state.latestNews);
+  const { latestNews, newsLoading } = useSelector(
+    (state: RootState) => state.latestNews
+  );
   const isArabic = i18n.language === "ar";
 
   return (
@@ -117,29 +120,34 @@ export default function News() {
           </ControlButton>
         </NavControl>
       </TitleContainer>
-      <NewsSlider
-        modules={[Keyboard]}
-        slidesPerView={slideCount}
-        style={{ display: "flex" }}
-        onSwiper={(swiper) => (swiperRef.current = swiper)}
-        speed={250}
-        spaceBetween={12}
-        keyboard={{ enabled: true, onlyInViewport: true }}
-        role="region"
-        aria-label="Article Slider"
-        tabIndex={0}
-      >
-        {latestNews.map((news, idx) => {
-          return (
-            <NewsSlide key={idx} maxHeight={maxHeight}>
-              <NewsCard
-                title={news[i18n.language as TLanguage]}
-                image={news["image"]}
-              />
-            </NewsSlide>
-          );
-        })}
-      </NewsSlider>
+      {newsLoading && (
+        <Skelton skeltonNum={slideCount} maxHeight={Number(maxHeight)} />
+      )}
+      {!newsLoading && latestNews.length !== 0 && (
+        <NewsSlider
+          modules={[Keyboard]}
+          slidesPerView={slideCount}
+          style={{ display: "flex" }}
+          onSwiper={(swiper) => (swiperRef.current = swiper)}
+          speed={250}
+          spaceBetween={12}
+          keyboard={{ enabled: true, onlyInViewport: true }}
+          role="region"
+          aria-label="Article Slider"
+          tabIndex={0}
+        >
+          {latestNews.map((news, idx) => {
+            return (
+              <NewsSlide key={idx} maxHeight={maxHeight}>
+                <NewsCard
+                  title={news[i18n.language as TLanguage]}
+                  image={news["image"]}
+                />
+              </NewsSlide>
+            );
+          })}
+        </NewsSlider>
+      )}
     </NewsWrapper>
   );
 }
