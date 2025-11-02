@@ -130,7 +130,6 @@ export default function Suggestions() {
           keyboard={{ enabled: true, onlyInViewport: true }}
           role="region"
           aria-label="Property Slider"
-          tabIndex={0}
         >
           {suggestionsBookings.map((booking, idx) => {
             return (

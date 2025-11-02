@@ -91,6 +91,7 @@ export default function Article({ title, image, date }: ArticleProps) {
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
       tabIndex={0}
+      aria-label={title}
       onKeyDown={(e: React.KeyboardEvent) => {
         if (e.key === "Enter" || e.key === "") {
           navigate(`${sanitizeURL(title)}`);

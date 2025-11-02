@@ -134,7 +134,6 @@ export default function News() {
           keyboard={{ enabled: true, onlyInViewport: true }}
           role="region"
           aria-label="Article Slider"
-          tabIndex={0}
         >
           {latestNews.map((news, idx) => {
             return (
