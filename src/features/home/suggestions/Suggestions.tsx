@@ -12,11 +12,12 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import EastIcon from "@mui/icons-material/East";
 import WestIcon from "@mui/icons-material/West";
 import { Keyboard } from "swiper/modules";
+import Skelton from "../../../components/Skelton";
 
 const SuggestionsWrapper = styled(Box)({
   width: "100%",
   padding: "25px 15px",
-  minHeight: "250px",
+  minHeight: "500px",
   display: "flex",
   flexDirection: "column",
   gap: "5px",
@@ -89,7 +90,7 @@ export default function Suggestions() {
   const { t, i18n } = useTranslation();
   const swiperRef = useRef<SwiperType | null>(null);
   const { slideCount } = useSlideCount();
-  const { suggestionsBookings } = useSelector(
+  const { suggestionsBookings, suggestionsLoading } = useSelector(
     (state: RootState) => state.suggestions
   );
   const isArabic = i18n.language === "ar";
@@ -114,47 +115,52 @@ export default function Suggestions() {
           </ControlButton>
         </NavControl>
       </TitleContainer>
-      <SuggestionSlider
-        modules={[Keyboard]}
-        slidesPerView={slideCount}
-        style={{ display: "flex" }}
-        onSwiper={(swiper) => (swiperRef.current = swiper)}
-        loop={true}
-        speed={250}
-        spaceBetween={12}
-        keyboard={{ enabled: true, onlyInViewport: true }}
-        role="region"
-        aria-label="Property Slider"
-        tabIndex={0}
-      >
-        {suggestionsBookings.map((booking, idx) => {
-          return (
-            <SuggestionSlide key={idx}>
-              <Card
-                id={booking.id}
-                image={booking.image}
-                lifts_ditance={booking.lifts_distance}
-                max_pax={booking.max_pax}
-                tag={booking.tag}
-                title={
-                  (
-                    booking[i18n.language as keyof typeof booking] as {
-                      title: string;
-                    }
-                  ).title
-                }
-                type={
-                  (
-                    booking[i18n.language as keyof typeof booking] as {
-                      type: string;
-                    }
-                  ).type
-                }
-              />
-            </SuggestionSlide>
-          );
-        })}
-      </SuggestionSlider>
+      {suggestionsLoading && (
+        <Skelton skeltonNum={slideCount} maxHeight={400} />
+      )}
+      {!suggestionsLoading && suggestionsBookings.length !== 0 && (
+        <SuggestionSlider
+          modules={[Keyboard]}
+          slidesPerView={slideCount}
+          style={{ display: "flex" }}
+          onSwiper={(swiper) => (swiperRef.current = swiper)}
+          loop={true}
+          speed={250}
+          spaceBetween={12}
+          keyboard={{ enabled: true, onlyInViewport: true }}
+          role="region"
+          aria-label="Property Slider"
+          tabIndex={0}
+        >
+          {suggestionsBookings.map((booking, idx) => {
+            return (
+              <SuggestionSlide key={idx}>
+                <Card
+                  id={booking.id}
+                  image={booking.image}
+                  lifts_ditance={booking.lifts_distance}
+                  max_pax={booking.max_pax}
+                  tag={booking.tag}
+                  title={
+                    (
+                      booking[i18n.language as keyof typeof booking] as {
+                        title: string;
+                      }
+                    ).title
+                  }
+                  type={
+                    (
+                      booking[i18n.language as keyof typeof booking] as {
+                        type: string;
+                      }
+                    ).type
+                  }
+                />
+              </SuggestionSlide>
+            );
+          })}
+        </SuggestionSlider>
+      )}
     </SuggestionsWrapper>
   );
 }

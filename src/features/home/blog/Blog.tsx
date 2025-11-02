@@ -13,6 +13,7 @@ import EastIcon from "@mui/icons-material/East";
 import WestIcon from "@mui/icons-material/West";
 import Article from "./Article";
 import { Keyboard } from "swiper/modules";
+import Skelton from "../../../components/Skelton";
 
 const BlogWrapper = styled(Box)(({ theme }) => ({
   width: "100%",
@@ -93,7 +94,9 @@ export default function Blog() {
   const { t, i18n } = useTranslation();
   const { slideCount } = useSlideCount();
   const swiperRef = useRef<SwiperType | null>(null);
-  const { blogs } = useSelector((state: RootState) => state.latestBlogs);
+  const { blogs, blogLoading } = useSelector(
+    (state: RootState) => state.latestBlogs
+  );
   const isArabic = i18n.language === "ar";
 
   return (
@@ -116,26 +119,29 @@ export default function Blog() {
           </ControlButton>
         </NavControl>
       </TitleContainer>
-      <BlogSlider
-        modules={[Keyboard]}
-        slidesPerView={slideCount}
-        style={{ display: "flex" }}
-        onSwiper={(swiper) => (swiperRef.current = swiper)}
-        speed={250}
-        spaceBetween={12}
-        keyboard={{ enabled: true, onlyInViewport: true }}
-        role="region"
-        aria-label="Blog Slider"
-        tabIndex={0}
-      >
-        {blogs.map((blog, idx) => {
-          return (
-            <BlogSlide key={idx}>
-              <Article {...blog} title={blog[i18n.language as TLanguage]} />
-            </BlogSlide>
-          );
-        })}
-      </BlogSlider>
+      {blogLoading && <Skelton skeltonNum={slideCount} maxHeight={400} />}
+      {!blogLoading && blogs.length !== 0 && (
+        <BlogSlider
+          modules={[Keyboard]}
+          slidesPerView={slideCount}
+          style={{ display: "flex" }}
+          onSwiper={(swiper) => (swiperRef.current = swiper)}
+          speed={250}
+          spaceBetween={12}
+          keyboard={{ enabled: true, onlyInViewport: true }}
+          role="region"
+          aria-label="Blog Slider"
+          tabIndex={0}
+        >
+          {blogs.map((blog, idx) => {
+            return (
+              <BlogSlide key={idx}>
+                <Article {...blog} title={blog[i18n.language as TLanguage]} />
+              </BlogSlide>
+            );
+          })}
+        </BlogSlider>
+      )}
     </BlogWrapper>
   );
 }
