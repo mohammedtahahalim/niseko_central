@@ -64,7 +64,7 @@ export default function SocialLinks() {
   return (
     <SocialLinksWrapper>
       <Logos>
-        <NisekoLogo>
+        <NisekoLogo tabIndex={0}>
           <img
             src={
               currentTheme === "light"
@@ -75,7 +75,7 @@ export default function SocialLinks() {
             style={{ width: "90%", objectFit: "contain" }}
           />
         </NisekoLogo>
-        <AntaLogo>
+        <AntaLogo tabIndex={0}>
           <img
             src="/img/anta.webp"
             alt=""

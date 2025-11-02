@@ -131,7 +131,6 @@ export default function Blog() {
           keyboard={{ enabled: true, onlyInViewport: true }}
           role="region"
           aria-label="Blog Slider"
-          tabIndex={0}
         >
           {blogs.map((blog, idx) => {
             return (

@@ -93,7 +93,6 @@ export default function Hero() {
         keyboard={{ enabled: true, onlyInViewport: true }}
         role="region"
         aria-label="Hero Slider"
-        tabIndex={0}
       >
         {(
           t("hero_slides.content", { returnObjects: true }) as THeroContent[]

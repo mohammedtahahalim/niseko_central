@@ -77,7 +77,7 @@ export default function NewsCard({ image, title }: NewsCardProps) {
   const isArabic = i18n.language === "ar";
 
   return (
-    <NewsCardWrapper>
+    <NewsCardWrapper tabIndex={0}>
       <ImageContainer>
         <img
           src={image}

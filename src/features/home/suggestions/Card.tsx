@@ -221,6 +221,7 @@ export default function Card({
   return (
     <CardContainer
       onClick={() => navigate(`/niseko-accomodation?location=${id}`)}
+      tabIndex={0}
     >
       <ImageContainer>
         <img
