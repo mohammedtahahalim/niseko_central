@@ -101,7 +101,7 @@ export default function Services() {
   }) as ServiceContents[];
   return (
     <ServicesWrapper>
-      <ServiceDescription variant="h6" color="inherit">
+      <ServiceDescription variant="h6" color="inherit" tabIndex={0}>
         {t("home.service_section.title")}
       </ServiceDescription>
       <ServiceContent>

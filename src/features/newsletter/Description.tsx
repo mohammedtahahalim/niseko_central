@@ -31,7 +31,9 @@ export default function Description() {
   return (
     <DescriptionWrapper>
       <Title variant="h5">{t("footer.newsletter.title")}</Title>
-      <Subtitle variant="body1">{t("footer.newsletter.subtitle")}</Subtitle>
+      <Subtitle variant="body1" tabIndex={0}>
+        {t("footer.newsletter.subtitle")}
+      </Subtitle>
     </DescriptionWrapper>
   );
 }

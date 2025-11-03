@@ -47,17 +47,23 @@ const StyledTypography = styled(Typography)({
 export default function Service({ title, body, icon }: ServiceProps) {
   return (
     <ServiceWrapper>
-      <IconWrapper>{icon}</IconWrapper>
+      <IconWrapper aria-hidden="true">{icon}</IconWrapper>
       <ContentWrapper>
         <StyledTypography
           variant="h6"
           color="primary"
           fontSize={"0.9rem"}
           fontWeight={"bold"}
+          tabIndex={0}
         >
           {title}
         </StyledTypography>
-        <StyledTypography variant="body1" color="inherit" fontSize={"0.8rem"}>
+        <StyledTypography
+          variant="body1"
+          color="inherit"
+          fontSize={"0.8rem"}
+          tabIndex={0}
+        >
           {body}
         </StyledTypography>
       </ContentWrapper>
