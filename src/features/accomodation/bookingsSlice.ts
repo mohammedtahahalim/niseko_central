@@ -77,7 +77,6 @@ export const fetchBookings = createAsyncThunk<
         blurred_images: JSON.parse(property.blurred_images),
       };
     });
-    console.log(data);
     return data.filter(
       (property: Property) => bookingsScehma.safeParse(property).success
     ) as Property[];
