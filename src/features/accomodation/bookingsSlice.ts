@@ -6,26 +6,33 @@ import {
 import type { FilterValue, SortingType } from "../../utils/Types";
 import z from "zod";
 
-const propertySchema = z.object({
-  en: z.object({}),
-  ja: z.object({}),
-  ar: z.object({}),
-  fr: z.object({}),
+const bookingsScehma = z.object({
+  id: z.number(),
+  images: z.string().nonempty(),
+  blurred_images: z.string().nonempty(),
   max_pax: z.number().nonnegative(),
-  beds: z.number().nonnegative(),
-  size: z.number().nonnegative(),
-  village_distance: z.number().nonnegative(),
-  lifts_distance: z.number().nonnegative(),
-  tag: z.string(),
-  typeId: z.number().nonnegative(),
-  propertyId: z.number().nonnegative(),
-  images: z.array(z.object({ url: z.string(), alt: z.string() })),
-  map: z.string(),
-  price_per_night: z.number().nonnegative(),
-  discount: z.number(),
+  lifts_distance: z.number(),
+  translations: z.object({
+    en: z.object({
+      type: z.string(),
+      title: z.string(),
+    }),
+    ja: z.object({
+      type: z.string(),
+      title: z.string(),
+    }),
+    fr: z.object({
+      type: z.string(),
+      title: z.string(),
+    }),
+    ar: z.object({
+      type: z.string(),
+      title: z.string(),
+    }),
+  }),
 });
 
-export type Property = z.infer<typeof propertySchema>;
+export type Property = z.infer<typeof bookingsScehma>;
 
 interface BookingState<T extends Object> {
   loading: boolean;
