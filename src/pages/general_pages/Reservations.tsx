@@ -1,11 +1,11 @@
-import { Box, styled } from "@mui/material";
+import { Container, styled } from "@mui/material";
 import LinkTitle from "../../features/accomodation/LinkTitle";
 import Title from "../../features/accomodation/Title";
 import Filters from "../../features/accomodation/Filters";
 import Sorters from "../../features/accomodation/Sorters";
 import Bookings from "../../features/accomodation/Bookings";
 
-const ReservationsWrapper = styled(Box)(({ theme }) => ({
+const ReservationsWrapper = styled(Container)(({ theme }) => ({
   width: "100%",
   height: "100%",
   minHeight: "100vh",
@@ -22,7 +22,7 @@ const ReservationsWrapper = styled(Box)(({ theme }) => ({
 
 export default function Reservations() {
   return (
-    <ReservationsWrapper>
+    <ReservationsWrapper maxWidth="xl">
       <LinkTitle />
       <Title />
       <Filters />
