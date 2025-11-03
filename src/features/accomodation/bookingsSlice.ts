@@ -8,10 +8,13 @@ import z from "zod";
 
 const bookingsScehma = z.object({
   id: z.number(),
-  images: z.string().nonempty(),
-  blurred_images: z.string().nonempty(),
+  images: z.array(z.string().nonempty()),
+  blurred_images: z.array(z.string().nonempty()),
   max_pax: z.number().nonnegative(),
   lifts_distance: z.number(),
+  price: z.number(),
+  size: z.number(),
+  beds: z.number(),
   translations: z.object({
     en: z.object({
       type: z.string(),
@@ -50,13 +53,42 @@ interface BookingState<T extends Object> {
 
 export const fetchBookings = createAsyncThunk<
   Property[],
-  void,
+  Record<string, string | number>,
   { rejectValue: string }
->("fetch/bookings", async (_, { rejectWithValue }) => {
+>("fetch/bookings", async (args, { rejectWithValue }) => {
   try {
-    return [];
+    const fullQueries = new URLSearchParams(
+      Object.entries(args)
+        .filter(([_, v]) => v !== null && v !== undefined)
+        .map(([k, v]) => [k, String(v)])
+    ).toString();
+    const fullURL = `${import.meta.env.VITE_API_URL}/api/bookings${
+      fullQueries ? "?" + fullQueries : ""
+    }`;
+    const response = await fetch(fullURL);
+    if (!response.ok) {
+      throw new Error(response.status.toString());
+    }
+    const raw_data = await response.json();
+    const data = raw_data.properties.map((property: any) => {
+      return {
+        ...property,
+        images: JSON.parse(property.images),
+        blurred_images: JSON.parse(property.blurred_images),
+      };
+    });
+    console.log(data);
+    return data.filter(
+      (property: Property) => bookingsScehma.safeParse(property).success
+    ) as Property[];
   } catch (err) {
-    return rejectWithValue("Error");
+    if (err instanceof DOMException && err.name === "AbortError") {
+      return rejectWithValue("network");
+    }
+    if (err instanceof Error) {
+      return rejectWithValue(err.message ?? "unknown");
+    }
+    return rejectWithValue("unknown");
   }
 });
 
@@ -97,14 +129,52 @@ export const bookingSlice = createSlice({
       }
       switch (action.payload) {
         case "price":
+          state.displayBookings = state.displayBookings.sort(
+            (a: Property, b: Property) => {
+              if (state.sort_order) {
+                return a.price - b.price;
+              } else {
+                return b.price - a.price;
+              }
+            }
+          );
           break;
         case "name":
+          state.displayBookings = state.displayBookings.sort(
+            (a: Property, b: Property) => {
+              if (state.sort_order) {
+                return a.translations.en.title.localeCompare(
+                  b.translations.en.title
+                );
+              } else {
+                return b.translations.en.title.localeCompare(
+                  a.translations.en.title
+                );
+              }
+            }
+          );
           break;
         case "size":
+          state.displayBookings = state.displayBookings.sort(
+            (a: Property, b: Property) => {
+              if (state.sort_order) {
+                return a.size - b.size;
+              } else {
+                return b.size - a.size;
+              }
+            }
+          );
           break;
         case "bedrooms":
-          break;
-        case "discount":
+          state.displayBookings = state.displayBookings.sort(
+            (a: Property, b: Property) => {
+              if (state.sort_order) {
+                return a.beds - b.beds;
+              } else {
+                return b.beds - a.beds;
+              }
+            }
+          );
           break;
       }
     },

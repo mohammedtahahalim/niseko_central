@@ -39,13 +39,15 @@ const Label = styled(Typography)({
   fontSize: "0.75rem",
 });
 
-const Input = styled(Select)({
+const Input = styled(Select)(({ theme }) => ({
   flex: "1",
   overflow: "hidden",
   textOverflow: "ellipsis",
   whiteSpace: "nowrap",
   borderRadius: "8px",
-});
+  backgroundColor: theme.palette.info?.main,
+  color: theme.palette.textColor?.main,
+}));
 
 const Option = styled(MenuItem)({
   fontSize: "0.85rem",

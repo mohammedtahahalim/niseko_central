@@ -1,24 +1,70 @@
 import { Box, styled } from "@mui/material";
-import PropertyCard from "./PropertyCard";
+import { useDispatch, useSelector } from "react-redux";
+import type { AppDispatch, RootState } from "../../app/store";
+import { useLocation } from "react-router-dom";
+import { fetchBookings } from "./bookingsSlice";
+import { useEffect } from "react";
+import PropertySkelton from "./PropertySkelton";
+import useSkeltonCount from "./useSkeltonCount";
+import Card from "../../components/Card";
+import { useTranslation } from "react-i18next";
 
 const BookingsWrapper = styled(Box)({
   width: "100%",
   display: "grid",
   gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))",
   placeContent: "center",
+  placeItems: "center",
   gap: "1rem",
 });
 
 export default function Bookings() {
+  const location = useLocation().search;
+  const queries = Object.fromEntries(new URLSearchParams(location).entries());
+  const { displayBookings, loading } = useSelector(
+    (state: RootState) => state.bookings
+  );
+  const dispatch = useDispatch<AppDispatch>();
+  const { skeltonCount } = useSkeltonCount();
+  const { i18n } = useTranslation();
+
+  useEffect(() => {
+    dispatch(fetchBookings(queries));
+  }, [location]);
+
   return (
     <BookingsWrapper>
-      <PropertyCard />
-      <PropertyCard />
-      <PropertyCard />
-      <PropertyCard />
-      <PropertyCard />
-      <PropertyCard />
-      <PropertyCard />
+      {loading &&
+        Array.from({ length: skeltonCount }).map((_, idx) => (
+          <PropertySkelton key={idx} />
+        ))}
+      {!loading &&
+        displayBookings.length &&
+        displayBookings.map((displayBookings) => {
+          const { id, images, blurred_images, max_pax, lifts_distance } =
+            displayBookings;
+          const title =
+            displayBookings.translations[
+              i18n.language as keyof typeof displayBookings.translations
+            ]!.title;
+          const type =
+            displayBookings.translations[
+              i18n.language as keyof typeof displayBookings.translations
+            ]!.type;
+          return (
+            <Card
+              key={id}
+              id={id}
+              images={images}
+              blurred_images={blurred_images}
+              max_pax={max_pax}
+              lifts_distance={lifts_distance}
+              title={title}
+              type={type}
+              tag={1}
+            />
+          );
+        })}
     </BookingsWrapper>
   );
 }

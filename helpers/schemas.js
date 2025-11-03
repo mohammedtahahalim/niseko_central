@@ -6,6 +6,9 @@ export const bookingsSchema = z.object({
   blurred_images: z.string().nonempty(),
   max_pax: z.number().nonnegative(),
   lifts_distance: z.number(),
+  price: z.number(),
+  size: z.number(),
+  beds: z.number(),
   translations: z.object({
     en: z.object({
       type: z.string(),
