@@ -104,10 +104,14 @@ export default function NisekoPassport() {
           />
         </PassportImage>
         <PassportInfo>
-          <Title variant="h5">{t("home.niseko_passport.title")}</Title>
+          <Title variant="h5" tabIndex={0}>
+            {t("home.niseko_passport.title")}
+          </Title>
           <Content>
             {t("home.niseko_passport.subtitle_1")}
-            <ContentLink>{t("home.niseko_passport.link")}</ContentLink>
+            <ContentLink tabIndex={0}>
+              {t("home.niseko_passport.link")}
+            </ContentLink>
             {t("home.niseko_passport.subtitle_2")}
           </Content>
           <More variant="contained">{t("home.niseko_passport.find_out")}</More>

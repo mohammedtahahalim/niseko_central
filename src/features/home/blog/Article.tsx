@@ -113,10 +113,10 @@ export default function Article({ title, image, date }: ArticleProps) {
       </ImageWrapper>
       <ShadeOverlay />
       <BlogContent isArabic={i18n.language === "ar"}>
-        <Title variant="h6" isArabic={i18n.language === "ar"}>
+        <Title variant="h6" isArabic={i18n.language === "ar"} tabIndex={0}>
           {title}
         </Title>
-        <Date>
+        <Date tabIndex={0}>
           <CalendarMonthOutlinedIcon fontSize="small" />
           {date}
         </Date>

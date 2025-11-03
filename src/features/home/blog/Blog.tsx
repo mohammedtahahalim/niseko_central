@@ -110,7 +110,7 @@ export default function Blog() {
         ) : (
           <ArrowForwardIosIcon sx={{ fontSize: "0.95rem" }} />
         )}
-        <NavControl isArabic={isArabic}>
+        <NavControl isArabic={isArabic} role="navigation">
           <ControlButton onClick={() => swiperRef.current?.slidePrev()}>
             <WestIcon fontSize="small" color="inherit" />
           </ControlButton>
