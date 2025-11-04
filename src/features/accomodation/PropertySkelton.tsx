@@ -1,10 +1,12 @@
 import { Skeleton, styled } from "@mui/material";
 
 const PropertySkeltonWrapper = styled(Skeleton)({
-  minWidth: "min(100%, 400px)",
-  minHeight: "350px",
+  width: "100%",
+  height: "100%",
+  minHeight: "150px",
   aspectRatio: "1",
-  borderRadius: "8px",
+  maxHeight: "400px",
+  borderRadius: "12px",
   overflow: "hidden",
 });
 
