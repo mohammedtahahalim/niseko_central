@@ -13,7 +13,7 @@ import EastIcon from "@mui/icons-material/East";
 import WestIcon from "@mui/icons-material/West";
 import Article from "./Article";
 import { Keyboard } from "swiper/modules";
-import Skelton from "../../../components/Skelton";
+import Skelton from "./Skelton";
 
 const BlogWrapper = styled(Box)(({ theme }) => ({
   width: "100%",
@@ -119,7 +119,7 @@ export default function Blog() {
           </ControlButton>
         </NavControl>
       </TitleContainer>
-      {blogLoading && <Skelton skeltonNum={slideCount} maxHeight={400} />}
+      {blogLoading && <Skelton skeltonNum={slideCount} />}
       {!blogLoading && blogs.length !== 0 && (
         <BlogSlider
           modules={[Keyboard]}
