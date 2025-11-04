@@ -13,7 +13,7 @@ import WestIcon from "@mui/icons-material/West";
 import useSlideAndHeightCount from "./useSlideAndHeightCount";
 import NewsCard from "./NewsCard";
 import { Keyboard } from "swiper/modules";
-import Skelton from "../../../components/Skelton";
+import Skelton from "./Skelton";
 
 const NewsWrapper = styled(Box)({
   width: "100%",
@@ -120,9 +120,7 @@ export default function News() {
           </ControlButton>
         </NavControl>
       </TitleContainer>
-      {newsLoading && (
-        <Skelton skeltonNum={slideCount} maxHeight={Number(maxHeight)} />
-      )}
+      {newsLoading && <Skelton skeltonNum={slideCount} maxHeight={maxHeight} />}
       {!newsLoading && latestNews.length !== 0 && (
         <NewsSlider
           modules={[Keyboard]}

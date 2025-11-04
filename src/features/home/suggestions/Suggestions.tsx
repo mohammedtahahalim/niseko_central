@@ -12,7 +12,7 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import EastIcon from "@mui/icons-material/East";
 import WestIcon from "@mui/icons-material/West";
 import { Keyboard } from "swiper/modules";
-import Skelton from "../../../components/Skelton";
+import Skelton from "./Skelton";
 
 const SuggestionsWrapper = styled(Box)({
   width: "100%",
@@ -115,9 +115,7 @@ export default function Suggestions() {
           </ControlButton>
         </NavControl>
       </TitleContainer>
-      {suggestionsLoading && (
-        <Skelton skeltonNum={slideCount} maxHeight={400} />
-      )}
+      {suggestionsLoading && <Skelton skeltonNum={slideCount} />}
       {!suggestionsLoading && suggestionsBookings.length !== 0 && (
         <SuggestionSlider
           modules={[Keyboard]}
