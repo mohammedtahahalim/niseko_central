@@ -1,8 +1,8 @@
-import { Box, Button, styled, Typography } from "@mui/material";
-import { useState } from "react";
+import { Box, Button, styled, Typography, useTheme } from "@mui/material";
+import { useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { subTag, tags } from "../utils/Constants";
+import { sanitizeURL, subTag, tags } from "../utils/Constants";
 
 interface CardProps {
   id: number;
@@ -71,7 +71,7 @@ const ShadeOverlay = styled(Box)({
 
 const TagContainer = styled(Box, {
   shouldForwardProp: (prop) => prop !== "isArabic",
-})<{ isArabic: boolean }>(({ theme, isArabic }) => ({
+})<{ isArabic: boolean }>(({ isArabic }) => ({
   position: "absolute",
   top: "25px",
   ...(isArabic
@@ -92,8 +92,6 @@ const TagContainer = styled(Box, {
   flexDirection: "column",
   justifyContent: "center",
   padding: "4px 8px",
-  backgroundColor: theme.palette.secondary.main,
-  color: theme.palette.secondary.contrastText,
 }));
 
 const TagTitle = styled(Typography)({
@@ -217,15 +215,27 @@ export default function Card({
   tag,
 }: CardProps) {
   const { t, i18n } = useTranslation();
+  const theme = useTheme();
   const [isHovering, setIsHovering] = useState<boolean>(false);
   const navigate = useNavigate();
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
+  const navigation = useCallback(
+    () =>
+      navigate(
+        `/niseko-accommodation/${id}/${sanitizeURL(title + "-" + type)}`
+      ),
+    [title, type]
+  );
+
+  const onEnterKey = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      navigation();
+    }
+  };
+
   return (
-    <CardContainer
-      onClick={() => navigate(`/niseko-accomodation?location=${id}`)}
-      tabIndex={0}
-    >
+    <CardContainer onClick={navigation} tabIndex={0} onKeyDown={onEnterKey}>
       <ImageContainer>
         <img
           src={isLoaded ? images[0] : blurred_images[0]}
@@ -247,18 +257,35 @@ export default function Card({
         onMouseLeave={() => setIsHovering(false)}
       />
       {tag !== 0 && (
-        <TagContainer isArabic={i18n.language === "ar"}>
-          <TagTitle variant="subtitle1">
+        <TagContainer
+          isArabic={i18n.language === "ar"}
+          bgcolor={tag === 1 ? theme.palette.secondary.main : "white"}
+        >
+          <TagTitle
+            variant="subtitle1"
+            color={
+              tag === 1
+                ? theme.palette.textColor?.main
+                : theme.palette.info?.main
+            }
+          >
             {tags[i18n.language as keyof typeof tags][tag - 1]}
           </TagTitle>
-          <TagSubtitle variant="body1">
+          <TagSubtitle
+            variant="body1"
+            color={
+              tag === 1
+                ? theme.palette.textColor?.main
+                : theme.palette.info?.main
+            }
+          >
             {subTag[i18n.language as keyof typeof subTag]}
           </TagSubtitle>
         </TagContainer>
       )}
       <BookingInformation isArabic={i18n.language === "ar"}>
-        <PropertyTitle>{type}</PropertyTitle>
-        <PropertyLocation>{title}</PropertyLocation>
+        <PropertyTitle tabIndex={0}>{type}</PropertyTitle>
+        <PropertyLocation tabIndex={0}>{title}</PropertyLocation>
         <AmenitiesWrapper>
           <ActionButtons>
             <BookNow variant="contained" color="primary">
@@ -269,13 +296,13 @@ export default function Card({
             </MoreInfo>
           </ActionButtons>
           <PropertyAmentities>
-            <Amenety>
+            <Amenety tabIndex={0} aria-label="Max Capacity">
               {PeopleIcon}
               <MaxCapacity>
                 {max_pax} {t("suggestions.guests")}
               </MaxCapacity>
             </Amenety>
-            <Amenety>
+            <Amenety tabIndex={0} aria-label="Distance From Lifts">
               {MountainIcon}
               <Distance>{lifts_distance}m</Distance>
             </Amenety>

@@ -61,7 +61,7 @@ export default function Bookings() {
               lifts_distance={lifts_distance}
               title={title}
               type={type}
-              tag={1}
+              tag={Math.floor(Math.random() * 3)}
             />
           );
         })}
