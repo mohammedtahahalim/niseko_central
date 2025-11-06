@@ -14,7 +14,7 @@ export const item_pages: TRoutes[] = [
     element: Article,
   },
   {
-    path: "/niseko-accommodation/:property_title",
+    path: "/niseko-accommodation/:id/:title?",
     element: Property,
   },
 ];
