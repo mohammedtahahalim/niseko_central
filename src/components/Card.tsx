@@ -64,7 +64,7 @@ const ShadeOverlay = styled(Box)({
   width: "100%",
   height: "100%",
   backgroundColor: "rgba(0, 0, 0, 0.25)",
-  zIndex: 111,
+  zIndex: 2,
   overflow: "hidden",
   cursor: "pointer",
 });
@@ -125,7 +125,7 @@ const BookingInformation = styled(Box, {
   flexDirection: "column",
   justifyContent: "center",
   padding: "5px 10px",
-  zIndex: 9999,
+  zIndex: 3,
 }));
 
 const PropertyTitle = styled(Typography)({

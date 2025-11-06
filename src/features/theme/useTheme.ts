@@ -9,6 +9,7 @@ declare module "@mui/material/styles" {
   interface BreakpointOverrides {
     xs: true;
     sm: true;
+    middle_break: true;
     md: true;
     nav_break: true;
     lg: true;
@@ -72,6 +73,7 @@ export default function useTheme({
         values: {
           xs: 0,
           sm: 600,
+          middle_break: 800,
           md: 900,
           nav_break: 1050,
           lg: 1200,

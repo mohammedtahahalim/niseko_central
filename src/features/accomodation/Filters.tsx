@@ -53,6 +53,7 @@ const Option = styled(MenuItem)({
   fontSize: "0.85rem",
   fontFamily: "Inter",
   textTransform: "capitalize",
+  zIndex: 9999,
 });
 
 const Default = styled("span")(({ theme }) => ({
