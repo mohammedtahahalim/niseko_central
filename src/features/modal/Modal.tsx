@@ -34,6 +34,7 @@ interface ModalProps {
   blurBackground?: boolean;
   br?: boolean;
   disableScroll?: boolean;
+  isTransparent?: boolean;
 }
 
 type ModalStyle = Omit<
@@ -60,15 +61,18 @@ const ModalContainer = styled(Box, {
 const ModalMotion = motion.create(ModalContainer);
 
 const ModalWrapper = styled(Box, {
-  shouldForwardProp: (prop) => prop !== "fullScreenWrapper" && prop !== "br",
-})<{ fullScreenWrapper: boolean; br: boolean }>(
-  ({ theme, fullScreenWrapper, br }) => ({
+  shouldForwardProp: (prop) =>
+    prop !== "fullScreenWrapper" && prop !== "br" && prop !== "isTransparent",
+})<{ fullScreenWrapper: boolean; br: boolean; isTransparent: boolean }>(
+  ({ theme, fullScreenWrapper, br, isTransparent }) => ({
     position: "relative",
     width: fullScreenWrapper ? "100vw" : "fit-content",
     height: fullScreenWrapper ? "100vh" : "fit-content",
     minWidth: "150px",
     minHeight: "150px",
-    backgroundColor: theme.palette.headfoot?.main,
+    backgroundColor: isTransparent
+      ? "transparent"
+      : theme.palette.headfoot?.main,
     color: theme.palette.primary.main,
     display: "flex",
     justifyContent: "center",
@@ -97,6 +101,7 @@ export default function Modal({
   fullScreenWrapper = false,
   br = false,
   disableScroll = false,
+  isTransparent = false,
 }: ModalProps) {
   const { parentRef, modalRef, openModal, closeModal, isOpen } = useModal({
     disableScroll,
@@ -147,8 +152,13 @@ export default function Modal({
                 ref={modalRef}
                 fullScreenWrapper={fullScreenWrapper}
                 br={br}
+                isTransparent={isTransparent}
               >
-                <CloseModalWrapper onClick={closeModal}>
+                <CloseModalWrapper
+                  onClick={closeModal}
+                  aria-label="Close Modal"
+                  tabIndex={0}
+                >
                   <CloseIcon fontSize="medium" color="action" />
                 </CloseModalWrapper>
                 {clonedChild}
