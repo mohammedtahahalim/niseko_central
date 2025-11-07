@@ -1,6 +1,15 @@
 import { Box, styled } from "@mui/material";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../app/store";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { useRef } from "react";
+import type { Swiper as SwiperType } from "swiper";
+import SwiperCore from "swiper";
+import { Controller } from "swiper/modules";
+
+SwiperCore.use([Controller]);
 
 const ShowcaseWrapper = styled(Box)({
   width: "100vw",
@@ -19,104 +28,163 @@ const MainUnit = styled(Box)({
   flex: "1",
   width: "100%",
   display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
   gap: "5px",
   position: "relative",
   backgroundColor: "rgba(0, 0, 0, 0.5)",
+  overflow: "hidden",
+  padding: "0px 10px",
 });
 
 const LeftNav = styled(Box)(({ theme }) => ({
-  width: "5%",
-  minWidth: "40px",
+  width: "fit-content",
+  aspectRatio: 1,
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
   cursor: "pointer",
+  zIndex: 111,
+  padding: "8px",
+  backgroundColor: "rgba(0, 0, 0, 0.5)",
+  borderRadius: "50px",
   [theme.breakpoints.down("md")]: {
     position: "absolute",
     left: "5px",
     top: "50%",
     translate: "0% -50%",
-    aspectRatio: "1",
+    padding: "8px",
   },
 }));
 
-const Carousel = styled(Box)(({ theme }) => ({
+const SliderWrapper = styled(Swiper)(({ theme }) => ({
   flex: "1",
   overflow: "hidden",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
+  maxWidth: "1000px",
   [theme.breakpoints.down("md")]: {
     width: "100vw",
   },
 }));
 
-const SliderWrapper = styled(Box)(({ theme }) => ({
-  border: "1px solid red",
-  width: "100%",
-  height: "100%",
-  [theme.breakpoints.down("md")]: {
-    maxHeight: "450px",
-    aspectRatio: "1",
-  },
-}));
-
 const RightNav = styled(Box)(({ theme }) => ({
-  width: "5%",
-  minWidth: "40px",
+  width: "fit-content",
+  aspectRatio: 1,
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
   cursor: "pointer",
+  zIndex: 111,
+  padding: "8px",
+  backgroundColor: "rgba(0, 0, 0, 0.5)",
+  borderRadius: "50px",
   [theme.breakpoints.down("md")]: {
     position: "absolute",
     right: "5px",
     top: "50%",
     translate: "0% -50%",
     aspectRatio: "1",
+    padding: "8px",
   },
 }));
 
-const Collection = styled(Box)({
-  width: "100%",
+const CollectionWrapper = styled(Box)({
   height: "75px",
-  border: "1px solid white",
+  width: "100%",
   backgroundColor: "rgba(0, 0, 0, 0.5)",
   display: "flex",
-  gap: "5px",
   justifyContent: "center",
-  padding: "2px",
 });
 
-const CollSlide = styled(Box)({
-  height: "100%",
-  aspectRatio: "4.5/3",
-  border: "1px solid white",
+const Collection = styled(Swiper)({
+  width: "fit-content",
+  maxWidth: "500px",
+  height: "75px",
+  cursor: "pointer",
+});
+
+const CollSlide = styled(SwiperSlide)(({ theme }) => ({
+  height: "75px",
+  width: "125px",
   borderRadius: "5px",
+  overflow: "hidden",
+  "&.swiper-slide-active": {
+    border: `2px solid  ${theme.palette.primary.main}`,
+  },
+}));
+
+const CustomImage = styled("img")({
+  height: "75px",
+  width: "125px",
+  objectFit: "cover",
+  transition: "all 0.2s linear",
+  userSelect: "none",
+  "&:hover": {
+    scale: 1.1,
+  },
+});
+
+const SliderImage = styled("img")({
+  width: "100%",
+  height: "100%",
+  objectFit: "cover",
+  userSelect: "none",
 });
 
 export default function Showcase() {
+  const { propertyData } = useSelector(
+    (state: RootState) => state.propertySlice
+  );
+  const mainSwiperRef = useRef<SwiperType | null>(null);
+  const thumbSwiperRef = useRef<SwiperType | null>(null);
+  const { images } = propertyData || {};
+
   return (
     <ShowcaseWrapper>
       <ControlRoom></ControlRoom>
       <MainUnit>
-        <LeftNav>
-          <ArrowBackIosIcon fontSize="small" color="success" />
+        <LeftNav onClick={() => mainSwiperRef.current?.slidePrev()}>
+          <ArrowBackIosNewIcon fontSize="small" color="success" />
         </LeftNav>
-        <Carousel>
-          <SliderWrapper></SliderWrapper>
-        </Carousel>
-        <RightNav>
+        <SliderWrapper
+          slidesPerView={1}
+          onSwiper={(swiper) => (mainSwiperRef.current = swiper)}
+          controller={{ control: thumbSwiperRef.current }}
+        >
+          {images.map((image: string) => {
+            return (
+              <SwiperSlide>
+                <SliderImage src={image} />
+              </SwiperSlide>
+            );
+          })}
+        </SliderWrapper>
+        <RightNav onClick={() => mainSwiperRef.current?.slideNext()}>
           <ArrowForwardIosIcon fontSize="small" color="success" />
         </RightNav>
       </MainUnit>
-      <Collection>
-        <CollSlide></CollSlide>
-        <CollSlide></CollSlide>
-        <CollSlide></CollSlide>
-        <CollSlide></CollSlide>
-        <CollSlide></CollSlide>
-      </Collection>
+      <CollectionWrapper>
+        <Collection
+          centeredSlides={true}
+          slidesPerView="auto"
+          spaceBetween={10}
+          grabCursor={true}
+          onSwiper={(swiper) => (thumbSwiperRef.current = swiper)}
+          controller={{ control: mainSwiperRef.current }}
+        >
+          {images.map((element: string, idx: number) => {
+            return (
+              <CollSlide
+                onClick={() => mainSwiperRef.current?.slideToLoop(idx)}
+              >
+                <CustomImage src={element} alt="Image" />
+              </CollSlide>
+            );
+          })}
+        </Collection>
+      </CollectionWrapper>
     </ShowcaseWrapper>
   );
 }

@@ -10,7 +10,46 @@ interface FetchPropertyArgs {
   title: string | undefined;
 }
 
-const propertySchema = z.object({});
+const propertySchema = z.object({
+  id: z.number().nonnegative(),
+  map: z.string(),
+  images: z.array(z.string()),
+  max_pax: z.number().nonnegative(),
+  beds: z.number().nonnegative(),
+  size: z.number().nonnegative(),
+  village_distance: z.number().nonnegative(),
+  lifts_distance: z.number().nonnegative(),
+  floor_plan: z.string(),
+  created_at: z.string(),
+  updated_at: z.string(),
+  blurred_images: z.array(z.string()),
+  translations: z.object({
+    ar: z.object({
+      type: z.string(),
+      title: z.string(),
+      description: z.string(),
+      location: z.string(),
+    }),
+    en: z.object({
+      type: z.string(),
+      title: z.string(),
+      description: z.string(),
+      location: z.string(),
+    }),
+    ja: z.object({
+      type: z.string(),
+      title: z.string(),
+      description: z.string(),
+      location: z.string(),
+    }),
+    fr: z.object({
+      type: z.string(),
+      title: z.string(),
+      description: z.string(),
+      location: z.string(),
+    }),
+  }),
+});
 
 type ProperyType = z.infer<typeof propertySchema>;
 
@@ -32,7 +71,13 @@ export const fetchProperty = createAsyncThunk<
     if (!response.ok) {
       throw new Error(response.status.toString());
     }
-    const data = await response.json();
+    const raw_data = await response.json();
+    const { images, blurred_images, ...rest } = raw_data.property;
+    const data = {
+      ...rest,
+      images: JSON.parse(images),
+      blurred_images: JSON.parse(blurred_images),
+    };
     const isValid = propertySchema.safeParse(data);
     if (!isValid.success) {
       throw new Error(
@@ -85,8 +130,8 @@ export const propertySlice = createSlice({
     builder.addCase(
       fetchProperty.fulfilled,
       (state, action: PayloadAction<ProperyType>) => {
-        state.loading = false;
         state.propertyData = action.payload;
+        state.loading = false;
         state.shouldRedirect = false;
       }
     );

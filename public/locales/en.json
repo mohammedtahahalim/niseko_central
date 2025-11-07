@@ -415,5 +415,9 @@
         "sort_value": "Bedrooms"
       }
     ]
+  },
+  "property": {
+    "book_now": "Book Now",
+    "map": "Map"
   }
 }
