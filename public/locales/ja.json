@@ -307,5 +307,9 @@
         "sort_value": "寝室"
       }
     ]
+  },
+  "property": {
+    "book_now": "今すぐ予約",
+    "map": "地図"
   }
 }

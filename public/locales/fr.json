@@ -319,5 +319,9 @@
         "sort_value": "Chambres"
       }
     ]
+  },
+  "property": {
+    "book_now": "Réservez maintenant",
+    "map": "Carte"
   }
 }

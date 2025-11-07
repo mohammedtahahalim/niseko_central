@@ -15,13 +15,14 @@ interface RenderProps {
 
 const Placeholder = styled(Box)({
   width: "100%",
-  minHeight: "250px",
   display: "flex",
   flexDirection: "column",
 });
 
 const RenderWrapper = styled(Box)({
   width: "100%",
+  display: "flex",
+  justifyContent: "center",
 });
 
 const RenderMotion = motion.create(RenderWrapper);

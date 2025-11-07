@@ -82,16 +82,17 @@ const ModalWrapper = styled(Box, {
   })
 );
 
-const CloseModalWrapper = styled(Box)({
+const CloseModalWrapper = styled(Box)(({ theme }) => ({
   position: "absolute",
-  top: "10px",
-  insetInlineEnd: "10px",
+  top: "15px",
+  insetInlineEnd: "20px",
   cursor: "pointer",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
   zIndex: 9999,
-});
+  color: theme.palette.textColor?.main,
+}));
 
 export default function Modal({
   trigger,
@@ -159,7 +160,7 @@ export default function Modal({
                   aria-label="Close Modal"
                   tabIndex={0}
                 >
-                  <CloseIcon fontSize="medium" color="action" />
+                  <CloseIcon fontSize="medium" color="inherit" />
                 </CloseModalWrapper>
                 {clonedChild}
               </ModalWrapper>

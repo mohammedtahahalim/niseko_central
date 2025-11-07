@@ -6,6 +6,8 @@ import type { AppDispatch, RootState } from "../../app/store";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { fetchProperty } from "../../features/property/propertySlice";
+import Error from "../../components/Error";
+import MainTitle from "../../features/property/MainTitle";
 
 const PropertyContainer = styled(Container)({
   width: "100%",
@@ -18,7 +20,7 @@ const PropertyContainer = styled(Container)({
 
 export default function Property() {
   const { id, title } = useParams();
-  const { loading, error, shouldRedirect, propertyData } = useSelector(
+  const { error, shouldRedirect } = useSelector(
     (state: RootState) => state.propertySlice
   );
   const dispatch = useDispatch<AppDispatch>();
@@ -28,21 +30,18 @@ export default function Property() {
     dispatch(fetchProperty({ id, title }));
   }, []);
 
-  if (loading) {
-    return <div>Loading ...</div>;
-  }
-
   if (shouldRedirect) {
     navigate("/niseko-accommodation", { replace: true });
   }
 
   if (error) {
-    return <div>{error}</div>;
+    return <Error errorMessage={error} />;
   }
 
   return (
     <PropertyContainer disableGutters maxWidth="xl">
       <LinkTitle />
+      <MainTitle />
       <Gallery />
     </PropertyContainer>
   );
