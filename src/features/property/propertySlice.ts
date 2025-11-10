@@ -29,24 +29,28 @@ const propertySchema = z.object({
       title: z.string(),
       description: z.string(),
       location: z.string(),
+      amenities: z.array(z.string()),
     }),
     en: z.object({
       type: z.string(),
       title: z.string(),
       description: z.string(),
       location: z.string(),
+      amenities: z.array(z.string()),
     }),
     ja: z.object({
       type: z.string(),
       title: z.string(),
       description: z.string(),
       location: z.string(),
+      amenities: z.array(z.string()),
     }),
     fr: z.object({
       type: z.string(),
       title: z.string(),
       description: z.string(),
       location: z.string(),
+      amenities: z.array(z.string()),
     }),
   }),
 });

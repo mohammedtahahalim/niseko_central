@@ -81,13 +81,13 @@ const RightNav = styled(Box)(({ theme }) => ({
   padding: "8px",
   backgroundColor: "rgba(0, 0, 0, 0.5)",
   borderRadius: "50px",
+  marginRight: "15px",
   [theme.breakpoints.down("md")]: {
     position: "absolute",
     right: "5px",
     top: "50%",
     translate: "0% -50%",
-    aspectRatio: "1",
-    padding: "8px",
+    marginRight: "0px",
   },
 }));
 
@@ -130,7 +130,7 @@ const CustomImage = styled("img")({
 const SliderImage = styled("img")({
   width: "100%",
   height: "100%",
-  objectFit: "cover",
+  objectFit: "contain",
   userSelect: "none",
 });
 
