@@ -5,6 +5,7 @@ import {
 } from "@reduxjs/toolkit";
 import type { FilterValue, SortingType } from "../../utils/Types";
 import z from "zod";
+import type Property from "../../pages/item_pages/Property";
 
 const bookingsScehma = z.object({
   id: z.number(),
@@ -37,6 +38,33 @@ const bookingsScehma = z.object({
 
 export type Property = z.infer<typeof bookingsScehma>;
 
+const DEFAULT_KEY = "default"; // this is to avoid refetching when there is no queries
+const timeouts: Record<string, ReturnType<typeof setTimeout>> = {};
+
+const bookingCache = new Proxy(
+  {},
+  {
+    get(obj: Record<string, Property[]>, key: string) {
+      const modKey = key || DEFAULT_KEY;
+      return obj[modKey];
+    },
+    set(obj: Record<string, Property[]>, key: string, value: Property[]) {
+      const modKey = key || DEFAULT_KEY;
+      obj[modKey] = value;
+      if (timeouts[modKey]) clearTimeout(timeouts[modKey]);
+      timeouts[modKey] = setTimeout(() => {
+        delete obj[modKey];
+        delete timeouts[modKey];
+      }, import.meta.env.VITE_CACHE_TTL * 60 * 1000);
+      return true;
+    },
+    has(obj: Record<string, Property[]>, key: string) {
+      const modKey = key || DEFAULT_KEY;
+      return obj.hasOwnProperty(modKey);
+    },
+  }
+);
+
 interface BookingState<T extends Object> {
   loading: boolean;
   error: string;
@@ -62,6 +90,9 @@ export const fetchBookings = createAsyncThunk<
         .filter(([_, v]) => v !== null && v !== undefined)
         .map(([k, v]) => [k, String(v)])
     ).toString();
+    if (bookingCache[fullQueries]) {
+      return bookingCache[fullQueries] as Property[];
+    }
     const fullURL = `${import.meta.env.VITE_API_URL}/api/bookings${
       fullQueries ? "?" + fullQueries : ""
     }`;
@@ -77,9 +108,11 @@ export const fetchBookings = createAsyncThunk<
         blurred_images: JSON.parse(property.blurred_images),
       };
     });
-    return data.filter(
+    const filtered_data = data.filter(
       (property: Property) => bookingsScehma.safeParse(property).success
-    ) as Property[];
+    );
+    bookingCache[fullQueries] = filtered_data;
+    return filtered_data as Property[];
   } catch (err) {
     if (err instanceof DOMException && err.name === "AbortError") {
       return rejectWithValue("network");
