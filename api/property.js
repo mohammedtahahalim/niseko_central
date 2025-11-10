@@ -1,4 +1,50 @@
 import dbConnection from "../helpers/dbConnection.js";
+import { z } from "zod";
+
+const propertySchema = z.object({
+  id: z.number().nonnegative(),
+  map: z.string(),
+  images: z.string(),
+  max_pax: z.number().nonnegative(),
+  beds: z.number().nonnegative(),
+  size: z.number().nonnegative(),
+  village_distance: z.number().nonnegative(),
+  lifts_distance: z.number().nonnegative(),
+  floor_plan: z.string(),
+  created_at: z.date(),
+  updated_at: z.date(),
+  blurred_images: z.string(),
+  translations: z.object({
+    ar: z.object({
+      type: z.string(),
+      title: z.string(),
+      description: z.string(),
+      location: z.string(),
+      amenities: z.array(z.string()),
+    }),
+    en: z.object({
+      type: z.string(),
+      title: z.string(),
+      description: z.string(),
+      location: z.string(),
+      amenities: z.array(z.string()),
+    }),
+    ja: z.object({
+      type: z.string(),
+      title: z.string(),
+      description: z.string(),
+      location: z.string(),
+      amenities: z.array(z.string()),
+    }),
+    fr: z.object({
+      type: z.string(),
+      title: z.string(),
+      description: z.string(),
+      location: z.string(),
+      amenities: z.array(z.string()),
+    }),
+  }),
+});
 
 export default async function handler(req, res) {
   if (req.method !== "GET") {
@@ -9,7 +55,7 @@ export default async function handler(req, res) {
   try {
     const connection = dbConnection();
     const query = `
-        SELECT p.*, JSON_OBJECTAGG(pt.language_code, JSON_OBJECT('title', pt.title, 'type', pt.type, 'description', pt.description, 'location', pt.location)) as translations
+        SELECT p.*, JSON_OBJECTAGG(pt.language_code, JSON_OBJECT('title', pt.title, 'type', pt.type, 'description', pt.description, 'location', pt.location, 'amenities', pt.amenities)) as translations
         FROM property p 
             INNER JOIN property_translations pt ON p.id = pt.property_id
         WHERE p.id = ?
@@ -18,6 +64,13 @@ export default async function handler(req, res) {
     const [result] = await connection.query(query, [id]);
     if (!result.length) {
       return res.status(404).json({ message: "Property Not Found" });
+    }
+    const isValid = propertySchema.safeParse(result[0]);
+    if (!isValid.success) {
+      throw new Error(
+        "Property Does not correspong valid format : ",
+        isValid.error.issues.map((issue) => issue.message).join(", ")
+      );
     }
     return res.status(200).json({ property: result[0] });
   } catch (err) {
