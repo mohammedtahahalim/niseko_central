@@ -14,6 +14,7 @@ import useSlideAndHeightCount from "./useSlideAndHeightCount";
 import NewsCard from "./NewsCard";
 import { Keyboard } from "swiper/modules";
 import Skelton from "./Skelton";
+import RenderOnView from "../../render_on_view/RenderOnView";
 
 const NewsWrapper = styled(Box)({
   width: "100%",
@@ -101,50 +102,54 @@ export default function News() {
   const isArabic = i18n.language === "ar";
 
   return (
-    <NewsWrapper>
-      <TitleContainer>
-        <Title variant="h6" color="inherit">
-          {t("home.news_section.title")}
-        </Title>
-        {isArabic ? (
-          <ArrowBackIosIcon sx={{ fontSize: "0.95rem" }} />
-        ) : (
-          <ArrowForwardIosIcon sx={{ fontSize: "0.95rem" }} />
+    <RenderOnView animationDirection="right">
+      <NewsWrapper>
+        <TitleContainer>
+          <Title variant="h6" color="inherit">
+            {t("home.news_section.title")}
+          </Title>
+          {isArabic ? (
+            <ArrowBackIosIcon sx={{ fontSize: "0.95rem" }} />
+          ) : (
+            <ArrowForwardIosIcon sx={{ fontSize: "0.95rem" }} />
+          )}
+          <NavControl isArabic={isArabic}>
+            <ControlButton onClick={() => swiperRef.current?.slidePrev()}>
+              <WestIcon fontSize="small" color="inherit" />
+            </ControlButton>
+            <ControlButton onClick={() => swiperRef.current?.slideNext()}>
+              <EastIcon fontSize="small" color="inherit" />
+            </ControlButton>
+          </NavControl>
+        </TitleContainer>
+        {newsLoading && (
+          <Skelton skeltonNum={slideCount} maxHeight={maxHeight} />
         )}
-        <NavControl isArabic={isArabic}>
-          <ControlButton onClick={() => swiperRef.current?.slidePrev()}>
-            <WestIcon fontSize="small" color="inherit" />
-          </ControlButton>
-          <ControlButton onClick={() => swiperRef.current?.slideNext()}>
-            <EastIcon fontSize="small" color="inherit" />
-          </ControlButton>
-        </NavControl>
-      </TitleContainer>
-      {newsLoading && <Skelton skeltonNum={slideCount} maxHeight={maxHeight} />}
-      {!newsLoading && latestNews.length !== 0 && (
-        <NewsSlider
-          modules={[Keyboard]}
-          slidesPerView={slideCount}
-          style={{ display: "flex" }}
-          onSwiper={(swiper) => (swiperRef.current = swiper)}
-          speed={250}
-          spaceBetween={12}
-          keyboard={{ enabled: true, onlyInViewport: true }}
-          role="region"
-          aria-label="Article Slider"
-        >
-          {latestNews.map((news, idx) => {
-            return (
-              <NewsSlide key={idx} maxHeight={maxHeight}>
-                <NewsCard
-                  title={news[i18n.language as TLanguage]}
-                  image={news["image"]}
-                />
-              </NewsSlide>
-            );
-          })}
-        </NewsSlider>
-      )}
-    </NewsWrapper>
+        {!newsLoading && latestNews.length !== 0 && (
+          <NewsSlider
+            modules={[Keyboard]}
+            slidesPerView={slideCount}
+            style={{ display: "flex" }}
+            onSwiper={(swiper) => (swiperRef.current = swiper)}
+            speed={250}
+            spaceBetween={12}
+            keyboard={{ enabled: true, onlyInViewport: true }}
+            role="region"
+            aria-label="Article Slider"
+          >
+            {latestNews.map((news, idx) => {
+              return (
+                <NewsSlide key={idx} maxHeight={maxHeight}>
+                  <NewsCard
+                    title={news[i18n.language as TLanguage]}
+                    image={news["image"]}
+                  />
+                </NewsSlide>
+              );
+            })}
+          </NewsSlider>
+        )}
+      </NewsWrapper>
+    </RenderOnView>
   );
 }

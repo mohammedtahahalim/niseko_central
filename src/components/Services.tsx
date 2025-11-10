@@ -2,6 +2,7 @@ import { Box, styled, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import type { ServiceContents } from "../utils/Types";
 import Service from "./Service";
+import RenderOnView from "../features/render_on_view/RenderOnView";
 
 const svgs: React.ReactElement[] = [
   <svg
@@ -100,28 +101,30 @@ export default function Services() {
     returnObjects: true,
   }) as ServiceContents[];
   return (
-    <ServicesWrapper>
-      <ServiceDescription variant="h6" color="inherit" tabIndex={0}>
-        {t("home.service_section.title")}
-      </ServiceDescription>
-      <ServiceContent>
-        {serviceContents.map((service, index) => {
-          if (index % 2 === 0) {
-            return (
-              <ServiceBreaker key={service.title}>
-                <Service {...serviceContents[index]} icon={svgs[index]} />
-                {serviceContents[index + 1] && (
-                  <Service
-                    {...serviceContents[index + 1]}
-                    icon={svgs[index + 1]}
-                  />
-                )}
-              </ServiceBreaker>
-            );
-          }
-          return null;
-        })}
-      </ServiceContent>
-    </ServicesWrapper>
+    <RenderOnView animationDirection="top">
+      <ServicesWrapper>
+        <ServiceDescription variant="h6" color="inherit" tabIndex={0}>
+          {t("home.service_section.title")}
+        </ServiceDescription>
+        <ServiceContent>
+          {serviceContents.map((service, index) => {
+            if (index % 2 === 0) {
+              return (
+                <ServiceBreaker key={service.title}>
+                  <Service {...serviceContents[index]} icon={svgs[index]} />
+                  {serviceContents[index + 1] && (
+                    <Service
+                      {...serviceContents[index + 1]}
+                      icon={svgs[index + 1]}
+                    />
+                  )}
+                </ServiceBreaker>
+              );
+            }
+            return null;
+          })}
+        </ServiceContent>
+      </ServicesWrapper>
+    </RenderOnView>
   );
 }

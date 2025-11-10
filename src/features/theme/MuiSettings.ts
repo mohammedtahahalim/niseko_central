@@ -70,7 +70,7 @@ export const darkPalette: PaletteOptions = {
     main: "#374151",
     contrastText: "#ddd",
   },
-  divider: "#1F2937",
+  divider: "#4B5563",
   headfoot: {
     main: "#111827",
   },

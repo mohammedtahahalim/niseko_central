@@ -1,6 +1,7 @@
 import { Box, styled, Typography, Button } from "@mui/material";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import RenderOnView from "../features/render_on_view/RenderOnView";
 
 const NisekoPassportContainer = styled(Box)(({ theme }) => ({
   width: "100%",
@@ -83,40 +84,44 @@ export default function NisekoPassport() {
   const { t } = useTranslation();
 
   return (
-    <NisekoPassportContainer>
-      <NisekoPassportWrapper>
-        <PassportImage
-          onMouseEnter={() => setIsImageHover(true)}
-          onMouseLeave={() => setIsImageHover(false)}
-        >
-          <img
-            src="https://d1z517741srsht.cloudfront.net/general/_1536xAUTO_crop_center-center_none/344571/1115_Nisekopassport_winter2019TVscreen3LRCropRT.webp"
-            alt="Passport Image"
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              scale: isImageHover ? 1.1 : 1,
-              transition: "all 0.4s ease-in-out",
-            }}
-            loading="lazy"
-            decoding="async"
-          />
-        </PassportImage>
-        <PassportInfo>
-          <Title variant="h5" tabIndex={0}>
-            {t("home.niseko_passport.title")}
-          </Title>
-          <Content>
-            {t("home.niseko_passport.subtitle_1")}
-            <ContentLink tabIndex={0}>
-              {t("home.niseko_passport.link")}
-            </ContentLink>
-            {t("home.niseko_passport.subtitle_2")}
-          </Content>
-          <More variant="contained">{t("home.niseko_passport.find_out")}</More>
-        </PassportInfo>
-      </NisekoPassportWrapper>
-    </NisekoPassportContainer>
+    <RenderOnView animationDirection="bottom">
+      <NisekoPassportContainer>
+        <NisekoPassportWrapper>
+          <PassportImage
+            onMouseEnter={() => setIsImageHover(true)}
+            onMouseLeave={() => setIsImageHover(false)}
+          >
+            <img
+              src="https://d1z517741srsht.cloudfront.net/general/_1536xAUTO_crop_center-center_none/344571/1115_Nisekopassport_winter2019TVscreen3LRCropRT.webp"
+              alt="Passport Image"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                scale: isImageHover ? 1.1 : 1,
+                transition: "all 0.4s ease-in-out",
+              }}
+              loading="lazy"
+              decoding="async"
+            />
+          </PassportImage>
+          <PassportInfo>
+            <Title variant="h5" tabIndex={0}>
+              {t("home.niseko_passport.title")}
+            </Title>
+            <Content>
+              {t("home.niseko_passport.subtitle_1")}
+              <ContentLink tabIndex={0}>
+                {t("home.niseko_passport.link")}
+              </ContentLink>
+              {t("home.niseko_passport.subtitle_2")}
+            </Content>
+            <More variant="contained">
+              {t("home.niseko_passport.find_out")}
+            </More>
+          </PassportInfo>
+        </NisekoPassportWrapper>
+      </NisekoPassportContainer>
+    </RenderOnView>
   );
 }

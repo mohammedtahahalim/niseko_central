@@ -118,6 +118,11 @@ export default function Modal({
       parentRef.current = node;
     },
     onClick: openModal,
+    onKeyDown: (e: React.KeyboardEvent) => {
+      if (e.key === "Enter") {
+        openModal();
+      }
+    },
     "aria-haspopup": "dialog",
     "aria-expanded": isOpen,
   });

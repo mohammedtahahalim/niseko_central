@@ -418,6 +418,12 @@
   },
   "property": {
     "book_now": "Book Now",
-    "map": "Map"
+    "map": "Map",
+    "guests": "Guests",
+    "beds": "Beds",
+    "sqm": "sqm",
+    "village": "Village",
+    "lifts": "Lifts",
+    "floor_plan": "Floor Plan"
   }
 }
