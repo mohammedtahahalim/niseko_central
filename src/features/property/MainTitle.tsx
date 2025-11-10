@@ -20,6 +20,7 @@ const MainTitleContainer = styled(Box)(({ theme }) => ({
 const Content = styled(Box)(({ theme }) => ({
   display: "flex",
   justifyContent: "space-between",
+  alignItems: "center",
   gap: "15px",
   width: "100%",
   [theme.breakpoints.down("md")]: {
@@ -57,8 +58,8 @@ const MapButton = styled(Button)({
 });
 
 const MapContainer = styled(Box)(({ theme }) => ({
-  maxWidth: "75vw",
-  maxHeight: "75vh",
+  maxWidth: "85vw",
+  maxHeight: "85vh",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
@@ -69,13 +70,46 @@ const MapContainer = styled(Box)(({ theme }) => ({
   },
 }));
 
-const Book = styled(Button)({
+const Book = styled(Button)(({ theme }) => ({
   width: "fit-content",
-  alignSelf: "flex-end",
+  alignSelf: "center",
   borderRadius: "50px",
   padding: "12px 24px",
   backgroundColor: "#374151",
+  [theme.breakpoints.down("md")]: {
+    alignSelf: "flex-end",
+  },
+}));
+
+const SkeltonContainer = styled(Box)(({ theme }) => ({
+  display: "flex",
+  justifyContent: "space-between",
+  gap: "15px",
+  width: "100%",
+  [theme.breakpoints.down("md")]: {
+    flexDirection: "column",
+  },
+}));
+
+const SkeltonText = styled(Skeleton)({
+  flex: 1,
+  display: "flex",
+  flexDirection: "column",
+  height: "90px",
 });
+
+const SkeltonButton = styled(Skeleton)(({ theme }) => ({
+  width: "fit-content",
+  alignSelf: "center",
+  borderRadius: "50px",
+  padding: "12px 24px",
+  backgroundColor: "#374151",
+  height: "50px",
+  minWidth: "150px",
+  [theme.breakpoints.down("md")]: {
+    alignSelf: "flex-end",
+  },
+}));
 
 export default function MainTitle() {
   const { t, i18n } = useTranslation();
@@ -89,15 +123,15 @@ export default function MainTitle() {
       <RenderOnView animationDirection="right">
         <>
           {loading && (
-            <Skeleton
-              variant="text"
-              sx={{ minHeight: "80px", width: "100%", height: "100%" }}
-            />
+            <SkeltonContainer>
+              <SkeltonText variant="text" />
+              <SkeltonButton variant="rectangular" />
+            </SkeltonContainer>
           )}
           {!loading && translations && (
             <Content>
               <Info>
-                <Title variant="h6">
+                <Title variant="h6" tabIndex={0}>
                   {translations[i18n.language].type}{" "}
                   <span>{translations[i18n.language].title}</span>
                 </Title>
@@ -105,10 +139,12 @@ export default function MainTitle() {
                   {translations[i18n.language].location}{" "}
                   <Modal
                     trigger={
-                      <MapButton variant="text">{t("property.map")}</MapButton>
+                      <MapButton variant="text" tabIndex={-1}>
+                        {t("property.map")}
+                      </MapButton>
                     }
                     fullScreenWrapper={true}
-                    disableScroll={true}
+                    disableScroll={false}
                     isTransparent={true}
                   >
                     <MapContainer>

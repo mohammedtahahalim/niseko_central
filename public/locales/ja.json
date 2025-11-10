@@ -310,6 +310,12 @@
   },
   "property": {
     "book_now": "今すぐ予約",
-    "map": "地図"
+    "map": "地図",
+    "guests": "ゲスト",
+    "beds": "ベッド",
+    "sqm": "メートル",
+    "village": "村",
+    "lifts": "リフト",
+    "floor_plan": "フロアプラン"
   }
 }

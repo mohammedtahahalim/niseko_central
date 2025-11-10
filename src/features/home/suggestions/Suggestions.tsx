@@ -13,6 +13,7 @@ import EastIcon from "@mui/icons-material/East";
 import WestIcon from "@mui/icons-material/West";
 import { Keyboard } from "swiper/modules";
 import Skelton from "./Skelton";
+import RenderOnView from "../../render_on_view/RenderOnView";
 
 const SuggestionsWrapper = styled(Box)({
   width: "100%",
@@ -96,68 +97,70 @@ export default function Suggestions() {
   const isArabic = i18n.language === "ar";
 
   return (
-    <SuggestionsWrapper>
-      <TitleContainer>
-        <Title variant="h6" color="inherit">
-          {t("suggestions.title")}
-        </Title>
-        {isArabic ? (
-          <ArrowBackIosIcon sx={{ fontSize: "0.95rem" }} />
-        ) : (
-          <ArrowForwardIosIcon sx={{ fontSize: "0.95rem" }} />
+    <RenderOnView animationDirection="left">
+      <SuggestionsWrapper>
+        <TitleContainer>
+          <Title variant="h6" color="inherit">
+            {t("suggestions.title")}
+          </Title>
+          {isArabic ? (
+            <ArrowBackIosIcon sx={{ fontSize: "0.95rem" }} />
+          ) : (
+            <ArrowForwardIosIcon sx={{ fontSize: "0.95rem" }} />
+          )}
+          <NavControl isArabic={isArabic}>
+            <ControlButton onClick={() => swiperRef.current?.slidePrev()}>
+              <WestIcon fontSize="small" color="inherit" />
+            </ControlButton>
+            <ControlButton onClick={() => swiperRef.current?.slideNext()}>
+              <EastIcon fontSize="small" color="inherit" />
+            </ControlButton>
+          </NavControl>
+        </TitleContainer>
+        {suggestionsLoading && <Skelton skeltonNum={slideCount} />}
+        {!suggestionsLoading && suggestionsBookings.length !== 0 && (
+          <SuggestionSlider
+            modules={[Keyboard]}
+            slidesPerView={slideCount}
+            style={{ display: "flex" }}
+            onSwiper={(swiper) => (swiperRef.current = swiper)}
+            loop={true}
+            speed={250}
+            spaceBetween={12}
+            keyboard={{ enabled: true, onlyInViewport: true }}
+            role="region"
+            aria-label="Property Slider"
+          >
+            {suggestionsBookings.map((booking, idx) => {
+              return (
+                <SuggestionSlide key={idx}>
+                  <Card
+                    id={booking.id}
+                    image={booking.image}
+                    lifts_ditance={booking.lifts_distance}
+                    max_pax={booking.max_pax}
+                    tag={booking.tag}
+                    title={
+                      (
+                        booking[i18n.language as keyof typeof booking] as {
+                          title: string;
+                        }
+                      ).title
+                    }
+                    type={
+                      (
+                        booking[i18n.language as keyof typeof booking] as {
+                          type: string;
+                        }
+                      ).type
+                    }
+                  />
+                </SuggestionSlide>
+              );
+            })}
+          </SuggestionSlider>
         )}
-        <NavControl isArabic={isArabic}>
-          <ControlButton onClick={() => swiperRef.current?.slidePrev()}>
-            <WestIcon fontSize="small" color="inherit" />
-          </ControlButton>
-          <ControlButton onClick={() => swiperRef.current?.slideNext()}>
-            <EastIcon fontSize="small" color="inherit" />
-          </ControlButton>
-        </NavControl>
-      </TitleContainer>
-      {suggestionsLoading && <Skelton skeltonNum={slideCount} />}
-      {!suggestionsLoading && suggestionsBookings.length !== 0 && (
-        <SuggestionSlider
-          modules={[Keyboard]}
-          slidesPerView={slideCount}
-          style={{ display: "flex" }}
-          onSwiper={(swiper) => (swiperRef.current = swiper)}
-          loop={true}
-          speed={250}
-          spaceBetween={12}
-          keyboard={{ enabled: true, onlyInViewport: true }}
-          role="region"
-          aria-label="Property Slider"
-        >
-          {suggestionsBookings.map((booking, idx) => {
-            return (
-              <SuggestionSlide key={idx}>
-                <Card
-                  id={booking.id}
-                  image={booking.image}
-                  lifts_ditance={booking.lifts_distance}
-                  max_pax={booking.max_pax}
-                  tag={booking.tag}
-                  title={
-                    (
-                      booking[i18n.language as keyof typeof booking] as {
-                        title: string;
-                      }
-                    ).title
-                  }
-                  type={
-                    (
-                      booking[i18n.language as keyof typeof booking] as {
-                        type: string;
-                      }
-                    ).type
-                  }
-                />
-              </SuggestionSlide>
-            );
-          })}
-        </SuggestionSlider>
-      )}
-    </SuggestionsWrapper>
+      </SuggestionsWrapper>
+    </RenderOnView>
   );
 }

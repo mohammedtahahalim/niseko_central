@@ -6,8 +6,12 @@ import type { AppDispatch, RootState } from "../../app/store";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { fetchProperty } from "../../features/property/propertySlice";
+import { fetchSuggestions } from "../../features/home/suggestions/suggestionsSlice";
 import Error from "../../components/Error";
 import MainTitle from "../../features/property/MainTitle";
+import Info from "../../features/property/Info";
+import Description from "../../features/property/Description";
+import Suggestions from "../../features/home/suggestions/Suggestions";
 
 const PropertyContainer = styled(Container)({
   width: "100%",
@@ -28,6 +32,7 @@ export default function Property() {
 
   useEffect(() => {
     dispatch(fetchProperty({ id, title }));
+    dispatch(fetchSuggestions({ queries: { limit: 5 } }));
   }, []);
 
   if (shouldRedirect) {
@@ -43,6 +48,9 @@ export default function Property() {
       <LinkTitle />
       <MainTitle />
       <Gallery />
+      <Info />
+      <Description />
+      <Suggestions />
     </PropertyContainer>
   );
 }

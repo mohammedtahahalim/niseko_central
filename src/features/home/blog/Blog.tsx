@@ -14,6 +14,7 @@ import WestIcon from "@mui/icons-material/West";
 import Article from "./Article";
 import { Keyboard } from "swiper/modules";
 import Skelton from "./Skelton";
+import RenderOnView from "../../render_on_view/RenderOnView";
 
 const BlogWrapper = styled(Box)(({ theme }) => ({
   width: "100%",
@@ -100,47 +101,49 @@ export default function Blog() {
   const isArabic = i18n.language === "ar";
 
   return (
-    <BlogWrapper>
-      <TitleContainer>
-        <Title variant="h6" color="inherit">
-          {t("home.blog.title")}
-        </Title>
-        {isArabic ? (
-          <ArrowBackIosIcon sx={{ fontSize: "0.95rem" }} />
-        ) : (
-          <ArrowForwardIosIcon sx={{ fontSize: "0.95rem" }} />
+    <RenderOnView animationDirection="top">
+      <BlogWrapper>
+        <TitleContainer>
+          <Title variant="h6" color="inherit">
+            {t("home.blog.title")}
+          </Title>
+          {isArabic ? (
+            <ArrowBackIosIcon sx={{ fontSize: "0.95rem" }} />
+          ) : (
+            <ArrowForwardIosIcon sx={{ fontSize: "0.95rem" }} />
+          )}
+          <NavControl isArabic={isArabic} role="navigation">
+            <ControlButton onClick={() => swiperRef.current?.slidePrev()}>
+              <WestIcon fontSize="small" color="inherit" />
+            </ControlButton>
+            <ControlButton onClick={() => swiperRef.current?.slideNext()}>
+              <EastIcon fontSize="small" color="inherit" />
+            </ControlButton>
+          </NavControl>
+        </TitleContainer>
+        {blogLoading && <Skelton skeltonNum={slideCount} />}
+        {!blogLoading && blogs.length !== 0 && (
+          <BlogSlider
+            modules={[Keyboard]}
+            slidesPerView={slideCount}
+            style={{ display: "flex" }}
+            onSwiper={(swiper) => (swiperRef.current = swiper)}
+            speed={250}
+            spaceBetween={12}
+            keyboard={{ enabled: true, onlyInViewport: true }}
+            role="region"
+            aria-label="Blog Slider"
+          >
+            {blogs.map((blog, idx) => {
+              return (
+                <BlogSlide key={idx}>
+                  <Article {...blog} title={blog[i18n.language as TLanguage]} />
+                </BlogSlide>
+              );
+            })}
+          </BlogSlider>
         )}
-        <NavControl isArabic={isArabic} role="navigation">
-          <ControlButton onClick={() => swiperRef.current?.slidePrev()}>
-            <WestIcon fontSize="small" color="inherit" />
-          </ControlButton>
-          <ControlButton onClick={() => swiperRef.current?.slideNext()}>
-            <EastIcon fontSize="small" color="inherit" />
-          </ControlButton>
-        </NavControl>
-      </TitleContainer>
-      {blogLoading && <Skelton skeltonNum={slideCount} />}
-      {!blogLoading && blogs.length !== 0 && (
-        <BlogSlider
-          modules={[Keyboard]}
-          slidesPerView={slideCount}
-          style={{ display: "flex" }}
-          onSwiper={(swiper) => (swiperRef.current = swiper)}
-          speed={250}
-          spaceBetween={12}
-          keyboard={{ enabled: true, onlyInViewport: true }}
-          role="region"
-          aria-label="Blog Slider"
-        >
-          {blogs.map((blog, idx) => {
-            return (
-              <BlogSlide key={idx}>
-                <Article {...blog} title={blog[i18n.language as TLanguage]} />
-              </BlogSlide>
-            );
-          })}
-        </BlogSlider>
-      )}
-    </BlogWrapper>
+      </BlogWrapper>
+    </RenderOnView>
   );
 }

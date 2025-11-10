@@ -322,6 +322,12 @@
   },
   "property": {
     "book_now": "Réservez maintenant",
-    "map": "Carte"
+    "map": "Carte",
+    "guests": "Invités",
+    "beds": "Lits",
+    "sqm": "m²",
+    "village": "Village",
+    "lifts": "Ascenseurs",
+    "floor_plan": "Plan d'étage"
   }
 }

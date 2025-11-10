@@ -9,7 +9,6 @@ import Plan from "../../components/Plan";
 import Hero from "../../features/home/hero/Hero";
 import Services from "../../components/Services";
 import Suggestions from "../../features/home/suggestions/Suggestions";
-import RenderOnView from "../../features/render_on_view/RenderOnView";
 import News from "../../features/home/news/News";
 import NisekoPassport from "../../components/NisekoPassport";
 import Blog from "../../features/home/blog/Blog";
@@ -33,21 +32,11 @@ export default function Home() {
   return (
     <HomeWrapper>
       <Hero />
-      <RenderOnView animationDirection="top">
-        <Services />
-      </RenderOnView>
-      <RenderOnView animationDirection="left">
-        <Suggestions />
-      </RenderOnView>
-      <RenderOnView animationDirection="right">
-        <News />
-      </RenderOnView>
-      <RenderOnView animationDirection="bottom">
-        <NisekoPassport />
-      </RenderOnView>
-      <RenderOnView animationDirection="top">
-        <Blog />
-      </RenderOnView>
+      <Services />
+      <Suggestions />
+      <News />
+      <NisekoPassport />
+      <Blog />
       <Plan />
     </HomeWrapper>
   );
