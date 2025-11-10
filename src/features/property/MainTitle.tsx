@@ -57,8 +57,8 @@ const MapButton = styled(Button)({
 });
 
 const MapContainer = styled(Box)(({ theme }) => ({
-  maxWidth: "75vw",
-  maxHeight: "75vh",
+  maxWidth: "85vw",
+  maxHeight: "85vh",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
@@ -108,7 +108,7 @@ export default function MainTitle() {
                       <MapButton variant="text">{t("property.map")}</MapButton>
                     }
                     fullScreenWrapper={true}
-                    disableScroll={true}
+                    disableScroll={false}
                     isTransparent={true}
                   >
                     <MapContainer>

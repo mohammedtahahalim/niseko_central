@@ -63,7 +63,8 @@ const SliderWrapper = styled(Swiper)(({ theme }) => ({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  maxWidth: "1000px",
+  maxWidth: "min(100%, 1300px)",
+  maxHeight: "95%",
   [theme.breakpoints.down("md")]: {
     width: "100vw",
   },
@@ -100,18 +101,18 @@ const CollectionWrapper = styled(Box)({
 
 const Collection = styled(Swiper)({
   width: "fit-content",
-  maxWidth: "500px",
+  maxWidth: "min(100%, 850px)",
   height: "75px",
   cursor: "pointer",
 });
 
 const CollSlide = styled(SwiperSlide)(({ theme }) => ({
   height: "75px",
-  width: "125px",
+  maxWidth: "125px",
   borderRadius: "5px",
   overflow: "hidden",
   "&.swiper-slide-active": {
-    border: `2px solid  ${theme.palette.primary.main}`,
+    border: `3px solid  ${theme.palette.primary.main}`,
   },
 }));
 

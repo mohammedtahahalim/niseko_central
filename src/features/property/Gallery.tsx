@@ -92,7 +92,7 @@ export default function Gallery() {
         }
         blurBackground={true}
         isTransparent={true}
-        disableScroll={true}
+        disableScroll={false}
       >
         <Showcase />
       </Modal>
