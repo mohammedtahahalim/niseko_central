@@ -2,6 +2,7 @@ import { Box, Skeleton, styled, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../app/store";
 import { useTranslation } from "react-i18next";
+import { amenities_icons } from "../../utils/Icons";
 import RenderOnView from "../render_on_view/RenderOnView";
 
 const DescriptionContainer = styled(Box)(({ theme }) => ({
@@ -17,7 +18,8 @@ const DescriptionContainer = styled(Box)(({ theme }) => ({
 }));
 
 const DescriptionWrapper = styled(Box)(({ theme }) => ({
-  width: "35%",
+  width: "37%",
+  overflow: "hidden",
   display: "flex",
   [theme.breakpoints.down("nav_break")]: {
     width: "100%",
@@ -28,7 +30,7 @@ const DescriptionContent = styled(Typography)(({ theme }) => ({
   width: "100%",
   textWrap: "wrap",
   fontFamily: "Figtree",
-  fontSize: "1rem",
+  fontSize: "0.9rem",
   fontWeight: "500",
   textTransform: "capitalize",
   letterSpacing: "1.1px",
@@ -38,27 +40,32 @@ const DescriptionContent = styled(Typography)(({ theme }) => ({
   },
 }));
 
-const DescriptionSkeltonWrapper = styled(Box)({
-  width: "100%",
+const DescriptionSkeletonWrapper = styled(Box)({
+  minWidth: "100%",
   display: "flex",
   flexDirection: "column",
   gap: "15px",
+  minHeight: "200px",
 });
 
-const DescriptionSkelton = styled(Skeleton)({
+const DescriptionSkeleton = styled(Skeleton)({
   flex: "1",
-  minWidth: "350px",
-  height: "25px",
+  minWidth: "450px",
+  maxHeight: "40px",
 });
 
-const AmenitiesWrapper = styled(Box)({
+const AmenitiesWrapper = styled(Box)(({ theme }) => ({
   flex: "1",
-  border: "1px solid white",
+  overflow: "hidden",
   display: "flex",
   gap: "50px",
   flexWrap: "wrap",
   padding: "0px 15px",
-});
+  [theme.breakpoints.down("sm")]: {
+    justifyContent: "center",
+    padding: "0px",
+  },
+}));
 
 const InfoPiece = styled(Box)(({ theme }) => ({
   display: "flex",
@@ -66,6 +73,8 @@ const InfoPiece = styled(Box)(({ theme }) => ({
   gap: "2px",
   alignItems: "center",
   color: theme.palette.icons?.main,
+  minWidth: "75px",
+  maxWidth: "75px",
 }));
 
 const InfoText = styled(Typography)(({ theme }) => ({
@@ -76,17 +85,37 @@ const InfoText = styled(Typography)(({ theme }) => ({
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
+  textWrap: "wrap",
+  textAlign: "center",
   [theme.breakpoints.down("md")]: {
-    fontSize: "0.8rem",
+    fontSize: "0.9rem",
   },
 }));
 
 const SvgContainer = styled(Box)(({ theme }) => ({
-  width: "50px",
+  width: "40px",
   aspectRatio: "1",
   color: "inherit",
   [theme.breakpoints.down("md")]: {
     width: "35px",
+  },
+}));
+
+const InfoSkeleton = styled(Box)({
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "flex-start",
+  minWidth: "60px",
+  minHeight: "100px",
+});
+
+const AmenitySkeleton = styled(Skeleton)(({ theme }) => ({
+  minWidth: "100%",
+  minHeight: "100%",
+  translate: "0% -25%",
+  [theme.breakpoints.down("md")]: {
+    width: "40px",
+    height: "70px",
   },
 }));
 
@@ -96,37 +125,41 @@ export default function Description() {
   const { translations } = propertyData || {};
   const { i18n } = useTranslation();
   const { description, amenities } = translations?.[i18n.language] || {};
+  const amenities_keys = translations?.["en"].amenities;
   return (
     <RenderOnView animationDirection="right" animationSpeed={1.75}>
       <DescriptionContainer>
         <DescriptionWrapper>
           {loading && (
-            <DescriptionSkeltonWrapper>
-              <DescriptionSkelton variant="rounded" />
-              <DescriptionSkelton variant="rounded" />
-              <DescriptionSkelton variant="rounded" />
-              <DescriptionSkelton variant="rounded" />
-              <DescriptionSkelton variant="rounded" />
-            </DescriptionSkeltonWrapper>
+            <DescriptionSkeletonWrapper>
+              {Array.from({ length: 6 }).map((_, idx) => {
+                return <DescriptionSkeleton key={idx} variant="rounded" />;
+              })}
+            </DescriptionSkeletonWrapper>
           )}
-          <DescriptionContent>{description}</DescriptionContent>
+          {!loading && description && (
+            <DescriptionContent tabIndex={0}>{description}</DescriptionContent>
+          )}
         </DescriptionWrapper>
         <AmenitiesWrapper>
-          {amenities &&
-            amenities.map((_: any, idx: number) => {
+          {loading &&
+            Array.from({ length: 16 }).map((_, idx) => {
               return (
-                <InfoPiece key={idx}>
+                <InfoSkeleton key={idx}>
+                  <AmenitySkeleton />
+                </InfoSkeleton>
+              );
+            })}
+          {!loading &&
+            amenities &&
+            amenities.map((amenity: string, idx: number) => {
+              return (
+                <InfoPiece key={amenity}>
                   <SvgContainer>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M21.0036,23.4772c-.555.2077-1.1576.2997-1.7205.2997H4.7169c-.5645,0-1.1671-.092-1.7221-.2997-.5518-.2061-1.0529-.5264-1.4224-.9815-.3822-.4694-.6168-1.0688-.6168-1.8109,0-.4821.1031-1.0291.333-1.6475.5994-1.6031,2.0218-2.9272,3.9278-3.8469,1.887-.9118,4.2639-1.4319,6.7836-1.4319s4.8966.5201,6.7852,1.4319c1.906.9197,3.3252,2.2453,3.9262,3.8469.2299.6168.333,1.1639.333,1.6475,0,.7437-.2347,1.3415-.6152,1.8109-.3695.4551-.8721.7754-1.424.9815h-.0016ZM12,.2231c1.7046,0,3.2491.6914,4.3654,1.8077,1.1179,1.1179,1.8093,2.6624,1.8093,4.367s-.6929,3.2491-1.8093,4.3654c-1.1163,1.1179-2.6608,1.8093-4.3654,1.8093s-3.2491-.6929-4.3654-1.8093c-1.1179-1.1163-1.8093-2.6608-1.8093-4.3654,0-1.7062.6929-3.2507,1.8093-4.367C8.7509.9144,10.2954.2231,12,.2231"></path>
-                    </svg>
+                    {amenities_icons[amenities_keys[idx]]}
                   </SvgContainer>
                   <InfoText variant="subtitle1" tabIndex={0}>
-                    test
+                    {amenity}
                   </InfoText>
                 </InfoPiece>
               );
