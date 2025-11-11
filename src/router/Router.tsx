@@ -9,6 +9,7 @@ import Generic from "../layouts/Generic";
 import Loader from "../components/Loader";
 import Auth from "../features/auth/Auth";
 import { useTranslation } from "react-i18next";
+import ScrollTo from "../components/ScrollTo";
 
 export default function Router() {
   const { t, i18n } = useTranslation();
@@ -19,6 +20,7 @@ export default function Router() {
 
   return (
     <BrowserRouter>
+      <ScrollTo />
       <Suspense fallback={<Loader />}>
         <Routes>
           <Route element={<Auth />}>
