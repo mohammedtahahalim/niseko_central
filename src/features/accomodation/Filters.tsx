@@ -81,7 +81,6 @@ export default function Filters() {
               size="small"
               name={filter.key}
               aria-label={filter.placeholder}
-              tabIndex={0}
               value={filters[filter.key as keyof typeof filters] || ""}
               displayEmpty
               renderValue={(selected: unknown) => {
