@@ -4,7 +4,6 @@ import type { RootState } from "../../app/store";
 import RenderOnView from "../render_on_view/RenderOnView";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import { useTranslation } from "react-i18next";
-import Modal from "../modal/Modal";
 
 const MainTitleContainer = styled(Box)(({ theme }) => ({
   width: "90%",
@@ -53,23 +52,6 @@ const Map = styled(Typography)({
   fontStyle: "italic",
 });
 
-const MapButton = styled(Button)({
-  padding: "0px",
-});
-
-const MapContainer = styled(Box)(({ theme }) => ({
-  maxWidth: "85vw",
-  maxHeight: "85vh",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  [theme.breakpoints.down("md")]: {
-    maxWidth: "100vw",
-    aspectRatio: 1,
-    maxHeight: "50vh",
-  },
-}));
-
 const Book = styled(Button)(({ theme }) => ({
   width: "fit-content",
   alignSelf: "center",
@@ -116,7 +98,7 @@ export default function MainTitle() {
   const { loading, propertyData } = useSelector(
     (state: RootState) => state.propertySlice
   );
-  const { translations, map } = propertyData || {};
+  const { translations } = propertyData || {};
 
   return (
     <MainTitleContainer>
@@ -137,29 +119,17 @@ export default function MainTitle() {
                 </Title>
                 <Map variant="body1">
                   {translations[i18n.language].location}{" "}
-                  <Modal
-                    trigger={
-                      <MapButton variant="text" tabIndex={-1}>
-                        {t("property.map")}
-                      </MapButton>
-                    }
-                    fullScreenWrapper={true}
-                    disableScroll={false}
-                    isTransparent={true}
-                  >
-                    <MapContainer>
-                      <iframe
-                        src={map}
-                        width="100%"
-                        height="100%"
-                        loading="lazy"
-                        referrerPolicy="no-referrer-when-downgrade"
-                      ></iframe>
-                    </MapContainer>
-                  </Modal>
                 </Map>
               </Info>
-              <Book variant="contained" endIcon={<ArrowOutwardIcon />}>
+              <Book
+                variant="contained"
+                endIcon={<ArrowOutwardIcon />}
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.location.href =
+                    "https://reservations.nisekocentral.com/en/";
+                }}
+              >
                 {t("property.book_now")}
               </Book>
             </Content>

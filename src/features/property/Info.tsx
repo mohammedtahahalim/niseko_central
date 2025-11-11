@@ -19,6 +19,7 @@ const InfoContainer = styled(Box)(({ theme }) => ({
     flexDirection: "column",
     gap: "20px",
     alignItems: "flex-start",
+    minHeight: "140px",
   },
 }));
 
@@ -100,10 +101,13 @@ const RightSkeltons = styled(Box)({
   flexWrap: "wrap",
 });
 
-const SkeltonPiece = styled(Skeleton)({
+const SkeltonPiece = styled(Skeleton)(({ theme }) => ({
   height: "60px",
   aspectRatio: "1",
-});
+  [theme.breakpoints.down("md")]: {
+    height: "35px",
+  },
+}));
 
 export default function Info() {
   const {

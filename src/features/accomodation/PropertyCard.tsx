@@ -52,7 +52,7 @@ export default function PropertyCard({ id, images, blurred_images }: Property) {
         sx={{ opacity: isLoaded ? 1 : 0.5 }}
       />
       <ShadowOverlay />
-      <Content></Content>
+      <Content />
     </PropertyCardWrapper>
   );
 }

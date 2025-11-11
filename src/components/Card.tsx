@@ -263,21 +263,13 @@ export default function Card({
         >
           <TagTitle
             variant="subtitle1"
-            color={
-              tag === 1
-                ? theme.palette.textColor?.main
-                : theme.palette.info?.main
-            }
+            color={tag === 1 ? "whitesmoke" : "black"}
           >
             {tags[i18n.language as keyof typeof tags][tag - 1]}
           </TagTitle>
           <TagSubtitle
             variant="body1"
-            color={
-              tag === 1
-                ? theme.palette.textColor?.main
-                : theme.palette.info?.main
-            }
+            color={tag === 1 ? "whitesmoke" : "black"}
           >
             {subTag[i18n.language as keyof typeof subTag]}
           </TagSubtitle>
