@@ -6,7 +6,6 @@ import { useTranslation } from "react-i18next";
 
 const LinkTitleWrapper = styled(Box)(({ theme }) => ({
   width: "fit-content",
-  padding: "10px",
   color: theme.palette.icons?.main,
   display: "flex",
   flexWrap: "wrap",

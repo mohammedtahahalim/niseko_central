@@ -13,19 +13,23 @@ const MainContainer = styled(Box)(({ theme }) => ({
   overflowX: "hidden",
 }));
 
-const BodyWrapper = styled(Container)({
+const BodyWrapper = styled(Container)(({ theme }) => ({
   flex: "1",
   marginTop: "115px",
+  padding: "0 3rem",
   "@media (max-height: 600px)": {
     minHeight: "calc(100vh + 125px)",
   },
-});
+  [theme.breakpoints.down("md")]: {
+    padding: "0rem",
+  },
+}));
 
 export default function Main() {
   return (
     <MainContainer>
       <Header />
-      <BodyWrapper role="main" maxWidth={"xl"}>
+      <BodyWrapper disableGutters role="main" maxWidth={"xl"}>
         <Outlet />
       </BodyWrapper>
       <Footer />
