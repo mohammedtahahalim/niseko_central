@@ -6,26 +6,6 @@ import useModal from "./useModal";
 import CloseIcon from "@mui/icons-material/Close";
 import { useLocation } from "react-router-dom";
 
-/* Read Carefully on how to use the modal */
-/*
-
--- The Modal accepts the component to trigger the opening of the modal as trigger prop.
--- The Modal takes the children as the instance of the modal to be created after the the trigger
-has been triggered.
--- it accepts the following additional props, fullScreenModal a boolean value that determine if the wrapper
-around the modal takes the full screen width or not (the wrapper styling can be adjusted by using the
-sx prop)
--- fullScreenWrapper that determine if the wrapper itself around your modal is full screen or not
--- blurBackground a boolean value, needed if the wrapper is bigger than the modal content
-this will render the wrapper as blurry glass effect that mask the backround to highlight the modal
--- sx an optional styling to style the wrapper of the modal (this is optional and had no default
-value)
--- br an optional number value that sets the border of the wrapper
--- disableScroll wether you want to disable scroll while modal is active or not, by default is false
-
-
-*/
-
 interface ModalProps {
   trigger: React.ReactElement<any>;
   children: React.ReactElement<any>;
@@ -112,6 +92,48 @@ export default function Modal({
   useEffect(() => {
     closeModal();
   }, [queries]);
+
+  useEffect(() => {
+    if (!isOpen || !modalRef.current) return;
+
+    const focusableSelectors = [
+      "a[href]",
+      "button",
+      "textarea",
+      "input",
+      "select",
+      "[tabindex]:not([tabindex='-1'])",
+    ].join(",");
+
+    const modal = modalRef.current;
+    const focusable = Array.from(
+      modal.querySelectorAll(focusableSelectors)
+    ) as HTMLElement[];
+
+    if (focusable.length === 0) return;
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Tab") {
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      } else if (e.key === "Escape") {
+        closeModal();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    first.focus();
+
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, closeModal]);
 
   const clonedTrigger = React.cloneElement(trigger, {
     ref: (node: HTMLElement) => {

@@ -16,6 +16,8 @@ const InfoContainer = styled(Box)(({ theme }) => ({
   padding: "0px 10px",
   flexWrap: "wrap",
   [theme.breakpoints.down("md")]: {
+    width: "100%",
+    padding: "0px",
     flexDirection: "column",
     gap: "20px",
     alignItems: "flex-start",
@@ -23,19 +25,26 @@ const InfoContainer = styled(Box)(({ theme }) => ({
   },
 }));
 
-const PropertyInfo = styled(Box)({
+const PropertyInfo = styled(Box)(({ theme }) => ({
   display: "flex",
   height: "100%",
   gap: "30px",
   flexWrap: "wrap",
-});
+  [theme.breakpoints.down("md")]: {
+    gap: "10px",
+  },
+}));
 
-const PropertyLocation = styled(Box)({
+const PropertyLocation = styled(Box)(({ theme }) => ({
   display: "flex",
   height: "100%",
   gap: "40px",
   flexWrap: "wrap",
-});
+  [theme.breakpoints.down("md")]: {
+    width: "100%",
+    gap: "10px",
+  },
+}));
 
 const InfoPiece = styled(Box)(({ theme }) => ({
   display: "flex",
@@ -43,6 +52,12 @@ const InfoPiece = styled(Box)(({ theme }) => ({
   gap: "2px",
   alignItems: "center",
   color: theme.palette.icons?.main,
+  [theme.breakpoints.down("md")]: {
+    minWidth: "45%",
+    flexDirection: "row",
+    alignItems: "center",
+    gap: "10px",
+  },
 }));
 
 const SvgContainer = styled(Box)(({ theme }) => ({
@@ -50,7 +65,7 @@ const SvgContainer = styled(Box)(({ theme }) => ({
   aspectRatio: "1",
   color: "inherit",
   [theme.breakpoints.down("md")]: {
-    minWidth: "20px",
+    minWidth: "25px",
   },
 }));
 
@@ -63,7 +78,7 @@ const InfoText = styled(Typography)(({ theme }) => ({
   justifyContent: "center",
   alignItems: "center",
   [theme.breakpoints.down("md")]: {
-    fontSize: "0.8rem",
+    fontSize: "0.85rem",
   },
 }));
 

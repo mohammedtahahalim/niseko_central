@@ -14,6 +14,7 @@ const DescriptionContainer = styled(Box)(({ theme }) => ({
   justifyContent: "space-between",
   [theme.breakpoints.down("nav_break")]: {
     flexDirection: "column",
+    width: "100%",
   },
 }));
 
@@ -26,7 +27,7 @@ const DescriptionWrapper = styled(Box)(({ theme }) => ({
   },
 }));
 
-const DescriptionContent = styled(Typography)(({ theme }) => ({
+const DescriptionContent = styled(Typography)({
   width: "100%",
   textWrap: "wrap",
   fontFamily: "Figtree",
@@ -35,10 +36,7 @@ const DescriptionContent = styled(Typography)(({ theme }) => ({
   textTransform: "capitalize",
   letterSpacing: "1.1px",
   lineHeight: "1.75rem",
-  [theme.breakpoints.down("nav_break")]: {
-    fontSize: "1.1rem",
-  },
-}));
+});
 
 const DescriptionSkeletonWrapper = styled(Box)({
   minWidth: "100%",
@@ -62,8 +60,8 @@ const AmenitiesWrapper = styled(Box)(({ theme }) => ({
   flexWrap: "wrap",
   padding: "0px 15px",
   [theme.breakpoints.down("sm")]: {
-    justifyContent: "center",
     padding: "0px",
+    gap: "10px",
   },
 }));
 
@@ -75,6 +73,11 @@ const InfoPiece = styled(Box)(({ theme }) => ({
   color: theme.palette.icons?.main,
   minWidth: "75px",
   maxWidth: "75px",
+  [theme.breakpoints.down("md")]: {
+    flexDirection: "row",
+    minWidth: "45%",
+    gap: "10px",
+  },
 }));
 
 const InfoText = styled(Typography)(({ theme }) => ({
@@ -97,7 +100,7 @@ const SvgContainer = styled(Box)(({ theme }) => ({
   aspectRatio: "1",
   color: "inherit",
   [theme.breakpoints.down("md")]: {
-    width: "35px",
+    width: "30px",
   },
 }));
 
