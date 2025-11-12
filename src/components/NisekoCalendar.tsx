@@ -90,11 +90,24 @@ export default function NisekoCalendar() {
   const { i18n, t } = useTranslation();
   const isMobile = useMediaQuery("(max-width: 768px)");
 
+  const handleKeydown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      openModal();
+    }
+  };
+
   return (
     <MantineProvider>
       <DatesProvider settings={{ locale: i18n.language, firstDayOfWeek: 0 }}>
         <NisekoCalendarWrapper>
-          <Box sx={{ width: "80%", height: "100%", position: "relative" }}>
+          <Box
+            sx={{
+              width: "80%",
+              height: "100%",
+              position: "relative",
+            }}
+            onKeyDown={handleKeydown}
+          >
             <CalendarInput
               type="text"
               value={`${convertDate(
