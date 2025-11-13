@@ -329,5 +329,191 @@
     "village": "Village",
     "lifts": "Ascenseurs",
     "floor_plan": "Plan d'étage"
+  },
+  "faq": {
+    "title": "FAQ",
+    "subtitle": "Questions fréquemment posées lors de la préparation de vos vacances au Japon avec nous.",
+    "q&a": [
+      {
+        "heading": "Niseko",
+        "questions": [
+          {
+            "q": "Où se trouve Niseko ?",
+            "a": "Niseko se situe sur l’île la plus au nord du Japon, Hokkaido. Elle est à environ 110 km de l’aéroport de New Chitose et à 95 km de Sapporo, la cinquième plus grande ville du Japon. Niseko se trouve environ 800 km au nord de Tokyo, la capitale. Vous pouvez la localiser sur Google Maps ici. Le nom « Niseko » fait généralement référence aux stations de ski situées sur le mont Niseko-Annupuri et ses environs. Techniquement, deux des quatre principales stations (Grand Hirafu et Hanazono) se trouvent dans la ville de Kutchan, et deux autres (Niseko Village et Annupuri) dans la ville de Niseko."
+          },
+          {
+            "q": "Comment y accéder ?",
+            "a": "Le moyen le plus simple pour se rendre à Niseko est de prendre un vol vers l’aéroport de New Chitose (CTS). Divers moyens de transport sont disponibles depuis l’aéroport, notamment les transferts privés, les bus et les trains. Niseko Central peut vous aider à organiser votre transfert depuis l’aéroport international de New Chitose. Pour plus d’informations, consultez notre page Transferts. Si vous prenez le train, vous devrez changer à la gare d’Otaru ou de Sapporo. Veillez à descendre à la gare de Kutchan et non à celle de Hirafu. Pour les horaires et les tarifs, veuillez consulter le site de JR Hokkaido."
+          },
+          {
+            "q": "Quelles compagnies aériennes desservent l’aéroport de New Chitose ?",
+            "a": "Des vols internationaux directs vers l’aéroport de New Chitose (CTS) sont disponibles depuis plusieurs grandes villes d’Asie et d’ailleurs. Les voyageurs peuvent voler directement depuis Singapour (Scoot), Malaisie (AirAsia X), Thaïlande (Thai Airways, ANA, China Airlines, JAL), Taïwan (ANA, China Airlines, EVA Air, JAL), Hong Kong (Hong Kong Airlines, Cathay Pacific, JAL), Corée du Sud (Korean Air, JAL, Air Busan et d’autres), Chine (Air China, JAL, ANA et d’autres) et Hawaï (Hawaiian Airlines). Pour les vols intérieurs, des liaisons directes existent depuis Tokyo (aéroports Haneda et Narita) et Osaka (aéroport Kansai), opérées par JAL et ANA, ainsi que par plusieurs compagnies low cost (Peach Aviation, Air Do, Vanilla Air, Skymark, Jetstar Japan)."
+          },
+          {
+            "q": "Dois-je réserver les services invités (transferts / cours / restaurants, etc.) avant mon arrivée ?",
+            "a": "Absolument ! Il est fortement recommandé de réserver tous les services le plus tôt possible. Les disponibilités pour les transferts et les cours de ski s’épuisent très rapidement, surtout pendant les périodes de pointe. Pour plus de détails et pour réserver, consultez notre page Services clients. De nombreux restaurants populaires à Niseko se remplissent longtemps à l’avance, tandis que d’autres n’acceptent les réservations qu’à partir de fin novembre ou début décembre. La plupart des restaurants de Niseko-Hirafu proposent désormais la réservation en ligne ou disposent de personnel anglophone. Pour plus d’informations sur la restauration et la réservation, rendez-vous sur notre page Restaurants."
+          },
+          {
+            "q": "Quelle est la meilleure période pour venir à Niseko ?",
+            "a": "Les quatre saisons offrent des expériences variées à Niseko. Bien que la station soit surtout connue pour sa poudreuse abondante, de plus en plus de visiteurs profitent de son climat estival frais pendant la saison verte, de juin à octobre. La saison de ski s’étend généralement de fin novembre à début mai ; au printemps, vous pouvez combiner ski, rafting et vélo. L’été apporte un temps parfait pour les activités de plein air : golf, randonnée, vélo (de route ou de montagne), rafting et récolte de produits locaux jusqu’en automne. L’hiver attire des visiteurs du monde entier grâce à sa neige légère et constante, ainsi qu’à la qualité de l’hébergement, de la gastronomie, et des onsen (bains thermaux)."
+          },
+          {
+            "q": "Quelles sont les conditions météo et d’enneigement en hiver ?",
+            "a": "Le temps varie considérablement du début de la saison (novembre) à sa fin (mai). De décembre à février, ce sont les mois les plus froids et les plus enneigés. Mars et avril sont les mois de ski de printemps, avec davantage de soleil et des températures plus douces. Le ski de printemps est agréable : la neige devient plus souple et il peut encore neiger en mars. Consultez ici les moyennes de température et de chutes de neige à Niseko."
+          },
+          {
+            "q": "Où puis-je acheter des provisions à Niseko ?",
+            "a": "Plusieurs options existent à Niseko-Hirafu, notamment Sapporo Drug Store, Seicomart et Lawson. Pour un plus grand choix, trois supermarchés principaux se trouvent à Kutchan, à 10–15 minutes en voiture : Lucky, MaxValu et Co-Op. Vous trouverez également des produits supplémentaires chez MPocket."
+          },
+          {
+            "q": "Où puis-je profiter d’un onsen (bain thermal) ?",
+            "a": "Plusieurs options se trouvent à distance de marche dans le village de Niseko-Hirafu, notamment l’Onsen de l’hôtel Hirafu Prince (dans la partie haute) et Yukoro Onsen (dans la partie basse). Le secteur d’Annupuri compte également de nombreux onsen, tels que Kanronomori, Yugokorotei, ainsi qu’un bain mixte au Grand Hotel."
+          }
+        ]
+      },
+      {
+        "heading": "Niseko Central",
+        "questions": [
+          {
+            "q": "Puis-je séjourner avec des animaux de compagnie ?",
+            "a": "Les animaux sont autorisés dans certains hébergements uniquement pendant les mois d'été (avril-novembre) et limités aux petits chiens pesant 6 kg ou moins (jusqu'à 2 chiens). Des frais supplémentaires de 5 000 yens par chien (pour chaque période de 7 nuits) seront appliqués. Veuillez nous contacter pour plus de détails."
+          },
+          {
+            "q": "Quelle est la différence entre Standard, Eco Serviced et Serviced ?",
+            "a": "Votre niveau de service pour l'hébergement est Standard, Eco Serviced ou Serviced, comme indiqué dans votre proposition et confirmation sous la section Type de Service. Veuillez noter que le nettoyage Standard nécessite que l'hébergement soit laissé propre et rangé - voir la FAQ suivante pour plus d'informations. \nStandard - 1 nettoyage intermédiaire comprend un nettoyage complet, serviettes propres, changement de linge et enlèvement des ordures tous les 8 jours, répartis de manière équilibrée sur le séjour (applicable pour 8 nuits ou plus). \nEco Serviced - Serviettes propres et enlèvement des ordures tous les 2 jours. Nettoyage complet, serviettes propres, changement de linge et enlèvement des ordures tous les 4 jours. \nServiced - Nettoyage complet incluant serviettes propres, préparation du lit et enlèvement des ordures tous les 2 jours. Changement du linge de lit tous les 4 jours. Pour plus d'informations sur le nettoyage ou pour modifier votre service, veuillez nous contacter."
+          },
+          {
+            "q": "Que se passe-t-il si je ne veux pas nettoyer ?",
+            "a": "Au moment du départ, les clients doivent laisser leur hébergement propre et rangé, y compris :\n- Tous les meubles remis à leur position d'origine.\n- Toutes les ordures placées dans les poubelles.\n- Toute la vaisselle, les couverts et les ustensiles de cuisine utilisés lavés et rangés dans les placards ou laissés sur l'égouttoir, ou mis dans le lave-vaisselle avec le cycle démarré.\nSi les clients le souhaitent, notre équipe de ménage peut s'occuper de ces tâches après le départ moyennant des frais supplémentaires de 15 000 ¥ pour les appartements/condominiums et 20 000 ¥ pour les maisons. Ces frais seront automatiquement facturés lors du départ."
+          },
+          {
+            "q": "Quelles commodités sont fournies dans l'hébergement ? Dois-je apporter quelque chose ?",
+            "a": "Tous nos hébergements sont fournis avec des articles de toilette tels que shampooing, après-shampooing, gel douche, savon pour les mains et serviettes. Des sèche-cheveux sont fournis dans chaque salle de bain. La lessive en poudre est disponible dans les hébergements avec installations de lavage. Il y a également des produits de nettoyage pour la cuisine tels que éponges, gants et liquide vaisselle. Les hébergements avec cuisine complète sont équipés de couverts, vaisselle et ustensiles de cuisine courants."
+          },
+          {
+            "q": "Quels sont vos horaires d'arrivée et de départ ?",
+            "a": "L'arrivée se fait à partir de 15h et le départ avant 10h."
+          },
+          {
+            "q": "Où dois-je m'enregistrer ?",
+            "a": "L'enregistrement se fera dans l'hébergement. Nous vous demandons donc de fournir votre heure et mode d'arrivée à l'avance afin que nous puissions organiser notre rencontre."
+          },
+          {
+            "q": "Est-il possible d'avoir un enregistrement anticipé ou un départ tardif ?",
+            "a": "L'enregistrement anticipé et le départ tardif ne peuvent pas être garantis, mais nous essayons de répondre à toutes les demandes dans la mesure du possible. Des frais peuvent s'appliquer. Veuillez nous informer si vous souhaitez en faire la demande."
+          },
+          {
+            "q": "Où se trouve votre réception ?",
+            "a": "Notre réception est située au rez-de-chaussée de l'immeuble Yama Shizen East. Veuillez noter que les horaires d'ouverture varient selon la saison."
+          },
+          {
+            "q": "Y a-t-il du Wi-Fi dans l'hébergement ?",
+            "a": "Oui, tous nos hébergements disposent d'une connexion Wi-Fi gratuite et illimitée."
+          },
+          {
+            "q": "Y a-t-il des installations de stockage pour skis/planches dans mon hébergement ?",
+            "a": "Oui, tous nos hébergements disposent d'installations de rangement pour skis et planches."
+          },
+          {
+            "q": "Y a-t-il un parking disponible dans mon hébergement ?",
+            "a": "Certains hébergements disposent d'un parking couvert, garages, abris voiture ou emplacements désignés. Les places peuvent être très limitées et des frais peuvent s'appliquer. Veuillez nous informer à l'avance si vous avez besoin d'un parking pendant votre séjour."
+          },
+          {
+            "q": "Puis-je ajouter une personne supplémentaire ?",
+            "a": "Dans de nombreux cas, nous pouvons accueillir une personne supplémentaire dans votre hébergement. Cependant, chaque hébergement a un nombre maximum d'occupants qui ne peut être dépassé. Selon le nombre de personnes dans votre réservation, il peut ne pas être possible d'ajouter plus d'invités. Dans certains cas, des frais supplémentaires peuvent s'appliquer. Si plus de personnes que le nombre de lits séjournent, nous fournirons un futon de style japonais. Veuillez noter qu'un seul futon japonais peut être ajouté par hébergement. Contactez notre équipe Réservations (reservations@nisekocentral.com) pour demander l'ajout d'invités."
+          },
+          {
+            "q": "Que se passe-t-il si je souhaite modifier mes dates ?",
+            "a": "Il est parfois possible de modifier légèrement vos dates de voyage, mais cela dépend des autres réservations dans l'hébergement choisi. Selon le changement demandé, des frais peuvent s'appliquer. Notre équipe Réservations pourra vous informer si les changements sont possibles et des frais éventuels."
+          },
+          {
+            "q": "Quels services propose Niseko Central ?",
+            "a": "En plus de l'hébergement, Niseko Central peut également réserver tous vos services invités pendant votre séjour, y compris transferts aéroport, forfaits de remontées mécaniques, cours de ski/snowboard, location d'équipements, livraison de vins et plus encore."
+          },
+          {
+            "q": "Que se passe-t-il si ma réservation implique un changement de chambre ?",
+            "a": "Si votre séjour comprend un changement de chambre, vous en serez informé lors de la réservation. Veuillez emballer et laisser vos bagages dans votre chambre avant 10h. Notre personnel collectera et déplacera vos bagages vers votre nouvelle chambre. Votre nouvelle chambre sera prête à partir de 15h et vous pourrez récupérer vos nouvelles clés à la réception après 15h."
+          }
+        ]
+      },
+      {
+        "heading": "Japon",
+        "questions": [
+          {
+            "q": "Faut-il un passeport pour entrer au Japon ?",
+            "a": "Oui, un passeport valide est requis pour entrer au Japon. Assurez-vous que votre passeport est valide pour toute la durée de votre séjour."
+          },
+          {
+            "q": "Ai-je besoin d'un visa pour entrer au Japon ?",
+            "a": "Selon votre nationalité, vous pourriez avoir besoin d'un visa pour le Japon. Certains pays bénéficient d'une exemption de visa pour des séjours courts. Veuillez vérifier les exigences de visa auprès de l'ambassade ou du consulat japonais de votre pays avant de voyager."
+          },
+          {
+            "q": "Puis-je utiliser ma carte bancaire au Japon ?",
+            "a": "Les cartes de crédit internationales sont acceptées dans de nombreux endroits, mais certains commerces et restaurants n'acceptent que de l'argent liquide. Il est recommandé d’avoir toujours des yens japonais en espèces, surtout dans les petites villes ou stations de ski."
+          },
+          {
+            "q": "Puis-je utiliser mon téléphone portable au Japon ?",
+            "a": "Oui, mais vérifiez si votre téléphone est compatible avec les réseaux japonais et si votre forfait inclut l’itinérance internationale. Une alternative populaire consiste à louer un pocket Wi-Fi ou une carte SIM locale pour un accès Internet fiable."
+          },
+          {
+            "q": "Dois-je prendre des précautions particulières pour la santé ?",
+            "a": "Aucune vaccination particulière n’est requise pour le Japon, mais il est conseillé d’être à jour dans vos vaccins de routine. Si vous prenez des médicaments, assurez-vous d’apporter une quantité suffisante pour votre séjour et la prescription nécessaire, au cas où la douane japonaise demanderait des documents."
+          },
+          {
+            "q": "Quels sont les numéros d'urgence au Japon ?",
+            "a": "Police : 110\nPompiers / Ambulance : 119"
+          },
+          {
+            "q": "Y a-t-il des coutumes particulières à respecter ?",
+            "a": "Oui, certaines coutumes doivent être respectées au Japon, comme enlever ses chaussures à l’entrée d’une maison, ne pas parler fort dans les transports publics, et respecter la file d’attente. Le respect des règles locales est fortement apprécié."
+          },
+          {
+            "q": "Quels adaptateurs électriques sont nécessaires au Japon ?",
+            "a": "Le Japon utilise des prises de type A (2 broches plates) et la tension standard est de 100 V. Vérifiez que vos appareils sont compatibles ou apportez un adaptateur/convertisseur approprié."
+          },
+          {
+            "q": "Quel est le climat au Japon ?",
+            "a": "Le Japon a quatre saisons distinctes. L’hiver (décembre-février) est froid avec de la neige dans le nord et les stations de ski. Le printemps (mars-mai) est doux et célèbre pour les fleurs de cerisier. L’été (juin-août) est chaud et humide, avec la saison des pluies en juin. L’automne (septembre-novembre) est frais avec de belles couleurs automnales."
+          },
+          {
+            "q": "Dois-je connaître la langue japonaise ?",
+            "a": "La connaissance du japonais n’est pas obligatoire, mais elle peut être utile. Dans les zones touristiques, de nombreux panneaux sont en anglais et le personnel hôtelier parle souvent anglais. Cependant, dans les régions rurales, moins de personnes parlent anglais."
+          }
+        ]
+      },
+      {
+        "heading": "Ski / Snowboard",
+        "questions": [
+          {
+            "q": "Quels vêtements dois-je prévoir pour Niseko ?",
+            "a": "Des vêtements de ski imperméables et bien isolés sont nécessaires pour skier ou faire du snowboard à Niseko. Alors que d'autres stations de ski au Japon peuvent être plus froides, les températures de décembre à mi-mars sont généralement négatives jusqu'à -10°C. Parfois, elles peuvent descendre jusqu'à -20°C pour le ski nocturne au sommet de la montagne. Des sous-vêtements thermiques sont recommandés pour les débutants et ceux qui ont facilement froid. Hors ski, des chaussures d’hiver chaudes et imperméables avec une bonne adhérence sont fortement conseillées. Des crampons amovibles peuvent être achetés à Niseko pour marcher en ville, mais veillez à ne pas les porter à l'intérieur de votre logement pour ne pas abîmer le sol."
+          },
+          {
+            "q": "Quelle est la différence entre un forfait All Mountain et Grand Hirafu ?",
+            "a": "Un forfait All Mountain donne accès aux quatre stations des montagnes Niseko-Annupuri : Grand Hirafu, Annupuri, Niseko Village et Hanazono. Un forfait Grand Hirafu permet de skier uniquement à Grand Hirafu et Hanazono."
+          },
+          {
+            "q": "Comment puis-je accéder aux autres stations de la montagne ?",
+            "a": "Toutes les stations sont reliées par des remontées mécaniques au sommet pour les skieurs intermédiaires et avancés. Selon les conditions, certains passages peuvent nécessiter de traverser la montagne. Grand Hirafu, Niseko Village et Annupuri sont également reliés par la navette Niseko United, gratuite pour les détenteurs d’un forfait All Mountain. Hanazono est accessible via la navette Hanazono depuis Grand Hirafu."
+          },
+          {
+            "q": "Ai-je besoin d’un forfait séparé pour le ski nocturne ?",
+            "a": "Le ski nocturne est gratuit si vous possédez un forfait valide d’au moins 1 jour. Le ski nocturne à Grand Hirafu couvre les plus grandes zones du Japon jusqu’à la fin du ski nocturne, ce qui permet de skier jusqu’à 12 heures par jour si vous en avez l’énergie. Selon la neige, le ski nocturne commence généralement début décembre et se poursuit jusqu’à fin mars. Consultez le site de Grand Hirafu pour les dates et horaires prévus des remontées."
+          },
+          {
+            "q": "Combien de pistes y a-t-il dans la station ?",
+            "a": "Il y a au total 61 pistes sur l’ensemble du domaine Niseko United, soit 8,87 km² skiables. Le système de remontées comprend 3 téléphériques et 32 remontées mécaniques."
+          },
+          {
+            "q": "Où puis-je trouver un plan des pistes ?",
+            "a": "Vous pouvez consulter les plans actualisés des pistes All Mountain et Grand Hirafu sur notre page d’informations sur les forfaits de ski."
+          },
+          {
+            "q": "Quels sites recommandez-vous pour les prévisions météo et l’état de la neige à Niseko ?",
+            "a": "Experience Niseko propose des mises à jour quotidiennes sur la neige, ainsi que Snow Japan. Snow-forecast.com est également une bonne source pour les prévisions météo hivernales, avec les prévisions de neige au niveau du village, du milieu de la montagne et du sommet des remontées."
+          }
+        ]
+      }
+    ]
   }
 }
