@@ -8,11 +8,10 @@ export default async function handler(req, res) {
   if (limit && isNaN(Number(limit))) {
     return res.status(403).json({ message: "Bad Request ..." });
   }
-  const randomDenom = Math.floor(Math.random() * Math.floor(limit / 3));
   try {
     const connection = dbConnection();
     const query = `
-        SELECT p.id, p.images, p.max_pax, p.lifts_distance, JSON_OBJECTAGG(pt.language_code, JSON_OBJECT('title', pt.title, 'type', pt.type)) as translations
+        SELECT p.id, p.images, p.blurred_images, p.max_pax, p.lifts_distance, JSON_OBJECTAGG(pt.language_code, JSON_OBJECT('title', pt.title, 'type', pt.type)) as translations
         FROM property p INNER JOIN property_translations pt ON p.id = pt.property_id
         GROUP BY p.id
         ORDER BY RAND()
@@ -26,6 +25,7 @@ export default async function handler(req, res) {
       return {
         id: property.id,
         image: JSON.parse(property.images)[0],
+        blurred_image: JSON.parse(property.blurred_images)[0],
         max_pax: property.max_pax,
         lifts_distance: property.lifts_distance,
         ...property.translations,

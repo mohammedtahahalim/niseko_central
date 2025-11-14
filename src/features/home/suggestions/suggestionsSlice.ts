@@ -12,6 +12,7 @@ interface FetchSuggestionsProps {
 const suggestionsBookingSchema = z.object({
   id: z.number().nonnegative(),
   image: z.string(),
+  blurred_image: z.string(),
   max_pax: z.number(),
   lifts_distance: z.number(),
   tag: z.number(),

@@ -5,13 +5,13 @@ import { useRef } from "react";
 import type { Swiper as SwiperType } from "swiper/types";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../../app/store";
+import { Keyboard } from "swiper/modules";
 import useSlideCount from "./useSlideCount";
 import Card from "./Card";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import EastIcon from "@mui/icons-material/East";
 import WestIcon from "@mui/icons-material/West";
-import { Keyboard } from "swiper/modules";
 import Skelton from "./Skelton";
 import RenderOnView from "../../render_on_view/RenderOnView";
 
@@ -137,6 +137,7 @@ export default function Suggestions() {
                   <Card
                     id={booking.id}
                     image={booking.image}
+                    blurred_image={booking.blurred_image}
                     lifts_ditance={booking.lifts_distance}
                     max_pax={booking.max_pax}
                     tag={booking.tag}
