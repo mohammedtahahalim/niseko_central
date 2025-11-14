@@ -135,9 +135,7 @@ const SliderImage = styled("img")({
 });
 
 export default function Showcase() {
-  const { propertyData } = useSelector(
-    (state: RootState) => state.propertySlice
-  );
+  const { propertyData } = useSelector((state: RootState) => state.property);
   const mainSwiperRef = useRef<SwiperType | null>(null);
   const thumbSwiperRef = useRef<SwiperType | null>(null);
   const { images } = propertyData || {};

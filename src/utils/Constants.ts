@@ -124,3 +124,26 @@ export const subTag = {
   fr: "Hiver seulement",
   ja: "冬季限定",
 };
+
+export const properties_types: Map<number, string> = new Map([
+  [0, "All Properties"],
+  [40, "Deep Tracks"],
+  [42, "Ezo 365"],
+  [38, "Hirafu House"],
+  [37, "Horizon Townhouses"],
+  [12709, "Hirafu Woods"],
+  [36, "J House"],
+  [35, "Kashi Lodge"],
+  [33, "Kisetsukan"],
+  [32, "Konkuriito"],
+  [31, "Miharashi"],
+  [30, "Miyuki"],
+  [29, "Mori Houses"],
+  [28, "Powder Tracks"],
+  [27, "Sekka Kan"],
+  [26, "Shirakaba"],
+  [9463, "Tsuru"],
+  [21, "Whiskey Woods"],
+  [42, "Yama Shizen"],
+  [24, "Youtei Tracks"],
+]);

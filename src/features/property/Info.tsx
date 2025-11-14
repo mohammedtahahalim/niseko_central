@@ -133,8 +133,8 @@ export default function Info() {
     lifts_distance,
     floor_plan,
     map,
-  } = useSelector((state: RootState) => state.propertySlice.propertyData) || {};
-  const { loading } = useSelector((state: RootState) => state.propertySlice);
+  } = useSelector((state: RootState) => state.property.propertyData) || {};
+  const { loading } = useSelector((state: RootState) => state.property);
   const { t } = useTranslation();
   const theme = useTheme();
 

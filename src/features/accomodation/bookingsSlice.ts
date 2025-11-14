@@ -6,6 +6,7 @@ import {
 import type { FilterValue, SortingType } from "../../utils/Types";
 import z from "zod";
 import type Property from "../../pages/item_pages/Property";
+import { properties_types } from "../../utils/Constants";
 
 const bookingsScehma = z.object({
   id: z.number(),
@@ -38,7 +39,7 @@ const bookingsScehma = z.object({
 
 export type Property = z.infer<typeof bookingsScehma>;
 
-const DEFAULT_KEY = "default"; // this is to avoid refetching when there is no queries
+const DEFAULT_KEY = "default";
 const timeouts: Record<string, ReturnType<typeof setTimeout>> = {};
 
 const bookingCache = new Proxy(
@@ -146,10 +147,22 @@ export const bookingSlice = createSlice({
       const { filter, value } = action.payload;
       if (filter === "max_pax") {
         state.filters.max_pax = value;
+        state.displayBookings = state.displayBookings.filter(
+          (booking) => booking.max_pax >= action.payload.value
+        );
       } else if (filter === "type") {
         state.filters.type = value;
       } else if (filter === "property") {
         state.filters.property = value;
+        if (action.payload.value === 0) {
+          state.displayBookings = state.bookings;
+        } else {
+          state.displayBookings = state.displayBookings.filter(
+            (booking) =>
+              booking.translations.en.title ===
+              properties_types.get(action.payload.value)
+          );
+        }
       }
     },
     sortBookings: (state, action: PayloadAction<SortingType>) => {

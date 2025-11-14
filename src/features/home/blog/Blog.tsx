@@ -95,9 +95,7 @@ export default function Blog() {
   const { t, i18n } = useTranslation();
   const { slideCount } = useSlideCount();
   const swiperRef = useRef<SwiperType | null>(null);
-  const { blogs, blogLoading } = useSelector(
-    (state: RootState) => state.latestBlogs
-  );
+  const { blogs, blogLoading } = useSelector((state: RootState) => state.blogs);
   const isArabic = i18n.language === "ar";
 
   return (

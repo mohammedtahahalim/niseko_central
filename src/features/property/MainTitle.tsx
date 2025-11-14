@@ -2,7 +2,8 @@ import { Box, Skeleton, styled, Button, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../app/store";
 import RenderOnView from "../render_on_view/RenderOnView";
-import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
+import NorthWestIcon from "@mui/icons-material/NorthWest";
+import NorthEastIcon from "@mui/icons-material/NorthEast";
 import { useTranslation } from "react-i18next";
 
 const MainTitleContainer = styled(Box)(({ theme }) => ({
@@ -52,12 +53,13 @@ const Map = styled(Typography)({
   fontStyle: "italic",
 });
 
-const Book = styled(Button)(({ theme }) => ({
+const Book = styled(Button)<{ isArabic: boolean }>(({ theme, isArabic }) => ({
   width: "fit-content",
   alignSelf: "center",
   borderRadius: "50px",
   padding: "12px 24px",
   backgroundColor: "#374151",
+  gap: isArabic ? "10px" : "0px",
   [theme.breakpoints.down("md")]: {
     alignSelf: "flex-end",
   },
@@ -96,7 +98,7 @@ const SkeltonButton = styled(Skeleton)(({ theme }) => ({
 export default function MainTitle() {
   const { t, i18n } = useTranslation();
   const { loading, propertyData } = useSelector(
-    (state: RootState) => state.propertySlice
+    (state: RootState) => state.property
   );
   const { translations } = propertyData || {};
 
@@ -123,7 +125,14 @@ export default function MainTitle() {
               </Info>
               <Book
                 variant="contained"
-                endIcon={<ArrowOutwardIcon />}
+                endIcon={
+                  i18n.language === "ar" ? (
+                    <NorthWestIcon fontSize="small" />
+                  ) : (
+                    <NorthEastIcon fontSize="small" />
+                  )
+                }
+                isArabic={i18n.language === "ar"}
                 onClick={(e) => {
                   e.preventDefault();
                   window.location.href =

@@ -50,7 +50,7 @@ const CustomSkelton = styled(Skeleton)({
 
 export default function Gallery() {
   const { loading, propertyData } = useSelector(
-    (state: RootState) => state.propertySlice
+    (state: RootState) => state.property
   );
   const { images, blurred_images } = propertyData || {};
 
