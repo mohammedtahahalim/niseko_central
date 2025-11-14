@@ -7,6 +7,7 @@ import { subTag, tags } from "../../../utils/Constants";
 interface CardProps {
   id: number;
   image: string;
+  blurred_image: string;
   lifts_ditance: number;
   max_pax: number;
   title: string;
@@ -208,6 +209,7 @@ const Distance = styled(Typography)({
 export default function Card({
   id,
   image,
+  blurred_image,
   lifts_ditance,
   max_pax,
   title,
@@ -216,6 +218,7 @@ export default function Card({
 }: CardProps) {
   const { t, i18n } = useTranslation();
   const [isHovering, setIsHovering] = useState<boolean>(false);
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const navigate = useNavigate();
 
   return (
@@ -225,13 +228,15 @@ export default function Card({
     >
       <ImageContainer>
         <img
-          src={image}
+          src={isLoaded ? image : blurred_image}
           alt={title}
           width={"100%"}
           height={"100%"}
+          onLoad={() => setIsLoaded(true)}
           style={{
             objectFit: "cover",
             scale: isHovering ? "1.1" : "1",
+            opacity: isLoaded ? 1 : 0.5,
             transition: "all 0.4s ease-in-out",
           }}
           loading="lazy"

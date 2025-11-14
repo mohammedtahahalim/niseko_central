@@ -9,6 +9,7 @@ import WestIcon from "@mui/icons-material/West";
 interface NewsCardProps {
   image: string;
   title: string;
+  blurry_image: string;
 }
 
 const NewsCardWrapper = styled(Box)({
@@ -70,25 +71,33 @@ const More = styled(Button)({
   gap: "8px",
 });
 
-export default function NewsCard({ image, title }: NewsCardProps) {
+export default function NewsCard({
+  image,
+  title,
+  blurry_image,
+}: NewsCardProps) {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const [onHover, setOnHover] = useState<boolean>(false);
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const isArabic = i18n.language === "ar";
 
   return (
     <NewsCardWrapper tabIndex={0}>
       <ImageContainer>
         <img
-          src={image}
+          src={isLoaded ? image : blurry_image}
           alt="News Article Image"
           style={{
             objectFit: "cover",
             width: "100%",
             height: "100%",
+            opacity: isLoaded ? 1 : 0.5,
             scale: onHover ? "1.1" : "1",
             transition: "all 0.35s ease-in-out",
           }}
+          onLoad={() => setIsLoaded(true)}
+          loading="lazy"
         />
       </ImageContainer>
       <ShadeLayer

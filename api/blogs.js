@@ -34,7 +34,7 @@ export default async function handler(req, res) {
       en: "Effortless Travel: Niseko Central’s Shuttle Service for a Smooth Arrival & Departure",
       ja: "快適な旅を：ニセコセントラルのシャトルサービスでスムーズな到着と出発を",
       ar: "سفر سهل: خدمة النقل المكوكية من نيسيكو سنترال لضمان وصول ومغادرة سلسة",
-      fr: "Voyagez sans effort : le service de navette de Niseko Central pour une arrivée et un départ en douceur",
+      fr: "Voyagez sans effort : le service de navette de Niseko Central pour une arrivée et un départ en douceur",
       image:
         "https://d1z517741srsht.cloudfront.net/blog/_1536xAUTO_crop_center-center_none/322236/NC-Toyota-HiAce.webp",
       date: "March 22, 2025",
@@ -43,7 +43,7 @@ export default async function handler(req, res) {
       en: "Niseko Central 2025/26: Discover Insider Tips for Securing Your Ideal Accommodation at the Best Rates",
       ja: "ニセコセントラル 2025/26：最高の料金で理想の宿泊施設を確保するためのヒント",
       ar: "نيسيكو سنترال 2025/26: اكتشف نصائح الخبراء لتأمين إقامتك المثالية بأفضل الأسعار",
-      fr: "Niseko Central 2025/26 : découvrez nos conseils pour trouver l'hébergement idéal au meilleur prix.",
+      fr: "Niseko Central 2025/26 : découvrez nos conseils pour trouver l'hébergement idéal au meilleur prix.",
       image:
         "https://d1z517741srsht.cloudfront.net/blog/_1536xAUTO_crop_center-center_none/257806/Drone-Blue-Skies-Winter-Trees-01-11-18-2_2024-02-28-082708_ftbj.webp",
       date: "March 10, 2025",

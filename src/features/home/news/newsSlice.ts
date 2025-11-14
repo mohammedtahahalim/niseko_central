@@ -4,24 +4,28 @@ import {
   type PayloadAction,
 } from "@reduxjs/toolkit";
 import z from "zod";
-import type { TLanguage } from "../../languages/changeLanguage";
-
-type NewsArticle = Record<TLanguage, string> & { image: string };
-
-type NewsData = NewsArticle[];
 
 interface FetchNewsProps {
   queries?: Record<string, string | number>;
   options?: RequestInit;
 }
 
-const newsSchema = z.record(
-  z.string(),
-  z.object({ title: z.string(), image: z.string() }).or(z.string())
-);
+const newsSchema = z.object({
+  id: z.number(),
+  image: z.string(),
+  blurry_image: z.string(),
+  article: z.object({
+    en: z.object({ title: z.string(), content: z.string() }),
+    ar: z.object({ title: z.string(), content: z.string() }),
+    ja: z.object({ title: z.string(), content: z.string() }),
+    fr: z.object({ title: z.string(), content: z.string() }),
+  }),
+});
+
+type NewsData = z.infer<typeof newsSchema>;
 
 export const fetchNews = createAsyncThunk<
-  NewsData,
+  NewsData[],
   FetchNewsProps | null,
   { rejectValue: string }
 >("news/thunk", async (args, { signal, rejectWithValue }) => {
@@ -33,7 +37,7 @@ export const fetchNews = createAsyncThunk<
   );
   const fullURL: string = `${
     import.meta.env.VITE_API_URL
-  }/api/latestnews?${fullQueries}`;
+  }/api/news?${fullQueries}`;
   const fullOptions: RequestInit = {
     method: "get",
     signal,
@@ -45,7 +49,7 @@ export const fetchNews = createAsyncThunk<
       throw new Error(response.status.toString());
     }
     const rawData = await response.json();
-    const data = (rawData.latestNews as NewsData).filter(
+    const data = (rawData.news as NewsData[]).filter(
       (news) => newsSchema.safeParse(news).success
     );
     return data;
@@ -63,13 +67,13 @@ export const fetchNews = createAsyncThunk<
 interface NewsState {
   newsLoading: boolean;
   error: string | null;
-  latestNews: NewsData;
+  news: NewsData[];
 }
 
 const initialState: NewsState = {
   newsLoading: false,
   error: null,
-  latestNews: [],
+  news: [],
 };
 
 const newsSlice = createSlice({
@@ -90,7 +94,7 @@ const newsSlice = createSlice({
     );
     builder.addCase(fetchNews.fulfilled, (state, action) => {
       state.newsLoading = false;
-      state.latestNews = action.payload;
+      state.news = action.payload;
     });
   },
 });
