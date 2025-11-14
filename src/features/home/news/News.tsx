@@ -5,7 +5,6 @@ import type { Swiper as SwiperType } from "swiper/types";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../../app/store";
-import type { TLanguage } from "../../languages/changeLanguage";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import EastIcon from "@mui/icons-material/East";
@@ -96,7 +95,7 @@ export default function News() {
   const { t, i18n } = useTranslation();
   const swiperRef = useRef<SwiperType | null>(null);
   const { slideCount, maxHeight } = useSlideAndHeightCount();
-  const { latestNews, newsLoading } = useSelector(
+  const { news, newsLoading } = useSelector(
     (state: RootState) => state.latestNews
   );
   const isArabic = i18n.language === "ar";
@@ -125,7 +124,7 @@ export default function News() {
         {newsLoading && (
           <Skelton skeltonNum={slideCount} maxHeight={maxHeight} />
         )}
-        {!newsLoading && latestNews.length !== 0 && (
+        {!newsLoading && news.length !== 0 && (
           <NewsSlider
             modules={[Keyboard]}
             slidesPerView={slideCount}
@@ -137,12 +136,16 @@ export default function News() {
             role="region"
             aria-label="Article Slider"
           >
-            {latestNews.map((news, idx) => {
+            {news.map((news, idx) => {
               return (
                 <NewsSlide key={idx} maxHeight={maxHeight}>
                   <NewsCard
-                    title={news[i18n.language as TLanguage]}
-                    image={news["image"]}
+                    title={
+                      news.article[i18n.language as keyof typeof news.article]
+                        .title
+                    }
+                    image={news.image}
+                    blurry_image={news.blurry_image}
                   />
                 </NewsSlide>
               );

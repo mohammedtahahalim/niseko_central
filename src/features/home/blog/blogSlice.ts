@@ -36,7 +36,7 @@ export const fetchBlogs = createAsyncThunk<
         .filter(([_, v]) => v !== null && v !== undefined)
         .map(([k, v]) => [k, String(v)])
     ).toString();
-    const fullURL: string = `${import.meta.env.VITE_API_URL}/api/latestblogs${
+    const fullURL: string = `${import.meta.env.VITE_API_URL}/api/blogs${
       fullQueries ? "?" + fullQueries : ""
     }`;
     const options: RequestInit = {
