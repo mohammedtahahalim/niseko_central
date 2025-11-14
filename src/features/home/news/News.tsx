@@ -140,6 +140,7 @@ export default function News() {
               return (
                 <NewsSlide key={idx} maxHeight={maxHeight}>
                   <NewsCard
+                    id={news.id}
                     title={
                       news.article[i18n.language as keyof typeof news.article]
                         .title

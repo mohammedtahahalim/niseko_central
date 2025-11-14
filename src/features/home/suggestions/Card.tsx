@@ -2,7 +2,7 @@ import { Box, Button, styled, Typography } from "@mui/material";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { subTag, tags } from "../../../utils/Constants";
+import { sanitizeURL, subTag, tags } from "../../../utils/Constants";
 
 interface CardProps {
   id: number;
@@ -223,7 +223,11 @@ export default function Card({
 
   return (
     <CardContainer
-      onClick={() => navigate(`/niseko-accomodation?location=${id}`)}
+      onClick={() =>
+        navigate(
+          `/niseko-accommodation/${id}/${sanitizeURL(title + "-" + type)}`
+        )
+      }
       tabIndex={0}
     >
       <ImageContainer>
