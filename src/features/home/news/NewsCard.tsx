@@ -7,6 +7,7 @@ import EastIcon from "@mui/icons-material/East";
 import WestIcon from "@mui/icons-material/West";
 
 interface NewsCardProps {
+  id: number;
   image: string;
   title: string;
   blurry_image: string;
@@ -72,6 +73,7 @@ const More = styled(Button)({
 });
 
 export default function NewsCard({
+  id,
   image,
   title,
   blurry_image,
@@ -83,7 +85,12 @@ export default function NewsCard({
   const isArabic = i18n.language === "ar";
 
   return (
-    <NewsCardWrapper tabIndex={0}>
+    <NewsCardWrapper
+      tabIndex={0}
+      onClick={() =>
+        navigate(`/niseko-accommodation-deals/${id}/${sanitizeURL(title)}`)
+      }
+    >
       <ImageContainer>
         <img
           src={isLoaded ? image : blurry_image}
@@ -110,7 +117,7 @@ export default function NewsCard({
           variant="contained"
           endIcon={isArabic ? <WestIcon /> : <EastIcon />}
           onClick={() =>
-            navigate(`/niseko-accommodation-deals/${sanitizeURL(title)}`)
+            navigate(`/niseko-accommodation-deals/${id}/${sanitizeURL(title)}`)
           }
         >
           {t("home.news_section.more")}
