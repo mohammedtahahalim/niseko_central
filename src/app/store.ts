@@ -14,10 +14,10 @@ export const NisekoStore = configureStore({
     newsLetter: newsLetterSlice,
     quickReservation: quickReservationSlice,
     suggestions: suggestionSlice,
-    latestNews: newsSlice,
-    latestBlogs: blogSlice,
+    news: newsSlice,
+    blogs: blogSlice,
     bookings: bookingSlice,
-    propertySlice: propertySlice,
+    property: propertySlice,
   },
 });
 

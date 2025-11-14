@@ -124,7 +124,7 @@ const AmenitySkeleton = styled(Skeleton)(({ theme }) => ({
 
 export default function Description() {
   const { propertyData, loading } =
-    useSelector((state: RootState) => state.propertySlice) || {};
+    useSelector((state: RootState) => state.property) || {};
   const { translations } = propertyData || {};
   const { i18n } = useTranslation();
   const { description, amenities } = translations?.[i18n.language] || {};
