@@ -9,7 +9,6 @@ const InfoContainer = styled(Box)(({ theme }) => ({
   width: "90%",
   minHeight: "80px",
   alignSelf: "center",
-  borderBottom: `1px solid ${theme.palette.divider}`,
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
@@ -139,7 +138,9 @@ export default function Info() {
   const theme = useTheme();
 
   return (
-    <InfoContainer>
+    <InfoContainer
+      sx={{ borderBottom: loading ? "" : `1px solid ${theme.palette.divider}` }}
+    >
       {loading && (
         <RenderOnView animationDirection="top">
           <SkeltonContainer>
@@ -156,7 +157,7 @@ export default function Info() {
           </SkeltonContainer>
         </RenderOnView>
       )}
-      {!loading && (
+      {!loading && max_pax && (
         <>
           <PropertyInfo>
             <InfoPiece>
@@ -267,7 +268,11 @@ export default function Info() {
                 <img
                   src={floor_plan}
                   alt=""
-                  style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                  }}
                 />
               </PopUpContainer>
             </Modal>

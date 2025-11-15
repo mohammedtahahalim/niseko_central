@@ -53,7 +53,9 @@ const Map = styled(Typography)({
   fontStyle: "italic",
 });
 
-const Book = styled(Button)<{ isArabic: boolean }>(({ theme, isArabic }) => ({
+const Book = styled(Button, {
+  shouldForwardProp: (prop) => prop !== "isArabic",
+})<{ isArabic: boolean }>(({ theme, isArabic }) => ({
   width: "fit-content",
   alignSelf: "center",
   borderRadius: "50px",

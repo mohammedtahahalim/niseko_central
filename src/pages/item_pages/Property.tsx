@@ -33,7 +33,7 @@ export default function Property() {
   useEffect(() => {
     dispatch(fetchProperty({ id, title }));
     dispatch(fetchSuggestions({ queries: { limit: 5 } }));
-  }, []);
+  }, [id, title]);
 
   if (shouldRedirect) {
     navigate("/niseko-accommodation", { replace: true });
