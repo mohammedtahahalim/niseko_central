@@ -318,7 +318,8 @@
         "sort_key": "bedrooms",
         "sort_value": "Chambres"
       }
-    ]
+    ],
+    "empty": "Aucune réservation ne correspond à ces critères. Veuillez modifier les paramètres de recherche."
   },
   "property": {
     "book_now": "Réservez maintenant",

@@ -8,6 +8,7 @@ import PropertySkelton from "./PropertySkelton";
 import useSkeltonCount from "./useSkeltonCount";
 import Card from "../../components/Card";
 import { useTranslation } from "react-i18next";
+import Empty from "./Empty";
 
 const BookingsWrapper = styled(Box)({
   width: "100%",
@@ -38,8 +39,9 @@ export default function Bookings() {
         Array.from({ length: skeltonCount }).map((_, idx) => (
           <PropertySkelton key={idx} />
         ))}
+      {displayBookings.length === 0 && <Empty />}
       {!loading &&
-        displayBookings.length &&
+        displayBookings.length !== 0 &&
         displayBookings.map((displayBookings) => {
           const { id, images, blurred_images, max_pax, lifts_distance } =
             displayBookings;

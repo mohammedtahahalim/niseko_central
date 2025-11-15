@@ -306,7 +306,8 @@
         "sort_key": "bedrooms",
         "sort_value": "寝室"
       }
-    ]
+    ],
+    "empty": "これらの条件に該当する予約は見つかりません。検索パラメータを変更してください。"
   },
   "property": {
     "book_now": "今すぐ予約",

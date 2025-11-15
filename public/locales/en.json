@@ -414,7 +414,8 @@
         "sort_key": "bedrooms",
         "sort_value": "Bedrooms"
       }
-    ]
+    ],
+    "empty": "No Bookings Found With these Criterias, Please change the search parameters"
   },
   "property": {
     "book_now": "Book Now",
