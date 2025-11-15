@@ -126,9 +126,9 @@ export const subTag = {
 };
 
 export const properties_types: Map<number, string> = new Map([
-  [0, "All Properties"],
+  [0, ""],
   [40, "Deep Tracks"],
-  [42, "Ezo 365"],
+  [41, "Ezo 365"],
   [38, "Hirafu House"],
   [37, "Horizon Townhouses"],
   [12709, "Hirafu Woods"],

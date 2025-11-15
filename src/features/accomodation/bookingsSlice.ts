@@ -147,22 +147,22 @@ export const bookingSlice = createSlice({
       const { filter, value } = action.payload;
       if (filter === "max_pax") {
         state.filters.max_pax = value;
-        state.displayBookings = state.displayBookings.filter(
-          (booking) => booking.max_pax >= action.payload.value
-        );
+        state.displayBookings = state.bookings
+          .filter((booking) => booking.max_pax >= value)
+          .filter((booking) =>
+            booking.translations.en.title.includes(
+              properties_types.get(state.filters.property)!
+            )
+          );
       } else if (filter === "type") {
         state.filters.type = value;
       } else if (filter === "property") {
         state.filters.property = value;
-        if (action.payload.value === 0) {
-          state.displayBookings = state.bookings;
-        } else {
-          state.displayBookings = state.displayBookings.filter(
-            (booking) =>
-              booking.translations.en.title ===
-              properties_types.get(action.payload.value)
+        state.displayBookings = state.bookings
+          .filter((booking) => booking.max_pax >= state.filters.max_pax)
+          .filter((booking) =>
+            booking.translations.en.title.includes(properties_types.get(value)!)
           );
-        }
       }
     },
     sortBookings: (state, action: PayloadAction<SortingType>) => {
