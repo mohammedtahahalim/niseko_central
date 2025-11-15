@@ -2,7 +2,7 @@ import { Box, styled } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../../app/store";
 import { useLocation } from "react-router-dom";
-import { fetchBookings } from "./bookingsSlice";
+import { fetchBookings, setFilter } from "./bookingsSlice";
 import { useEffect } from "react";
 import PropertySkelton from "./PropertySkelton";
 import useSkeltonCount from "./useSkeltonCount";
@@ -31,6 +31,11 @@ export default function Bookings() {
 
   useEffect(() => {
     dispatch(fetchBookings(queries));
+    const guests =
+      Number(queries["adults"]) +
+        Number(queries["children"]) +
+        Number(queries["infants"]) || 1;
+    dispatch(setFilter({ filter: "max_pax", value: guests || 1 }));
   }, [location]);
 
   return (
