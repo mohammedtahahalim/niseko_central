@@ -10,8 +10,8 @@
     "profile": "ملفي الشخصي",
     "plan_stay": "خطط لإقامتك",
     "nav_menu": [
-      { "path": "حجز", "element": "/reservations" },
-      { "path": "الصفقات", "element": "/deals" },
+      { "path": "حجز", "element": "/niseko-accommodation" },
+      { "path": "الصفقات", "element": "/niseko-accommodation-deals" },
       { "path": "بواب", "element": "/concierge" },
       { "path": "التعليمات", "element": "/faq" },
       { "path": "اتصال", "element": "/contact" }
@@ -19,7 +19,7 @@
     "mobile_nav_menu": [
       {
         "path": "الإقامة",
-        "element": "/reservations",
+        "element": "/niseko-accommodation",
         "children": [
           { "path": "عروض خاصة", "element": "/niseko-accommodation-deals" },
           {
@@ -34,7 +34,7 @@
       },
       {
         "path": "العروض",
-        "element": "/deals",
+        "element": "/niseko-accommodation-deals",
         "children": [
           { "path": "الخريطة", "element": "/map" },
           { "path": "تسجيل الوصول السريع", "element": "/express-check-in" },

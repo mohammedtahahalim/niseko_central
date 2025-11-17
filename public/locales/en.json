@@ -37,7 +37,7 @@
       },
       {
         "path": "Deals",
-        "element": "/deals",
+        "element": "/niseko-accommodation-deals",
         "children": [
           { "path": "Map", "element": "/map" },
           { "path": "Express Check-In", "element": "/express-check-in" },

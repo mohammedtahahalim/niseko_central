@@ -10,8 +10,8 @@
     "profile": "マイプロフィール",
     "plan_stay": "滞在を計画する",
     "nav_menu": [
-      { "path": "宿泊施設", "element": "/reservations" },
-      { "path": "お得な情報", "element": "/deals" },
+      { "path": "宿泊施設", "element": "/niseko-accommodation" },
+      { "path": "お得な情報", "element": "/niseko-accommodation-deals" },
       { "path": "コンシェルジュ", "element": "/concierge" },
       { "path": "Q&A", "element": "/faq" },
       { "path": "お問合せ", "element": "/contact" }
@@ -19,7 +19,7 @@
     "mobile_nav_menu": [
       {
         "path": "宿泊",
-        "element": "/reservations",
+        "element": "/niseko-accommodation",
         "children": [
           { "path": "特別プラン", "element": "/niseko-accommodation-deals" },
           {
@@ -34,7 +34,7 @@
       },
       {
         "path": "お得情報",
-        "element": "/deals",
+        "element": "/niseko-accommodation-deals",
         "children": [
           { "path": "地図", "element": "/map" },
           {
