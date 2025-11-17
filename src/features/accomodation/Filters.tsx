@@ -67,7 +67,7 @@ export default function Filters() {
   const dispatch = useDispatch<AppDispatch>();
 
   const filterData = useMemo(
-    () => t("accomodation.filters", { returnObjects: true }) as FilterOption[],
+    () => t("accommodation.filters", { returnObjects: true }) as FilterOption[],
     [t]
   );
 

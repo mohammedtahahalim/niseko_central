@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { debouncer, swiperSlideCount } from "../../../utils/Constants";
+import { debouncer, swiperSlideCount } from "../../utils/Constants";
 
 interface UseSlideCountReturn {
   slideCount: number;

@@ -54,7 +54,7 @@ export default function LinkTitle() {
         tabIndex={0}
         role="button"
       >
-        {t("accomodation.link_title.home")}
+        {t("accommodation.link_title.home")}
       </LinkTitleContent>
       <Icon>
         {i18n.language === "ar" ? (

@@ -27,7 +27,7 @@ export default function Empty() {
   const { t } = useTranslation();
   return (
     <EmptyWrapper>
-      <Message variant="h6">{t("accomodation.empty")} ...</Message>
+      <Message variant="h6">{t("accommodation.empty")} ...</Message>
     </EmptyWrapper>
   );
 }

@@ -56,7 +56,7 @@ export default function Sorters() {
 
   return (
     <SortersWrapper>
-      {(t("accomodation.sorters", { returnObjects: true }) as TSort[]).map(
+      {(t("accommodation.sorters", { returnObjects: true }) as TSort[]).map(
         (sortElement, idx) => {
           return (
             <Sorter

@@ -1,14 +1,14 @@
 import { Box, styled } from "@mui/material";
 import { useDispatch } from "react-redux";
 import type { AppDispatch } from "../../app/store";
-import { fetchSuggestions } from "../../features/home/suggestions/suggestionsSlice";
+import { fetchSuggestions } from "../../features/suggestions/suggestionsSlice";
 import { fetchNews } from "../../features/home/news/newsSlice";
 import { fetchBlogs } from "../../features/home/blog/blogSlice";
 import { useEffect } from "react";
 import Plan from "../../components/Plan";
 import Hero from "../../features/home/hero/Hero";
 import Services from "../../components/Services";
-import Suggestions from "../../features/home/suggestions/Suggestions";
+import Suggestions from "../../features/suggestions/Suggestions";
 import News from "../../features/home/news/News";
 import NisekoPassport from "../../components/NisekoPassport";
 import Blog from "../../features/home/blog/Blog";

@@ -11,13 +11,18 @@ interface SectionProp {
   }[];
 }
 
-const FAQContainer = styled(Box)(({ theme }) => ({
+const FAQContainer = styled(Container)(({ theme }) => ({
   width: "100%",
   height: "100%",
   minHeight: "100vh",
-  padding: "5px 25px",
+  display: "flex",
+  flexDirection: "column",
+  gap: "9px",
+  padding: "1rem",
+  backgroundColor: theme.palette.mainbody?.main,
   [theme.breakpoints.down("md")]: {
     padding: "5px",
+    gap: "15px",
   },
 }));
 
@@ -67,7 +72,7 @@ const SectionDivider = styled(Box)({
 export default function FAQ() {
   const { t } = useTranslation();
   return (
-    <FAQContainer>
+    <FAQContainer maxWidth="xl">
       <LinkTitle />
       <FAQWrapper disableGutters maxWidth="nav_break">
         <Title role="heading">{t("faq.title")}</Title>

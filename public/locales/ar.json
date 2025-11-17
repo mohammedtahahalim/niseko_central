@@ -134,7 +134,9 @@
     "rights": "جميع الحقوق محفوظة لشركة HTM KK."
   },
   "paths": {
-    "niseko-accommodation": "سكن نيسيكو"
+    "niseko-accommodation": "سكن نيسيكو",
+    "faq": "التعليمات",
+    "concierge": "بواب"
   },
   "quick_reservation": {
     "title": "تحقق من التوافر",
@@ -218,7 +220,7 @@
       "title": "من المدونة"
     }
   },
-  "accomodation": {
+  "accommodation": {
     "link_title": {
       "home": "الصفحة الرئيسية",
       "niseko": "سكن نيسيكو"
@@ -481,5 +483,11 @@
         ]
       }
     ]
+  },
+  "concierge": {
+    "title": {
+      "head_title": "بواب",
+      "content": "احجز خدمات Niseko Central Concierge قبل وصولك ووفر الوقت في المنتجع!"
+    }
   }
 }

@@ -137,7 +137,9 @@
     "rights": "HTM株式会社。無断複写・転載を禁じます。"
   },
   "paths": {
-    "niseko-accommodation": "ニセコの宿泊施設"
+    "niseko-accommodation": "ニセコの宿泊施設",
+    "faq": "Q&A",
+    "concierge": "コンシェルジュ"
   },
   "quick_reservation": {
     "title": "空室状況を確認",
@@ -220,7 +222,7 @@
       "title": "ブログから"
     }
   },
-  "accomodation": {
+  "accommodation": {
     "link_title": {
       "home": "ホームページ",
       "niseko": "ニセコの宿泊施設"
@@ -519,5 +521,11 @@
         ]
       }
     ]
+  },
+  "concierge": {
+    "title": {
+      "head_title": "コンシェルジュ",
+      "content": "ニセコセントラルコンシェルジュサービスを到着前に予約して、リゾートでの時間を節約しましょう。"
+    }
   }
 }
