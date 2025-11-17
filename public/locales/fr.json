@@ -148,6 +148,9 @@
     "privacy": "Politique de confidentialité",
     "rights": "HTM KK. Tous droits réservés."
   },
+  "paths": {
+    "niseko-accommodation": "Hébergement à Niseko"
+  },
   "quick_reservation": {
     "title": "Vérifier les disponibilités",
     "description": "Plus de 200 séjours au cœur de Niseko, des résidences de luxe aux hébergements à prix avantageux !",

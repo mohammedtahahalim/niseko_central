@@ -136,6 +136,10 @@
     "privacy": "Privacy Policy",
     "rights": "HTM KK. All rights reserved."
   },
+  "paths": {
+    "niseko-accommodation": "Niseko Accommodation",
+    "concierge": "Concierge"
+  },
   "quick_reservation": {
     "title": "Check Availability",
     "description": "Over 200 stays in the heart of Niseko, from luxury resort homes to value-packed accommodation!",

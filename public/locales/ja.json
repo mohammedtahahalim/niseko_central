@@ -136,6 +136,9 @@
     "privacy": "プライバシーポリシー",
     "rights": "HTM株式会社。無断複写・転載を禁じます。"
   },
+  "paths": {
+    "niseko-accommodation": "ニセコの宿泊施設"
+  },
   "quick_reservation": {
     "title": "空室状況を確認",
     "description": "ニセコの中心部にある200以上の宿泊施設。ラグジュアリーなリゾートホームからお得な宿泊施設まで！",

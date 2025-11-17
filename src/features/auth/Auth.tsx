@@ -20,6 +20,7 @@ export default function Auth() {
   const errorMessage = backendErrors[lang][error as THTTPCodes];
 
   useEffect(() => {
+    document.title = "...";
     dispatch(checkAuthentication());
   }, []);
 
