@@ -32,9 +32,13 @@ export default function Property() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(fetchProperty({ id, title }));
-    dispatch(fetchSuggestions({ queries: { limit: 5 } }));
+    const property = dispatch(fetchProperty({ id, title }));
+    const suggestions = dispatch(fetchSuggestions({ queries: { limit: 5 } }));
     document.title = `${niceUrl(title || "")}`;
+    return () => {
+      property.abort();
+      suggestions.abort();
+    };
   }, [id, title]);
 
   if (shouldRedirect) {
