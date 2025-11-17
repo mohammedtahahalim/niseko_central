@@ -12,6 +12,7 @@ import MainTitle from "../../features/property/MainTitle";
 import Info from "../../features/property/Info";
 import Description from "../../features/property/Description";
 import Suggestions from "../../features/home/suggestions/Suggestions";
+import { niceUrl } from "../../utils/Constants";
 
 const PropertyContainer = styled(Container)({
   width: "100%",
@@ -33,6 +34,7 @@ export default function Property() {
   useEffect(() => {
     dispatch(fetchProperty({ id, title }));
     dispatch(fetchSuggestions({ queries: { limit: 5 } }));
+    document.title = `${niceUrl(title || "")}`;
   }, [id, title]);
 
   if (shouldRedirect) {

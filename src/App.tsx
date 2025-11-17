@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
 import Loader from "./components/Loader";
 import Router from "./router/Router";
-import { useEffect } from "react";
 
 function App() {
   const { ready, i18n } = useTranslation();

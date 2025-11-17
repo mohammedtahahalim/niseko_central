@@ -84,7 +84,7 @@ export const fetchBookings = createAsyncThunk<
   Property[],
   Record<string, string | number>,
   { rejectValue: string }
->("fetch/bookings", async (args, { rejectWithValue }) => {
+>("fetch/bookings", async (args, { rejectWithValue, signal }) => {
   try {
     const fullQueries = new URLSearchParams(
       Object.entries(args)
@@ -97,7 +97,7 @@ export const fetchBookings = createAsyncThunk<
     const fullURL = `${import.meta.env.VITE_API_URL}/api/bookings${
       fullQueries ? "?" + fullQueries : ""
     }`;
-    const response = await fetch(fullURL);
+    const response = await fetch(fullURL, { signal });
     if (!response.ok) {
       throw new Error(response.status.toString());
     }

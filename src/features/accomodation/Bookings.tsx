@@ -44,7 +44,7 @@ export default function Bookings() {
         Array.from({ length: skeltonCount }).map((_, idx) => (
           <PropertySkelton key={idx} />
         ))}
-      {displayBookings.length === 0 && <Empty />}
+      {!loading && displayBookings.length === 0 && <Empty />}
       {!loading &&
         displayBookings.length !== 0 &&
         displayBookings.map((displayBookings) => {
