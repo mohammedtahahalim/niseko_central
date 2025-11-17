@@ -161,7 +161,6 @@ export default function Showcase() {
         <SliderWrapper
           slidesPerView={1}
           onSwiper={(swiper) => (mainSwiperRef.current = swiper)}
-          controller={{ control: thumbSwiperRef.current }}
         >
           {images.map((image: string) => {
             return (
@@ -182,7 +181,6 @@ export default function Showcase() {
           spaceBetween={10}
           grabCursor={true}
           onSwiper={(swiper) => (thumbSwiperRef.current = swiper)}
-          controller={{ control: mainSwiperRef.current }}
         >
           {images.map((element: string, idx: number) => {
             return (
