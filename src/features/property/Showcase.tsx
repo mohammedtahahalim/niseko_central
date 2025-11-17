@@ -4,7 +4,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../app/store";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import type { Swiper as SwiperType } from "swiper";
 import SwiperCore from "swiper";
 import { Controller } from "swiper/modules";
@@ -140,6 +140,16 @@ export default function Showcase() {
   );
   const mainSwiperRef = useRef<SwiperType | null>(null);
   const thumbSwiperRef = useRef<SwiperType | null>(null);
+
+  useEffect(() => {
+    if (!mainSwiperRef.current || !thumbSwiperRef.current) return;
+
+    const mainSwiper = mainSwiperRef.current;
+    const thumbSwiper = thumbSwiperRef.current;
+
+    mainSwiper.controller.control = thumbSwiper;
+    thumbSwiper.controller.control = mainSwiper;
+  }, [images]); // optionally, or [] if images don’t change
 
   return (
     <ShowcaseWrapper>
