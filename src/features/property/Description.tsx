@@ -81,7 +81,7 @@ const InfoPiece = styled(Box)(({ theme }) => ({
 }));
 
 const InfoText = styled(Typography)(({ theme }) => ({
-  fontSize: "0.9rem",
+  fontSize: "0.85rem",
   fontFamily: "Figtree",
   color: theme.palette.textColor?.main,
   textTransform: "capitalize",

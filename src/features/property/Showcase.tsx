@@ -20,7 +20,7 @@ const ShowcaseWrapper = styled(Box)({
 
 const ControlRoom = styled(Box)({
   width: "100%",
-  height: "75px",
+  height: "40px",
   backgroundColor: "rgba(0, 0, 0, 0.5)",
 });
 
@@ -130,15 +130,16 @@ const CustomImage = styled("img")({
 const SliderImage = styled("img")({
   width: "100%",
   height: "100%",
-  objectFit: "contain",
+  objectFit: "cover",
   userSelect: "none",
 });
 
 export default function Showcase() {
-  const { propertyData } = useSelector((state: RootState) => state.property);
+  const { images } = useSelector(
+    (state: RootState) => state.property.propertyData
+  );
   const mainSwiperRef = useRef<SwiperType | null>(null);
   const thumbSwiperRef = useRef<SwiperType | null>(null);
-  const { images } = propertyData || {};
 
   return (
     <ShowcaseWrapper>

@@ -97,6 +97,19 @@ export const sanitizeURL = (url: string): string => {
   return sanitizedURL;
 };
 
+export const niceUrl = (url: string): string => {
+  const modURL = url
+    .split("-")
+    .map((word) =>
+      word
+        .split("")
+        .map((a, idx) => (idx === 0 ? a.toUpperCase() : a))
+        .join("")
+    )
+    .join(" ");
+  return decodeURIComponent(modURL);
+};
+
 export const accessibility_language_map = {
   en: "English",
   fr: "Français",
