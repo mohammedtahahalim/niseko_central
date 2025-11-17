@@ -30,12 +30,15 @@ export default function Bookings() {
   const { i18n } = useTranslation();
 
   useEffect(() => {
-    dispatch(fetchBookings(queries));
+    const bookings = dispatch(fetchBookings(queries));
     const guests =
       Number(queries["adults"]) +
         Number(queries["children"]) +
         Number(queries["infants"]) || 1;
     dispatch(setFilter({ filter: "max_pax", value: guests || 1 }));
+    return () => {
+      bookings.abort();
+    };
   }, [location]);
 
   return (
