@@ -1,5 +1,4 @@
 import { Container, styled } from "@mui/material";
-import LinkTitle from "../../features/property/LinkTitle";
 import Gallery from "../../features/property/Gallery";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../../app/store";
@@ -12,11 +11,11 @@ import MainTitle from "../../features/property/MainTitle";
 import Info from "../../features/property/Info";
 import Description from "../../features/property/Description";
 import Suggestions from "../../features/home/suggestions/Suggestions";
-import { niceUrl } from "../../utils/Constants";
+import LinkTitle from "../../components/LinkTitle";
 
 const PropertyContainer = styled(Container)({
   width: "100%",
-  minHeight: "100vh",
+  minHeight: "100%",
   padding: "1rem",
   display: "flex",
   flexDirection: "column",
@@ -34,7 +33,6 @@ export default function Property() {
   useEffect(() => {
     const property = dispatch(fetchProperty({ id, title }));
     const suggestions = dispatch(fetchSuggestions({ queries: { limit: 5 } }));
-    document.title = `${niceUrl(title || "")}`;
     return () => {
       property.abort();
       suggestions.abort();
@@ -50,7 +48,7 @@ export default function Property() {
   }
 
   return (
-    <PropertyContainer disableGutters maxWidth="xl">
+    <PropertyContainer maxWidth="xl">
       <LinkTitle />
       <MainTitle />
       <Gallery />

@@ -1,5 +1,5 @@
 import { Box, styled, Typography } from "@mui/material";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
@@ -11,6 +11,7 @@ const LinkTitleWrapper = styled(Box)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   gap: "5px",
+  flexWrap: "wrap",
 }));
 
 const LinkTitleContent = styled(Typography)(({ theme }) => ({
@@ -32,9 +33,11 @@ const Icon = styled(Box)(({ theme }) => ({
 }));
 
 export default function LinkTitle() {
-  const pathname = useLocation().pathname.split("/")[1];
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
+  const { title } = useParams();
+  const pathname = useLocation().pathname;
+  const paths = pathname.split("/")[1];
 
   const handleKeyboardClick = (e: React.KeyboardEvent, link: string) => {
     if (e.key === "Enter") {
@@ -62,13 +65,30 @@ export default function LinkTitle() {
       </Icon>
       <LinkTitleContent
         variant="subtitle2"
-        onClick={() => navigate(`/${pathname}`)}
-        onKeyDown={(e) => handleKeyboardClick(e, `/${pathname}`)}
+        onClick={() => navigate(`/${paths}`)}
+        onKeyDown={(e) => handleKeyboardClick(e, `/${paths}`)}
         tabIndex={0}
         role="button"
       >
-        {pathname.toLocaleUpperCase()}
+        {t(`paths.${paths}`)}
       </LinkTitleContent>
+      {title && (
+        <>
+          <Icon>
+            {i18n.language === "ar" ? (
+              <ArrowBackIosIcon sx={{ fontSize: "0.6rem" }} color="inherit" />
+            ) : (
+              <ArrowForwardIosIcon
+                sx={{ fontSize: "0.6rem" }}
+                color="inherit"
+              />
+            )}
+          </Icon>
+          <LinkTitleContent variant="subtitle2" tabIndex={0} role="button">
+            {title.split("-").join(" ")}
+          </LinkTitleContent>
+        </>
+      )}
     </LinkTitleWrapper>
   );
 }
