@@ -1,9 +1,9 @@
 import { Container, styled } from "@mui/material";
-import Title from "../../features/accomodation/Title";
 import Filters from "../../features/accomodation/Filters";
 import Sorters from "../../features/accomodation/Sorters";
 import Bookings from "../../features/accomodation/Bookings";
 import LinkTitle from "../../components/LinkTitle";
+import Title from "../../components/Title";
 
 const ReservationsWrapper = styled(Container)(({ theme }) => ({
   width: "100%",
@@ -24,7 +24,7 @@ export default function Reservations() {
   return (
     <ReservationsWrapper maxWidth="xl">
       <LinkTitle />
-      <Title />
+      <Title page={"accommodation"} />
       <Filters />
       <Sorters />
       <Bookings />

@@ -149,7 +149,9 @@
     "rights": "HTM KK. Tous droits réservés."
   },
   "paths": {
-    "niseko-accommodation": "Hébergement à Niseko"
+    "niseko-accommodation": "Hébergement à Niseko",
+    "faq": "FAQ",
+    "concierge": "Concierge"
   },
   "quick_reservation": {
     "title": "Vérifier les disponibilités",
@@ -232,7 +234,7 @@
       "title": "Du blog"
     }
   },
-  "accomodation": {
+  "accommodation": {
     "link_title": {
       "home": "accueil",
       "niseko": "Hébergement à Niseko"
@@ -519,5 +521,11 @@
         ]
       }
     ]
+  },
+  "concierge": {
+    "title": {
+      "head_title": "Concierge",
+      "content": "Réservez vos services de conciergerie Niseko Central avant votre arrivée et gagnez du temps sur place !"
+    }
   }
 }

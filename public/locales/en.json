@@ -138,6 +138,7 @@
   },
   "paths": {
     "niseko-accommodation": "Niseko Accommodation",
+    "faq": "FAQ",
     "concierge": "Concierge"
   },
   "quick_reservation": {
@@ -221,7 +222,7 @@
       "title": "From The Blog"
     }
   },
-  "accomodation": {
+  "accommodation": {
     "link_title": {
       "home": "Home",
       "niseko": "Niseko Accommodation"
@@ -592,5 +593,11 @@
         ]
       }
     ]
+  },
+  "concierge": {
+    "title": {
+      "head_title": "Concierge",
+      "content": "Book your Niseko Central Concierge services pre-arrival and save time in resort!"
+    }
   }
 }

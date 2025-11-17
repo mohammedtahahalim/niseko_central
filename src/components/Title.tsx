@@ -1,6 +1,10 @@
 import { Box, styled, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
+interface TitleProps {
+  page: string;
+}
+
 const TitleWrapper = styled(Box)(({ theme }) => ({
   width: "100%",
   maxWidth: "700px",
@@ -35,12 +39,12 @@ const NisekoIntro = styled(Typography)(({ theme }) => ({
   },
 }));
 
-export default function Title() {
+export default function Title({ page }: TitleProps) {
   const { t } = useTranslation();
   return (
     <TitleWrapper>
-      <Stay variant="h6">{t("accomodation.title.head_title")}</Stay>
-      <NisekoIntro variant="h6">{t("accomodation.title.content")}</NisekoIntro>
+      <Stay variant="h6">{t(`${page}.title.head_title`)}</Stay>
+      <NisekoIntro variant="h6">{t(`${page}.title.content`)}</NisekoIntro>
     </TitleWrapper>
   );
 }

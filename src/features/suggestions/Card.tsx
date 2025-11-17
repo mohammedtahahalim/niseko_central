@@ -2,7 +2,7 @@ import { Box, Button, styled, Typography } from "@mui/material";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { sanitizeURL, subTag, tags } from "../../../utils/Constants";
+import { sanitizeURL, subTag, tags } from "../../utils/Constants";
 
 interface CardProps {
   id: number;

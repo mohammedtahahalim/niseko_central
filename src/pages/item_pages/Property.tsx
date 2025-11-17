@@ -5,12 +5,12 @@ import type { AppDispatch, RootState } from "../../app/store";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { fetchProperty } from "../../features/property/propertySlice";
-import { fetchSuggestions } from "../../features/home/suggestions/suggestionsSlice";
+import { fetchSuggestions } from "../../features/suggestions/suggestionsSlice";
 import Error from "../../components/Error";
 import MainTitle from "../../features/property/MainTitle";
 import Info from "../../features/property/Info";
 import Description from "../../features/property/Description";
-import Suggestions from "../../features/home/suggestions/Suggestions";
+import Suggestions from "../../features/suggestions/Suggestions";
 import LinkTitle from "../../components/LinkTitle";
 
 const PropertyContainer = styled(Container)({

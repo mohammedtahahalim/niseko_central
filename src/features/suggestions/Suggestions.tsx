@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { useRef } from "react";
 import type { Swiper as SwiperType } from "swiper/types";
 import { useSelector } from "react-redux";
-import type { RootState } from "../../../app/store";
+import type { RootState } from "../../app/store";
 import { Keyboard } from "swiper/modules";
 import useSlideCount from "./useSlideCount";
 import Card from "./Card";
@@ -13,7 +13,7 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import EastIcon from "@mui/icons-material/East";
 import WestIcon from "@mui/icons-material/West";
 import Skelton from "./Skelton";
-import RenderOnView from "../../render_on_view/RenderOnView";
+import RenderOnView from "../render_on_view/RenderOnView";
 
 const SuggestionsWrapper = styled(Box)({
   width: "100%",
