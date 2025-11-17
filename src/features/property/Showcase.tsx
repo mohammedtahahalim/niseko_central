@@ -149,7 +149,7 @@ export default function Showcase() {
 
     mainSwiper.controller.control = thumbSwiper;
     thumbSwiper.controller.control = mainSwiper;
-  }, [images]); // optionally, or [] if images don’t change
+  }, [images]);
 
   return (
     <ShowcaseWrapper>
