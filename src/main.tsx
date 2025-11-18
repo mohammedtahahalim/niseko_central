@@ -9,11 +9,13 @@ import "./features/languages/i18n.ts";
 import App from "./App.tsx";
 
 createRoot(document.getElementById("root")!).render(
-  <Provider store={NisekoStore}>
-    <MantineProvider>
-      <ContextProvider>
-        <App />
-      </ContextProvider>
-    </MantineProvider>
-  </Provider>
+  <StrictMode>
+    <Provider store={NisekoStore}>
+      <MantineProvider>
+        <ContextProvider>
+          <App />
+        </ContextProvider>
+      </MantineProvider>
+    </Provider>
+  </StrictMode>
 );
