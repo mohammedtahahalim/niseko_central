@@ -7,6 +7,7 @@ import suggestionSlice from "../features/suggestions/suggestionsSlice";
 import blogSlice from "../features/home/blog/blogSlice";
 import bookingSlice from "../features/accomodation/bookingsSlice";
 import propertySlice from "../features/property/propertySlice";
+import conciergeSlice from "../features/concierge/conciergeSlice";
 
 export const NisekoStore = configureStore({
   reducer: {
@@ -18,6 +19,7 @@ export const NisekoStore = configureStore({
     blogs: blogSlice,
     bookings: bookingSlice,
     property: propertySlice,
+    concierge: conciergeSlice,
   },
 });
 

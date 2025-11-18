@@ -1,50 +1,6 @@
 import dbConnection from "../helpers/dbConnection.js";
+import { propertySchema } from "../helpers/schemas.js";
 import { z } from "zod";
-
-const propertySchema = z.object({
-  id: z.number().nonnegative(),
-  map: z.string(),
-  images: z.string(),
-  max_pax: z.number().nonnegative(),
-  beds: z.number().nonnegative(),
-  size: z.number().nonnegative(),
-  village_distance: z.number().nonnegative(),
-  lifts_distance: z.number().nonnegative(),
-  floor_plan: z.string(),
-  created_at: z.date(),
-  updated_at: z.date(),
-  blurred_images: z.string(),
-  translations: z.object({
-    ar: z.object({
-      type: z.string(),
-      title: z.string(),
-      description: z.string(),
-      location: z.string(),
-      amenities: z.array(z.string()),
-    }),
-    en: z.object({
-      type: z.string(),
-      title: z.string(),
-      description: z.string(),
-      location: z.string(),
-      amenities: z.array(z.string()),
-    }),
-    ja: z.object({
-      type: z.string(),
-      title: z.string(),
-      description: z.string(),
-      location: z.string(),
-      amenities: z.array(z.string()),
-    }),
-    fr: z.object({
-      type: z.string(),
-      title: z.string(),
-      description: z.string(),
-      location: z.string(),
-      amenities: z.array(z.string()),
-    }),
-  }),
-});
 
 export default async function handler(req, res) {
   if (req.method !== "GET") {

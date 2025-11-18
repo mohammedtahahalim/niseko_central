@@ -91,8 +91,13 @@ export const RenderAnimationStyle = (
 };
 
 export const sanitizeURL = (url: string): string => {
+  if (!url || typeof url !== "string") return "";
   const sanitizedURL = encodeURIComponent(
-    url.toLowerCase().split(/\s+/).join("-")
+    url
+      .toLowerCase()
+      .split(/\s+/)
+      .filter((elem) => elem !== "-")
+      .join("-")
   );
   return sanitizedURL;
 };
