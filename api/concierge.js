@@ -4,6 +4,42 @@ import { sanitizeURL } from "../helpers/constants.js";
 
 export default async function handler(req, res) {
   if (req.method !== "GET") {
+    return res.staus(405).json({ message: "Method Not Allowed ..." });
+  }
+  let { id, title } = req.query;
+  title = sanitizeURL(String(title));
+  id = Number(id);
+  try {
+    const connection = await dbConnection();
+    const query = !isNaN(id)
+      ? "SELECT * FROM concierge WHERE id = ?"
+      : "SELECT category, JSON_ARRAYAGG(JSON_OBJECT('id', id, 'title', title, 'subtitle', subtitle, 'content', content, 'image', main_image, 'blur_image', blurred_image)) as deals FROM niseko_central.concierge GROUP BY category";
+    const [result] = await connection.query(query, id ? [id] : []);
+    if (!result.length) {
+      return res.status(404).json({ messge: "Found No Articles ..." });
+    }
+    if (!isNaN(id) && title && title !== sanitizeURL(result[0].title)) {
+      return res.status(401).json({ message: "Bad Format ..." });
+    }
+
+    const validArticles = result.filter((article) =>
+      articleSchema.safeParse(article)
+    );
+    return res.status(200).json({ articles: validArticles });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+}
+
+/*
+
+import dbConnection from "../helpers/dbConnection.js";
+import { articleSchema } from "../helpers/schemas.js";
+import { sanitizeURL } from "../helpers/constants.js";
+
+export default async function handler(req, res) {
+  if (req.method !== "GET") {
     return res.status(405).json({ message: "Method Not Allowed" });
   }
 
@@ -71,3 +107,6 @@ export default async function handler(req, res) {
     return res.status(500).json({ message: "Internal Server Error" });
   }
 }
+
+
+*/
