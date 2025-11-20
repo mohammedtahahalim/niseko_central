@@ -5,6 +5,16 @@ import {
 } from "@reduxjs/toolkit";
 import z from "zod";
 
+const TTL = import.meta.env.VITE_TTL ?? 10000;
+
+const refresh = (key: string) => {
+  clearTimeout(timeouts[key]);
+  timeouts[key] = setTimeout(() => {
+    delete cache[key];
+    delete timeouts[key];
+  }, TTL);
+};
+
 const articleSchema = z.object({
   category: z.string(),
   deals: z.array(
@@ -20,6 +30,28 @@ const articleSchema = z.object({
 });
 
 export type ConciergeArticle = z.infer<typeof articleSchema>;
+
+const timeouts: Record<string, ReturnType<typeof setTimeout>> = {};
+const cache: Record<string, ConciergeArticle[]> = new Proxy(
+  {},
+  {
+    get(target: Record<string, ConciergeArticle[]>, key: string) {
+      if (!(key in target)) return undefined;
+      // Keep the data in memory as long as client keeps requesting
+      refresh(key);
+      return target[key];
+    },
+    set(
+      target: Record<string, ConciergeArticle[]>,
+      key: string,
+      value: ConciergeArticle[]
+    ) {
+      refresh(key);
+      target[key] = value;
+      return true;
+    },
+  }
+);
 
 interface ConciergeProps {
   queries: Record<string, string | number>;
@@ -38,11 +70,15 @@ export const fetchConcierge = createAsyncThunk<
 >("concierge/thunk", async (_args, { rejectWithValue, signal }) => {
   const fullQueries = _args
     ? new URLSearchParams(
-        Object.entries(_args)
+        Object.entries(_args.queries)
           .filter(([_, v]) => v !== null && v !== undefined)
           .map(([k, v]) => [k, String(v)])
+          .sort(([a], [b]) => a.localeCompare(b))
       ).toString()
     : "";
+  if (fullQueries in cache) {
+    return cache[fullQueries];
+  }
   const fullURL: string = `${import.meta.env.VITE_API_URL}/api/concierge${
     fullQueries && "?" + fullQueries
   }`;
@@ -52,9 +88,11 @@ export const fetchConcierge = createAsyncThunk<
       throw new Error(response.status.toString());
     }
     const raw_data = await response.json();
+    // backend is inconsistent and might send data that breaks the ui, so we filter to only element that respect our schema
     const data = raw_data.articles.filter(
       (article: ConciergeArticle) => articleSchema.safeParse(article).success
     );
+    cache[fullQueries] = data;
     return data;
   } catch (err) {
     if (err instanceof DOMException && err.name === "AbortError") {
@@ -70,7 +108,7 @@ export const fetchConcierge = createAsyncThunk<
 const initialState: ConciergeSlice = {
   loading: false,
   error: null,
-  articles: null,
+  articles: null, // this is used to render skeleton ui, as [] reverts to truthy values
 };
 
 export const conciergeSlice = createSlice({
