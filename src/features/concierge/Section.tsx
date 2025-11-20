@@ -24,9 +24,11 @@ const Carousel = styled(Box)<{ maxHeight: string }>(({ maxHeight }) => ({
 
 export default function Section({ category, deals }: ConciergeArticle) {
   const { slideCount, maxHeight } = useContext(countContext);
+  console.log(deals, slideCount);
   return (
     <SectionWrapper>
       <Title>{niceUrl(category)}</Title>
+      <Carousel maxHeight={maxHeight}></Carousel>
     </SectionWrapper>
   );
 }
