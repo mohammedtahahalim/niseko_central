@@ -605,6 +605,23 @@
     "title": {
       "head_title": "Contact",
       "content": "Get in touch with Niseko Central and we will contact you shortly to discuss your holiday in Niseko with us."
+    },
+    "snippet": {
+      "reservation_label": "For reservations & available dates, please contact our Reservations department.",
+      "reservation": "Reservations: ",
+      "front_desk_label": "For Guest Services enquiries or check-in information, please contact our Front Desk.",
+      "front_desk": "Front Desk: ",
+      "address": "Niseko Central 6-8, Niseko Hirafu 1-jo 3-chome, Kutchan-cho, Abuta-gun, Hokkaido, Japan 〒044-0080"
+    },
+    "forms": {
+      "accommodation": {
+        "tab_title": "Accommodation Inquiry",
+        "form_content": {}
+      },
+      "general": {
+        "tab_title": "General Inquiry",
+        "form_content": {}
+      }
     }
   }
 }

@@ -2,6 +2,8 @@ import { Box, Container, styled } from "@mui/material";
 import LinkTitle from "../../components/LinkTitle";
 import Title from "../../components/Title";
 import { useState } from "react";
+import InfoSnippet from "../../features/contact/InfoSnippet";
+import ContactTabs from "../../features/contact/ContactTabs";
 
 const ContactContainer = styled(Container)(({ theme }) => ({
   width: "100%",
@@ -18,12 +20,14 @@ const ContactContainer = styled(Container)(({ theme }) => ({
   },
 }));
 
-const ContentContainer = styled(Container)({
+const ContentWrapper = styled(Box)({
   display: "flex",
   flexDirection: "column",
   gap: "20px",
   width: "100%",
   height: "100%",
+  margin: "0 auto",
+  maxWidth: "900px",
 });
 
 const MainImageWrapper = styled(Box)({
@@ -40,7 +44,7 @@ export default function Contact() {
   return (
     <ContactContainer maxWidth="xl">
       <LinkTitle />
-      <ContentContainer maxWidth="nav_break">
+      <ContentWrapper>
         <Title page="contact" />
         <MainImageWrapper>
           <img
@@ -56,7 +60,9 @@ export default function Contact() {
             }}
           />
         </MainImageWrapper>
-      </ContentContainer>
+        <InfoSnippet />
+        <ContactTabs />
+      </ContentWrapper>
     </ContactContainer>
   );
 }
