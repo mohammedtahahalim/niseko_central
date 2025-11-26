@@ -151,7 +151,8 @@
   "paths": {
     "niseko-accommodation": "Hébergement à Niseko",
     "faq": "FAQ",
-    "concierge": "Concierge"
+    "concierge": "Concierge",
+    "contact": "Contact"
   },
   "quick_reservation": {
     "title": "Vérifier les disponibilités",
@@ -526,6 +527,29 @@
     "title": {
       "head_title": "Concierge",
       "content": "Réservez vos services de conciergerie Niseko Central avant votre arrivée et gagnez du temps sur place !"
+    }
+  },
+  "contact": {
+    "title": {
+      "head_title": "Contact",
+      "content": "Contactez Niseko Central et nous vous contacterons prochainement pour discuter de vos vacances à Niseko avec nous."
+    },
+    "snippet": {
+      "reservation_label": "Pour réserver et connaître les dates disponibles, veuillez contacter notre service des réservations.",
+      "reservation": "Réservations :",
+      "front_desk_label": "Pour toute question relative aux services aux clients ou pour obtenir des informations sur l'enregistrement, veuillez contacter notre réception.",
+      "front_desk": "Réception :",
+      "address": "Niseko Central 6-8, Niseko Hirafu 1-jo 3-chome, Kutchan-cho, Abuta-gun, Hokkaido, Japon 〒044-0080"
+    },
+    "forms": {
+      "accommodation": {
+        "tab_title": "Renseignements d'hébergement",
+        "form_content": {}
+      },
+      "general": {
+        "tab_title": "Renseignements généraux",
+        "form_content": {}
+      }
     }
   }
 }

@@ -139,7 +139,8 @@
   "paths": {
     "niseko-accommodation": "ニセコの宿泊施設",
     "faq": "Q&A",
-    "concierge": "コンシェルジュ"
+    "concierge": "コンシェルジュ",
+    "contact": "接触"
   },
   "quick_reservation": {
     "title": "空室状況を確認",
@@ -526,6 +527,29 @@
     "title": {
       "head_title": "コンシェルジュ",
       "content": "ニセコセントラルコンシェルジュサービスを到着前に予約して、リゾートでの時間を節約しましょう。"
+    }
+  },
+  "contact": {
+    "title": {
+      "head_title": "接触",
+      "content": "ニセコセントラルまでご連絡ください。ニセコでの休暇についてご相談するために、すぐにご連絡させていただきます。"
+    },
+    "snippet": {
+      "reservation_label": "ご予約およびご利用可能な日付については、予約部門にお問い合わせください。",
+      "reservation": "ご予約：",
+      "front_desk_label": "ゲストサービスに関するお問い合わせやチェックイン情報については、フロントデスクまでお問い合わせください。",
+      "front_desk": "フロントデスク:",
+      "address": "〒044-0080 北海道虻田郡倶知安町ニセコひらふ1条3丁目 ニセコセントラル6-8"
+    },
+    "forms": {
+      "accommodation": {
+        "tab_title": "宿泊に関するお問い合わせ",
+        "form_content": {}
+      },
+      "general": {
+        "tab_title": "一般お問い合わせ",
+        "form_content": {}
+      }
     }
   }
 }

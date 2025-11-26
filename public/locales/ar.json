@@ -136,7 +136,8 @@
   "paths": {
     "niseko-accommodation": "سكن نيسيكو",
     "faq": "التعليمات",
-    "concierge": "بواب"
+    "concierge": "بواب",
+    "contact": "اتصال"
   },
   "quick_reservation": {
     "title": "تحقق من التوافر",
@@ -488,6 +489,29 @@
     "title": {
       "head_title": "بواب",
       "content": "احجز خدمات Niseko Central Concierge قبل وصولك ووفر الوقت في المنتجع!"
+    }
+  },
+  "contact": {
+    "title": {
+      "head_title": "اتصال",
+      "content": "تواصل مع Niseko Central وسنقوم بالاتصال بك قريبًا لمناقشة عطلتك في Niseko معنا."
+    },
+    "snippet": {
+      "reservation_label": "للحجز والمواعيد المتاحة، يرجى التواصل مع قسم الحجوزات لدينا.",
+      "reservation": "الحجوزات:",
+      "front_desk_label": "للاستفسارات حول خدمات الضيوف أو معلومات تسجيل الوصول، يرجى الاتصال بمكتب الاستقبال لدينا.",
+      "front_desk": "مكتب الاستقبال:",
+      "address": "نيسيكو سنترال 6-8، نيسيكو هيرافو 1-جو 3-تشومي، كوتشان-تشو، أبوتا غون، هوكايدو، اليابان 〒044-0080"
+    },
+    "forms": {
+      "accommodation": {
+        "tab_title": "استفسار عن الإقامة",
+        "form_content": {}
+      },
+      "general": {
+        "tab_title": "استفسار عام",
+        "form_content": {}
+      }
     }
   }
 }
