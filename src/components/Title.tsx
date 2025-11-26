@@ -3,16 +3,19 @@ import { useTranslation } from "react-i18next";
 
 interface TitleProps {
   page: string;
+  isCentered?: boolean;
 }
 
-const TitleWrapper = styled(Box)(({ theme }) => ({
+const TitleWrapper = styled(Box, {
+  shouldForwardProp: (prop) => prop !== "isCentered",
+})<{ isCentered: boolean }>(({ theme, isCentered }) => ({
   width: "100%",
   maxWidth: "700px",
   alignSelf: "center",
   display: "flex",
   flexDirection: "column",
   gap: "5px",
-  textAlign: "center",
+  textAlign: isCentered ? "center" : "left",
   padding: "5px",
   [theme.breakpoints.down("md")]: {
     padding: "0px",
@@ -39,12 +42,14 @@ const NisekoIntro = styled(Typography)(({ theme }) => ({
   },
 }));
 
-export default function Title({ page }: TitleProps) {
+export default function Title({ page, isCentered = true }: TitleProps) {
   const { t } = useTranslation();
   return (
-    <TitleWrapper>
+    <TitleWrapper isCentered={isCentered}>
       <Stay variant="h6">{t(`${page}.title.head_title`)}</Stay>
-      <NisekoIntro variant="h6">{t(`${page}.title.content`)}</NisekoIntro>
+      <NisekoIntro variant="h6" tabIndex={0}>
+        {t(`${page}.title.content`)}
+      </NisekoIntro>
     </TitleWrapper>
   );
 }

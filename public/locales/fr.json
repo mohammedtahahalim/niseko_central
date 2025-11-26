@@ -151,7 +151,8 @@
   "paths": {
     "niseko-accommodation": "Hébergement à Niseko",
     "faq": "FAQ",
-    "concierge": "Concierge"
+    "concierge": "Concierge",
+    "contact": "Contact"
   },
   "quick_reservation": {
     "title": "Vérifier les disponibilités",
@@ -526,6 +527,12 @@
     "title": {
       "head_title": "Concierge",
       "content": "Réservez vos services de conciergerie Niseko Central avant votre arrivée et gagnez du temps sur place !"
+    }
+  },
+  "contact": {
+    "title": {
+      "head_title": "Contact",
+      "content": "Contactez Niseko Central et nous vous contacterons prochainement pour discuter de vos vacances à Niseko avec nous."
     }
   }
 }

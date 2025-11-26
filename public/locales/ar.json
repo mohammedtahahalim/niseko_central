@@ -136,7 +136,8 @@
   "paths": {
     "niseko-accommodation": "سكن نيسيكو",
     "faq": "التعليمات",
-    "concierge": "بواب"
+    "concierge": "بواب",
+    "contact": "اتصال"
   },
   "quick_reservation": {
     "title": "تحقق من التوافر",
@@ -488,6 +489,12 @@
     "title": {
       "head_title": "بواب",
       "content": "احجز خدمات Niseko Central Concierge قبل وصولك ووفر الوقت في المنتجع!"
+    }
+  },
+  "contact": {
+    "title": {
+      "head_title": "اتصال",
+      "content": "تواصل مع Niseko Central وسنقوم بالاتصال بك قريبًا لمناقشة عطلتك في Niseko معنا."
     }
   }
 }
