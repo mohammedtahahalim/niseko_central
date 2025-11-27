@@ -1,8 +1,10 @@
 import { Box, Button, styled } from "@mui/material";
-import { useState } from "react";
 import Accomodation from "./Accomodation";
 import General from "./General";
 import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
+import type { AppDispatch, RootState } from "../../app/store";
+import { switch_type } from "../contact/contactSlice";
 
 const TabsWrapper = styled(Box)({
   display: "flex",
@@ -24,6 +26,8 @@ const Tab = styled(Button, {
   fontSize: "1rem",
   borderBottom: isActive ? `3px solid ${theme.palette.primary.main}` : "",
   borderRadius: "0px",
+  letterSpacing: "1.1px",
+  fontWeight: "600",
 }));
 
 const ContactForm = styled(Box)({
@@ -32,19 +36,28 @@ const ContactForm = styled(Box)({
 
 export default function ContactTabs() {
   const { t } = useTranslation();
-  const [activeTab, setActiveTab] = useState<0 | 1>(0);
+  const { type } = useSelector((state: RootState) => state.contact.formData);
+  const dispatch = useDispatch<AppDispatch>();
   return (
     <TabsWrapper>
       <Tabs>
-        <Tab onClick={() => setActiveTab(0)} isActive={activeTab === 0}>
+        <Tab
+          onClick={() => dispatch(switch_type("accommodation"))}
+          isActive={type === "accommodation"}
+        >
           {t("contact.forms.accommodation.tab_title")}
         </Tab>
-        <Tab onClick={() => setActiveTab(1)} isActive={activeTab === 1}>
+        <Tab
+          onClick={() => {
+            dispatch(switch_type("general"));
+          }}
+          isActive={type === "general"}
+        >
           {t("contact.forms.general.tab_title")}
         </Tab>
       </Tabs>
       <ContactForm>
-        {activeTab === 0 ? <Accomodation /> : <General />}
+        {type === "accommodation" ? <Accomodation /> : <General />}
       </ContactForm>
     </TabsWrapper>
   );
