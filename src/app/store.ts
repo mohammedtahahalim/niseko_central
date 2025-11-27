@@ -8,6 +8,7 @@ import blogSlice from "../features/home/blog/blogSlice";
 import bookingSlice from "../features/accomodation/bookingsSlice";
 import propertySlice from "../features/property/propertySlice";
 import conciergeSlice from "../features/concierge/conciergeSlice";
+import contactSlice from "../features/contact/contactSlice";
 
 export const NisekoStore = configureStore({
   reducer: {
@@ -20,7 +21,12 @@ export const NisekoStore = configureStore({
     bookings: bookingSlice,
     property: propertySlice,
     concierge: conciergeSlice,
+    contact: contactSlice,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 
 export type AppDispatch = typeof NisekoStore.dispatch;
