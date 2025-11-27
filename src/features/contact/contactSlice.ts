@@ -5,7 +5,7 @@
 
 // TODO: Implement the inquiry.js backend endpoint
 
-// TODO: Serialize the properties set before submitting, to validate redux strict middleware checks
+// TODO: convert the number array of properties to set using useMemo (to make properties checkup constant for more performance)
 
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import z from "zod";
