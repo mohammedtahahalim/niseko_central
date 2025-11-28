@@ -78,7 +78,11 @@ interface InquiryState {
   loading: boolean;
   error: string | null;
   isSubmitted: boolean;
-  formData: AccommodationInquiry | GeneralInquiry;
+  formData: {
+    type: "accommodation" | "general";
+    accommodation_data: AccommodationInquiry;
+    general_data: GeneralInquiry;
+  };
 }
 
 const initialGeneralState: GeneralInquiry = {
@@ -115,7 +119,11 @@ const initialState: InquiryState = {
   loading: false,
   error: null,
   isSubmitted: false,
-  formData: initialAccommodationState,
+  formData: {
+    type: "accommodation",
+    accommodation_data: initialAccommodationState,
+    general_data: initialGeneralState,
+  },
 };
 
 export const submitInquiry = createAsyncThunk<
@@ -127,8 +135,8 @@ export const submitInquiry = createAsyncThunk<
   try {
     const isValidForm =
       formData.type === "accommodation"
-        ? accommodationSchema.safeParse(formData)
-        : generalSchema.safeParse(formData);
+        ? accommodationSchema.safeParse(formData.accommodation_data)
+        : generalSchema.safeParse(formData.general_data);
     if (!isValidForm.success) {
       throw new Error(
         isValidForm.error.issues.map((issue) => issue.message).join(", ")
@@ -140,7 +148,13 @@ export const submitInquiry = createAsyncThunk<
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(formData.inquiry),
+      body: JSON.stringify({
+        type: formData.type,
+        data:
+          formData.type === "accommodation"
+            ? formData.accommodation_data
+            : formData.general_data,
+      }),
       signal,
     };
     const response = await fetch(fullURL, fullOptions);
@@ -167,11 +181,7 @@ export const contactSlice = createSlice({
   initialState,
   reducers: {
     switch_type(state, action: { payload: "general" | "accommodation" }) {
-      if (action.payload === "general") {
-        state.formData = initialGeneralState;
-      } else {
-        state.formData = initialAccommodationState;
-      }
+      state.formData.type = action.payload;
     },
   },
   extraReducers: (builder) => {
