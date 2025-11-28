@@ -1,6 +1,3 @@
-// TODO: reducers for both accomodation and general state, have the redux slice copies the ref of either accommodation or general
-// and to preserve state when switching between types
-
 // TODO: Implement the inquiry.js backend endpoint
 
 // TODO: convert the number array of properties to set using useMemo (to make properties checkup constant for more performance)
@@ -64,15 +61,9 @@ const generalSchema = z.discriminatedUnion("in_house", [
   }),
 ]);
 
-interface AccommodationInquiry {
-  type: "accommodation";
-  inquiry: z.infer<typeof accommodationSchema>;
-}
+type AccommodationInquiry = z.infer<typeof accommodationSchema>;
 
-interface GeneralInquiry {
-  type: "general";
-  inquiry: z.infer<typeof generalSchema>;
-}
+type GeneralInquiry = z.infer<typeof generalSchema>;
 
 interface InquiryState {
   loading: boolean;
@@ -86,33 +77,27 @@ interface InquiryState {
 }
 
 const initialGeneralState: GeneralInquiry = {
-  type: "general",
-  inquiry: {
-    first_name: "",
-    last_name: "",
-    in_house: false,
-    email: "",
-    message: "",
-  },
+  first_name: "",
+  last_name: "",
+  in_house: false,
+  email: "",
+  message: "",
 };
 
 const initialAccommodationState: AccommodationInquiry = {
-  type: "accommodation",
-  inquiry: {
-    first_name: "",
-    last_name: "",
-    email: "",
-    country: "",
-    phone: "",
-    date: "",
-    flexibility: true,
-    nights: 1,
-    adults: 0,
-    children: 0,
-    infants: 0,
-    properties: [],
-    comments: "",
-  },
+  first_name: "",
+  last_name: "",
+  email: "",
+  country: "",
+  phone: "",
+  date: "",
+  flexibility: true,
+  nights: 1,
+  adults: 0,
+  children: 0,
+  infants: 0,
+  properties: [],
+  comments: "",
 };
 
 const initialState: InquiryState = {
@@ -161,9 +146,9 @@ export const submitInquiry = createAsyncThunk<
     if (!response.ok) {
       throw new Error(response.status.toString());
     }
-    const { success, rejection } = await response.json();
+    const { success, rejection_error } = await response.json();
     if (!success) {
-      throw new Error(rejection);
+      throw new Error(rejection_error);
     }
   } catch (err) {
     if (err instanceof DOMException && err.name === "AbortError") {
@@ -183,6 +168,23 @@ export const contactSlice = createSlice({
     switch_type(state, action: { payload: "general" | "accommodation" }) {
       state.formData.type = action.payload;
     },
+    update_field(
+      state,
+      action: PayloadAction<{
+        key: keyof AccommodationInquiry & keyof GeneralInquiry;
+        value: any;
+      }>
+    ) {
+      const { key, value } = action.payload;
+      const active_type =
+        state.formData.type === "accommodation"
+          ? "accommodation_data"
+          : "general_data";
+      // @ts-ignore – we know the field exists on the active branch
+      if (!(key in state.formData[active_type])) return;
+      // @ts-ignore – we know the field exists on the active branch
+      state.formData[active_type][key] = value;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -195,11 +197,12 @@ export const contactSlice = createSlice({
         (state, action: PayloadAction<string | undefined>) => {
           state.loading = false;
           state.error = action.payload ?? "unknown";
+          state.isSubmitted = false;
         }
       )
       .addCase(submitInquiry.fulfilled, (state) => {
         state.loading = false;
-        state.isSubmitted = true; // Opted to throw an error instead of catching success state
+        state.isSubmitted = true;
       });
   },
 });
