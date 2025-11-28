@@ -1,3 +1,4 @@
+import emailjs from "@emailjs/nodejs";
 import { generalSchema, accommodationSchema } from "../helpers/schemas.js";
 
 export default async function handler(req, res) {
@@ -22,7 +23,16 @@ export default async function handler(req, res) {
           .join(", "),
       });
     }
-    return res.status(200).json({ success: true, data });
+    const email_response = await emailjs.send(
+      "service_gxs9l81",
+      "template_p83yoeu",
+      data,
+      { publicKey: "LIsU78Pl67CFON2Rp", privateKey: "w1oo5G0zxLNgPuFoYLzZe" }
+    );
+    return res.status(200).json({
+      success: email_response.status === 200,
+      rejection_error: email_response.status !== 200 ? email_response.text : "",
+    });
   } catch (err) {
     console.log(err);
     return res.status(500).json({ message: "Internal Server Error..." });
