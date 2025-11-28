@@ -1,16 +1,17 @@
 // TODO: reducers for both accomodation and general state, have the redux slice copies the ref of either accommodation or general
 // and to preserve state when switching between types
 
-// TODO: Implement the core logic for submitting an inquiry
-
 // TODO: Implement the inquiry.js backend endpoint
 
 // TODO: convert the number array of properties to set using useMemo (to make properties checkup constant for more performance)
 
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {
+  createAsyncThunk,
+  createSlice,
+  type PayloadAction,
+} from "@reduxjs/toolkit";
 import z from "zod";
-
-export const submitInquiry = createAsyncThunk("inquiry", async () => {});
+import type { RootState } from "../../app/store";
 
 const accommodationSchema = z.object({
   first_name: z
@@ -76,6 +77,7 @@ interface GeneralInquiry {
 interface InquiryState {
   loading: boolean;
   error: string | null;
+  isSubmitted: boolean;
   formData: AccommodationInquiry | GeneralInquiry;
 }
 
@@ -112,8 +114,53 @@ const initialAccommodationState: AccommodationInquiry = {
 const initialState: InquiryState = {
   loading: false,
   error: null,
+  isSubmitted: false,
   formData: initialAccommodationState,
 };
+
+export const submitInquiry = createAsyncThunk<
+  void,
+  void,
+  { rejectValue: string }
+>("inquiry", async (_, { signal, rejectWithValue, getState }) => {
+  const { formData } = (getState() as RootState).contact;
+  try {
+    const isValidForm =
+      formData.type === "accommodation"
+        ? accommodationSchema.safeParse(formData)
+        : generalSchema.safeParse(formData);
+    if (!isValidForm.success) {
+      throw new Error(
+        isValidForm.error.issues.map((issue) => issue.message).join(", ")
+      );
+    }
+    const fullURL: string = `${import.meta.env.VITE_API_URL}/api/inquiry`;
+    const fullOptions: RequestInit = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData.inquiry),
+      signal,
+    };
+    const response = await fetch(fullURL, fullOptions);
+    if (!response.ok) {
+      throw new Error(response.status.toString());
+    }
+    const { success, rejection } = await response.json();
+    if (!success) {
+      throw new Error(rejection);
+    }
+  } catch (err) {
+    if (err instanceof DOMException && err.name === "AbortError") {
+      return rejectWithValue("network");
+    }
+    if (err instanceof Error) {
+      return rejectWithValue(err.message);
+    }
+    return rejectWithValue("unknown");
+  }
+});
 
 export const contactSlice = createSlice({
   name: "contact",
@@ -126,6 +173,24 @@ export const contactSlice = createSlice({
         state.formData = initialAccommodationState;
       }
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(submitInquiry.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(
+        submitInquiry.rejected,
+        (state, action: PayloadAction<string | undefined>) => {
+          state.loading = false;
+          state.error = action.payload ?? "unknown";
+        }
+      )
+      .addCase(submitInquiry.fulfilled, (state) => {
+        state.loading = false;
+        state.isSubmitted = true; // Opted to throw an error instead of catching success state
+      });
   },
 });
 
