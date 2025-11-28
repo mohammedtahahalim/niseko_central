@@ -87,3 +87,54 @@ export const propertySchema = z.object({
     }),
   }),
 });
+
+export const accommodationSchema = z.object({
+  first_name: z
+    .string()
+    .regex(/^[\p{L} ]+$/u)
+    .nonempty(),
+  last_name: z
+    .string()
+    .regex(/^[\p{L} ]+$/u)
+    .nonempty(),
+  email: z.email().nonempty(),
+  country: z.string().nonempty(),
+  phone: z.string().nonempty(),
+  date: z.string().regex(/^\d{2}-\d{2}-\d{4}$/),
+  flexibility: z.boolean(),
+  nights: z.number().positive(),
+  adults: z.number().positive(),
+  children: z.number().or(z.null()),
+  infants: z.number().or(z.null()),
+  properties: z.array(z.number().positive()),
+  comments: z.string(),
+});
+
+export const generalSchema = z.discriminatedUnion("in_house", [
+  z.object({
+    in_house: z.literal(false),
+    first_name: z
+      .string()
+      .regex(/^[\p{L} ]+$/u)
+      .nonempty(),
+    last_name: z
+      .string()
+      .regex(/^[\p{L} ]+$/u)
+      .nonempty(),
+    email: z.email().nonempty(),
+    message: z.string().nonempty(),
+  }),
+  z.object({
+    in_house: z.literal(true),
+    first_name: z
+      .string()
+      .regex(/^[\p{L} ]+$/u)
+      .nonempty(),
+    last_name: z
+      .string()
+      .regex(/^[\p{L} ]+$/u)
+      .nonempty(),
+    phone: z.string().nonempty(),
+    emergency_phone: z.string().nonempty(),
+  }),
+]);
