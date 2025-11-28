@@ -23,10 +23,6 @@ export const NisekoStore = configureStore({
     concierge: conciergeSlice,
     contact: contactSlice,
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: false,
-    }),
 });
 
 export type AppDispatch = typeof NisekoStore.dispatch;
