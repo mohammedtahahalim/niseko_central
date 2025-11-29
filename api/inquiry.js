@@ -3,14 +3,12 @@ import { generalSchema, accommodationSchema } from "../helpers/schemas.js";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
-    return res.status(405).json({ message: "Method Not Allowed ..." });
+    return res.status(405).json({ message: "Method Not Allowed..." });
   }
   try {
     const { type, data } = req.body;
     if (!data || !type || !["accommodation", "general"].includes(type)) {
-      return res
-        .status(400)
-        .json({ message: "Type And Data Are Required ..." });
+      return res.status(400).json({ message: "Bad Request..." });
     }
     const isValidFormat =
       type === "accommodation"
@@ -29,9 +27,16 @@ export default async function handler(req, res) {
       data,
       { publicKey: "LIsU78Pl67CFON2Rp", privateKey: "w1oo5G0zxLNgPuFoYLzZe" }
     );
+
+    if (email_response.status !== 200) {
+      return res.status(email_response.status).json({
+        success: false,
+        rejection_error: email_response.text,
+      });
+    }
     return res.status(200).json({
-      success: email_response.status === 200,
-      rejection_error: email_response.status !== 200 ? email_response.text : "",
+      success: true,
+      rejection_error: "",
     });
   } catch (err) {
     console.log(err);

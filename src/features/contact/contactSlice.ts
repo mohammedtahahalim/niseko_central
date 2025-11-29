@@ -180,9 +180,7 @@ export const contactSlice = createSlice({
         state.formData.type === "accommodation"
           ? "accommodation_data"
           : "general_data";
-      // @ts-ignore – we know the field exists on the active branch
       if (!(key in state.formData[active_type])) return;
-      // @ts-ignore – we know the field exists on the active branch
       state.formData[active_type][key] = value;
     },
   },
@@ -208,4 +206,4 @@ export const contactSlice = createSlice({
 });
 
 export default contactSlice.reducer;
-export const { switch_type } = contactSlice.actions;
+export const { switch_type, update_field } = contactSlice.actions;
