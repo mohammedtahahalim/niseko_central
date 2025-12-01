@@ -30,9 +30,12 @@ const Tab = styled(Button, {
   fontWeight: "600",
 }));
 
-const ContactForm = styled(Box)({
+const ContactForm = styled(Box)(({ theme }) => ({
   padding: "25px 0px",
-});
+  [theme.breakpoints.down("nav_break")]: {
+    padding: "25px",
+  },
+}));
 
 export default function ContactTabs() {
   const { t } = useTranslation();

@@ -616,7 +616,99 @@
     "forms": {
       "accommodation": {
         "tab_title": "Accommodation Inquiry",
-        "form_content": {}
+        "form_content": {
+          "first_name": "First Name",
+          "last_name": "Last Name",
+          "email": "Email",
+          "country": "Country",
+          "phone": "Phone",
+          "nights": "No. of Nights",
+          "adults": "No. of Adults (16+)",
+          "children": "No. of Children (7-15)",
+          "infants": "No. of Infants (0-6)",
+          "placeholder": "Please Select ...",
+          "all_properties": "All Properties",
+          "properties": [
+            {
+              "key": "40",
+              "value": "Deep Tracks"
+            },
+            {
+              "key": "41",
+              "value": "Ezo 365"
+            },
+            {
+              "key": "38",
+              "value": "Hirafu House"
+            },
+            {
+              "key": "37",
+              "value": "Horizon Townhouses"
+            },
+            {
+              "key": "12709",
+              "value": "Hirafu Woods"
+            },
+            {
+              "key": "36",
+              "value": "J House"
+            },
+            {
+              "key": "35",
+              "value": "Kashi Lodge"
+            },
+            {
+              "key": "33",
+              "value": "Kisetsukan"
+            },
+            {
+              "key": "32",
+              "value": "Konkuriito"
+            },
+            {
+              "key": "31",
+              "value": "Miharashi"
+            },
+            {
+              "key": "30",
+              "value": "Miyuki"
+            },
+            {
+              "key": "29",
+              "value": "Mori Houses"
+            },
+            {
+              "key": "28",
+              "value": "Powder Tracks"
+            },
+            {
+              "key": "27",
+              "value": "Sekka Kan"
+            },
+            {
+              "key": "26",
+              "value": "Shirakaba"
+            },
+            {
+              "key": "9463",
+              "value": "Tsuru"
+            },
+            {
+              "key": "21",
+              "value": "Whiskey Woods"
+            },
+            {
+              "key": "42",
+              "value": "Yama Shizen"
+            },
+            {
+              "key": "24",
+              "value": "Youtei Tracks"
+            }
+          ],
+          "questions": "Questions & Comments",
+          "submit": "Submit"
+        }
       },
       "general": {
         "tab_title": "General Inquiry",

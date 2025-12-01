@@ -544,7 +544,42 @@
     "forms": {
       "accommodation": {
         "tab_title": "Renseignements d'hébergement",
-        "form_content": {}
+        "form_content": {
+          "first_name": "Prénom",
+          "last_name": "Nom",
+          "email": "E-mail",
+          "country": "Pays",
+          "phone": "Téléphone",
+          "nights": "Nombre de nuits",
+          "adults": "Nombre d'adultes (16+)",
+          "children": "Nombre d'enfants (7-15)",
+          "infants": "Nombre de nourrissons (0-6)",
+          "placeholder": "Veuillez sélectionner...",
+          "all_properties": "Toutes les propriétés",
+          "properties": [
+            { "key": "40", "value": "Pistes Profondes" },
+            { "key": "41", "value": "Ezo 365" },
+            { "key": "38", "value": "Maison Hirafu" },
+            { "key": "37", "value": "Maisons de Ville Horizon" },
+            { "key": "12709", "value": "Bois d’Hirafu" },
+            { "key": "36", "value": "Maison J" },
+            { "key": "35", "value": "Chalet Kashi" },
+            { "key": "33", "value": "Kisetsukan" },
+            { "key": "32", "value": "Béton" },
+            { "key": "31", "value": "Vue Panoramique" },
+            { "key": "30", "value": "Belle Neige" },
+            { "key": "29", "value": "Maisons de la Forêt" },
+            { "key": "28", "value": "Pistes de Poudreuse" },
+            { "key": "27", "value": "Pavillon Sekka" },
+            { "key": "26", "value": "Bouleau Blanc" },
+            { "key": "9463", "value": "Grue" },
+            { "key": "21", "value": "Bois du Whisky" },
+            { "key": "42", "value": "Montagne Naturelle" },
+            { "key": "24", "value": "Pistes du Yōtei" }
+          ],
+          "questions": "Questions et commentaires",
+          "submit": "Soumettre"
+        }
       },
       "general": {
         "tab_title": "Renseignements généraux",

@@ -544,7 +544,42 @@
     "forms": {
       "accommodation": {
         "tab_title": "宿泊に関するお問い合わせ",
-        "form_content": {}
+        "form_content": {
+          "first_name": "ファーストネーム",
+          "last_name": "苗字",
+          "email": "メール",
+          "country": "国",
+          "phone": "電話",
+          "nights": "宿泊数",
+          "adults": "大人数（16歳以上）",
+          "children": "子どもの数（7～15人）",
+          "infants": "幼児数（0～6歳）",
+          "placeholder": "選択してください...",
+          "all_properties": "すべての物件",
+          "properties": [
+            { "key": "40", "value": "ディープ・トラックス" },
+            { "key": "41", "value": "エゾ365" },
+            { "key": "38", "value": "ヒラフ・ハウス" },
+            { "key": "37", "value": "ホライゾン・タウンハウス" },
+            { "key": "12709", "value": "ヒラフ・ウッズ" },
+            { "key": "36", "value": "ジェイ・ハウス" },
+            { "key": "35", "value": "カシ・ロッジ" },
+            { "key": "33", "value": "キセツカン" },
+            { "key": "32", "value": "コンクリート" },
+            { "key": "31", "value": "見晴らし" },
+            { "key": "30", "value": "美雪" },
+            { "key": "29", "value": "森ハウス" },
+            { "key": "28", "value": "パウダー・トラックス" },
+            { "key": "27", "value": "雪花館" },
+            { "key": "26", "value": "白樺" },
+            { "key": "9463", "value": "鶴" },
+            { "key": "21", "value": "ウイスキー・ウッズ" },
+            { "key": "42", "value": "山自然" },
+            { "key": "24", "value": "羊蹄トラックス" }
+          ],
+          "questions": "質問とコメント",
+          "submit": "提出する"
+        }
       },
       "general": {
         "tab_title": "一般お問い合わせ",

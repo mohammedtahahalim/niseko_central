@@ -93,7 +93,7 @@ const initialAccommodationState: AccommodationInquiry = {
   date: "",
   flexibility: true,
   nights: 1,
-  adults: 0,
+  adults: 1,
   children: 0,
   infants: 0,
   properties: [],
@@ -171,7 +171,7 @@ export const contactSlice = createSlice({
     update_field(
       state,
       action: PayloadAction<{
-        key: keyof AccommodationInquiry & keyof GeneralInquiry;
+        key: string;
         value: any;
       }>
     ) {
@@ -181,7 +181,7 @@ export const contactSlice = createSlice({
           ? "accommodation_data"
           : "general_data";
       if (!(key in state.formData[active_type])) return;
-      state.formData[active_type][key] = value;
+      (state.formData[active_type] as Record<string, any>)[key] = value;
     },
   },
   extraReducers: (builder) => {
