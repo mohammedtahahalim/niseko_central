@@ -33,10 +33,7 @@ const Field = memo(({ field_type }: FieldProps) => {
       label={t(`contact.forms.accommodation.form_content.${field_type}`)}
       value={value}
       onChange={(e) => {
-        const t0 = performance.now();
         dispatch(update_field({ key: field_type, value: e.target.value }));
-        const t1 = performance.now();
-        console.log(t1 - t0);
       }}
       required
     />
