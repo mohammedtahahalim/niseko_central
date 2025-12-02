@@ -3,7 +3,6 @@ import InHouse from "./InHouse";
 import OutHouse from "./OutHouse";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../app/store";
-import { update_field } from "./contactSlice";
 
 const GeneralWrapper = styled("form")({});
 
@@ -17,7 +16,6 @@ export default function General() {
   const { in_house } = useSelector(
     (state: RootState) => state.contact.formData.general_data
   );
-  console.log(in_house);
   return (
     <GeneralWrapper>
       <NameWrapper>
