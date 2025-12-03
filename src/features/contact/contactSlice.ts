@@ -1,7 +1,3 @@
-// TODO: Implement the inquiry.js backend endpoint
-
-// TODO: convert the number array of properties to set using useMemo (to make properties checkup constant for more performance)
-
 import {
   createAsyncThunk,
   createSlice,
@@ -39,29 +35,27 @@ const accommodationSchema = z.object({
 const generalSchema = z.discriminatedUnion("in_house", [
   z.object({
     in_house: z.literal(false),
-    first_name: z
-      .string()
-      .regex(/^[\p{L} ]+$/u)
-      .nonempty(),
-    last_name: z
-      .string()
-      .regex(/^[\p{L} ]+$/u)
-      .nonempty(),
-    email: z.email().nonempty(),
-    message: z.string().nonempty(),
+    first_name: z.string().regex(/^[\p{L} ]+$/u, {
+      message: "First Name cannot be empty or contain illegal characters",
+    }),
+    last_name: z.string().regex(/^[\p{L} ]+$/u, {
+      message: "Last Name cannot be empty or contain illegal characters",
+    }),
+    email: z.email({ message: "Please Insert a valid email" }),
+    message: z.string(),
   }),
   z.object({
     in_house: z.literal(true),
-    first_name: z
+    first_name: z.string().regex(/^[\p{L} ]+$/u, {
+      message: "First Name cannot be empty or contain illegal characters",
+    }),
+    last_name: z.string().regex(/^[\p{L} ]+$/u, {
+      message: "Last Name cannot be empty or contain illegal characters",
+    }),
+    phone: z.string().nonempty({ message: "Please Insert a valid phone" }),
+    emergency_phone: z
       .string()
-      .regex(/^[\p{L} ]+$/u)
-      .nonempty(),
-    last_name: z
-      .string()
-      .regex(/^[\p{L} ]+$/u)
-      .nonempty(),
-    phone: z.string().nonempty(),
-    emergency_phone: z.string().nonempty(),
+      .nonempty({ message: "Please Insert a valid phone" }),
   }),
 ]);
 
@@ -80,12 +74,17 @@ interface InquiryState {
   };
 }
 
-const initialGeneralState: GeneralInquiry = {
+const initialGeneralState: GeneralInquiry & {
+  phone: string;
+  emergency_phone: string;
+} = {
   first_name: "",
   last_name: "",
   in_house: false,
   email: "",
   message: "",
+  phone: "",
+  emergency_phone: "",
 };
 
 const initialAccommodationState: AccommodationInquiry = {
@@ -191,7 +190,6 @@ export const contactSlice = createSlice({
         state.formData.type === "accommodation"
           ? "accommodation_data"
           : "general_data";
-      if (!(key in state.formData[active_type])) return;
       (state.formData[active_type] as Record<string, any>)[key] = value;
     },
   },

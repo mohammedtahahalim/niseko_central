@@ -49,7 +49,10 @@ export default function Accomodation() {
       <Button
         variant="contained"
         sx={{ width: "fit-content" }}
-        onClick={() => dispatch(submitInquiry())}
+        onClick={(e: React.FormEvent) => {
+          e.preventDefault();
+          dispatch(submitInquiry());
+        }}
         type="submit"
       >
         {t("contact.forms.accommodation.form_content.submit")}

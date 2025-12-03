@@ -583,7 +583,15 @@
       },
       "general": {
         "tab_title": "Renseignements généraux",
-        "form_content": {}
+        "form_content": {
+          "first_name": "Prénom",
+          "last_name": "Nom",
+          "in_house": "Actuellement sur place",
+          "email": "Adresse e-mail",
+          "message": "Message",
+          "phone": "Téléphone",
+          "emer_phone": "Téléphone d'urgence"
+        }
       }
     }
   }
