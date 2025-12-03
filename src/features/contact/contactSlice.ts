@@ -11,21 +11,25 @@ import z from "zod";
 import type { RootState } from "../../app/store";
 
 const accommodationSchema = z.object({
-  first_name: z
-    .string()
-    .regex(/^[\p{L} ]+$/u)
-    .nonempty(),
-  last_name: z
-    .string()
-    .regex(/^[\p{L} ]+$/u)
-    .nonempty(),
-  email: z.email().nonempty(),
-  country: z.string().nonempty(),
-  phone: z.string().nonempty(),
-  date: z.string().regex(/^\d{2}-\d{2}-\d{4}$/),
+  first_name: z.string().regex(/^[\p{L} ]+$/u, {
+    message: "First Name cannot be empty or contain illegal characters",
+  }),
+  last_name: z.string().regex(/^[\p{L} ]+$/u, {
+    message: "Last Name cannot be empty or contain illegal characters",
+  }),
+  email: z.email({ message: "Please Insert a valid email" }),
+  country: z.string().nonempty({ message: "Please Insert a valid country" }),
+  phone: z.string().nonempty({ message: "Please Insert a valid phone" }),
+  date: z.string().regex(/^\d{2}(\/|-)\d{2}(\1)\d{4}$/, {
+    message: "Please Insert a valid date : MM/DD/YYYY",
+  }),
   flexibility: z.boolean(),
-  nights: z.number().positive(),
-  adults: z.number().positive(),
+  nights: z
+    .number()
+    .positive({ message: "Number of night must be bigger than 0" }),
+  adults: z
+    .number()
+    .positive({ message: "Number of guests must be bigger than 0" }),
   children: z.number().or(z.null()),
   infants: z.number().or(z.null()),
   properties: z.array(z.number().positive()),
@@ -150,11 +154,18 @@ export const submitInquiry = createAsyncThunk<
     if (!success) {
       throw new Error(rejection_error);
     }
+    alert("Message Submitted Successfully ...");
   } catch (err) {
     if (err instanceof DOMException && err.name === "AbortError") {
       return rejectWithValue("network");
     }
     if (err instanceof Error) {
+      alert(
+        err.message
+          .split(", ")
+          .map((elem) => "- " + elem)
+          .join("\n")
+      );
       return rejectWithValue(err.message);
     }
     return rejectWithValue("unknown");

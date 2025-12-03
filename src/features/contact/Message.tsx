@@ -34,6 +34,9 @@ export default function Message() {
         onChange={(e) =>
           dispatch(update_field({ key: "comments", value: e.target.value }))
         }
+        name="comments"
+        id="comments"
+        label="Comments"
       />
     </MessageWrapper>
   );

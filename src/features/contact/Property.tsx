@@ -51,6 +51,7 @@ const Property = memo(() => {
               setAll((all) => !all);
               dispatch(update_field({ key: "properties", value: [] }));
             }}
+            name="all"
           />
         }
         label={
@@ -76,6 +77,7 @@ const Property = memo(() => {
                     })
                   );
                 }}
+                name={elem.key}
               />
             }
             label={

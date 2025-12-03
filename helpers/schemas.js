@@ -89,18 +89,18 @@ export const propertySchema = z.object({
 });
 
 export const accommodationSchema = z.object({
-  first_name: z
-    .string()
-    .regex(/^[\p{L} ]+$/u)
-    .nonempty(),
-  last_name: z
-    .string()
-    .regex(/^[\p{L} ]+$/u)
-    .nonempty(),
-  email: z.email().nonempty(),
-  country: z.string().nonempty(),
-  phone: z.string().nonempty(),
-  date: z.string().regex(/^\d{2}-\d{2}-\d{4}$/),
+  first_name: z.string().regex(/^[\p{L} ]+$/u, {
+    message: "First Name cannot be empty or contain illegal characters",
+  }),
+  last_name: z.string().regex(/^[\p{L} ]+$/u, {
+    message: "Last Name cannot be empty or contain illegal characters",
+  }),
+  email: z.email({ message: "Please Insert a valid email" }),
+  country: z.string().nonempty({ message: "Please Insert a valid country" }),
+  phone: z.string().nonempty({ message: "Please Insert a valid phone" }),
+  date: z.string().regex(/^\d{2}(\/|-)\d{2}(\1)\d{4}$/, {
+    message: "Please Insert a valid date : MM/DD/YYYY",
+  }),
   flexibility: z.boolean(),
   nights: z.number().positive(),
   adults: z.number().positive(),
