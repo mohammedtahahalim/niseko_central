@@ -583,7 +583,15 @@
       },
       "general": {
         "tab_title": "一般お問い合わせ",
-        "form_content": {}
+        "form_content": {
+          "first_name": "名",
+          "last_name": "姓",
+          "in_house": "現在在籍",
+          "email": "メールアドレス",
+          "message": "メッセージ",
+          "phone": "電話番号",
+          "emer_phone": "緊急連絡先電話番号"
+        }
       }
     }
   }

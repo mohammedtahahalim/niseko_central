@@ -714,7 +714,15 @@
       },
       "general": {
         "tab_title": "General Inquiry",
-        "form_content": {}
+        "form_content": {
+          "first_name": "First Name",
+          "last_name": "Last Name",
+          "in_house": "Currently In House",
+          "email": "Email",
+          "message": "Message",
+          "phone": "Phone",
+          "emer_phone": "Emergency Phone"
+        }
       }
     }
   }

@@ -545,7 +545,15 @@
       },
       "general": {
         "tab_title": "استفسار عام",
-        "form_content": {}
+        "form_content": {
+          "first_name": "الاسم الأول",
+          "last_name": "اسم العائلة",
+          "in_house": "متواجد حاليًا",
+          "email": "البريد الإلكتروني",
+          "message": "رسالة",
+          "phone": "هاتف",
+          "emer_phone": "هاتف الطوارئ"
+        }
       }
     }
   }
