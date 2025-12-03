@@ -25,16 +25,16 @@ declare module "@mui/material/styles" {
 
 export const lightPalette: PaletteOptions = {
   primary: {
-    main: "#F06549",
-    contrastText: "#FCFFFF",
+    main: "#C2361F", // darkened enough for AA contrast
+    contrastText: "#FFFFFF",
   },
   secondary: {
     main: "#1F2937",
-    contrastText: "#E1E3E8",
+    contrastText: "#F5F5F5",
   },
   info: {
     main: "#FFFFFF",
-    contrastText: "#1F2937",
+    contrastText: "#111827",
   },
   divider: "#D1D5DB",
   headfoot: {
@@ -47,10 +47,10 @@ export const lightPalette: PaletteOptions = {
     main: "#FFFFFF",
   },
   icons: {
-    main: "#64748B",
+    main: "#374151",
   },
   textColor: {
-    main: "#222",
+    main: "#111827",
   },
   service: {
     main: "#F3F4F6",
@@ -60,15 +60,15 @@ export const lightPalette: PaletteOptions = {
 export const darkPalette: PaletteOptions = {
   primary: {
     main: "#F06549",
-    contrastText: "#FCFFFF",
+    contrastText: "#FFFFFF",
   },
   secondary: {
     main: "#1F2937",
-    contrastText: "#E1E3E8",
+    contrastText: "#F5F5F5",
   },
   info: {
     main: "#374151",
-    contrastText: "#ddd",
+    contrastText: "#FFFFFF",
   },
   divider: "#4B5563",
   headfoot: {
@@ -81,10 +81,10 @@ export const darkPalette: PaletteOptions = {
     main: "#1F2937",
   },
   icons: {
-    main: "#94A3B8",
+    main: "#CBD5E1", // bright enough for contrast on dark bg
   },
   textColor: {
-    main: "#ddd",
+    main: "#E5E7EB", // readable on dark bg
   },
   service: {
     main: "#374151",

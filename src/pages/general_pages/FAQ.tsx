@@ -75,7 +75,9 @@ export default function FAQ() {
     <FAQContainer maxWidth="xl">
       <LinkTitle />
       <FAQWrapper disableGutters maxWidth="nav_break">
-        <Title role="heading">{t("faq.title")}</Title>
+        <Title role="heading" aria-level={1}>
+          {t("faq.title")}
+        </Title>
         <Subtitle tabIndex={0}>{t("faq.subtitle")}</Subtitle>
         {(t("faq.q&a", { returnObjects: true }) as SectionProp[]).map(
           (section) => {
