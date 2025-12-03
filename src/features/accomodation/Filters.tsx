@@ -63,7 +63,9 @@ const Default = styled("span")(({ theme }) => ({
 
 export default function Filters() {
   const { t } = useTranslation();
-  const filters = useSelector((state: RootState) => state.bookings.filters);
+  const { filters, loading } = useSelector(
+    (state: RootState) => state.bookings
+  );
   const dispatch = useDispatch<AppDispatch>();
 
   const filterData = useMemo(
@@ -80,9 +82,9 @@ export default function Filters() {
             <Input
               size="small"
               name={filter.key}
-              aria-label={filter.placeholder}
               value={filters[filter.key as keyof typeof filters] || ""}
               displayEmpty
+              disabled={loading}
               renderValue={(selected: unknown) => {
                 if (!selected) {
                   return <Default>{filter.placeholder}</Default>;
