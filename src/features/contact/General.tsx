@@ -17,7 +17,7 @@ export default function General() {
     (state: RootState) => state.contact.formData.general_data
   );
   return (
-    <GeneralWrapper>
+    <GeneralWrapper name="contact">
       <NameWrapper>
         <TextField type="username" label="First Name" size="small" />
         <TextField type="username" label="Last Name" size="small" />

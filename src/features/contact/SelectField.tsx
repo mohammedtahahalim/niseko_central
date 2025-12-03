@@ -1,4 +1,10 @@
-import { styled, Box, FormLabel, MenuItem, Select } from "@mui/material";
+import {
+  styled,
+  FormControl,
+  MenuItem,
+  Select,
+  FormLabel,
+} from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../../app/store";
@@ -8,7 +14,7 @@ interface SelectFieldProps {
   field: string;
 }
 
-const SelectWrapper = styled(Box)({
+const SelectWrapper = styled(FormControl)({
   display: "flex",
   flexDirection: "column",
   gap: "2px",
@@ -29,9 +35,10 @@ export default function SelectField({ field }: SelectFieldProps) {
   );
   const { t } = useTranslation();
   const dispatch = useDispatch<AppDispatch>();
+
   return (
-    <SelectWrapper tabIndex={0} aria-label={field}>
-      <FormLabel sx={{ fontSize: "0.9rem" }} color="secondary">
+    <SelectWrapper size="small" variant="outlined">
+      <FormLabel id={field} color="secondary" sx={{ fontSize: "0.9rem" }}>
         {t(`contact.forms.accommodation.form_content.${field}`)} *
       </FormLabel>
       <Select
@@ -40,19 +47,24 @@ export default function SelectField({ field }: SelectFieldProps) {
         onChange={(e) =>
           dispatch(update_field({ key: field, value: e.target.value }))
         }
+        labelId={field}
+        id={field}
+        name={field}
         renderValue={(selected: any) => {
-          if (selected === 0) {
+          if (selected === 0)
             return t("contact.forms.accommodation.form_content.placeholder");
-          }
+          if (selected === 10) return "10+";
           return selected;
         }}
       >
-        <MenuItem value={0} sx={{ fontSize: "0.9rem" }}>
+        <MenuItem value={0}>
           {t("contact.forms.accommodation.form_content.placeholder")}
         </MenuItem>
-        {Array.from({ length: 10 }, (_, idx) => idx + 1).map((elem) => {
-          return <MenuItem value={elem}>{elem}</MenuItem>;
-        })}
+        {Array.from({ length: 10 }, (_, idx) => idx + 1).map((elem) => (
+          <MenuItem value={elem} key={elem}>
+            {elem !== 10 ? elem : "10+"}
+          </MenuItem>
+        ))}
       </Select>
     </SelectWrapper>
   );

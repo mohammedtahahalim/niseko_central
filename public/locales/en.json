@@ -622,6 +622,8 @@
           "email": "Email",
           "country": "Country",
           "phone": "Phone",
+          "date": "Arrival Date",
+          "flexible": "Are your dates flexible?",
           "nights": "No. of Nights",
           "adults": "No. of Adults (16+)",
           "children": "No. of Children (7-15)",

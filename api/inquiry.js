@@ -15,6 +15,7 @@ export default async function handler(req, res) {
         ? accommodationSchema.safeParse(data)
         : generalSchema.safeParse(data);
     if (!isValidFormat.success) {
+      console.log(isValidFormat.error);
       return res.status(400).json({
         message: isValidFormat.error.issues
           .map((issue) => issue.message)

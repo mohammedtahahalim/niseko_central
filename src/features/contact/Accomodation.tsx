@@ -32,7 +32,7 @@ export default function Accomodation() {
   const dispatch = useDispatch<AppDispatch>();
 
   return (
-    <AccomodationWrapper>
+    <AccomodationWrapper name="contact" id="contact">
       <NameWrapper>
         <Field field_type="first_name" />
         <Field field_type="last_name" />
@@ -40,6 +40,7 @@ export default function Accomodation() {
       {info_fields.map((field) => {
         return <Field field_type={field} key={field} />;
       })}
+      <Field field_type="date" />
       {select_fields.map((field) => {
         return <SelectField key={field} field={field} />;
       })}
@@ -49,6 +50,7 @@ export default function Accomodation() {
         variant="contained"
         sx={{ width: "fit-content" }}
         onClick={() => dispatch(submitInquiry())}
+        type="submit"
       >
         {t("contact.forms.accommodation.form_content.submit")}
       </Button>

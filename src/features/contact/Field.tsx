@@ -30,12 +30,14 @@ const Field = memo(({ field_type }: FieldProps) => {
   return (
     <FieldWrapper
       size="small"
+      name={field_type}
       label={t(`contact.forms.accommodation.form_content.${field_type}`)}
       value={value}
       onChange={(e) => {
         dispatch(update_field({ key: field_type, value: e.target.value }));
       }}
       required
+      autoComplete="off"
     />
   );
 });
