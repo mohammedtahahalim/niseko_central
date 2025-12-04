@@ -146,7 +146,6 @@ export default function Modal({
       }
     },
     "aria-haspopup": "dialog",
-    "aria-expanded": isOpen,
   });
 
   const clonedChild = React.cloneElement(children, {

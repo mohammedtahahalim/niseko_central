@@ -1,4 +1,4 @@
-import { Box, MenuItem, Select, styled, Typography } from "@mui/material";
+import { Box, MenuItem, Select, styled, InputLabel } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../../app/store";
@@ -32,7 +32,7 @@ const FilterWrapper = styled(Box)({
   gap: "5px",
 });
 
-const Label = styled(Typography)({
+const Label = styled(InputLabel)({
   textTransform: "capitalize",
   fontFamily: "Inter",
   paddingLeft: "2px",
@@ -78,7 +78,7 @@ export default function Filters() {
       {filterData.map((filter) => {
         return (
           <FilterWrapper key={filter.label}>
-            <Label variant="body2">{filter.label}</Label>
+            <Label>{filter.label}</Label>
             <Input
               size="small"
               name={filter.key}
