@@ -59,7 +59,7 @@ export default function Gallery() {
       <Modal
         trigger={
           <GalleryWrapper
-            role="modal"
+            role="img"
             aria-label="Open Gallery"
             aria-live="polite"
           >
