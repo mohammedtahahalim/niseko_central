@@ -126,6 +126,7 @@ export default function News() {
           <NewsSlider
             modules={[Keyboard]}
             slidesPerView={slideCount}
+            loop={true}
             style={{ display: "flex" }}
             onSwiper={(swiper) => (swiperRef.current = swiper)}
             speed={250}

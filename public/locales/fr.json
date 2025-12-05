@@ -152,7 +152,8 @@
     "niseko-accommodation": "Hébergement à Niseko",
     "faq": "FAQ",
     "concierge": "Concierge",
-    "contact": "Contact"
+    "contact": "Contact",
+    "niseko-accommodation-deals": "Offres d'hébergement à Niseko"
   },
   "quick_reservation": {
     "title": "Vérifier les disponibilités",
@@ -327,6 +328,12 @@
     ],
     "empty": "Aucune réservation ne correspond à ces critères. Veuillez modifier les paramètres de recherche."
   },
+  "deals": {
+    "title": {
+      "head_title": "Offres spéciales",
+      "content": "Recherchez des offres et des réductions exceptionnelles sur les hébergements à Niseko auprès de Niseko Central, le fournisseur d'hébergement le plus réputé de Niseko."
+    }
+  },
   "property": {
     "book_now": "Réservez maintenant",
     "map": "Carte",
@@ -338,8 +345,10 @@
     "floor_plan": "Plan d'étage"
   },
   "faq": {
-    "title": "FAQ",
-    "subtitle": "Questions fréquemment posées lors de la préparation de vos vacances au Japon avec nous.",
+    "title": {
+      "head_title": "FAQ",
+      "content": "Questions fréquentes concernant les vacances au Japon avec nous."
+    },
     "q&a": [
       {
         "heading": "Niseko",

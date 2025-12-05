@@ -10,7 +10,7 @@ const TitleWrapper = styled(Box, {
   shouldForwardProp: (prop) => prop !== "isCentered",
 })<{ isCentered: boolean }>(({ theme, isCentered }) => ({
   width: "100%",
-  maxWidth: "700px",
+  maxWidth: "850px",
   alignSelf: "center",
   display: "flex",
   flexDirection: "column",
@@ -22,7 +22,7 @@ const TitleWrapper = styled(Box, {
   },
 }));
 
-const Stay = styled(Typography)(({ theme }) => ({
+const HeadTitle = styled(Typography)(({ theme }) => ({
   fontFamily: "VAGRundschriftD",
   color: theme.palette.textColor?.main,
   fontSize: "1.8rem",
@@ -32,11 +32,13 @@ const Stay = styled(Typography)(({ theme }) => ({
   },
 }));
 
-const NisekoIntro = styled(Typography)(({ theme }) => ({
+const SubTitle = styled(Typography)(({ theme }) => ({
   fontFamily: "Figtree",
   fontStyle: "italic",
   color: theme.palette.icons?.main,
   fontSize: "1.5rem",
+  maxWidth: "800px",
+  minHeight: "75px",
   [theme.breakpoints.down("md")]: {
     fontSize: "1.2rem",
   },
@@ -46,10 +48,10 @@ export default function Title({ page, isCentered = true }: TitleProps) {
   const { t } = useTranslation();
   return (
     <TitleWrapper isCentered={isCentered}>
-      <Stay variant="h6">{t(`${page}.title.head_title`)}</Stay>
-      <NisekoIntro variant="h6" tabIndex={0}>
+      <HeadTitle variant="h6">{t(`${page}.title.head_title`)}</HeadTitle>
+      <SubTitle variant="h6" tabIndex={0}>
         {t(`${page}.title.content`)}
-      </NisekoIntro>
+      </SubTitle>
     </TitleWrapper>
   );
 }

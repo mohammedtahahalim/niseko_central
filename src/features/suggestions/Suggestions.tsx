@@ -124,7 +124,6 @@ export default function Suggestions() {
             slidesPerView={slideCount}
             style={{ display: "flex" }}
             onSwiper={(swiper) => (swiperRef.current = swiper)}
-            loop={true}
             speed={250}
             spaceBetween={12}
             keyboard={{ enabled: true, onlyInViewport: true }}

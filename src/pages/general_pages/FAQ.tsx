@@ -2,6 +2,7 @@ import { Box, Container, styled, Typography } from "@mui/material";
 import LinkTitle from "../../components/LinkTitle";
 import { useTranslation } from "react-i18next";
 import Accordion from "../../components/Accordion";
+import Title from "../../components/Title";
 
 interface SectionProp {
   heading: string;
@@ -34,24 +35,6 @@ const FAQWrapper = styled(Container)({
   gap: "10px",
 });
 
-const Title = styled(Typography)({
-  width: "100%",
-  textAlign: "center",
-  fontSize: "1.5rem",
-  fontWeight: "bolder",
-  textTransform: "capitalize",
-});
-
-const Subtitle = styled(Typography)(({ theme }) => ({
-  width: "100%",
-  textAlign: "center",
-  fontSize: "1.2rem",
-  fontWeight: "bold",
-  fontStyle: "italic",
-  color: theme.palette.icons?.main,
-  marginBottom: "30px",
-}));
-
 const Section = styled(Box)({
   display: "flex",
   flexDirection: "column",
@@ -74,11 +57,8 @@ export default function FAQ() {
   return (
     <FAQContainer maxWidth="xl">
       <LinkTitle />
+      <Title page="faq" />
       <FAQWrapper disableGutters maxWidth="nav_break">
-        <Title role="heading" aria-level={1}>
-          {t("faq.title")}
-        </Title>
-        <Subtitle tabIndex={0}>{t("faq.subtitle")}</Subtitle>
         {(t("faq.q&a", { returnObjects: true }) as SectionProp[]).map(
           (section) => {
             return (
