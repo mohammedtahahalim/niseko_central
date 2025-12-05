@@ -144,7 +144,7 @@ export default function News() {
                         .title
                     }
                     image={news.image}
-                    blurry_image={news.blurry_image}
+                    blurry_image={news.blur_image}
                   />
                 </NewsSlide>
               );
