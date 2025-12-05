@@ -52,7 +52,6 @@ export const fetchNews = createAsyncThunk<
     const data = (rawData.news as NewsData[]).filter(
       (news) => newsSchema.safeParse(news).success
     );
-    console.log(data);
     return data as NewsData[];
   } catch (err) {
     if (err instanceof DOMException && err.name === "AbortError") {

@@ -6,7 +6,7 @@ export default async function handler(req, res) {
   }
   let { id, limit } = req.query;
   id = Number(id) || 0;
-  limit = Number(limit) || 5;
+  limit = Number(limit) || 7;
   const randomSet = new Set();
   if (!id) {
     while (randomSet.size < limit) {

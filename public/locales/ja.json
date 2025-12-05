@@ -140,7 +140,8 @@
     "niseko-accommodation": "ニセコの宿泊施設",
     "faq": "Q&A",
     "concierge": "コンシェルジュ",
-    "contact": "接触"
+    "contact": "接触",
+    "niseko-accommodation-deals": "ニセコの宿泊プラン"
   },
   "quick_reservation": {
     "title": "空室状況を確認",
@@ -315,6 +316,12 @@
     ],
     "empty": "これらの条件に該当する予約は見つかりません。検索パラメータを変更してください。"
   },
+  "deals": {
+    "title": {
+      "head_title": "特別セール",
+      "content": "ニセコで最も定評のある宿泊施設プロバイダーであるニセコセントラルから、ニセコの宿泊施設の魅力的なお得なプランや割引を検索してください。"
+    }
+  },
   "property": {
     "book_now": "今すぐ予約",
     "map": "地図",
@@ -326,8 +333,10 @@
     "floor_plan": "フロアプラン"
   },
   "faq": {
-    "title": "FAQ",
-    "subtitle": "私たちと一緒に日本での休暇を過ごす際によくある質問。",
+    "title": {
+      "head_title": "Q&A",
+      "content": "当社と一緒に日本で休暇を過ごす際によく寄せられる質問です。"
+    },
     "q&a": [
       {
         "heading": "ニセコ",

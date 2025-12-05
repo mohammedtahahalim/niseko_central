@@ -140,7 +140,8 @@
     "niseko-accommodation": "Niseko Accommodation",
     "faq": "FAQ",
     "concierge": "Concierge",
-    "contact": "Contact"
+    "contact": "Contact",
+    "niseko-accommodation-deals": "Niseko Accommodation Deals"
   },
   "quick_reservation": {
     "title": "Check Availability",
@@ -423,6 +424,12 @@
     ],
     "empty": "No Bookings Found With these Criterias, Please change the search parameters"
   },
+  "deals": {
+    "title": {
+      "head_title": "Special Deals",
+      "content": "Search for exciting deals and discounts on Niseko accommodation from Niseko Central, the most established Niseko accommodation provider."
+    }
+  },
   "property": {
     "book_now": "Book Now",
     "map": "Map",
@@ -434,8 +441,10 @@
     "floor_plan": "Floor Plan"
   },
   "faq": {
-    "title": "FAQ",
-    "subtitle": "Frequently asked questions when taking a holiday in Japan with us.",
+    "title": {
+      "head_title": "FAQ",
+      "content": "Frequently asked questions when taking a holiday in Japan with us."
+    },
     "q&a": [
       {
         "heading": "Niseko",

@@ -24,8 +24,8 @@ export default function Home() {
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    const suggestion = dispatch(fetchSuggestions({ queries: { limit: 10 } }));
-    const news = dispatch(fetchNews({}));
+    const suggestion = dispatch(fetchSuggestions({ queries: { limit: 16 } }));
+    const news = dispatch(fetchNews({ queries: { limit: 5 } }));
     const blogs = dispatch(fetchBlogs({}));
     return () => {
       suggestion.abort();
