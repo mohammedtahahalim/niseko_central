@@ -13,12 +13,12 @@ interface FetchNewsProps {
 const newsSchema = z.object({
   id: z.number(),
   image: z.string(),
-  blurry_image: z.string(),
+  blur_image: z.string(),
   article: z.object({
-    en: z.object({ title: z.string(), content: z.string() }),
-    ar: z.object({ title: z.string(), content: z.string() }),
-    ja: z.object({ title: z.string(), content: z.string() }),
-    fr: z.object({ title: z.string(), content: z.string() }),
+    en: z.object({ title: z.string() }),
+    ar: z.object({ title: z.string() }),
+    ja: z.object({ title: z.string() }),
+    fr: z.object({ title: z.string() }),
   }),
 });
 
@@ -34,10 +34,10 @@ export const fetchNews = createAsyncThunk<
     Object.entries(queries ?? {})
       .filter(([_, v]) => v !== null && v !== undefined)
       .map(([k, v]) => [k, String(v)])
-  );
-  const fullURL: string = `${
-    import.meta.env.VITE_API_URL
-  }/api/news?${fullQueries}`;
+  ).toString();
+  const fullURL: string = `${import.meta.env.VITE_API_URL}/api/news${
+    fullQueries ? "?" + fullQueries : ""
+  }`;
   const fullOptions: RequestInit = {
     method: "get",
     signal,
@@ -52,7 +52,8 @@ export const fetchNews = createAsyncThunk<
     const data = (rawData.news as NewsData[]).filter(
       (news) => newsSchema.safeParse(news).success
     );
-    return data;
+    console.log(data);
+    return data as NewsData[];
   } catch (err) {
     if (err instanceof DOMException && err.name === "AbortError") {
       return rejectWithValue("network");
