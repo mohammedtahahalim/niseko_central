@@ -14,8 +14,8 @@ interface NewsCardProps {
 }
 
 const NewsCardWrapper = styled(Box)({
-  width: "99%",
-  height: "99%",
+  width: "100%",
+  height: "100%",
   borderRadius: "12px",
   overflow: "hidden",
   position: "relative",
@@ -112,7 +112,7 @@ export default function NewsCard({
         onMouseLeave={() => setOnHover(false)}
       ></ShadeLayer>
       <InformationBox>
-        <Title>{title || "Taha"}</Title>
+        <Title>{title || "Placeholder"}</Title>
         <More
           variant="contained"
           endIcon={isArabic ? <WestIcon /> : <EastIcon />}
