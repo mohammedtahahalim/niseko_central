@@ -1,10 +1,4 @@
 import { Box, styled } from "@mui/material";
-import { useDispatch } from "react-redux";
-import type { AppDispatch } from "../../app/store";
-import { fetchSuggestions } from "../../features/suggestions/suggestionsSlice";
-import { fetchNews } from "../../features/home/news/newsSlice";
-import { fetchBlogs } from "../../features/home/blog/blogSlice";
-import { useEffect } from "react";
 import Plan from "../../components/Plan";
 import Hero from "../../features/home/hero/Hero";
 import Services from "../../components/Services";
@@ -21,19 +15,6 @@ const HomeWrapper = styled(Box)(({ theme }) => ({
 }));
 
 export default function Home() {
-  const dispatch = useDispatch<AppDispatch>();
-
-  useEffect(() => {
-    const suggestion = dispatch(fetchSuggestions({ queries: { limit: 16 } }));
-    const news = dispatch(fetchNews({ queries: { limit: 5 } }));
-    const blogs = dispatch(fetchBlogs({}));
-    return () => {
-      suggestion.abort();
-      news.abort();
-      blogs.abort();
-    };
-  }, []);
-
   return (
     <HomeWrapper>
       <Hero />
