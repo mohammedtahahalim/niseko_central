@@ -34,6 +34,7 @@ const CardsContainer = styled(Box)({
   display: "flex",
   flexWrap: "wrap",
   gap: "10px",
+  justifyContent: "center",
 });
 
 const CardWrapper = styled(Box, {
@@ -41,10 +42,10 @@ const CardWrapper = styled(Box, {
 })<{ maxHeight: string; slideCount: number }>(
   ({ maxHeight, slideCount, theme }) => ({
     width: "100%",
-    maxWidth: `calc(100% / ${slideCount} - 8px)`,
-    height: "100%",
+    maxWidth: `min(calc(100% / ${slideCount} - 8px), 656px)`,
+    minHeight: "150px",
     aspectRatio: "1",
-    maxHeight: maxHeight,
+    maxHeight: maxHeight ?? "350px",
     backgroundColor: theme.palette.icons?.main,
     borderRadius: "12px",
     overflow: "hidden",
@@ -61,6 +62,8 @@ export default function Deals() {
     (state: RootState) => state.news
   );
   const dispatch = useDispatch<AppDispatch>();
+
+  console.log(maxHeight);
 
   useEffect(() => {
     const dealsRequest = dispatch(fetchNews({}));

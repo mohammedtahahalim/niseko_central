@@ -23,10 +23,9 @@ const SkeltonWrapper = styled(Skeleton, {
   ({ theme, maxHeight, skeltonNum }) => ({
     width: "100%",
     maxWidth: `calc(100% / ${skeltonNum} - 8px)`,
-    height: "100%",
-    minHeight: "150px",
+    minHeight: "350px",
     aspectRatio: "1",
-    maxHeight: maxHeight,
+    maxHeight: maxHeight ?? "350px",
     backgroundColor: theme.palette.icons?.main,
     borderRadius: "12px",
     overflow: "hidden",
