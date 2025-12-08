@@ -1,5 +1,11 @@
 import emailjs from "@emailjs/nodejs";
 import { generalSchema, accommodationSchema } from "../helpers/schemas.js";
+import dotenv from "dotenv"
+
+dotenv.config()
+
+const PUBLIC_KEY = process.env.EMAILJS_PUBLIC_KEY
+const PRIVATE_KEY = process.env.EMAILJS_PRIVATE_KEY
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -15,7 +21,6 @@ export default async function handler(req, res) {
         ? accommodationSchema.safeParse(data)
         : generalSchema.safeParse(data);
     if (!isValidFormat.success) {
-      console.log(isValidFormat.error);
       return res.status(400).json({
         message: isValidFormat.error.issues
           .map((issue) => issue.message)
@@ -26,7 +31,7 @@ export default async function handler(req, res) {
       "service_gxs9l81",
       "template_p83yoeu",
       data,
-      { publicKey: "LIsU78Pl67CFON2Rp", privateKey: "w1oo5G0zxLNgPuFoYLzZe" }
+      { publicKey: PUBLIC_KEY, privateKey: PRIVATE_KEY }
     );
 
     if (email_response.status !== 200) {

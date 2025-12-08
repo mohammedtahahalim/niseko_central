@@ -63,14 +63,12 @@ export default function Deals() {
   );
   const dispatch = useDispatch<AppDispatch>();
 
-  console.log(maxHeight);
-
   useEffect(() => {
     const dealsRequest = dispatch(fetchNews({}));
     return () => {
       dealsRequest.abort();
     };
-  }, []);
+  }, [dispatch]);
 
   return (
     <DealsContainer maxWidth="xl">
