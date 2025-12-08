@@ -5,19 +5,15 @@ export default async function handler(req, res) {
     return res.status(405).json({ message: "method not allowed" });
   }
   let { id, limit } = req.query;
-  id = Number(id) || 0;
-  limit = Number(limit) || 7;
-  const randomSet = new Set();
-  if (!id) {
-    while (randomSet.size < limit) {
-      const randomNumber = Math.floor(Math.random() * 7) + 1;
-      randomSet.add(randomNumber);
-    }
+  id = Number(id);
+  limit = Number(limit);
+  if((id && isNaN(id)) || (limit && isNaN(limit))){
+    return res.status(400).json({message: "Bad Request ..."})
   }
   try {
     const connection = dbConnection();
     const query =
-      id !== 0
+      (!isNaN(id) && id !== 0)
         ? `SELECT 
           n.id,
           n.image,
@@ -37,12 +33,11 @@ export default async function handler(req, res) {
         FROM news n
         LEFT JOIN news_translations nt 
           ON n.id = nt.news_id
-        WHERE n.id IN (${Array.from({ length: randomSet.size }, () => "?").join(
-          ", "
-        )})
         GROUP BY n.id, n.image, n.blur_image
+        ORDER BY RAND()
+        LIMIT ?
         `;
-    const [result] = await connection.query(query, id ? [id] : [...randomSet]);
+    const [result] = await connection.query(query, id ? [id] : [limit ?? 7]);
     if (!result.length) {
       return res.status(404).json({ message: "No News Found" });
     }

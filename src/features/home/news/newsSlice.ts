@@ -32,6 +32,7 @@ export const fetchNews = createAsyncThunk<
   const { queries, options } = args ?? {};
   const fullQueries = new URLSearchParams(
     Object.entries(queries ?? {})
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       .filter(([_, v]) => v !== null && v !== undefined)
       .map(([k, v]) => [k, String(v)])
   ).toString();

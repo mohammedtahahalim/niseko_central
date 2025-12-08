@@ -44,7 +44,7 @@ export default function Concierge() {
     return () => {
       concierge.abort();
     };
-  }, []);
+  }, [dispatch]);
 
   return (
     <countContext.Provider value={{ slideCount, maxHeight }}>

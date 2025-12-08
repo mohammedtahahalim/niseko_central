@@ -8,7 +8,7 @@ export default async function handler(req, res) {
   const { start_date, end_date, adults, children, infants } = req.query;
   try {
     const connection = dbConnection();
-    const max_pax = Number(adults) + Number(children) + Number(infants) || 0;
+    const max_pax = (Number(adults) + Number(children) + Number(infants)) || 0;
     const query = `
       SELECT p.id, p.images, p.blurred_images, p.max_pax, p.lifts_distance,p.size, p.beds, JSON_OBJECTAGG(pt.language_code, JSON_OBJECT('title', pt.title, 'type', pt.type)) as translations
       FROM property p INNER JOIN property_translations pt ON p.id = pt.property_id
