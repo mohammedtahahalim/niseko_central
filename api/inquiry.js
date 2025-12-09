@@ -1,32 +1,38 @@
 import emailjs from "@emailjs/nodejs";
 import { generalSchema, accommodationSchema } from "../helpers/schemas.js";
-import dotenv from "dotenv"
+import dotenv from "dotenv";
 
-dotenv.config()
+dotenv.config();
 
-const PUBLIC_KEY = process.env.EMAILJS_PUBLIC_KEY
-const PRIVATE_KEY = process.env.EMAILJS_PRIVATE_KEY
+const PUBLIC_KEY = process.env.EMAILJS_PUBLIC_KEY;
+const PRIVATE_KEY = process.env.EMAILJS_PRIVATE_KEY;
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ message: "Method Not Allowed..." });
   }
   try {
-    const { type, data } = req.body;
-    if (!data || !type || !["accommodation", "general"].includes(type)) {
+    const { type, data, ...rest } = req.body;
+
+    // Reject Unknown Queries
+    if (Object.keys(rest).length)
+      return res.status(400).json({ message: "Bad Request ..." });
+
+    // Only 'Accomodation' and 'General' Requests are allowed
+    if (!["accommodation", "general"].includes(type)) {
       return res.status(400).json({ message: "Bad Request..." });
     }
+
     const isValidFormat =
       type === "accommodation"
         ? accommodationSchema.safeParse(data)
         : generalSchema.safeParse(data);
     if (!isValidFormat.success) {
       return res.status(400).json({
-        message: isValidFormat.error.issues
-          .map((issue) => issue.message)
-          .join(", "),
+        message: isValidFormat.error.issues.map((i) => i.message).join(", "),
       });
     }
+
     const email_response = await emailjs.send(
       "service_gxs9l81",
       "template_p83yoeu",

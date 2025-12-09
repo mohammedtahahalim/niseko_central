@@ -6,8 +6,8 @@ import { sanitizeURL, subTag, tags } from "../utils/Constants";
 
 interface CardProps {
   id: number;
-  images: string[];
-  blurred_images: string[];
+  image: string;
+  blurred_image: string;
   lifts_distance: number;
   max_pax: number;
   title: string;
@@ -206,8 +206,8 @@ const Distance = styled(Typography)({
 
 export default function Card({
   id,
-  images,
-  blurred_images,
+  image,
+  blurred_image,
   lifts_distance,
   max_pax,
   title,
@@ -238,7 +238,7 @@ export default function Card({
     <CardContainer onClick={navigation} tabIndex={0} onKeyDown={onEnterKey}>
       <ImageContainer>
         <img
-          src={isLoaded ? images[0] : blurred_images[0]}
+          src={isLoaded ? image : blurred_image}
           alt={title}
           width={"100%"}
           height={"100%"}

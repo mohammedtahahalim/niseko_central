@@ -51,22 +51,24 @@ export default function Bookings() {
       {!loading &&
         displayBookings.length !== 0 &&
         displayBookings.map((displayBookings) => {
-          const { id, images, blurred_images, max_pax, lifts_distance } =
+          const { id, image, blurred_image, max_pax, lifts_distance } =
             displayBookings;
+          const langData =
+            displayBookings[i18n.language as keyof typeof displayBookings];
           const title =
-            displayBookings.translations[
-              i18n.language as keyof typeof displayBookings.translations
-            ]!.title;
+            typeof langData === "object" && langData !== null
+              ? langData.title
+              : "";
           const type =
-            displayBookings.translations[
-              i18n.language as keyof typeof displayBookings.translations
-            ]!.type;
+            typeof langData === "object" && langData !== null
+              ? langData.type
+              : "";
           return (
             <Card
               key={id}
               id={id}
-              images={images}
-              blurred_images={blurred_images}
+              image={image}
+              blurred_image={blurred_image}
               max_pax={max_pax}
               lifts_distance={lifts_distance}
               title={title}
