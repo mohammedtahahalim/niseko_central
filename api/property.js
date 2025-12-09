@@ -74,6 +74,7 @@ export default async function handler(req, res) {
     });
     return res.status(200).json({ properties: filteredResults });
   } catch (err) {
+    await connection.end();
     console.log(err);
     return res.status(500).json({ message: "Internal Server Error ..." });
   }
