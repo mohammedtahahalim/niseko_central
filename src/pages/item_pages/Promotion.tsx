@@ -1,7 +1,37 @@
-import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Navigate, useParams } from "react-router-dom";
+import type { AppDispatch } from "../../app/store";
+import { useEffect } from "react";
+import { fetchPromotion } from "../../features/promotion/promotionSlice";
+import { Container, styled } from "@mui/material";
+import LinkTitle from "../../components/LinkTitle";
+import Title from "../../features/promotion/Title";
+
+const PromotionWrapper = styled(Container)({
+  width: "100%",
+  minHeight: "100vh",
+  padding: "1rem",
+  display: "flex",
+  flexDirection: "column",
+  gap: "20px",
+});
 
 export default function Promotion() {
-  const {id, title} = useParams()
-  console.log(id, title)
-  return <div>Promotion</div>;
+  const { id, title } = useParams();
+
+  if (!id || !title) {
+    return <Navigate to={"/"} replace={true} />;
+  }
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    dispatch(fetchPromotion({ queries: { id, title } }));
+  }, []);
+
+  return (
+    <PromotionWrapper maxWidth="xl">
+      <LinkTitle />
+      <Title />
+    </PromotionWrapper>
+  );
 }

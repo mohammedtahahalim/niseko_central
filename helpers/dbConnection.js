@@ -14,9 +14,8 @@ export default function dbConnection() {
       host: DB_HOST,
       user: DB_USER,
       password: DB_PASS,
-      port: DB_PORT,
+      port: Number(DB_PORT),
       database: DB_NAME,
-      connectionLimit: 10,
     });
   }
   return pool;

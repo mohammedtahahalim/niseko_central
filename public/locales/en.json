@@ -734,5 +734,8 @@
         }
       }
     }
+  },
+  "promotion": {
+    "special": "Special Deals"
   }
 }

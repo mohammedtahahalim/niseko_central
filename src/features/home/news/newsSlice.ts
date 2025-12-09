@@ -36,7 +36,7 @@ export const fetchNews = createAsyncThunk<
       .filter(([_, v]) => v !== null && v !== undefined)
       .map(([k, v]) => [k, String(v)])
   ).toString();
-  const fullURL: string = `${import.meta.env.VITE_API_URL}/api/news${
+  const fullURL: string = `${import.meta.env.VITE_API_URL}/api/promotion${
     fullQueries ? "?" + fullQueries : ""
   }`;
   const fullOptions: RequestInit = {

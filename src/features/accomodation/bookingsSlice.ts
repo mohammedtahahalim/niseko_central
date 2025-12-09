@@ -10,30 +10,28 @@ import { properties_types } from "../../utils/Constants";
 
 const bookingsScehma = z.object({
   id: z.number(),
-  images: z.array(z.string().nonempty()),
-  blurred_images: z.array(z.string().nonempty()),
+  image: z.string().nonempty(),
+  blurred_image: z.string().nonempty(),
   max_pax: z.number().nonnegative(),
   lifts_distance: z.number(),
   price: z.number(),
-  size: z.number(),
   beds: z.number(),
-  translations: z.object({
-    en: z.object({
-      type: z.string(),
-      title: z.string(),
-    }),
-    ja: z.object({
-      type: z.string(),
-      title: z.string(),
-    }),
-    fr: z.object({
-      type: z.string(),
-      title: z.string(),
-    }),
-    ar: z.object({
-      type: z.string(),
-      title: z.string(),
-    }),
+  size: z.number(),
+  en: z.object({
+    type: z.string(),
+    title: z.string(),
+  }),
+  ja: z.object({
+    type: z.string(),
+    title: z.string(),
+  }),
+  fr: z.object({
+    type: z.string(),
+    title: z.string(),
+  }),
+  ar: z.object({
+    type: z.string(),
+    title: z.string(),
   }),
 });
 
@@ -94,7 +92,7 @@ export const fetchBookings = createAsyncThunk<
     if (bookingCache[fullQueries]) {
       return bookingCache[fullQueries] as Property[];
     }
-    const fullURL = `${import.meta.env.VITE_API_URL}/api/bookings${
+    const fullURL = `${import.meta.env.VITE_API_URL}/api/property${
       fullQueries ? "?" + fullQueries : ""
     }`;
     const response = await fetch(fullURL, { signal });
@@ -102,14 +100,7 @@ export const fetchBookings = createAsyncThunk<
       throw new Error(response.status.toString());
     }
     const raw_data = await response.json();
-    const data = raw_data.properties.map((property: any) => {
-      return {
-        ...property,
-        images: JSON.parse(property.images),
-        blurred_images: JSON.parse(property.blurred_images),
-      };
-    });
-    const filtered_data = data.filter(
+    const filtered_data = raw_data.properties.filter(
       (property: Property) => bookingsScehma.safeParse(property).success
     );
     bookingCache[fullQueries] = filtered_data;
@@ -150,7 +141,7 @@ export const bookingSlice = createSlice({
         state.displayBookings = state.bookings
           .filter((booking) => booking.max_pax >= value)
           .filter((booking) =>
-            booking.translations.en.title.includes(
+            booking.en.title.includes(
               properties_types.get(state.filters.property)!
             )
           );
@@ -161,7 +152,7 @@ export const bookingSlice = createSlice({
         state.displayBookings = state.bookings
           .filter((booking) => booking.max_pax >= state.filters.max_pax)
           .filter((booking) =>
-            booking.translations.en.title.includes(properties_types.get(value)!)
+            booking.en.title.includes(properties_types.get(value)!)
           );
       }
     },
@@ -188,13 +179,9 @@ export const bookingSlice = createSlice({
           state.displayBookings = state.displayBookings.sort(
             (a: Property, b: Property) => {
               if (state.sort_order) {
-                return a.translations.en.title.localeCompare(
-                  b.translations.en.title
-                );
+                return a.en.title.localeCompare(b.en.title);
               } else {
-                return b.translations.en.title.localeCompare(
-                  a.translations.en.title
-                );
+                return b.en.title.localeCompare(a.en.title);
               }
             }
           );

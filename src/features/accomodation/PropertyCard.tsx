@@ -41,12 +41,12 @@ const Content = styled(Box)({
   border: "1px solid white",
 });
 
-export default function PropertyCard({ id, images, blurred_images }: Property) {
+export default function PropertyCard({ id, image, blurred_image }: Property) {
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   return (
     <PropertyCardWrapper tabIndex={0}>
       <ImageWrapper
-        src={isLoaded ? images[0] : blurred_images[0]}
+        src={isLoaded ? image : blurred_image}
         alt={id.toString()}
         onLoad={() => setIsLoaded(true)}
         sx={{ opacity: isLoaded ? 1 : 0.5 }}

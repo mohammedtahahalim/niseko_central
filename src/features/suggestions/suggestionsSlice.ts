@@ -40,7 +40,7 @@ export const fetchSuggestions = createAsyncThunk<
   ).toString();
   const fullURL: string = `${
     import.meta.env.VITE_API_URL
-  }/api/suggestions?${fullQueries}`;
+  }/api/property?${fullQueries}`;
   const fullOptions: RequestInit = {
     method: "get",
     signal,
