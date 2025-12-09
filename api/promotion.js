@@ -7,6 +7,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ message: "method not allowed" });
   }
   const connection = dbConnection();
+
   try {
     let { id, limit = MAX_LIMIT, title, ...rest } = req.query;
     // Reject Unknow Queries
@@ -63,7 +64,5 @@ export default async function handler(req, res) {
   } catch (err) {
     console.log(err);
     return res.status(500).json({ message: "Internal Server Error ..." });
-  } finally {
-    await connection.end();
   }
 }

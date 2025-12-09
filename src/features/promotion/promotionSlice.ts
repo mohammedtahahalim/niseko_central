@@ -79,13 +79,21 @@ export const fetchPromotion = createAsyncThunk<
 type PromotionData = {
   loading: boolean;
   error: string | null;
-  promotion: Promotion | null;
+  promotion: Promotion;
 };
 
 const initialState: PromotionData = {
   loading: false,
   error: null,
-  promotion: null,
+  promotion: {
+    id: 0,
+    image: "",
+    blur_image: "",
+    en: { title: "", content: "" },
+    ja: { title: "", content: "" },
+    ar: { title: "", content: "" },
+    fr: { title: "", content: "" },
+  },
 };
 
 const promotionSlice = createSlice({

@@ -16,7 +16,9 @@ export default function dbConnection() {
       password: DB_PASS,
       port: DB_PORT,
       database: DB_NAME,
-      connectionLimit: 10,
+      ssl: { rejectUnauthorized: false },
+      connectTimeout: 10000,
+      connectionLimit: 1000,
     });
   }
   return pool;
