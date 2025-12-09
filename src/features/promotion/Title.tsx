@@ -17,19 +17,25 @@ const TitleContainer = styled(Box)({
 const TitleWrapper = styled(Box)({
   width: "100%",
   minHeight: "75px",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
 });
 
-const TitleName = styled(Typography)({
+const TitleName = styled(Typography)(({ theme }) => ({
   fontFamily: "Figtree",
-  fontSize: "1.9rem",
+  fontSize: "1.7rem",
   fontWeight: "bold",
   textAlign: "center",
-});
+  [theme.breakpoints.down("sm")]: {
+    fontSize: "1.2rem",
+  },
+}));
 
 const SkeletonTitle = styled(Skeleton)({
   width: "100%",
   minHeight: "75px",
-  minWidth: "350px",
+  minWidth: "450px",
 });
 
 export default function Title() {
@@ -45,7 +51,6 @@ export default function Title() {
     "title" in promotionData
       ? promotionData.title
       : "";
-  console.log(title);
 
   return (
     <TitleContainer>
@@ -54,7 +59,7 @@ export default function Title() {
         color="primary"
         component={Link}
         to={"/niseko-accommodation-deals"}
-        sx={{ fontFamily: "Figtree", width: "fit-content" }}
+        sx={{ fontFamily: "Figtree", width: "fit-content", fontSize: "0.8rem" }}
       >
         {t("promotion.special")}
       </Button>

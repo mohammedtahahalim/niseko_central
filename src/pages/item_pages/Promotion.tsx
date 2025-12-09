@@ -6,6 +6,7 @@ import { fetchPromotion } from "../../features/promotion/promotionSlice";
 import { Container, styled } from "@mui/material";
 import LinkTitle from "../../components/LinkTitle";
 import Title from "../../features/promotion/Title";
+import Banner from "../../features/promotion/Banner";
 
 const PromotionWrapper = styled(Container)({
   width: "100%",
@@ -13,7 +14,7 @@ const PromotionWrapper = styled(Container)({
   padding: "1rem",
   display: "flex",
   flexDirection: "column",
-  gap: "20px",
+  gap: "5px",
 });
 
 export default function Promotion() {
@@ -32,6 +33,7 @@ export default function Promotion() {
     <PromotionWrapper maxWidth="xl">
       <LinkTitle />
       <Title />
+      <Banner />
     </PromotionWrapper>
   );
 }
