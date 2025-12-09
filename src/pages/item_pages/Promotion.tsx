@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { fetchPromotion } from "../../features/promotion/promotionSlice";
 import { Container, styled } from "@mui/material";
 import LinkTitle from "../../components/LinkTitle";
-import { useTranslation } from "react-i18next";
+import Title from "../../features/promotion/Title";
 
 const PromotionWrapper = styled(Container)({
   width: "100%",
@@ -18,7 +18,6 @@ const PromotionWrapper = styled(Container)({
 
 export default function Promotion() {
   const { id, title } = useParams();
-  const { i18n } = useTranslation();
 
   if (!id || !title) {
     return <Navigate to={"/"} replace={true} />;
@@ -32,6 +31,7 @@ export default function Promotion() {
   return (
     <PromotionWrapper maxWidth="xl">
       <LinkTitle />
+      <Title />
     </PromotionWrapper>
   );
 }
