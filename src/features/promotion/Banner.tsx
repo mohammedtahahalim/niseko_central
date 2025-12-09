@@ -5,9 +5,10 @@ import { useState } from "react";
 
 const BannerWrapper = styled(Box)({
   width: "100%",
-  maxWidth: "800px",
+  maxWidth: "900px",
   aspectRatio: "16/9",
   overflow: "hidden",
+  borderRadius: "5px",
   margin: "0 auto",
 });
 
@@ -34,7 +35,8 @@ export default function Banner() {
         <SkeletonImage variant="rounded" />
       ) : (
         <Image
-          src={loaded ? image : blur_image}
+          alt="Promotion Banner"
+          src={loaded ? image : blur_image ? blur_image : "placeholder"}
           onLoad={() => setLoaded(true)}
           style={{
             opacity: loaded ? 1 : 0.5,

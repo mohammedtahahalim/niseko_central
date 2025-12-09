@@ -7,6 +7,7 @@ import { Container, styled } from "@mui/material";
 import LinkTitle from "../../components/LinkTitle";
 import Title from "../../features/promotion/Title";
 import Banner from "../../features/promotion/Banner";
+import DangerousHTML from "../../features/promotion/DangerousHTML";
 
 const PromotionWrapper = styled(Container)({
   width: "100%",
@@ -14,7 +15,7 @@ const PromotionWrapper = styled(Container)({
   padding: "1rem",
   display: "flex",
   flexDirection: "column",
-  gap: "5px",
+  gap: "25px",
 });
 
 export default function Promotion() {
@@ -34,6 +35,7 @@ export default function Promotion() {
       <LinkTitle />
       <Title />
       <Banner />
+      <DangerousHTML />
     </PromotionWrapper>
   );
 }
