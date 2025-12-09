@@ -11,7 +11,6 @@ const TitleContainer = styled(Box)({
   flexDirection: "column",
   alignItems: "center",
   gap: "5px",
-  padding: "10px",
 });
 
 const TitleWrapper = styled(Box)({
@@ -59,7 +58,12 @@ export default function Title() {
         color="primary"
         component={Link}
         to={"/niseko-accommodation-deals"}
-        sx={{ fontFamily: "Figtree", width: "fit-content", fontSize: "0.8rem" }}
+        sx={{
+          fontFamily: "Figtree",
+          width: "fit-content",
+          fontSize: "0.8rem",
+          padding: "0rem",
+        }}
       >
         {t("promotion.special")}
       </Button>
