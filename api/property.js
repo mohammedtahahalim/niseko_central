@@ -9,7 +9,6 @@ export default async function handler(req, res) {
     return res.status(405).json({ message: "Method Not Allowed ..." });
   }
   const connection = dbConnection();
-  console.log("Incoming Request ...");
   try {
     let { id, title, limit, ...rest } = req.query;
     // Reject Unknown Queries
@@ -20,7 +19,8 @@ export default async function handler(req, res) {
     id = Number(id);
     if (!isNaN(id)) {
       const query = `
-        SELECT p.*, JSON_OBJECTAGG(pt.language_code, JSON_OBJECT('title', pt.title, 'type', pt.type, 'description', pt.description, 'location', pt.location, 'amenities', pt.amenities)) as translations
+        SELECT p.*, 
+        JSON_OBJECTAGG(pt.language_code, JSON_OBJECT('title', pt.title, 'type', pt.type, 'description', pt.description, 'location', pt.location, 'amenities', pt.amenities)) as translations
         FROM property p 
             INNER JOIN property_translations pt ON p.id = pt.property_id
         WHERE p.id = ?
