@@ -14,7 +14,7 @@ function App() {
 
   useEffect(() => {
     const suggestion = dispatch(fetchSuggestions({ queries: { limit: 12 } }));
-    const news = dispatch(fetchNews({ queries: { limit: 5 } }));
+    const news = dispatch(fetchNews({ queries: { limit: 7 } }));
     const blogs = dispatch(fetchBlogs({}));
     return () => {
       suggestion.abort();

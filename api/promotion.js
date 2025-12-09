@@ -8,7 +8,7 @@ export default async function handler(req, res) {
   }
   const connection = dbConnection();
   try {
-    let { id, limit = MAX_LIMIT, ...rest } = req.query;
+    let { id, limit = MAX_LIMIT, title, ...rest } = req.query;
     // Reject Unknow Queries
     if (Object.keys(rest).length)
       return res.status(400).json({ message: "Bad Request ..." });
@@ -21,7 +21,7 @@ export default async function handler(req, res) {
         n.id,
         n.image,
         n.blur_image,
-        JSON_OBJECTAGG(nt.lang_code, JSON_OBJECT('title', nt.title, 'content', nt.content)) AS article
+        JSON_OBJECTAGG(nt.lang_code, JSON_OBJECT('title', nt.title, 'content', nt.content)) as article
       FROM news n
       LEFT JOIN news_translations nt 
         ON n.id = nt.news_id
@@ -31,7 +31,9 @@ export default async function handler(req, res) {
       const [result] = await connection.query(query, [id]);
       if (!result.length)
         return res.status(404).json({ message: "No News Found" });
-      return res.status(200).message({ news: result });
+      const { article, ...rest } = result[0];
+      const promotion = { ...rest, ...article };
+      return res.status(200).json({ promotion });
     }
 
     // fetch news by limit
