@@ -29,6 +29,7 @@ export default async function handler(req, res) {
       WHERE n.id = ?
       GROUP BY n.id, n.image, n.blur_image
       `;
+
       const [result] = await connection.query(query, [id]);
       if (!result.length)
         return res.status(404).json({ message: "No News Found" });
@@ -56,12 +57,14 @@ export default async function handler(req, res) {
     ORDER BY RAND()
     LIMIT ?
     `;
+
     const [result] = await connection.query(query, limit);
     if (!result.length) {
       return res.status(404).json({ message: "No News Found" });
     }
     return res.status(200).json({ news: result });
   } catch (err) {
+    await connection.end();
     console.log(err);
     return res.status(500).json({ message: "Internal Server Error ..." });
   }
