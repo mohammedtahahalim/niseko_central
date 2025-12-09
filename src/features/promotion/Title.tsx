@@ -38,7 +38,13 @@ export default function Title() {
     (state: RootState) => state.promotion
   );
 
-  const title = promotion[i18n.language as keyof typeof promotion]?.title || "";
+  const promotionData = promotion[i18n.language as keyof typeof promotion];
+  const title =
+    typeof promotionData === "object" &&
+    promotionData !== null &&
+    "title" in promotionData
+      ? promotionData.title
+      : "";
   console.log(title);
 
   return (

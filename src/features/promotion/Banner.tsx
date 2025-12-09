@@ -8,5 +8,6 @@ interface BannerProps {
 const BannerWrapper = styled(Box)({});
 
 export default function Banner({ image, blur_image }: BannerProps) {
+  console.log(image, blur_image);
   return <BannerWrapper>Banner</BannerWrapper>;
 }
