@@ -27,7 +27,10 @@ export default function Promotion() {
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    dispatch(fetchPromotion({ queries: { id, title } }));
+    const promotion = dispatch(fetchPromotion({ queries: { id, title } }));
+    return () => {
+      promotion.abort();
+    };
   }, []);
 
   return (
