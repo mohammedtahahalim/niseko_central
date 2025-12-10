@@ -3,6 +3,7 @@ const Article = lazy(() => import("../pages/item_pages/Article"));
 const Promotion = lazy(() => import("../pages/item_pages/Promotion"));
 const Property = lazy(() => import("../pages/item_pages/Property"));
 import type { TRoutes } from "../utils/Types";
+import Blog from "../pages/item_pages/Blog";
 
 export const item_pages: TRoutes[] = [
   {
@@ -16,5 +17,9 @@ export const item_pages: TRoutes[] = [
   {
     path: "/niseko-accommodation/:id/:title?",
     element: Property,
+  },
+  {
+    path: "/blog/:id/:title",
+    element: Blog,
   },
 ];

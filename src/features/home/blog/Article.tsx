@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import type { TLanguage } from "../../languages/changeLanguage";
 
 interface ArticleProps {
+  id: number;
   title: string;
   image: string;
   date: string;
@@ -85,7 +86,7 @@ const DateTypography = styled(Typography)({
   fontSize: "0.8rem",
 });
 
-export default function Article({ title, image, date }: ArticleProps) {
+export default function Article({ title, image, date, id }: ArticleProps) {
   const [isHovering, setIsHovering] = useState<boolean>(false);
   const navigate = useNavigate();
   const { i18n } = useTranslation();
@@ -93,7 +94,7 @@ export default function Article({ title, image, date }: ArticleProps) {
 
   return (
     <ArticleWrapper
-      onClick={() => navigate(`${sanitizeURL(title)}`)}
+      onClick={() => navigate(`/blog/${id}/${sanitizeURL(title)}`)}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
       tabIndex={0}
