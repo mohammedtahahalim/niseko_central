@@ -14,6 +14,11 @@ const DangerousHTMLWrapper = styled(Box)({
   marginBottom: "50px",
 });
 
+const ContentWrapper = styled(Box)({
+  width: "100%",
+  height: "100%",
+});
+
 const SkeletonContainer = styled(Box)({
   width: "100%",
   minWidth: "450px",
@@ -75,13 +80,16 @@ export default function DangerousHTML() {
   }, [pathname]);
 
   return (
-    <DangerousHTMLWrapper ref={shadowRef}>
-      {loading && (
+    <DangerousHTMLWrapper>
+      {loading ? (
         <SkeletonContainer>
           <SkeletonText variant="text" />
           <SkeletonText variant="text" />
           <SkeletonRounded variant="rectangular" />
+          <SkeletonRounded variant="rectangular" />
         </SkeletonContainer>
+      ) : (
+        <ContentWrapper ref={shadowRef} />
       )}
     </DangerousHTMLWrapper>
   );
