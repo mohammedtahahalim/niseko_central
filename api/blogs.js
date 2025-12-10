@@ -19,7 +19,8 @@ export default async function handler(req, res) {
     id = Number(id);
     if (!isNaN(id) && id) {
       const query = `
-        SELECT b.id, 
+        SELECT 
+          b.id,
           b.date, 
           b.image, 
           b.blur_image, 
@@ -42,19 +43,19 @@ export default async function handler(req, res) {
     if (page !== undefined && isNaN(Number(page)))
       return res.status(400).json({ message: "Bad Request ..." });
     page = page === undefined ? 1 : Math.max(1, Number(page));
-    const offset = (page - 1) * limit;
     if (limit !== undefined && isNaN(Number(limit)))
       return res.status(400).json({ message: "Bad Request ..." });
     limit =
       limit === undefined ? MAX_LIMIT : Math.min(MAX_LIMIT, Number(limit));
-
+    const offset = (page - 1) * limit;
     const query = `
         SELECT 
-          b.id, 
+          b.id,
           b.date,
           b.image, 
           b.blur_image, 
-          JSON_OBJECTAGG(bt.lang_code, JSON_OBJECT('title', bt.title)) as blog_article
+          JSON_OBJECTAGG(bt.lang_code, JSON_OBJECT('title', bt.title)) as blog_article,
+          (SELECT COUNT(*) FROM blogs) as blogs_count
         FROM blogs b 
         INNER JOIN blogs_translations bt 
           ON b.id = bt.blog_id
@@ -65,15 +66,19 @@ export default async function handler(req, res) {
     `;
     const [rows] = await connection.query(query, [limit, offset]);
     if (!rows.length)
-      return res.status(404).json({ message: "No Blogs Found ..." });
+      return res.status(404).json({ message: "Out of Bounds ..." });
+    const { blogs_count } = rows[0];
     const blogs = rows
       .map((row) => {
-        const { blog_article, ...rest } = row;
+        const { blog_article, blogs_count, ...rest } = row;
         return { ...rest, ...blog_article };
       })
       .filter((blog) => blogsSchema.safeParse(blog).success);
+    const last_page = Math.ceil(blogs_count / limit);
 
-    return res.status(200).json({ blogs });
+    return res
+      .status(200)
+      .json({ blogs, blogs_count, current_page: page, last_page });
   } catch (err) {
     console.log(err);
     return res.status(500).json({ message: "Internal Server Error..." });
