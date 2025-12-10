@@ -10,6 +10,7 @@ interface FetchNewsProps {
   options?: RequestInit;
 }
 
+// Defensive fallback, to ensure no content goes out of bound (since this is rendered inside a shadow dom)
 const newsSchema = z.object({
   id: z.number(),
   image: z.string(),
@@ -24,6 +25,33 @@ const newsSchema = z.object({
 
 type NewsData = z.infer<typeof newsSchema>;
 
+// Proxy based caching with env set timeout
+type TCache = Record<string, NewsData[]>;
+const timeouts: Record<string, ReturnType<typeof setTimeout>> = {};
+const cache: TCache = new Proxy(
+  {},
+  {
+    get(target: TCache, prop: string) {
+      if (!(prop in target)) return undefined;
+      clearTimeout(timeouts[prop]);
+      timeouts[prop] = setTimeout(() => {
+        delete target[prop];
+        delete timeouts[prop];
+      }, import.meta.env.VITE_CACHE_TTL * 1000 * 60);
+      return target[prop];
+    },
+    set(target: TCache, key: string, val: NewsData[]) {
+      clearTimeout(timeouts[key]);
+      target[key] = val;
+      timeouts[key] = setTimeout(() => {
+        delete timeouts[key];
+        delete target[key];
+      }, import.meta.env.VITE_CACHE_TTL * 1000 * 60);
+      return true;
+    },
+  }
+);
+
 export const fetchNews = createAsyncThunk<
   NewsData[],
   FetchNewsProps | null,
@@ -36,6 +64,11 @@ export const fetchNews = createAsyncThunk<
       .filter(([_, v]) => v !== null && v !== undefined)
       .map(([k, v]) => [k, String(v)])
   ).toString();
+
+  // TODO: Change the query string to sorted when large queries are involved
+  if (fullQueries in cache) return cache[fullQueries];
+
+  // Cache Miss ...
   const fullURL: string = `${import.meta.env.VITE_API_URL}/api/promotion${
     fullQueries ? "?" + fullQueries : ""
   }`;
@@ -53,6 +86,7 @@ export const fetchNews = createAsyncThunk<
     const data = (rawData.news as NewsData[]).filter(
       (news) => newsSchema.safeParse(news).success
     );
+    cache[fullQueries] = data;
     return data as NewsData[];
   } catch (err) {
     if (err instanceof DOMException && err.name === "AbortError") {
@@ -85,6 +119,7 @@ const newsSlice = createSlice({
     builder.addCase(fetchNews.pending, (state) => {
       state.newsLoading = true;
       state.error = null;
+      // Leave previous data intact to deliver stale data in case of a backend failure
     });
     builder.addCase(
       fetchNews.rejected,
