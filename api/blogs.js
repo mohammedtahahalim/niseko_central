@@ -1,6 +1,10 @@
 import dbConnection from "../helpers/dbConnection.js";
 import { blogSchema, blogsSchema } from "../helpers/schemas.js";
 
+// TODO: Refactor endpoint to send more details, total_blogs_count, page_size, blogs_count, current_page
+
+// TODO: if page exceed size limit, return empty blogs
+
 const MAX_LIMIT = 12;
 
 export default async function handler(req, res) {
@@ -38,6 +42,7 @@ export default async function handler(req, res) {
     if (page !== undefined && isNaN(Number(page)))
       return res.status(400).json({ message: "Bad Request ..." });
     page = page === undefined ? 1 : Math.max(1, Number(page));
+    const offset = (page - 1) * limit;
     if (limit !== undefined && isNaN(Number(limit)))
       return res.status(400).json({ message: "Bad Request ..." });
     limit =
@@ -58,7 +63,7 @@ export default async function handler(req, res) {
         LIMIT ?
         OFFSET ?
     `;
-    const [rows] = await connection.query(query, [limit, page]);
+    const [rows] = await connection.query(query, [limit, offset]);
     if (!rows.length)
       return res.status(404).json({ message: "No Blogs Found ..." });
     const blogs = rows

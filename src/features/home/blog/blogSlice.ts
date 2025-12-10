@@ -7,6 +7,7 @@ import z from "zod";
 
 type FetchBlogArgs = Record<string, string | number>;
 
+// Defensive checking to make sure component adhere to strict format for better UI
 const blogsSchema = z.object({
   id: z.number().nonnegative(),
   date: z.string().nonempty(),
@@ -20,6 +21,34 @@ const blogsSchema = z.object({
 
 type BlogSnippet = z.infer<typeof blogsSchema>;
 
+// Cache timeouts based, adjust duration in env file or directly
+type TCache = Record<string, BlogSnippet[]>;
+const TTL = import.meta.env.VITE_CACHE_TTL || 5;
+const timeouts: Record<string, ReturnType<typeof setTimeout>> = {};
+const cache: TCache = new Proxy(
+  {},
+  {
+    get(target: TCache, prop: string) {
+      if (!(prop in target)) return undefined;
+      clearTimeout(timeouts[prop]);
+      timeouts[prop] = setTimeout(() => {
+        delete timeouts[prop];
+        delete target[prop];
+      }, TTL * 1000 * 60);
+      return target[prop];
+    },
+    set(target: TCache, key: string, val: BlogSnippet[]) {
+      clearTimeout(timeouts[key]);
+      timeouts[key] = setTimeout(() => {
+        delete timeouts[key];
+        delete target[key];
+      }, TTL * 1000 * 60);
+      target[key] = val;
+      return true;
+    },
+  }
+);
+
 export const fetchBlogs = createAsyncThunk<
   BlogSnippet[],
   FetchBlogArgs,
@@ -31,6 +60,9 @@ export const fetchBlogs = createAsyncThunk<
         .filter(([_, v]) => v !== null && v !== undefined)
         .map(([k, v]) => [k, String(v)])
     ).toString();
+
+    // Cache Hit Check ...
+    if (fullQueries in cache) return cache[fullQueries];
     const fullURL: string = `${import.meta.env.VITE_API_URL}/api/blogs${
       fullQueries ? "?" + fullQueries : ""
     }`;
@@ -47,16 +79,18 @@ export const fetchBlogs = createAsyncThunk<
     const data = rawData.filter(
       (blog: BlogSnippet) => blogsSchema.safeParse(blog).success
     );
-
+    // TODO: sort queries before assigning to filter on, duplicates
+    cache[fullQueries] = data;
     return data as BlogSnippet[];
   } catch (err) {
     if (err instanceof DOMException && err.name === "AbortError") {
-      return rejectWithValue("Network Error");
+      return rejectWithValue("network");
     }
     if (err instanceof Error) {
+      // Map status codes to error message for scalabality (and multi lang support)
       return rejectWithValue(err.message as string);
     }
-    return rejectWithValue("Unknown");
+    return rejectWithValue("unknown");
   }
 });
 
@@ -80,7 +114,7 @@ export const blogSlice = createSlice({
     builder.addCase(fetchBlogs.pending, (state) => {
       state.blogLoading = true;
       state.error = null;
-      state.blogs = null;
+      // avoid resetting blogs on failure, to deliver stale data
     });
     builder.addCase(
       fetchBlogs.rejected,
