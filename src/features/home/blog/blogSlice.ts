@@ -7,23 +7,18 @@ import z from "zod";
 
 type FetchBlogArgs = Record<string, string | number>;
 
-interface BlogSnippet {
-  en: string;
-  ja: string;
-  ar: string;
-  fr: string;
-  image: string;
-  date: string;
-}
-
-const blogSchema = z.object({
-  en: z.string().nonempty(),
-  ja: z.string().nonempty(),
-  ar: z.string().nonempty(),
-  fr: z.string().nonempty(),
-  image: z.string().nonempty(),
+const blogsSchema = z.object({
+  id: z.number().nonnegative(),
   date: z.string().nonempty(),
+  image: z.string().nonempty(),
+  blur_image: z.string().nonempty(),
+  ar: z.object({ title: z.string().nonempty() }),
+  en: z.object({ title: z.string().nonempty() }),
+  ja: z.object({ title: z.string().nonempty() }),
+  fr: z.object({ title: z.string().nonempty() }),
 });
+
+type BlogSnippet = z.infer<typeof blogsSchema>;
 
 export const fetchBlogs = createAsyncThunk<
   BlogSnippet[],
@@ -50,7 +45,7 @@ export const fetchBlogs = createAsyncThunk<
     const resonseData = await response.json();
     const rawData = resonseData.blogs;
     const data = rawData.filter(
-      (blog: BlogSnippet) => blogSchema.safeParse(blog).success
+      (blog: BlogSnippet) => blogsSchema.safeParse(blog).success
     );
 
     return data as BlogSnippet[];
@@ -68,13 +63,13 @@ export const fetchBlogs = createAsyncThunk<
 interface BlogState {
   blogLoading: boolean;
   error: string | null;
-  blogs: BlogSnippet[];
+  blogs: BlogSnippet[] | null;
 }
 
 const initialState: BlogState = {
   blogLoading: false,
   error: null,
-  blogs: [],
+  blogs: null,
 };
 
 export const blogSlice = createSlice({
@@ -85,6 +80,7 @@ export const blogSlice = createSlice({
     builder.addCase(fetchBlogs.pending, (state) => {
       state.blogLoading = true;
       state.error = null;
+      state.blogs = null;
     });
     builder.addCase(
       fetchBlogs.rejected,

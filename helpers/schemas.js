@@ -138,3 +138,37 @@ export const generalSchema = z.discriminatedUnion("in_house", [
     emergency_phone: z.string().nonempty(),
   }),
 ]);
+
+export const blogsSchema = z.object({
+  id: z.number().nonnegative(),
+  date: z.string().nonempty(),
+  image: z.string().nonempty(),
+  blur_image: z.string().nonempty(),
+  ar: z.object({ title: z.string().nonempty() }),
+  en: z.object({ title: z.string().nonempty() }),
+  ja: z.object({ title: z.string().nonempty() }),
+  fr: z.object({ title: z.string().nonempty() }),
+});
+
+export const blogSchema = z.object({
+  id: z.number().nonnegative(),
+  date: z.string().nonempty(),
+  image: z.string().nonempty(),
+  blur_image: z.string().nonempty(),
+  ar: z.object({
+    title: z.string().nonempty(),
+    content: z.string().nonempty(),
+  }),
+  en: z.object({
+    title: z.string().nonempty(),
+    content: z.string().nonempty(),
+  }),
+  ja: z.object({
+    title: z.string().nonempty(),
+    content: z.string().nonempty(),
+  }),
+  fr: z.object({
+    title: z.string().nonempty(),
+    content: z.string().nonempty(),
+  }),
+});
