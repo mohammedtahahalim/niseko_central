@@ -39,7 +39,7 @@ export const general_pages: TRoutes[] = [
     element: Reservations,
   },
   {
-    path: "/blog",
+    path: "/blogs",
     element: Blogs,
   },
 ];

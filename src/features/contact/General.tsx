@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../../app/store";
 import { submitInquiry, update_field } from "./contactSlice";
 import { useTranslation } from "react-i18next";
+import type React from "react";
 
 const GeneralWrapper = styled("form")({
   display: "flex",
@@ -30,10 +31,18 @@ const NameWrapper = styled(Box)({
 
 export default function General() {
   const { t } = useTranslation();
+  const { loading } = useSelector((state: RootState) => state.contact);
   const { in_house, first_name, last_name } = useSelector(
     (state: RootState) => state.contact.formData.general_data
   );
   const dispatch = useDispatch<AppDispatch>();
+
+  const onKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      dispatch(update_field({ key: "in_house", value: !in_house }));
+    }
+  };
+
   return (
     <GeneralWrapper name="contact">
       <NameWrapper>
@@ -63,6 +72,8 @@ export default function General() {
             onChange={() =>
               dispatch(update_field({ key: "in_house", value: !in_house }))
             }
+            onKeyDown={onKeyDown}
+            tabIndex={0}
           />
         }
         label={
@@ -80,7 +91,7 @@ export default function General() {
           e.preventDefault();
           dispatch(submitInquiry());
         }}
-        type="submit"
+        disabled={loading}
       >
         {t("contact.forms.accommodation.form_content.submit")}
       </Button>

@@ -124,7 +124,7 @@
       "about": [
         { "path": "会社概要", "element": "/about" },
         { "path": "採用情報", "element": "/niseko-jobs" },
-        { "path": "ブログ", "element": "/blog" },
+        { "path": "ブログ", "element": "/blogs" },
         { "path": "ニセコ地域ガイド", "element": "/niseko-information" },
         { "path": "ライブカメラ", "element": "/webcam" },
         { "path": "天気", "element": "/niseko-weather" },
@@ -141,7 +141,8 @@
     "faq": "Q&A",
     "concierge": "コンシェルジュ",
     "contact": "接触",
-    "niseko-accommodation-deals": "ニセコの宿泊プラン"
+    "niseko-accommodation-deals": "ニセコの宿泊プラン",
+    "blogs": "ブログ"
   },
   "quick_reservation": {
     "title": "空室状況を確認",
@@ -606,5 +607,11 @@
   },
   "promotion": {
     "special": "特別セール"
+  },
+  "blogs": {
+    "title": {
+      "head_title": "ブログ",
+      "content": "日本のニセコからの最新ニュース、イベント、特別セールや割引情報。"
+    }
   }
 }

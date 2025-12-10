@@ -14,6 +14,7 @@ const TitleWrapper = styled(Box, {
   alignSelf: "center",
   display: "flex",
   flexDirection: "column",
+  alignItems: "center",
   gap: "5px",
   textAlign: isCentered ? "center" : "left",
   padding: "5px",

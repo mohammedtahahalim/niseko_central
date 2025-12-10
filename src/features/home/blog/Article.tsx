@@ -94,7 +94,7 @@ export default function Article({ title, image, date, id }: ArticleProps) {
 
   return (
     <ArticleWrapper
-      onClick={() => navigate(`/blog/${id}/${sanitizeURL(title)}`)}
+      onClick={() => navigate(`/blogs/${id}/${sanitizeURL(title)}`)}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
       tabIndex={0}

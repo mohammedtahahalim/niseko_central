@@ -130,7 +130,7 @@
       "about": [
         { "path": "À propos", "element": "/about" },
         { "path": "Carrières/Emplois", "element": "/niseko-jobs" },
-        { "path": "Blog", "element": "/blog" },
+        { "path": "Blog", "element": "/blogs" },
         {
           "path": "Guide de la région de Niseko",
           "element": "/niseko-information"
@@ -153,7 +153,8 @@
     "faq": "FAQ",
     "concierge": "Concierge",
     "contact": "Contact",
-    "niseko-accommodation-deals": "Offres d'hébergement à Niseko"
+    "niseko-accommodation-deals": "Offres d'hébergement à Niseko",
+    "blogs": "Blogs"
   },
   "quick_reservation": {
     "title": "Vérifier les disponibilités",
@@ -606,5 +607,11 @@
   },
   "promotion": {
     "special": "Offres spéciales"
+  },
+  "blogs": {
+    "title": {
+      "head_title": "Blogs",
+      "content": "Les dernières actualités, événements, offres spéciales et réductions de Niseko, Japon."
+    }
   }
 }

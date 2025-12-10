@@ -19,7 +19,7 @@ export const item_pages: TRoutes[] = [
     element: Property,
   },
   {
-    path: "/blog/:id/:title",
+    path: "/blogs/:id/:title",
     element: Blog,
   },
 ];

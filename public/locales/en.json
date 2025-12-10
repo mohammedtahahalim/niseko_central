@@ -124,7 +124,7 @@
       "about": [
         { "path": "About", "element": "/about" },
         { "path": "Careers/Jobs", "element": "/niseko-jobs" },
-        { "path": "Blog", "element": "/blog" },
+        { "path": "Blog", "element": "/blogs" },
         { "path": "Niseko Area Guide", "element": "/niseko-information" },
         { "path": "Live Camera", "element": "/webcam" },
         { "path": "Weather", "element": "/niseko-weather" },
@@ -141,7 +141,7 @@
     "faq": "FAQ",
     "concierge": "Concierge",
     "contact": "Contact",
-    "niseko-accommodation-deals": "Niseko Accommodation Deals"
+    "blogs": "Blogs"
   },
   "quick_reservation": {
     "title": "Check Availability",
@@ -737,5 +737,11 @@
   },
   "promotion": {
     "special": "Special Deals"
+  },
+  "blogs": {
+    "title": {
+      "head_title": "Blogs",
+      "content": "The latest news, events and special deals and discounts from Niseko, Japan."
+    }
   }
 }

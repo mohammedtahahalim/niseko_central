@@ -1,6 +1,6 @@
 import { Box, Button, styled } from "@mui/material";
-import { useDispatch } from "react-redux";
-import type { AppDispatch } from "../../app/store";
+import { useDispatch, useSelector } from "react-redux";
+import type { AppDispatch, RootState } from "../../app/store";
 import { submitInquiry } from "./contactSlice";
 import { useTranslation } from "react-i18next";
 import Field from "./Field";
@@ -27,6 +27,7 @@ const NameWrapper = styled(Box)(({ theme }) => ({
 
 export default function Accomodation() {
   const { t } = useTranslation();
+  const { loading } = useSelector((state: RootState) => state.contact);
   const info_fields = ["email", "country", "phone"];
   const select_fields = ["nights", "adults", "children", "infants"];
   const dispatch = useDispatch<AppDispatch>();
@@ -53,7 +54,7 @@ export default function Accomodation() {
           e.preventDefault();
           dispatch(submitInquiry());
         }}
-        type="submit"
+        disabled={loading}
       >
         {t("contact.forms.accommodation.form_content.submit")}
       </Button>

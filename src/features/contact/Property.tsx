@@ -41,6 +41,7 @@ const Property = memo(() => {
   const propertiesSet = useMemo(() => new Set(properties), [properties]);
   const dispatch = useDispatch<AppDispatch>();
   const [all, setAll] = useState<boolean>(false);
+
   return (
     <PropertiesContainer>
       <PropertyWrapper
@@ -50,6 +51,12 @@ const Property = memo(() => {
             onChange={() => {
               setAll((all) => !all);
               dispatch(update_field({ key: "properties", value: [] }));
+            }}
+            onKeyDown={(e: React.KeyboardEvent) => {
+              if (e.key === "Enter") {
+                setAll((all) => !all);
+                dispatch(update_field({ key: "properties", value: [] }));
+              }
             }}
             name="all"
           />
@@ -76,6 +83,19 @@ const Property = memo(() => {
                       value: [...propertiesSet],
                     })
                   );
+                }}
+                onKeyDown={(e: React.KeyboardEvent) => {
+                  if (e.key === "Enter") {
+                    propertiesSet.has(Number(elem.key))
+                      ? propertiesSet.delete(Number(elem.key))
+                      : propertiesSet.add(Number(elem.key));
+                    dispatch(
+                      update_field({
+                        key: "properties",
+                        value: [...propertiesSet],
+                      })
+                    );
+                  }
                 }}
                 name={elem.key}
               />
