@@ -121,7 +121,7 @@
       "about": [
         { "path": "حول", "element": "/about" },
         { "path": "الوظائف", "element": "/niseko-jobs" },
-        { "path": "المدونة", "element": "/blog" },
+        { "path": "المدونة", "element": "/blogs" },
         { "path": "دليل منطقة نيسيكو", "element": "/niseko-information" },
         { "path": "كاميرا مباشرة", "element": "/webcam" },
         { "path": "الطقس", "element": "/niseko-weather" },
@@ -138,7 +138,8 @@
     "faq": "التعليمات",
     "concierge": "بواب",
     "contact": "اتصال",
-    "niseko-accommodation-deals": "عروض الإقامة في نيسيكو"
+    "niseko-accommodation-deals": "عروض الإقامة في نيسيكو",
+    "blogs": "المدونات"
   },
   "quick_reservation": {
     "title": "تحقق من التوافر",
@@ -568,5 +569,11 @@
   },
   "promotion": {
     "special": "عروض خاصة"
+  },
+  "blogs": {
+    "title": {
+      "head_title": "المدونات",
+      "content": "آخر الأخبار والفعاليات والعروض الخاصة والخصومات من نيسيكو، اليابان."
+    }
   }
 }

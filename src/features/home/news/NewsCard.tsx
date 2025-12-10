@@ -84,12 +84,19 @@ export default function NewsCard({
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const isArabic = i18n.language === "ar";
 
+  const onKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      navigate(`/niseko-accommodation-deals/${id}/${sanitizeURL(title)}`);
+    }
+  };
+
   return (
     <NewsCardWrapper
       tabIndex={0}
       onClick={() =>
         navigate(`/niseko-accommodation-deals/${id}/${sanitizeURL(title)}`)
       }
+      onKeyDown={onKeyDown}
     >
       <ImageContainer>
         <img
