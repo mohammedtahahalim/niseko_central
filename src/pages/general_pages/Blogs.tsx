@@ -1,6 +1,8 @@
 import { Container, styled } from "@mui/material";
 import LinkTitle from "../../components/LinkTitle";
 import Title from "../../components/Title";
+import BlogsContent from "../../features/blogs/BlogsContent";
+import PageControl from "../../features/blogs/PageControl";
 
 const BlogsWrapper = styled(Container)(({ theme }) => ({
   width: "100%",
@@ -22,6 +24,8 @@ export default function Blogs() {
     <BlogsWrapper maxWidth="xl">
       <LinkTitle />
       <Title page="blogs" />
+      <BlogsContent />
+      <PageControl />
     </BlogsWrapper>
   );
 }
