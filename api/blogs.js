@@ -1,62 +1,78 @@
+import dbConnection from "../helpers/dbConnection.js";
+import { blogSchema, blogsSchema } from "../helpers/schemas.js";
+
+const MAX_LIMIT = 12;
+
 export default async function handler(req, res) {
   if (req.method !== "GET") {
     return res.status(405).json({ message: "method not allowed" });
   }
-  const fakeBlogsArr = [
-    {
-      en: "Your Guide to Vehicle Included Niseko Central Accommodations",
-      ja: "ニセコセントラルの車両付き宿泊施設ガイド",
-      ar: "دليلك للإقامة في وسط نيسيكو المتضمنة مركبة",
-      fr: "Votre guide des hébergements avec véhicule inclus à Niseko Central",
-      image:
-        "https://d1z517741srsht.cloudfront.net/blog/_1024xAUTO_crop_center-center_none/225288/Snow-road-winter.webp",
-      date: "September 20, 2025",
-    },
-    {
-      en: "Discover Nature on Two Wheels at Tokyu Grand Hirafu Bike Park!",
-      ja: "東急グランヒラフバイクパークで自転車に乗って自然を満喫！",
-      ar: "اكتشف الطبيعة على عجلتين في منتزه طوكيو جراند هيرافو للدراجات!",
-      fr: "Découvrez la nature sur deux roues au Tokyu Grand Hirafu Bike Park !",
-      image:
-        "https://d1z517741srsht.cloudfront.net/general/_2560xAUTO_crop_center-center_none/337243/20250619_GrandHirafu_Mountain_Bike_Cart_DSC05374_Lores_72_2025-06-27-083048_jlji.webp",
-      date: "June 27, 2025",
-    },
-    {
-      en: "Why You Should Try Spring Rafting in Niseko",
-      ja: "ニセコで春ラフティングに挑戦すべき理由",
-      ar: "لماذا يجب عليك تجربة التجديف الربيعي في نيسيكو",
-      fr: "Pourquoi essayer le rafting à Niseko",
-      image:
-        "https://d1z517741srsht.cloudfront.net/blog/_480xAUTO_crop_center-center_none/8941/rafting1.webp",
-      date: "April 10, 2025",
-    },
-    {
-      en: "Effortless Travel: Niseko Central’s Shuttle Service for a Smooth Arrival & Departure",
-      ja: "快適な旅を：ニセコセントラルのシャトルサービスでスムーズな到着と出発を",
-      ar: "سفر سهل: خدمة النقل المكوكية من نيسيكو سنترال لضمان وصول ومغادرة سلسة",
-      fr: "Voyagez sans effort : le service de navette de Niseko Central pour une arrivée et un départ en douceur",
-      image:
-        "https://d1z517741srsht.cloudfront.net/blog/_1536xAUTO_crop_center-center_none/322236/NC-Toyota-HiAce.webp",
-      date: "March 22, 2025",
-    },
-    {
-      en: "Niseko Central 2025/26: Discover Insider Tips for Securing Your Ideal Accommodation at the Best Rates",
-      ja: "ニセコセントラル 2025/26：最高の料金で理想の宿泊施設を確保するためのヒント",
-      ar: "نيسيكو سنترال 2025/26: اكتشف نصائح الخبراء لتأمين إقامتك المثالية بأفضل الأسعار",
-      fr: "Niseko Central 2025/26 : découvrez nos conseils pour trouver l'hébergement idéal au meilleur prix.",
-      image:
-        "https://d1z517741srsht.cloudfront.net/blog/_1536xAUTO_crop_center-center_none/257806/Drone-Blue-Skies-Winter-Trees-01-11-18-2_2024-02-28-082708_ftbj.webp",
-      date: "March 10, 2025",
-    },
-    {
-      en: "Quick, Easy & Delicious: Snow Yakitori Bar",
-      ja: "早くて簡単、そして美味しい：スノー焼き鳥バー",
-      ar: "سريع، سهل ولذيذ: بار سنو ياكيتوري",
-      fr: "Rapide, facile et délicieux : barre de yakitori aux neiges",
-      image:
-        "https://d1z517741srsht.cloudfront.net/blog/_2560xAUTO_crop_center-center_none/311045/20241225_Ki_Christmas_ReindeerDSC03456_Lores_257.webp",
-      date: "January 8, 2025",
-    },
-  ];
-  return res.status(200).json({ blogs: fakeBlogsArr });
+  const connection = dbConnection();
+  try {
+    let { id, title, limit, page, ...rest } = req.query;
+    if (Object.keys(rest).length)
+      return res.status(400).json({ message: "Bad Request ..." });
+    id = Number(id);
+    if (!isNaN(id) && id) {
+      const query = `
+        SELECT b.id, 
+          b.date, 
+          b.image, 
+          b.blur_image, 
+          JSON_OBJECTAGG(bt.lang_code, JSON_OBJECT('title', bt.title, 'content', bt.content)) as blog_article
+        FROM blogs b 
+        INNER JOIN blogs_translations bt 
+          ON b.id = bt.blog_id
+        WHERE b.id = ?
+        GROUP BY b.id, b.date, b.image, b.blur_image
+      `;
+      const [row] = await connection.query(query, [id]);
+      if (!row.length)
+        return res.status(404).json({ message: "No Blog Found ..." });
+      const { blog_article, ...rest } = row[0];
+      const article = { ...rest, ...blog_article };
+      if (!blogSchema.safeParse(article).success)
+        return res.status(404).json({ message: "No Article Found ..." });
+      return res.status(200).json({ article });
+    }
+    if (page !== undefined && isNaN(Number(page)))
+      return res.status(400).json({ message: "Bad Request ..." });
+    page = page === undefined ? 1 : Math.max(1, Number(page));
+    if (limit !== undefined && isNaN(Number(limit)))
+      return res.status(400).json({ message: "Bad Request ..." });
+    limit =
+      limit === undefined ? MAX_LIMIT : Math.min(MAX_LIMIT, Number(limit));
+
+    const query = `
+        SELECT 
+          b.id, 
+          b.date,
+          b.image, 
+          b.blur_image, 
+          JSON_OBJECTAGG(bt.lang_code, JSON_OBJECT('title', bt.title)) as blog_article
+        FROM blogs b 
+        INNER JOIN blogs_translations bt 
+          ON b.id = bt.blog_id
+        GROUP BY b.id, b.date, b.image, b.blur_image
+        ORDER BY STR_TO_DATE(b.date, '%M %d, %Y') DESC
+        LIMIT ?
+        OFFSET ?
+    `;
+    const [rows] = await connection.query(query, [limit, page]);
+    if (!rows.length)
+      return res.status(404).json({ message: "No Blogs Found ..." });
+    const blogs = rows
+      .map((row) => {
+        const { blog_article, ...rest } = row;
+        return { ...rest, ...blog_article };
+      })
+      .filter((blog) => blogsSchema.safeParse(blog).success);
+
+    return res.status(200).json({ blogs });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ message: "Internal Server Error..." });
+  } finally {
+    await connection.end();
+  }
 }

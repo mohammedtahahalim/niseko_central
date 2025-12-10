@@ -1,9 +1,10 @@
 import { Box, styled, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { sanitizeURL } from "../../../utils/Constants";
+import { format_date, sanitizeURL } from "../../../utils/Constants";
 import { useState } from "react";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import { useTranslation } from "react-i18next";
+import type { TLanguage } from "../../languages/changeLanguage";
 
 interface ArticleProps {
   title: string;
@@ -61,16 +62,20 @@ const BlogContent = styled(Box, {
 const Title = styled(Typography, {
   shouldForwardProp: (prop) => prop !== "isArabic",
 })<{ isArabic: boolean }>(({ isArabic }) => ({
-  fontFamily: "Source Code Pro",
-  fontSize: "1.25rem",
+  fontFamily: "VAGRundschriftD",
+  fontSize: "1.15rem",
   fontWeight: "bold",
   letterSpacing: "1.1px",
   flexWrap: "wrap",
   color: "whitesmoke",
   ...(isArabic ? { paddingLeft: "75px" } : { paddingRight: "75px" }),
+  maxHeight: "60px",
+  overflow: "hidden",
+  textOverflow: "ellipsis",
+  whiteSpace: "nowrap",
 }));
 
-const Date = styled(Typography)({
+const DateTypography = styled(Typography)({
   fontFamily: "Source Code Pro",
   fontStyle: "italic",
   display: "flex",
@@ -84,6 +89,7 @@ export default function Article({ title, image, date }: ArticleProps) {
   const [isHovering, setIsHovering] = useState<boolean>(false);
   const navigate = useNavigate();
   const { i18n } = useTranslation();
+  const date_format = new Date(date);
 
   return (
     <ArticleWrapper
@@ -116,10 +122,10 @@ export default function Article({ title, image, date }: ArticleProps) {
         <Title variant="h6" isArabic={i18n.language === "ar"} tabIndex={0}>
           {title}
         </Title>
-        <Date tabIndex={0}>
+        <DateTypography tabIndex={0}>
           <CalendarMonthOutlinedIcon fontSize="small" />
-          {date}
-        </Date>
+          {format_date(date_format, i18n.language as TLanguage)}
+        </DateTypography>
       </BlogContent>
     </ArticleWrapper>
   );

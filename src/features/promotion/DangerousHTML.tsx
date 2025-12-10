@@ -62,7 +62,8 @@ export default function DangerousHTML() {
       let dangerous_content = content ? JSON.parse(content) : "";
       dangerous_content = dangerous_content
         .replaceAll("gray-800", "gray-500")
-        .replaceAll("gray-700", "gray-500");
+        .replaceAll("gray-700", "gray-500")
+        .replace(/<svg(.|\n)*\/svg>/g, "");
       shadow.innerHTML = `
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@%5E2/dist/tailwind.min.css">
         ${dangerous_content}

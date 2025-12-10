@@ -120,7 +120,7 @@ export default function Blog() {
           </NavControl>
         </TitleContainer>
         {blogLoading && <Skelton skeltonNum={slideCount} />}
-        {!blogLoading && blogs.length !== 0 && (
+        {!blogLoading && blogs && (
           <BlogSlider
             modules={[Keyboard]}
             slidesPerView={slideCount}
@@ -135,7 +135,10 @@ export default function Blog() {
             {blogs.map((blog, idx) => {
               return (
                 <BlogSlide key={idx}>
-                  <Article {...blog} title={blog[i18n.language as TLanguage]} />
+                  <Article
+                    {...blog}
+                    title={blog[i18n.language as TLanguage].title}
+                  />
                 </BlogSlide>
               );
             })}

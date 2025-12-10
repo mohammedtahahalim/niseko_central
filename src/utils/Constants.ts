@@ -165,3 +165,11 @@ export const properties_types: Map<number, string> = new Map([
   [42, "Yama Shizen"],
   [24, "Youtei Tracks"],
 ]);
+
+export const format_date = (date: Date, locale: TLanguage) => {
+  return new Intl.DateTimeFormat(locale, {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  }).format(date);
+};

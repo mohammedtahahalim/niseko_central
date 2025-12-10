@@ -1,6 +1,9 @@
+import { sanitizeURL } from "../helpers/constants.js";
 import dbConnection from "../helpers/dbConnection.js";
 
 const MAX_LIMIT = 7;
+
+const langs = ["ja", "ar", "fr", "en"];
 
 export default async function handler(req, res) {
   if (req.method !== "GET") {
@@ -34,6 +37,10 @@ export default async function handler(req, res) {
       if (!result.length)
         return res.status(404).json({ message: "No News Found" });
       const { article, ...rest } = result[0];
+      const titles = langs.map((lang) => sanitizeURL(article[lang].title));
+      if (!titles.includes(sanitizeURL(title))) {
+        return res.status(301).json({ message: "id and title mismatch" });
+      }
       const promotion = { ...rest, ...article };
       return res.status(200).json({ promotion });
     }
