@@ -7,6 +7,7 @@ const Home = lazy(() => import("../pages/general_pages/Home"));
 const NotFound = lazy(() => import("../pages/general_pages/NotFound"));
 const Reservations = lazy(() => import("../pages/general_pages/Reservations"));
 import type { TRoutes } from "../utils/Types";
+import Blogs from "../pages/general_pages/Blogs";
 
 export const general_pages: TRoutes[] = [
   {
@@ -36,5 +37,9 @@ export const general_pages: TRoutes[] = [
   {
     path: "/niseko-accommodation",
     element: Reservations,
+  },
+  {
+    path: "/blog",
+    element: Blogs,
   },
 ];
