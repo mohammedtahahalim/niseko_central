@@ -1,10 +1,6 @@
 import dbConnection from "../helpers/dbConnection.js";
 import { blogSchema, blogsSchema } from "../helpers/schemas.js";
 
-// TODO: Refactor endpoint to send more details, total_blogs_count, page_size, blogs_count, current_page
-
-// TODO: if page exceed size limit, return empty blogs
-
 const MAX_LIMIT = 12;
 
 export default async function handler(req, res) {
@@ -16,6 +12,7 @@ export default async function handler(req, res) {
     let { id, title, limit, page, ...rest } = req.query;
     if (Object.keys(rest).length)
       return res.status(400).json({ message: "Bad Request ..." });
+
     id = Number(id);
     if (!isNaN(id) && id) {
       const query = `
@@ -34,28 +31,39 @@ export default async function handler(req, res) {
       const [row] = await connection.query(query, [id]);
       if (!row.length)
         return res.status(404).json({ message: "No Blog Found ..." });
+
       const { blog_article, ...rest } = row[0];
       const article = { ...rest, ...blog_article };
       if (!blogSchema.safeParse(article).success)
         return res.status(404).json({ message: "No Article Found ..." });
       return res.status(200).json({ article });
     }
-    if (page !== undefined && isNaN(Number(page)))
+
+    if (
+      (page !== undefined && isNaN(Number(page))) ||
+      (limit !== undefined && isNaN(Number(limit)))
+    )
       return res.status(400).json({ message: "Bad Request ..." });
+
     page = page === undefined ? 1 : Math.max(1, Number(page));
-    if (limit !== undefined && isNaN(Number(limit)))
-      return res.status(400).json({ message: "Bad Request ..." });
     limit =
       limit === undefined ? MAX_LIMIT : Math.min(MAX_LIMIT, Number(limit));
     const offset = (page - 1) * limit;
+    const count_query = `SELECT COUNT(*) as total_blogs FROM blogs`;
+    const [count_rows] = await connection.query(count_query);
+    if (!count_rows.length) {
+      return res.status(404).json({ message: "No Blogs Found ..." });
+    }
+    const { total_blogs } = count_rows[0];
+    const total_pages = Math.ceil(total_blogs / limit);
+
     const query = `
         SELECT 
           b.id,
           b.date,
           b.image, 
           b.blur_image, 
-          JSON_OBJECTAGG(bt.lang_code, JSON_OBJECT('title', bt.title)) as blog_article,
-          (SELECT COUNT(*) FROM blogs) as blogs_count
+          JSON_OBJECTAGG(bt.lang_code, JSON_OBJECT('title', bt.title)) as blog_article
         FROM blogs b 
         INNER JOIN blogs_translations bt 
           ON b.id = bt.blog_id
@@ -66,19 +74,28 @@ export default async function handler(req, res) {
     `;
     const [rows] = await connection.query(query, [limit, offset]);
     if (!rows.length)
-      return res.status(404).json({ message: "Out of Bounds ..." });
-    const { blogs_count } = rows[0];
+      return res.status(200).json({
+        blogs: [],
+        page,
+        page_size: limit,
+        total_blogs,
+        total_pages,
+      });
+
     const blogs = rows
       .map((row) => {
-        const { blog_article, blogs_count, ...rest } = row;
+        const { blog_article, ...rest } = row;
         return { ...rest, ...blog_article };
       })
       .filter((blog) => blogsSchema.safeParse(blog).success);
-    const last_page = Math.ceil(blogs_count / limit);
 
-    return res
-      .status(200)
-      .json({ blogs, blogs_count, current_page: page, last_page });
+    return res.status(200).json({
+      blogs,
+      page,
+      page_size: limit,
+      total_blogs,
+      total_pages,
+    });
   } catch (err) {
     console.log(err);
     return res.status(500).json({ message: "Internal Server Error..." });
