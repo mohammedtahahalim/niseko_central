@@ -1,7 +1,10 @@
 import dbConnection from "../helpers/dbConnection.js";
 import { blogSchema, blogsSchema } from "../helpers/schemas.js";
+import { sanitizeURL } from "../helpers/constants.js";
 
 const MAX_LIMIT = 9;
+
+const langs = ["en", "ja", "ar", "fr"];
 
 export default async function handler(req, res) {
   if (req.method !== "GET") {
@@ -33,12 +36,23 @@ export default async function handler(req, res) {
         return res.status(404).json({ message: "No Blog Found ..." });
 
       const { blog_article, ...rest } = row[0];
+      const titles = [];
+      for (let lang of langs) {
+        titles.push(sanitizeURL(blog_article[lang].title));
+      }
+      if (!titles.includes(sanitizeURL(title)))
+        return res.status(403).json({ message: "id and title mismatch ..." });
       const article = { ...rest, ...blog_article };
       if (!blogSchema.safeParse(article).success)
         return res.status(404).json({ message: "No Article Found ..." });
-      return res.status(200).json({ article });
+      return res.status(200).json({
+        blogs: [article],
+        page: null,
+        page_size: null,
+        total_blogs: null,
+        total_pages: null,
+      });
     }
-
     if (
       (page !== undefined && isNaN(Number(page))) ||
       (limit !== undefined && isNaN(Number(limit)))
