@@ -21,6 +21,7 @@ const blogsSchema = z.object({
 
 interface BlogReturn {
   blogs: z.infer<typeof blogsSchema>[];
+  first_blog: z.infer<typeof blogsSchema> | null;
   page: number;
   page_size: number;
   total_blogs: number;
@@ -83,6 +84,7 @@ export const fetchBlogs = createAsyncThunk<
     const resonse_data = await response.json();
     let {
       blogs,
+      first_blog,
       page,
       page_size: limit,
       total_blogs,
@@ -92,7 +94,14 @@ export const fetchBlogs = createAsyncThunk<
       (blog: BlogReturn["blogs"]) => blogsSchema.safeParse(blog).success
     );
     // TODO: sort queries before assigning to filter on, duplicates
-    const data = { blogs, page, page_size: limit, total_blogs, total_pages };
+    const data = {
+      blogs,
+      first_blog,
+      page,
+      page_size: limit,
+      total_blogs,
+      total_pages,
+    };
     cache[fullQueries] = data;
 
     return data as BlogReturn;

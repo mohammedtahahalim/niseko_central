@@ -10,7 +10,17 @@ export default async function handler(req, res) {
   }
   const connection = dbConnection();
   try {
-    let { id, title, limit, ...rest } = req.query;
+    let {
+      id,
+      title,
+      limit,
+      start_date,
+      end_date,
+      adults,
+      children,
+      infants,
+      ...rest
+    } = req.query;
     // Reject Unknown Queries
     if (Object.keys(rest).length)
       return res.status(400).json({ message: "Bad Request ..." });
