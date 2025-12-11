@@ -1,3 +1,41 @@
+import { Container, styled } from "@mui/material";
+import LinkTitle from "../../components/LinkTitle";
+import Title from "../../features/blog/Title";
+import Banner from "../../features/blog/Banner";
+import UnsafeContent from "../../features/blog/UnsafeContent";
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import type { AppDispatch } from "../../app/store";
+import { fetchBlogs } from "../../features/home/blog/blogSlice";
+
+const BlogContainer = styled(Container)({
+  width: "100%",
+  minHeight: "100vh",
+  padding: "1rem",
+  display: "flex",
+  flexDirection: "column",
+  gap: "25px",
+});
+
 export default function Blog() {
-  return <div>Blog</div>;
+  const { id, title } = useParams();
+  const disptach = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    if (!id || !title) return;
+    const fetchArticle = disptach(fetchBlogs({ id, title }));
+    return () => {
+      fetchArticle.abort();
+    };
+  }, []);
+
+  return (
+    <BlogContainer maxWidth="xl">
+      <LinkTitle />
+      <Title />
+      <Banner />
+      <UnsafeContent />
+    </BlogContainer>
+  );
 }
