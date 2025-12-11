@@ -6,6 +6,7 @@ import Article from "../home/blog/Article";
 import { useTranslation } from "react-i18next";
 import type { TLanguage } from "../languages/changeLanguage";
 import { useLocation } from "react-router-dom";
+import FirstLaunchLoader from "./FirstLaunchLoader";
 
 const BlogsContentWrapper = styled(Box)({
   width: "100%",
@@ -49,8 +50,10 @@ export default function BlogsContent() {
   const page = Number(queries.get("page")) || 1;
   const { blogs, first_blog } = data || {};
   const { i18n } = useTranslation();
+
   return (
     <BlogsContentWrapper>
+      {blogs === undefined && <FirstLaunchLoader />}
       {page === 1 && loading && <FirstBlogSkeleton variant="rectangular" />}
       {!loading && page === 1 && first_blog && (
         <FirstBlog
