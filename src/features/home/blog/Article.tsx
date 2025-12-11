@@ -101,7 +101,7 @@ export default function Article({ title, image, date, id }: ArticleProps) {
       aria-label={title}
       onKeyDown={(e: React.KeyboardEvent) => {
         if (e.key === "Enter" || e.key === "") {
-          navigate(`${sanitizeURL(title)}`);
+          navigate(`/blogs/${id}/${sanitizeURL(title)}`);
         }
       }}
     >
