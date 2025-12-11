@@ -173,3 +173,21 @@ export const format_date = (date: Date, locale: TLanguage) => {
     day: "numeric",
   }).format(date);
 };
+
+export const generate_page_count = (
+  current_page: number,
+  last_page: number
+) => {
+  const control_first_page = Math.max(1, current_page - 2);
+  const control_last_page = Math.min(Math.max(current_page + 2, 5), last_page);
+
+  const length = Math.min(5, last_page);
+
+  const pages_count = Array.from({ length }, (_, idx) =>
+    control_first_page + length - 1 <= control_last_page
+      ? control_first_page + idx
+      : control_last_page - length + 1 + idx
+  );
+
+  return pages_count;
+};
