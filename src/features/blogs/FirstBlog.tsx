@@ -20,6 +20,7 @@ const FirstBlogWrapper = styled(Box)({
   overflow: "hidden",
   position: "relative",
   cursor: "pointer",
+  borderRadius: "10px",
 });
 
 const ImageWrapper = styled(Box)({
@@ -105,7 +106,7 @@ export default function FirstBlog({ title, id, image, date }: FirstBlogProps) {
       aria-label={title}
       onKeyDown={(e: React.KeyboardEvent) => {
         if (e.key === "Enter" || e.key === "") {
-          navigate(`${sanitizeURL(title)}`);
+          navigate(`/blogs/${id}/${sanitizeURL(title)}`);
         }
       }}
     >
