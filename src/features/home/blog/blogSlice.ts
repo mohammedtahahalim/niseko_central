@@ -19,10 +19,16 @@ const blogsSchema = z.object({
   fr: z.object({ title: z.string().nonempty() }),
 });
 
-type BlogSnippet = z.infer<typeof blogsSchema>;
+interface BlogReturn {
+  blogs: z.infer<typeof blogsSchema>[];
+  page: number;
+  page_size: number;
+  total_blogs: number;
+  total_pages: number;
+}
 
 // Cache timeouts based, adjust duration in env file or directly
-type TCache = Record<string, BlogSnippet[]>;
+type TCache = Record<string, BlogReturn>;
 const TTL = import.meta.env.VITE_CACHE_TTL || 5;
 const timeouts: Record<string, ReturnType<typeof setTimeout>> = {};
 const cache: TCache = new Proxy(
@@ -37,7 +43,7 @@ const cache: TCache = new Proxy(
       }, TTL * 1000 * 60);
       return target[prop];
     },
-    set(target: TCache, key: string, val: BlogSnippet[]) {
+    set(target: TCache, key: string, val: BlogReturn) {
       clearTimeout(timeouts[key]);
       timeouts[key] = setTimeout(() => {
         delete timeouts[key];
@@ -50,7 +56,7 @@ const cache: TCache = new Proxy(
 );
 
 export const fetchBlogs = createAsyncThunk<
-  BlogSnippet[],
+  BlogReturn,
   FetchBlogArgs,
   { rejectValue: string }
 >("fetch/blogs", async (args, { signal, rejectWithValue }) => {
@@ -74,14 +80,22 @@ export const fetchBlogs = createAsyncThunk<
     if (!response.ok) {
       throw new Error(response.status.toString());
     }
-    const resonseData = await response.json();
-    const rawData = resonseData.blogs;
-    const data = rawData.filter(
-      (blog: BlogSnippet) => blogsSchema.safeParse(blog).success
+    const resonse_data = await response.json();
+    let {
+      blogs,
+      page,
+      page_size: limit,
+      total_blogs,
+      total_pages,
+    } = resonse_data;
+    blogs = blogs.filter(
+      (blog: BlogReturn["blogs"]) => blogsSchema.safeParse(blog).success
     );
     // TODO: sort queries before assigning to filter on, duplicates
+    const data = { blogs, page, page_size: limit, total_blogs, total_pages };
     cache[fullQueries] = data;
-    return data as BlogSnippet[];
+
+    return data as BlogReturn;
   } catch (err) {
     if (err instanceof DOMException && err.name === "AbortError") {
       return rejectWithValue("network");
@@ -95,15 +109,15 @@ export const fetchBlogs = createAsyncThunk<
 });
 
 interface BlogState {
-  blogLoading: boolean;
+  loading: boolean;
   error: string | null;
-  blogs: BlogSnippet[] | null;
+  data: BlogReturn | null;
 }
 
 const initialState: BlogState = {
-  blogLoading: false,
+  loading: false,
   error: null,
-  blogs: null,
+  data: null,
 };
 
 export const blogSlice = createSlice({
@@ -112,23 +126,23 @@ export const blogSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchBlogs.pending, (state) => {
-      state.blogLoading = true;
+      state.loading = true;
       state.error = null;
       // avoid resetting blogs on failure, to deliver stale data
     });
     builder.addCase(
       fetchBlogs.rejected,
       (state, action: PayloadAction<string | undefined>) => {
-        state.blogLoading = false;
+        state.loading = false;
         state.error = action.payload ?? "Unknown";
       }
     );
     builder.addCase(
       fetchBlogs.fulfilled,
-      (state, action: PayloadAction<BlogSnippet[]>) => {
+      (state, action: PayloadAction<BlogReturn>) => {
         state.error = null;
-        state.blogLoading = false;
-        state.blogs = action.payload;
+        state.loading = false;
+        state.data = action.payload;
       }
     );
   },

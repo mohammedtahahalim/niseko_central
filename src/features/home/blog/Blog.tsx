@@ -95,7 +95,8 @@ export default function Blog() {
   const { t, i18n } = useTranslation();
   const { slideCount } = useSlideCount();
   const swiperRef = useRef<SwiperType | null>(null);
-  const { blogs, blogLoading } = useSelector((state: RootState) => state.blogs);
+  const { loading } = useSelector((state: RootState) => state.blogs);
+  const { blogs } = useSelector((state: RootState) => state.blogs.data) || {};
   const isArabic = i18n.language === "ar";
 
   return (
@@ -119,8 +120,8 @@ export default function Blog() {
             </ControlButton>
           </NavControl>
         </TitleContainer>
-        {blogLoading && <Skelton skeltonNum={slideCount} />}
-        {!blogLoading && blogs && (
+        {loading && <Skelton skeltonNum={slideCount} />}
+        {!loading && blogs && blogs.length !== 0 && (
           <BlogSlider
             modules={[Keyboard]}
             slidesPerView={slideCount}
