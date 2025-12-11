@@ -1,7 +1,7 @@
 import dbConnection from "../helpers/dbConnection.js";
 import { blogSchema, blogsSchema } from "../helpers/schemas.js";
 
-const MAX_LIMIT = 12;
+const MAX_LIMIT = 9;
 
 export default async function handler(req, res) {
   if (req.method !== "GET") {
@@ -47,8 +47,10 @@ export default async function handler(req, res) {
 
     page = page === undefined ? 1 : Math.max(1, Number(page));
     limit =
-      limit === undefined ? MAX_LIMIT : Math.min(MAX_LIMIT, Number(limit));
-    const offset = (page - 1) * limit;
+      limit === undefined
+        ? MAX_LIMIT + (page === 1 ? 1 : 0)
+        : Math.min(MAX_LIMIT, Number(limit)) + (page === 1 ? 1 : 0);
+    const offset = (page - 1) * limit + (page === 1 ? 0 : 1);
     const count_query = `SELECT COUNT(*) as total_blogs FROM blogs`;
     const [count_rows] = await connection.query(count_query);
     if (!count_rows.length) {
@@ -90,7 +92,8 @@ export default async function handler(req, res) {
       .filter((blog) => blogsSchema.safeParse(blog).success);
 
     return res.status(200).json({
-      blogs,
+      blogs: page === 1 ? blogs.slice(1) : blogs,
+      first_blog: page === 1 ? blogs[0] : null,
       page,
       page_size: limit,
       total_blogs,

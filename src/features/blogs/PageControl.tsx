@@ -2,9 +2,7 @@ import { Box, Button, Skeleton, styled } from "@mui/material";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../app/store";
 import { generate_page_count } from "../../utils/Constants";
-import { useNavigate } from "react-router-dom";
-
-// TODO: fix the logic for the last page, to ensure array do not go out of bounds
+import { useLocation, useNavigate } from "react-router-dom";
 
 const PageControlWrapper = styled(Box)(({ theme }) => ({
   width: "100%",
@@ -42,9 +40,12 @@ const PageSkeleton = styled(Skeleton)({
 
 export default function PageControl() {
   const { loading } = useSelector((state: RootState) => state.blogs);
-  const { page, total_pages, page_size } =
+  const { search } = useLocation();
+  const queries = new URLSearchParams(search);
+  const page = queries.get("page") ?? 1;
+  const { total_pages, page_size } =
     useSelector((state: RootState) => state.blogs.data) || {};
-  const pages_count = generate_page_count(page ?? 0, total_pages ?? 0);
+  const pages_count = generate_page_count(Number(page), total_pages ?? 0);
   const navigate = useNavigate();
 
   return (
@@ -58,7 +59,7 @@ export default function PageControl() {
         pages_count.map((temp_page) => {
           return (
             <PageBox
-              isActive={temp_page === page}
+              isActive={temp_page == page}
               variant="text"
               key={temp_page}
               onClick={() => navigate(`?limit=${page_size}&page=${temp_page}`)}
