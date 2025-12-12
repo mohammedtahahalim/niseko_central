@@ -41,7 +41,7 @@ export default async function handler(req, res) {
         titles.push(sanitizeURL(blog_article[lang].title));
       }
       if (!titles.includes(sanitizeURL(title)))
-        return res.status(403).json({ message: "id and title mismatch ..." });
+        return res.status(400).json({ message: "id and title mismatch ..." });
       const article = { ...rest, ...blog_article };
       if (!blogSchema.safeParse(article).success)
         return res.status(404).json({ message: "No Article Found ..." });

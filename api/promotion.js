@@ -39,7 +39,7 @@ export default async function handler(req, res) {
       const { article, ...rest } = result[0];
       const titles = langs.map((lang) => sanitizeURL(article[lang].title));
       if (!titles.includes(sanitizeURL(title))) {
-        return res.status(301).json({ message: "id and title mismatch" });
+        return res.status(400).json({ message: "id and title mismatch" });
       }
       const promotion = { ...rest, ...article };
       return res.status(200).json({ promotion });

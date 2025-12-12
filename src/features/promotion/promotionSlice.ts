@@ -80,6 +80,7 @@ type PromotionData = {
   loading: boolean;
   error: string | null;
   promotion: Promotion;
+  shouldRedirect: boolean;
 };
 
 const initialState: PromotionData = {
@@ -94,6 +95,7 @@ const initialState: PromotionData = {
     ar: { title: "", content: "" },
     fr: { title: "", content: "" },
   },
+  shouldRedirect: false,
 };
 
 const promotionSlice = createSlice({
@@ -105,12 +107,14 @@ const promotionSlice = createSlice({
       .addCase(fetchPromotion.pending, (state) => {
         state.loading = true;
         state.error = null;
+        state.shouldRedirect = false;
       })
       .addCase(
         fetchPromotion.rejected,
         (state, action: PayloadAction<string | undefined>) => {
           state.loading = false;
           state.error = action.payload ?? "Unknown Error";
+          state.shouldRedirect = action.payload === "400";
         }
       )
       .addCase(

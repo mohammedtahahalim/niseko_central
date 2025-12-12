@@ -109,7 +109,7 @@ export default function MobileSlide({
               <EastIcon color="inherit" sx={{ maxHeight: "16px" }} />
             )
           }
-          onClick={() => navigate(link)}
+          href={link}
           tabIndex={-1}
         >
           {more}

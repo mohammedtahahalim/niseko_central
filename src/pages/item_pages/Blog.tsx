@@ -3,10 +3,10 @@ import LinkTitle from "../../components/LinkTitle";
 import Title from "../../features/blog/Title";
 import Banner from "../../features/blog/Banner";
 import UnsafeContent from "../../features/blog/UnsafeContent";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import type { AppDispatch } from "../../app/store";
+import { useDispatch, useSelector } from "react-redux";
+import type { AppDispatch, RootState } from "../../app/store";
 import { fetchBlogs } from "../../features/home/blog/blogSlice";
 
 const BlogContainer = styled(Container)({
@@ -20,6 +20,7 @@ const BlogContainer = styled(Container)({
 
 export default function Blog() {
   const { id, title } = useParams();
+  const { shouldRedirect } = useSelector((state: RootState) => state.blogs);
   const disptach = useDispatch<AppDispatch>();
 
   useEffect(() => {
@@ -29,6 +30,8 @@ export default function Blog() {
       fetchArticle.abort();
     };
   }, []);
+
+  if (shouldRedirect) return <Navigate to={"/blogs"} replace={true} />;
 
   return (
     <BlogContainer maxWidth="xl">

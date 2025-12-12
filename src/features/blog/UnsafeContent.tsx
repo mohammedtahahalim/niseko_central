@@ -90,7 +90,12 @@ export default function UnsafeContent() {
           <SkeletonRounded variant="rectangular" />
         </SkeletonContainer>
       ) : (
-        <ContentWrapper ref={shadowRef} />
+        <ContentWrapper
+          ref={shadowRef}
+          tabIndex={0}
+          role="article"
+          aria-description="This content is externally sourced from niseko central and rendered as is."
+        />
       )}
     </DangerousHTMLWrapper>
   );

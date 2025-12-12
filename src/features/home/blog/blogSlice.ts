@@ -121,12 +121,14 @@ interface BlogState {
   loading: boolean;
   error: string | null;
   data: BlogReturn | null;
+  shouldRedirect: boolean;
 }
 
 const initialState: BlogState = {
   loading: false,
   error: null,
   data: null,
+  shouldRedirect: false,
 };
 
 export const blogSlice = createSlice({
@@ -137,6 +139,7 @@ export const blogSlice = createSlice({
     builder.addCase(fetchBlogs.pending, (state) => {
       state.loading = true;
       state.error = null;
+      state.shouldRedirect = false;
       // avoid resetting blogs on failure, to deliver stale data
     });
     builder.addCase(
@@ -144,6 +147,7 @@ export const blogSlice = createSlice({
       (state, action: PayloadAction<string | undefined>) => {
         state.loading = false;
         state.error = action.payload ?? "Unknown";
+        state.shouldRedirect = action.payload === "400";
       }
     );
     builder.addCase(

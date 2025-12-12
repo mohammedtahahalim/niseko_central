@@ -128,7 +128,7 @@ export const propertySlice = createSlice({
       (state, action: PayloadAction<string | undefined>) => {
         state.error = action.payload ?? "Unknown Error";
         state.loading = false;
-        state.shouldRedirect = false;
+        state.shouldRedirect = action.payload === "400";
       }
     );
     builder.addCase(
