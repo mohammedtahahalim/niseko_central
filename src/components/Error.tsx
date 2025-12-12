@@ -26,8 +26,6 @@ const ErrorWrapper = styled(Box)({
 export default function Error({ errorMessage, children }: ErrorProps) {
   const { i18n } = useTranslation();
 
-  console.log(errorMessage);
-
   const displayError = STATUS_ERRORS.includes(errorMessage)
     ? backendErrors[i18n.language as TLanguage][
         errorMessage as keyof (typeof backendErrors)["string"]

@@ -17,14 +17,15 @@ const refresh = (key: string) => {
 
 const articleSchema = z.object({
   category: z.string(),
-  deals: z.array(
+  articles: z.array(
     z.object({
       id: z.number(),
       image: z.string(),
-      title: z.string(),
-      subtitle: z.string(),
-      content: z.string(),
       blur_image: z.string(),
+      en: z.object({ title: z.string().nonempty() }),
+      ja: z.object({ title: z.string().nonempty() }),
+      ar: z.object({ title: z.string().nonempty() }),
+      fr: z.object({ title: z.string().nonempty() }),
     })
   ),
 });
@@ -87,10 +88,11 @@ export const fetchConcierge = createAsyncThunk<
     if (!response.ok) {
       throw new Error(response.status.toString());
     }
-    const raw_data = await response.json();
+    let raw_data = await response.json();
+    raw_data = raw_data.concierges;
     // backend is inconsistent and might send data that breaks the ui, so we filter to only element that respect our schema
-    const data = raw_data.articles.filter(
-      (article: ConciergeArticle) => articleSchema.safeParse(article).success
+    const data = raw_data.filter(
+      (elem: ConciergeArticle) => articleSchema.safeParse(elem).success
     );
     cache[fullQueries] = data;
     return data;

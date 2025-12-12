@@ -108,21 +108,19 @@ export default async function handler(req, res) {
     const [rows] = await connection.query(query);
     if (!rows.length)
       return res.status(404).json({ message: "No Article Found ..." });
-    const valid_rows = rows.reduce((acc, val) => {
-      acc[val.category] = [
-        ...val.articles
-          .map((article) => {
-            const { articles, ...rest } = article;
-            return { ...rest, ...articles };
-          })
-          .filter(
-            (article) =>
-              conciergeSchema.omit({ category: true }).safeParse(article)
-                .success
-          ),
-      ];
-      return acc;
-    }, {});
+    const valid_rows = rows.map((row) => {
+      let { category, articles } = row;
+      articles = articles
+        .map((article) => {
+          const { articles, ...rest } = article;
+          return { ...rest, ...articles };
+        })
+        .filter(
+          (article) =>
+            conciergeSchema.omit({ category: true }).safeParse(article).success
+        );
+      return { category, articles };
+    });
     return res.status(200).json({ concierges: valid_rows });
   } catch (err) {
     console.log(err);

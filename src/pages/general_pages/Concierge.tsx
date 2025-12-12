@@ -38,8 +38,6 @@ export default function Concierge() {
   );
   const { slideCount, maxHeight } = useArticleCount();
 
-  console.log(articles);
-
   useEffect(() => {
     const concierge = dispatch(fetchConcierge());
     return () => {
