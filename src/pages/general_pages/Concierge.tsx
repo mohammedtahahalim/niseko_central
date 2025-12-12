@@ -2,13 +2,12 @@ import { Container, styled } from "@mui/material";
 import LinkTitle from "../../components/LinkTitle";
 import Title from "../../components/Title";
 import Suggestions from "../../features/suggestions/Suggestions";
-import Section from "../../features/concierge/Section";
 import { fetchConcierge } from "../../features/concierge/conciergeSlice";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../../app/store";
 import { createContext, useEffect } from "react";
-import Skeleton from "../../features/concierge/Skeleton";
 import useArticleCount from "../../features/concierge/useArticleCount";
+import Error from "../../components/Error";
 
 export const countContext = createContext<{
   slideCount: number;
@@ -34,10 +33,12 @@ const ConciergeContainer = styled(Container)(({ theme }) => ({
 
 export default function Concierge() {
   const dispatch = useDispatch<AppDispatch>();
-  const { loading, error, articles } = useSelector(
+  const { error, articles } = useSelector(
     (state: RootState) => state.concierge
   );
   const { slideCount, maxHeight } = useArticleCount();
+
+  console.log(articles);
 
   useEffect(() => {
     const concierge = dispatch(fetchConcierge());
@@ -51,16 +52,7 @@ export default function Concierge() {
       <ConciergeContainer maxWidth="xl">
         <LinkTitle />
         <Title page="concierge" />
-        {loading &&
-          Array.from({ length: 4 }).map((_, idx) => {
-            return <Skeleton key={idx} />;
-          })}
-        {!loading && error && <div>{error}</div>}
-        {!loading &&
-          articles &&
-          Object.values(articles).map((article) => {
-            return <Section {...article} key={article.category} />;
-          })}
+        {error && <Error errorMessage={error} />}
         <Suggestions />
       </ConciergeContainer>
     </countContext.Provider>

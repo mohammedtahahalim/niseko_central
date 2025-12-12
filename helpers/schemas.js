@@ -172,3 +172,53 @@ export const blogSchema = z.object({
     content: z.string().nonempty(),
   }),
 });
+
+export const conciergeSchema = z.object({
+  id: z.number().nonnegative(),
+  category: z.string().nonempty(),
+  image: z.string().nonempty(),
+  blur_image: z.string().nonempty(),
+  en: z.object({
+    title: z.string().nonempty(),
+  }),
+  ar: z.object({
+    title: z.string().nonempty(),
+  }),
+  fr: z.object({
+    title: z.string().nonempty(),
+  }),
+  ja: z.object({
+    title: z.string().nonempty(),
+  }),
+});
+
+export const conciergeArticleSchema = z.object({
+  id: z.number().nonnegative(),
+  category: z.string().nonempty(),
+  image: z.string().nonempty(),
+  blur_image: z.string().nonempty(),
+  en: z.object({
+    title: z.string().nonempty(),
+    subtitle: z.string().nonempty(),
+    content: z.string().nonempty(),
+    prices: z.string(),
+  }),
+  ar: z.object({
+    title: z.string().nonempty(),
+    subtitle: z.string().nonempty(),
+    content: z.string().nonempty(),
+    prices: z.string(),
+  }),
+  fr: z.object({
+    title: z.string().nonempty(),
+    subtitle: z.string().nonempty(),
+    content: z.string().nonempty(),
+    prices: z.string(),
+  }),
+  ja: z.object({
+    title: z.string().nonempty(),
+    subtitle: z.string().nonempty(),
+    content: z.string().nonempty(),
+    prices: z.string(),
+  }),
+});
