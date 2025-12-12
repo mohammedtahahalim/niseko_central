@@ -2,6 +2,7 @@ import { Box, styled, Typography, Button } from "@mui/material";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import RenderOnView from "../features/render_on_view/RenderOnView";
+import { useNavigate } from "react-router-dom";
 
 const NisekoPassportContainer = styled(Box)(({ theme }) => ({
   width: "100%",
@@ -82,6 +83,13 @@ const More = styled(Button)(({ theme }) => ({
 export default function NisekoPassport() {
   const [isImageHover, setIsImageHover] = useState<boolean>(false);
   const { t } = useTranslation();
+  const navigate = useNavigate();
+
+  const onKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      navigate("/niseko-accommodation-deals/7/experience-niseko-passport");
+    }
+  };
 
   return (
     <RenderOnView animationDirection="bottom">
@@ -116,7 +124,15 @@ export default function NisekoPassport() {
               </ContentLink>
               {t("home.niseko_passport.subtitle_2")}
             </Content>
-            <More variant="contained">
+            <More
+              variant="contained"
+              onClick={() =>
+                navigate(
+                  "/niseko-accommodation-deals/7/experience-niseko-passport"
+                )
+              }
+              onKeyDown={onKeyDown}
+            >
               {t("home.niseko_passport.find_out")}
             </More>
           </PassportInfo>

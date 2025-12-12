@@ -113,7 +113,7 @@ export default function DesktopSlide({
               <EastIcon color="inherit" sx={{ maxHeight: "16px" }} />
             )
           }
-          onClick={() => navigate(link)}
+          href={link}
           tabIndex={-1}
         >
           {more}

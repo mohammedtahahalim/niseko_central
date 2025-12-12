@@ -14,6 +14,7 @@ import EastIcon from "@mui/icons-material/East";
 import WestIcon from "@mui/icons-material/West";
 import Skelton from "./Skelton";
 import RenderOnView from "../render_on_view/RenderOnView";
+import Error from "../../components/Error";
 
 const SuggestionsWrapper = styled(Box)({
   width: "100%",
@@ -91,7 +92,7 @@ export default function Suggestions() {
   const { t, i18n } = useTranslation();
   const swiperRef = useRef<SwiperType | null>(null);
   const { slideCount } = useSlideCount();
-  const { suggestionsBookings, suggestionsLoading } = useSelector(
+  const { suggestionsBookings, suggestionsLoading, error } = useSelector(
     (state: RootState) => state.suggestions
   );
   const isArabic = i18n.language === "ar";
@@ -117,6 +118,7 @@ export default function Suggestions() {
             </ControlButton>
           </NavControl>
         </TitleContainer>
+        {error && <Error errorMessage={error} />}
         {suggestionsLoading && <Skelton skeltonNum={slideCount} />}
         {!suggestionsLoading && suggestionsBookings.length !== 0 && (
           <SuggestionSlider

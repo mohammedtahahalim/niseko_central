@@ -86,13 +86,15 @@ export default function Title() {
         {loading ? (
           <SkeletonTitle variant="text"></SkeletonTitle>
         ) : (
-          <TitleName variant="body1">{title}</TitleName>
+          <TitleName variant="body1" tabIndex={0}>
+            {title}
+          </TitleName>
         )}
       </TitleWrapper>
       {loading ? (
         <SkeletonDate variant="text" />
       ) : (
-        <DateWrapper>
+        <DateWrapper tabIndex={0}>
           {date && format_date(new Date(date), i18n.language as TLanguage)}
         </DateWrapper>
       )}

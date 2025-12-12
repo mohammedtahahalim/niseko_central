@@ -15,6 +15,7 @@ import Article from "./Article";
 import { Keyboard } from "swiper/modules";
 import Skelton from "./Skelton";
 import RenderOnView from "../../render_on_view/RenderOnView";
+import Error from "../../../components/Error";
 
 const BlogWrapper = styled(Box)(({ theme }) => ({
   width: "100%",
@@ -95,7 +96,7 @@ export default function Blog() {
   const { t, i18n } = useTranslation();
   const { slideCount } = useSlideCount();
   const swiperRef = useRef<SwiperType | null>(null);
-  const { loading } = useSelector((state: RootState) => state.blogs);
+  const { loading, error } = useSelector((state: RootState) => state.blogs);
   const { blogs } = useSelector((state: RootState) => state.blogs.data) || {};
   const isArabic = i18n.language === "ar";
 
@@ -120,6 +121,7 @@ export default function Blog() {
             </ControlButton>
           </NavControl>
         </TitleContainer>
+        {error && <Error errorMessage={error} />}
         {loading && <Skelton skeltonNum={slideCount} />}
         {!loading && blogs && blogs.length !== 0 && (
           <BlogSlider

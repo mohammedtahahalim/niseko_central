@@ -1,7 +1,7 @@
 import { Box, styled } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../../app/store";
-import { useLocation } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import { fetchBookings, setFilter } from "./bookingsSlice";
 import { useEffect } from "react";
 import PropertySkelton from "./PropertySkelton";
@@ -22,7 +22,7 @@ const BookingsWrapper = styled(Box)({
 export default function Bookings() {
   const location = useLocation().search;
   const queries = Object.fromEntries(new URLSearchParams(location).entries());
-  const { displayBookings, loading } = useSelector(
+  const { displayBookings, loading, shouldRedirect } = useSelector(
     (state: RootState) => state.bookings
   );
   const dispatch = useDispatch<AppDispatch>();
@@ -40,6 +40,9 @@ export default function Bookings() {
       bookings.abort();
     };
   }, [location]);
+
+  if (shouldRedirect)
+    return <Navigate to={"/niseko-accommodation"} replace={true} />;
 
   return (
     <BookingsWrapper>

@@ -1,8 +1,11 @@
 import dbConnection from "../helpers/dbConnection.js";
 import { propertySchema } from "../helpers/schemas.js";
+import { sanitizeURL } from "../helpers/constants.js";
 
 // Change depending on the max property infos to respond
 const MAX_LIMIT = 1000;
+
+const langs = ["en", "ja", "ar", "fr"];
 
 export default async function handler(req, res) {
   if (req.method !== "GET") {
@@ -47,6 +50,16 @@ export default async function handler(req, res) {
           isValid.error.issues.map((issue) => issue.message).join(", ")
         );
       }
+      const titles = [];
+      for (let lang of langs) {
+        const curr_title =
+          result[0]["translations"][lang].title +
+          "-" +
+          result[0]["translations"][lang].type;
+        titles.push(sanitizeURL(curr_title));
+      }
+      if (!titles.includes(sanitizeURL(title)))
+        return res.status(400).json({ message: "id and title mismatch ..." });
       return res.status(200).json({ property: result[0] });
     }
     if (limit === undefined) limit = MAX_LIMIT;

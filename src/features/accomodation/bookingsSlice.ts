@@ -76,6 +76,7 @@ interface BookingState<T extends Object> {
   };
   sort_order: boolean;
   previous_sort: SortingType | null;
+  shouldRedirect: boolean;
 }
 
 export const fetchBookings = createAsyncThunk<
@@ -128,6 +129,7 @@ const initialState: BookingState<Property> = {
   },
   sort_order: true,
   previous_sort: null,
+  shouldRedirect: false,
 };
 
 export const bookingSlice = createSlice({
@@ -215,12 +217,14 @@ export const bookingSlice = createSlice({
     builder.addCase(fetchBookings.pending, (state) => {
       state.loading = true;
       state.error = "";
+      state.shouldRedirect = false;
     });
     builder.addCase(
       fetchBookings.rejected,
       (state, action: PayloadAction<string | unknown>) => {
         state.loading = false;
         state.error = action.payload as string;
+        state.shouldRedirect = action.payload === "400";
       }
     );
     builder.addCase(

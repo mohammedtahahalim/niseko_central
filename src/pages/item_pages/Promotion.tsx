@@ -1,6 +1,6 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useParams } from "react-router-dom";
-import type { AppDispatch } from "../../app/store";
+import type { AppDispatch, RootState } from "../../app/store";
 import { useEffect } from "react";
 import { fetchPromotion } from "../../features/promotion/promotionSlice";
 import { Container, styled } from "@mui/material";
@@ -20,6 +20,7 @@ const PromotionWrapper = styled(Container)({
 
 export default function Promotion() {
   const { id, title } = useParams();
+  const { shouldRedirect } = useSelector((state: RootState) => state.promotion);
 
   if (!id || !title) {
     return <Navigate to={"/"} replace={true} />;
@@ -32,6 +33,9 @@ export default function Promotion() {
       promotion.abort();
     };
   }, []);
+
+  if (shouldRedirect)
+    return <Navigate to={"/niseko-accommodation-deals"} replace={true} />;
 
   return (
     <PromotionWrapper maxWidth="xl">

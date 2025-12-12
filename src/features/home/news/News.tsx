@@ -14,6 +14,7 @@ import NewsCard from "./NewsCard";
 import { Keyboard } from "swiper/modules";
 import Skelton from "./Skelton";
 import RenderOnView from "../../render_on_view/RenderOnView";
+import Error from "../../../components/Error";
 
 const NewsWrapper = styled(Box)({
   width: "100%",
@@ -95,7 +96,9 @@ export default function News() {
   const { t, i18n } = useTranslation();
   const swiperRef = useRef<SwiperType | null>(null);
   const { slideCount, maxHeight } = useSlideAndHeightCount();
-  const { news, newsLoading } = useSelector((state: RootState) => state.news);
+  const { news, newsLoading, error } = useSelector(
+    (state: RootState) => state.news
+  );
   const isArabic = i18n.language === "ar";
 
   return (
@@ -119,6 +122,7 @@ export default function News() {
             </ControlButton>
           </NavControl>
         </TitleContainer>
+        {error && <Error errorMessage={error} />}
         {newsLoading && (
           <Skelton skeltonNum={slideCount} maxHeight={maxHeight} />
         )}

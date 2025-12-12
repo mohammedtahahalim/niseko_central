@@ -12,7 +12,7 @@ export const debouncer = (callback: Function, cooldown: number) => {
 };
 export const possibleLanguages = ["en", "ja", "ar", "fr"];
 export const backendErrors: TBackendErrors = {
-  "en-US": {
+  en: {
     "400": "Please refresh the page or return to the homepage",
     "401":
       "You are not authorized to access this page, please return to the homepage",

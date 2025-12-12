@@ -2,7 +2,7 @@ import { Container, styled } from "@mui/material";
 import Gallery from "../../features/property/Gallery";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../../app/store";
-import { useNavigate, useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { fetchProperty } from "../../features/property/propertySlice";
 import { fetchSuggestions } from "../../features/suggestions/suggestionsSlice";
@@ -28,7 +28,6 @@ export default function Property() {
     (state: RootState) => state.property
   );
   const dispatch = useDispatch<AppDispatch>();
-  const navigate = useNavigate();
 
   useEffect(() => {
     const property = dispatch(fetchProperty({ id, title }));
@@ -39,9 +38,8 @@ export default function Property() {
     };
   }, [id, title]);
 
-  if (shouldRedirect) {
-    navigate("/niseko-accommodation", { replace: true });
-  }
+  if (shouldRedirect)
+    return <Navigate to={"/niseko-accommodation"} replace={true} />;
 
   if (error) {
     return <Error errorMessage={error} />;
