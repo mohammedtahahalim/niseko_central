@@ -44,7 +44,7 @@ export default async function handler(req, res) {
       const isValidArticle = conciergeArticleSchema.safeParse(article).success;
       if (!isValidArticle)
         return res.status(404).json({ message: "No Article Found ..." });
-      return res.status(200).json({ article: result[0] });
+      return res.status(200).json({ article });
     }
     if (category) {
       if (typeof category !== "string")
@@ -79,7 +79,7 @@ export default async function handler(req, res) {
         .filter((row) => conciergeSchema.safeParse(row).success);
       if (!valid_rows.length)
         return res.status(404).json({ message: "No Article Found ..." });
-      return res.status(200).json({ articles: valid_rows });
+      return res.status(200).json({ article: valid_rows });
     }
     const query = `
       WITH CTE AS (
@@ -108,22 +108,20 @@ export default async function handler(req, res) {
     const [rows] = await connection.query(query);
     if (!rows.length)
       return res.status(404).json({ message: "No Article Found ..." });
-    const valid_rows = rows.reduce((acc, val) => {
-      acc[val.category] = [
-        ...val.articles
-          .map((article) => {
-            const { articles, ...rest } = article;
-            return { ...rest, ...articles };
-          })
-          .filter(
-            (article) =>
-              conciergeSchema.omit({ category: true }).safeParse(article)
-                .success
-          ),
-      ];
-      return acc;
-    }, {});
-    return res.status(200).json({ concierges: valid_rows });
+    const valid_rows = rows.map((row) => {
+      let { category, articles } = row;
+      articles = articles
+        .map((article) => {
+          const { articles, ...rest } = article;
+          return { ...rest, ...articles };
+        })
+        .filter(
+          (article) =>
+            conciergeSchema.omit({ category: true }).safeParse(article).success
+        );
+      return { category, articles };
+    });
+    return res.status(200).json({ article: valid_rows });
   } catch (err) {
     console.log(err);
     return res.status(500).json({ message: "Internal Server Error ..." });
