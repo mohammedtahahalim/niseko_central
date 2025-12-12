@@ -15,7 +15,7 @@ const refresh = (key: string) => {
   }, TTL);
 };
 
-const articleSchema = z.object({
+const fullSchema = z.object({
   category: z.string(),
   articles: z.array(
     z.object({
@@ -30,22 +30,64 @@ const articleSchema = z.object({
   ),
 });
 
-export type ConciergeArticle = z.infer<typeof articleSchema>;
+const categorySchema = z.object({
+  id: z.number().nonnegative(),
+  category: z.string().nonempty(),
+  image: z.string(),
+  blur_image: z.string(),
+  en: z.object({ title: z.string().nonempty() }),
+  ja: z.object({ title: z.string().nonempty() }),
+  ar: z.object({ title: z.string().nonempty() }),
+  fr: z.object({ title: z.string().nonempty() }),
+});
+
+const articleSchema = z.object({
+  id: z.number().nonnegative(),
+  category: z.string().nonempty(),
+  image: z.string(),
+  blur_image: z.string(),
+  en: z.object({
+    title: z.string().nonempty(),
+    prices: z.string().nonempty(),
+    content: z.string().nonempty(),
+  }),
+  ja: z.object({
+    title: z.string().nonempty(),
+    prices: z.string().nonempty(),
+    content: z.string().nonempty(),
+  }),
+  ar: z.object({
+    title: z.string().nonempty(),
+    prices: z.string().nonempty(),
+    content: z.string().nonempty(),
+  }),
+  fr: z.object({
+    title: z.string().nonempty(),
+    prices: z.string().nonempty(),
+    content: z.string().nonempty(),
+  }),
+});
+
+export type fullArticle = z.infer<typeof fullSchema>;
+export type categoryArticle = z.infer<typeof categorySchema>;
+export type idArticle = z.infer<typeof articleSchema>;
+
+type CombinedConcierge = fullArticle[] | categoryArticle[] | idArticle;
 
 const timeouts: Record<string, ReturnType<typeof setTimeout>> = {};
-const cache: Record<string, ConciergeArticle[]> = new Proxy(
+const cache: Record<string, CombinedConcierge> = new Proxy(
   {},
   {
-    get(target: Record<string, ConciergeArticle[]>, key: string) {
+    get(target: Record<string, CombinedConcierge>, key: string) {
       if (!(key in target)) return undefined;
       // Keep the data in memory as long as client keeps requesting
       refresh(key);
       return target[key];
     },
     set(
-      target: Record<string, ConciergeArticle[]>,
+      target: Record<string, CombinedConcierge>,
       key: string,
-      value: ConciergeArticle[]
+      value: CombinedConcierge
     ) {
       refresh(key);
       target[key] = value;
@@ -55,30 +97,37 @@ const cache: Record<string, ConciergeArticle[]> = new Proxy(
 );
 
 interface ConciergeProps {
-  queries: Record<string, string | number>;
+  queries?: Record<string, string | number>;
+  type: "full" | "category" | "id";
+}
+
+interface ConciergeReturns {
+  type: "full" | "category" | "id";
+  content: CombinedConcierge;
 }
 
 interface ConciergeSlice {
   loading: boolean;
   error: string | null;
-  articles: ConciergeArticle[] | null;
+  type: string;
+  articles: CombinedConcierge | null;
 }
 
 export const fetchConcierge = createAsyncThunk<
-  ConciergeArticle[],
-  ConciergeProps | void,
+  ConciergeReturns,
+  ConciergeProps,
   { rejectValue: string }
 >("concierge/thunk", async (_args, { rejectWithValue, signal }) => {
-  const fullQueries = _args
-    ? new URLSearchParams(
-        Object.entries(_args.queries)
-          .filter(([_, v]) => v !== null && v !== undefined)
-          .map(([k, v]) => [k, String(v)])
-          .sort(([a], [b]) => a.localeCompare(b))
-      ).toString()
-    : "";
+  const { type, queries } = _args;
+  const fullQueries =
+    new URLSearchParams(
+      Object.entries(queries ?? {})
+        .filter(([_, v]) => v !== null && v !== undefined)
+        .map(([k, v]) => [k, String(v)])
+        .sort(([a], [b]) => a.localeCompare(b))
+    ).toString() || "";
   if (fullQueries in cache) {
-    return cache[fullQueries];
+    return { type, content: cache[fullQueries] };
   }
   const fullURL: string = `${import.meta.env.VITE_API_URL}/api/concierge${
     fullQueries && "?" + fullQueries
@@ -89,13 +138,24 @@ export const fetchConcierge = createAsyncThunk<
       throw new Error(response.status.toString());
     }
     let raw_data = await response.json();
-    raw_data = raw_data.concierges;
+    raw_data = raw_data.article;
     // backend is inconsistent and might send data that breaks the ui, so we filter to only element that respect our schema
-    const data = raw_data.filter(
-      (elem: ConciergeArticle) => articleSchema.safeParse(elem).success
-    );
+    let data;
+    if (type === "id") {
+      data = articleSchema.safeParse(raw_data) ? raw_data : null;
+    }
+    if (type === "category") {
+      data = raw_data.filter(
+        (elem: categoryArticle) => categorySchema.safeParse(elem).success
+      );
+    }
+    if (type === "full") {
+      data = raw_data.filter(
+        (elem: fullArticle) => fullSchema.safeParse(elem).success
+      );
+    }
     cache[fullQueries] = data;
-    return data;
+    return { type, content: data };
   } catch (err) {
     if (err instanceof DOMException && err.name === "AbortError") {
       return rejectWithValue("Network Request Aborted ...");
@@ -110,7 +170,8 @@ export const fetchConcierge = createAsyncThunk<
 const initialState: ConciergeSlice = {
   loading: false,
   error: null,
-  articles: null, // this is used to render skeleton ui, as [] reverts to truthy values
+  type: "full",
+  articles: null,
 };
 
 export const conciergeSlice = createSlice({
@@ -131,10 +192,12 @@ export const conciergeSlice = createSlice({
     );
     builder.addCase(
       fetchConcierge.fulfilled,
-      (state, action: PayloadAction<ConciergeArticle[]>) => {
+      (state, action: PayloadAction<ConciergeReturns>) => {
+        const { type, content } = action.payload;
         state.loading = false;
         state.error = null;
-        state.articles = action.payload;
+        state.articles = content;
+        state.type = type;
       }
     );
   },
