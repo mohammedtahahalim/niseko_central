@@ -543,7 +543,12 @@
       "services": "Services",
       "summer": "Été",
       "winter": "Hiver"
-    }
+    },
+    "special": "Concierge",
+    "winter": "Niseko Central peut réserver pour ses clients tous les services hivernaux suivants proposés à Niseko.",
+    "summer": "Activités et services estivaux proposés aux clients de Niseko Central - tous réservables auprès de notre concierge",
+    "niseko-transfers": "Niseko Central peut organiser vos transferts depuis l'aéroport de New Chitose ou le centre-ville de Sapporo jusqu'à votre hébergement à Niseko.",
+    "services": "Découvrez tout ce que notre service de conciergerie peut faire pour vous, notamment en matière de restauration, d'excursions touristiques, de sources thermales et de recommandations de restaurants."
   },
   "contact": {
     "title": {

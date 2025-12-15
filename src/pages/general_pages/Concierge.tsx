@@ -79,10 +79,14 @@ export default function Concierge() {
             );
           })}
         {!loading && error && <Error errorMessage={error} />}
-        {articles &&
-          (articles as fullArticle[]).map((article) => {
+        {!loading &&
+          articles &&
+          (articles as fullArticle[]).map((article, idx) => {
             return (
-              <RenderOnView animationDirection="right" key={article.category}>
+              <RenderOnView
+                animationDirection="right"
+                key={`${article.category}-${idx}`}
+              >
                 <Section
                   category={article.category}
                   deals={"articles" in article ? article.articles : []}

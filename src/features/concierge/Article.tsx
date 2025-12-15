@@ -80,7 +80,11 @@ export default function Article(props: fullArticle["articles"][number]) {
         src={isLoaded ? image : blur_image}
         sx={{ opacity: isLoaded ? 1 : 0.5, scale: isHover ? 1.1 : 1 }}
         onLoad={() => setIsLoaded(true)}
-        alt={props[i18n.language as TLanguage].title}
+        alt={
+          "title" in props[i18n.language as TLanguage]
+            ? props[i18n.language as TLanguage].title
+            : ""
+        }
       />
       <ShadeOverlay
         onMouseEnter={() => setIsHover(true)}
