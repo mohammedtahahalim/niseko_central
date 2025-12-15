@@ -1,8 +1,8 @@
 import { Button, Container, styled } from "@mui/material";
 import LinkTitle from "../../components/LinkTitle";
 import { useNavigate, useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import type { AppDispatch } from "../../app/store";
+import { useDispatch, useSelector } from "react-redux";
+import type { AppDispatch, RootState } from "../../app/store";
 import { useEffect } from "react";
 import { fetchConcierge } from "../../features/concierge/conciergeSlice";
 import { useTranslation } from "react-i18next";
@@ -10,6 +10,7 @@ import Title from "../../features/concierge/article/Title";
 import Banner from "../../features/concierge/article/Banner";
 import Price from "../../features/concierge/article/Price";
 import Content from "../../features/concierge/article/Content";
+import Error from "../../components/Error";
 
 const ArticleContainer = styled(Container)({
   width: "100%",
@@ -32,6 +33,7 @@ export default function Article() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
+  const { error } = useSelector((state: RootState) => state.concierge);
 
   useEffect(() => {
     if (!id || !title) return;
@@ -53,10 +55,15 @@ export default function Article() {
       >
         {t("concierge.title.head_title")}
       </Concierge>
-      <Title />
-      <Banner />
-      <Price />
-      <Content />
+      {error && <Error errorMessage={error} />}
+      {!error && (
+        <>
+          <Title />
+          <Banner />
+          <Price />
+          <Content />
+        </>
+      )}
     </ArticleContainer>
   );
 }
