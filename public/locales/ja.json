@@ -537,6 +537,12 @@
     "title": {
       "head_title": "コンシェルジュ",
       "content": "ニセコセントラルコンシェルジュサービスを到着前に予約して、リゾートでの時間を節約しましょう。"
+    },
+    "categories": {
+      "niseko-transfers": "ニセコ送迎",
+      "services": "サービス",
+      "summer": "夏",
+      "winter": "冬"
     }
   },
   "contact": {

@@ -102,14 +102,14 @@ interface ConciergeProps {
 }
 
 interface ConciergeReturns {
-  type: "full" | "category" | "id";
+  type: ConciergeProps["type"];
   content: CombinedConcierge;
 }
 
 interface ConciergeSlice {
   loading: boolean;
   error: string | null;
-  type: string;
+  type: ConciergeProps["type"];
   articles: CombinedConcierge | null;
 }
 

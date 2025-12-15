@@ -499,6 +499,12 @@
     "title": {
       "head_title": "بواب",
       "content": "احجز خدمات Niseko Central Concierge قبل وصولك ووفر الوقت في المنتجع!"
+    },
+    "categories": {
+      "niseko-transfers": "خدمات النقل في نيسيكو",
+      "services": "خدمات",
+      "summer": "صيف",
+      "winter": "شتاء"
     }
   },
   "contact": {
