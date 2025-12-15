@@ -537,6 +537,12 @@
     "title": {
       "head_title": "Concierge",
       "content": "Réservez vos services de conciergerie Niseko Central avant votre arrivée et gagnez du temps sur place !"
+    },
+    "categories": {
+      "niseko-transfers": "Transferts Niseko",
+      "services": "Services",
+      "summer": "Été",
+      "winter": "Hiver"
     }
   },
   "contact": {

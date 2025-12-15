@@ -38,7 +38,7 @@ const SubTitle = styled(Typography)(({ theme }) => ({
   fontStyle: "italic",
   color: theme.palette.icons?.main,
   fontSize: "1.5rem",
-  maxWidth: "800px",
+  maxWidth: "600px",
   minHeight: "75px",
   [theme.breakpoints.down("md")]: {
     fontSize: "1.2rem",

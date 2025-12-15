@@ -10,7 +10,7 @@ export default function useArticleCount() {
       const winwidth = window.innerWidth;
       if (winwidth > 1300) {
         setMaxHeight("350px");
-        setSlideCount(2);
+        setSlideCount(3);
       }
       if (winwidth < 1300 && winwidth > 1024) {
         setMaxHeight("");

@@ -609,6 +609,12 @@
     "title": {
       "head_title": "Concierge",
       "content": "Book your Niseko Central Concierge services pre-arrival and save time in resort!"
+    },
+    "categories": {
+      "niseko-transfers": "Niseko Transfers",
+      "services": "Services",
+      "summer": "Summer",
+      "winter": "Winter"
     }
   },
   "contact": {

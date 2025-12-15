@@ -102,14 +102,14 @@ interface ConciergeProps {
 }
 
 interface ConciergeReturns {
-  type: "full" | "category" | "id";
+  type: ConciergeProps["type"];
   content: CombinedConcierge;
 }
 
 interface ConciergeSlice {
   loading: boolean;
   error: string | null;
-  type: string;
+  type: ConciergeProps["type"];
   articles: CombinedConcierge | null;
 }
 
@@ -129,6 +129,7 @@ export const fetchConcierge = createAsyncThunk<
   if (fullQueries in cache) {
     return { type, content: cache[fullQueries] };
   }
+
   const fullURL: string = `${import.meta.env.VITE_API_URL}/api/concierge${
     fullQueries && "?" + fullQueries
   }`;

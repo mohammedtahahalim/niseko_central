@@ -1,10 +1,8 @@
-import { Box, Button, styled, Typography } from "@mui/material";
-import { useTranslation } from "react-i18next";
+import { Box, styled, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { sanitizeURL } from "../../../utils/Constants";
 import { useState } from "react";
-import EastIcon from "@mui/icons-material/East";
-import WestIcon from "@mui/icons-material/West";
+import More from "../../../components/More";
 
 interface NewsCardProps {
   id: number;
@@ -61,28 +59,15 @@ const Title = styled(Typography)({
   color: "whitesmoke",
 });
 
-const More = styled(Button)({
-  width: "fit-content",
-  borderRadius: "50px",
-  padding: "5px 20px",
-  textTransform: "capitalize",
-  fontFamily: "Inter",
-  fontSize: "0.85rem",
-  fontStyle: "italic",
-  gap: "8px",
-});
-
 export default function NewsCard({
   id,
   image,
   title,
   blurry_image,
 }: NewsCardProps) {
-  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const [onHover, setOnHover] = useState<boolean>(false);
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
-  const isArabic = i18n.language === "ar";
 
   const onKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
@@ -118,17 +103,13 @@ export default function NewsCard({
         onMouseOver={() => setOnHover(true)}
         onMouseLeave={() => setOnHover(false)}
       ></ShadeLayer>
+
       <InformationBox>
         <Title>{title || "Placeholder"}</Title>
         <More
-          variant="contained"
-          endIcon={isArabic ? <WestIcon /> : <EastIcon />}
-          onClick={() =>
-            navigate(`/niseko-accommodation-deals/${id}/${sanitizeURL(title)}`)
-          }
-        >
-          {t("home.news_section.more")}
-        </More>
+          url={`/niseko-accommodation-deals/${id}/${sanitizeURL(title)}`}
+          content_key={"home.news_section.more"}
+        />
       </InformationBox>
     </NewsCardWrapper>
   );
