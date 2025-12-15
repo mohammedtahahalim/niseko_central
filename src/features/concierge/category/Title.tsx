@@ -79,7 +79,7 @@ export default function Title() {
       </Button>
       <TitleWrapper>
         {loading ? (
-          <SkeletonTitle variant="text"></SkeletonTitle>
+          <SkeletonTitle variant="text" />
         ) : (
           <TextWrapper>
             <TitleName variant="body1" tabIndex={0}>

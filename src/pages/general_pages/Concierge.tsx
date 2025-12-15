@@ -80,7 +80,7 @@ export default function Concierge() {
           })}
         {!loading && error && <Error errorMessage={error} />}
         {!loading &&
-          articles &&
+          Array.isArray(articles) &&
           (articles as fullArticle[]).map((article, idx) => {
             return (
               <RenderOnView

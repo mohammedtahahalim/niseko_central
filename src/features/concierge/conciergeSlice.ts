@@ -48,21 +48,25 @@ const articleSchema = z.object({
   blur_image: z.string(),
   en: z.object({
     title: z.string().nonempty(),
+    subtitle: z.string().nonempty(),
     prices: z.string().nonempty(),
     content: z.string().nonempty(),
   }),
   ja: z.object({
     title: z.string().nonempty(),
+    subtitle: z.string().nonempty(),
     prices: z.string().nonempty(),
     content: z.string().nonempty(),
   }),
   ar: z.object({
     title: z.string().nonempty(),
+    subtitle: z.string().nonempty(),
     prices: z.string().nonempty(),
     content: z.string().nonempty(),
   }),
   fr: z.object({
     title: z.string().nonempty(),
+    subtitle: z.string().nonempty(),
     prices: z.string().nonempty(),
     content: z.string().nonempty(),
   }),
