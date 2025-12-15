@@ -1,10 +1,10 @@
 import { Box, styled, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import type { Swiper as SwiperType } from "swiper/types";
-import { useSelector } from "react-redux";
-import type { RootState } from "../../app/store";
+import { useDispatch, useSelector } from "react-redux";
+import type { AppDispatch, RootState } from "../../app/store";
 import { Keyboard } from "swiper/modules";
 import useSlideCount from "./useSlideCount";
 import Card from "./Card";
@@ -15,6 +15,7 @@ import WestIcon from "@mui/icons-material/West";
 import Skelton from "./Skelton";
 import RenderOnView from "../render_on_view/RenderOnView";
 import Error from "../../components/Error";
+import { fetchSuggestions } from "./suggestionsSlice";
 
 const SuggestionsWrapper = styled(Box)({
   width: "100%",
@@ -95,7 +96,12 @@ export default function Suggestions() {
   const { suggestionsBookings, suggestionsLoading, error } = useSelector(
     (state: RootState) => state.suggestions
   );
+  const dispatch = useDispatch<AppDispatch>();
   const isArabic = i18n.language === "ar";
+
+  useEffect(() => {
+    dispatch(fetchSuggestions({}));
+  }, []);
 
   return (
     <RenderOnView animationDirection="left">

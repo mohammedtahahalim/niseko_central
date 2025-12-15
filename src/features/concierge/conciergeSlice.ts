@@ -129,6 +129,7 @@ export const fetchConcierge = createAsyncThunk<
   if (fullQueries in cache) {
     return { type, content: cache[fullQueries] };
   }
+
   const fullURL: string = `${import.meta.env.VITE_API_URL}/api/concierge${
     fullQueries && "?" + fullQueries
   }`;

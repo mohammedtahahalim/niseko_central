@@ -13,10 +13,12 @@ import useArticleCount from "../../features/concierge/useArticleCount";
 import Error from "../../components/Error";
 import Section from "../../features/concierge/Section";
 import { countContext } from "../../context/CountContext";
+import RenderOnView from "../../features/render_on_view/RenderOnView";
 
 const ConciergeContainer = styled(Container)(({ theme }) => ({
   width: "100%",
   height: "100%",
+  minHeight: "100vh",
   display: "flex",
   flexDirection: "column",
   gap: "9px",
@@ -80,11 +82,12 @@ export default function Concierge() {
         {articles &&
           (articles as fullArticle[]).map((article) => {
             return (
-              <Section
-                category={article.category}
-                deals={"articles" in article ? article.articles : []}
-                key={article.category}
-              />
+              <RenderOnView animationDirection="right" key={article.category}>
+                <Section
+                  category={article.category}
+                  deals={"articles" in article ? article.articles : []}
+                />
+              </RenderOnView>
             );
           })}
         <Suggestions />
