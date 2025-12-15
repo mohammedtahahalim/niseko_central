@@ -1,9 +1,10 @@
 import { lazy } from "react";
-const Article = lazy(() => import("../pages/item_pages/Article"));
 const Promotion = lazy(() => import("../pages/item_pages/Promotion"));
 const Property = lazy(() => import("../pages/item_pages/Property"));
+const Blog = lazy(() => import("../pages/item_pages/Blog"));
+const Category = lazy(() => import("../pages/item_pages/Category"));
+const Article = lazy(() => import("../pages/item_pages/Article"));
 import type { TRoutes } from "../utils/Types";
-import Blog from "../pages/item_pages/Blog";
 
 export const item_pages: TRoutes[] = [
   {
@@ -11,7 +12,11 @@ export const item_pages: TRoutes[] = [
     element: Promotion,
   },
   {
-    path: "/concierge/:concierge_title",
+    path: "/concierge/:category",
+    element: Category,
+  },
+  {
+    path: "/concierge/:id/:title",
     element: Article,
   },
   {

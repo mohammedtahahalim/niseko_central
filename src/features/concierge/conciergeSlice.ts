@@ -183,6 +183,7 @@ export const conciergeSlice = createSlice({
     builder.addCase(fetchConcierge.pending, (state) => {
       state.loading = true;
       state.error = null;
+      state.articles = null;
     });
     builder.addCase(
       fetchConcierge.rejected,
