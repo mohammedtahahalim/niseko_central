@@ -35,17 +35,14 @@ export default function Content() {
     (state: RootState) => state.concierge
   );
 
-  console.log(articles);
-
   return (
     <ContentWrapper>
-      {!loading && error && <Error errorMessage={error} />}
+      {error && <Error errorMessage={error} />}
       {loading &&
         Array.from({ length: 3 }).map((_, idx) => {
           return <SkeletonTile key={idx} variant="rectangular" />;
         })}
-      {!loading &&
-        articles &&
+      {articles &&
         (articles as categoryArticle[]).map((article, idx) => {
           return (
             <ContentBox key={`${article.id}-${idx}`}>

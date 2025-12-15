@@ -74,35 +74,31 @@ export default function Article(props: fullArticle["articles"][number]) {
     }
   };
 
+  const currentContent = props[i18n.language as TLanguage];
+  const title =
+    currentContent && "title" in currentContent ? currentContent.title : "";
+
   return (
     <ArticleWrapper>
       <Image
         src={isLoaded ? image : blur_image}
         sx={{ opacity: isLoaded ? 1 : 0.5, scale: isHover ? 1.1 : 1 }}
         onLoad={() => setIsLoaded(true)}
-        alt={
-          "title" in props[i18n.language as TLanguage]
-            ? props[i18n.language as TLanguage].title
-            : ""
-        }
+        alt={title}
       />
       <ShadeOverlay
         onMouseEnter={() => setIsHover(true)}
         onMouseLeave={() => setIsHover(false)}
-        onClick={() =>
-          navigate(`/concierge/${id}/${sanitizeURL(props["en"].title)}`)
-        }
+        onClick={() => navigate(`/concierge/${id}/${sanitizeURL(title)}`)}
         onKeyDown={handleKeyboardClick}
         tabIndex={0}
         role="article"
         aria-labelledby={`${id}`}
       />
       <ContentWrapper isArabic={isArabic}>
-        <ArticleTitle id={`${id}`}>
-          {props[i18n.language as TLanguage].title}
-        </ArticleTitle>
+        <ArticleTitle id={`${id}`}>{title}</ArticleTitle>
         <More
-          url={`/concierge/${id}/${sanitizeURL(props["en"].title)}`}
+          url={`/concierge/${id}/${sanitizeURL(title)}`}
           content_key="home.news_section.more"
         />
       </ContentWrapper>
