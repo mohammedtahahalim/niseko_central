@@ -68,12 +68,19 @@ export default function Article(props: fullArticle["articles"][number]) {
   const isArabic = i18n.language === "ar";
   const navigate = useNavigate();
 
+  const handleKeyboardClick = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      navigate(`/concierge/${id}/${sanitizeURL(props["en"].title)}`);
+    }
+  };
+
   return (
     <ArticleWrapper>
       <Image
         src={isLoaded ? image : blur_image}
         sx={{ opacity: isLoaded ? 1 : 0.5, scale: isHover ? 1.1 : 1 }}
         onLoad={() => setIsLoaded(true)}
+        alt={props[i18n.language as TLanguage].title}
       />
       <ShadeOverlay
         onMouseEnter={() => setIsHover(true)}
@@ -81,9 +88,15 @@ export default function Article(props: fullArticle["articles"][number]) {
         onClick={() =>
           navigate(`/concierge/${id}/${sanitizeURL(props["en"].title)}`)
         }
+        onKeyDown={handleKeyboardClick}
+        tabIndex={0}
+        role="article"
+        aria-labelledby={`${id}`}
       />
       <ContentWrapper isArabic={isArabic}>
-        <ArticleTitle>{props[i18n.language as TLanguage].title}</ArticleTitle>
+        <ArticleTitle id={`${id}`}>
+          {props[i18n.language as TLanguage].title}
+        </ArticleTitle>
         <More
           url={`/concierge/${id}/${sanitizeURL(props["en"].title)}`}
           content_key="home.news_section.more"

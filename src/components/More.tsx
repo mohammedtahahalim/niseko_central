@@ -24,11 +24,20 @@ export default function More({ url, content_key }: MoreProps) {
   const { t, i18n } = useTranslation();
   const isArabic = i18n.language === "ar";
   const navigate = useNavigate();
+
+  const handleKeyboardClick = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      navigate(`${url}`);
+    }
+  };
+
   return (
     <MoreButton
       variant="contained"
       endIcon={isArabic ? <WestIcon /> : <EastIcon />}
       onClick={() => navigate(`${url}`)}
+      role="button"
+      onKeyDown={handleKeyboardClick}
     >
       {t(`${content_key}`)}
     </MoreButton>

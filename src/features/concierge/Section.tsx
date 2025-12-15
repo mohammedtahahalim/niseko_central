@@ -11,6 +11,7 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import EastIcon from "@mui/icons-material/East";
 import WestIcon from "@mui/icons-material/West";
 import type { Swiper as SwiperType } from "swiper";
+import { Keyboard } from "swiper/modules";
 import { useNavigate } from "react-router-dom";
 
 interface SectionProps {
@@ -112,6 +113,7 @@ export default function Section({ category, deals }: SectionProps) {
           variant="h6"
           color="inherit"
           onClick={() => navigate(`/concierge/${category}`)}
+          tabIndex={0}
         >
           {niceUrl(tr_category)}
         </Title>
@@ -130,9 +132,13 @@ export default function Section({ category, deals }: SectionProps) {
         </NavControl>
       </TitleContainer>
       <Carousel
+        modules={[Keyboard]}
         slidesPerView={slideCount}
         spaceBetween={10}
         onSwiper={(swiper) => (swiperRef.current = swiper)}
+        keyboard={{ enabled: true, onlyInViewport: true }}
+        role="region"
+        aria-label="Property Slider"
       >
         {deals.map((deal) => {
           return (
