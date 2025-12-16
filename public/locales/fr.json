@@ -156,7 +156,10 @@
     "niseko-accommodation-deals": "Offres d'hébergement à Niseko",
     "blogs": "Blogs",
     "map": "Carte",
-    "about": "À propos"
+    "about": "À propos",
+    "niseko-information": "Informations générales",
+    "webcam": "Webcam",
+    "niseko-weather": "Météo"
   },
   "quick_reservation": {
     "title": "Vérifier les disponibilités",
@@ -668,6 +671,32 @@
           "Niseko Central change de nom ! Anciennement connu sous le nom de HT Holidays, Niseko Central est devenu le plus grand prestataire d'hébergement de la région de Niseko depuis ses modestes débuts en 2003. Les pionniers australiens à l'origine de Niseko Central partageaient une passion pour le ski, une fascination pour Niseko et son abondante neige poudreuse, ainsi que la vision d'introduire un modèle d'hôtellerie et d'hébergement basé sur un concept commun aux stations de ski qu'ils avaient visitées à travers le monde.",
           "Depuis sa création, la passion qui animait nos fondateurs s'est propagée au point que Niseko est aujourd'hui l'une des stations de ski à la croissance la plus rapide au monde. Nous sommes fiers de contribuer à la construction d'une station ouverte toute l'année qui préserve son caractère japonais unique tout en attirant une clientèle internationale."
         ]
+      }
+    ]
+  },
+  "niseko-information": {
+    "title": "Niseko",
+    "subtitle": "Niseko, située sur l'île d'Hokkaido, au nord du Japon, est une destination prisée toute l'année par les vacanciers japonais et internationaux.",
+    "body1": "À l'origine station thermale (onsen), populaire au Japon mais méconnue à l'international, la région de Niseko, et Hirafu en particulier, est aujourd'hui célèbre dans tout le Japon et dans le monde entier pour sa neige poudreuse exceptionnelle.",
+    "body2": "Niseko est aujourd'hui l'une des destinations de ski qui connaît la croissance la plus rapide au monde, et en son cœur se trouve Hirafu, le plus grand village de la région. Avec son caractère japonais unique et son mélange d'influences internationales, Hirafu offre une expérience incomparable.",
+    "services": [
+      {
+        "title": "Accès à Niseko",
+        "image": "",
+        "blur_image": "",
+        "content": "La grande ville la plus proche de Niseko est Sapporo ; son principal aéroport est l'aéroport international de New Chitose. Desservi quotidiennement par des vols en provenance et à destination des principaux aéroports asiatiques, l'aéroport de New Chitose offre d'excellentes options de transfert vers Niseko en train, en bus ou en transfert privé ; Niseko Central peut vous aider à organiser vos transferts."
+      },
+      {
+        "title": "Hiver à Niseko",
+        "image": "https://d1z517741srsht.cloudfront.net/general/_1500xAUTO_crop_center-center_none/2086/winter-lee.webp",
+        "blur_image": "data:image/jpeg;base64,UklGRmIAAABXRUJQVlA4IFYAAAAQBACdASoUAAwAPm0sk0YkIqGhMAgAgA2JZQCdMoACYu4PLInfsZRbAAD++YSNmQX1/zF/SJBR4BmicqJTpL/DZDuFmTvhnYhQb3CiRTKlPl3iKggAAA==",
+        "content": "La saison de ski au Japon commence début décembre et se termine fin avril. Pendant la saison des neiges, la station est recouverte d'un manteau blanc, offrant aux skieurs et snowboarders un cadre idéal pour profiter pleinement de la glisse. Des chutes de neige annuelles pouvant atteindre 15 mètres et 47 km de pistes damées réparties sur quatre stations reliées entre elles : Grand Hirafu, Hanazono, Annupuri et Niseko Village. Un large éventail d’activités hors-piste est proposé, notamment : motoneige, snowparks pour enfants, luge, raquettes et bien plus encore."
+      },
+      {
+        "title": "Été à Niseko",
+        "image": "https://d1z517741srsht.cloudfront.net/guest-services/_1500xAUTO_crop_center-center_none/2087/golfer.webp",
+        "blur_image": "data:image/jpeg;base64,UklGRo4AAABXRUJQVlA4IIIAAADQAwCdASoUAA0APm0skkWkIqGYBABABsSzAFR6ECmqg7tVe/WZl3AA/cGTJdvNCAwuNR+GBabqPSVOrYe2K3r41+1aeEcm1oAENXAc9/uUx4TofC5vYP/1nJp3W7BdvMf6nfPfUUVngLfsKFFoY6VJlFG/DdhIGQ93rmU0XiqrwNAA",
+        "content": "L'été à Hokkaido offre un climat tempéré de juin à septembre et Niseko constitue le point de départ idéal pour découvrir le sud-ouest d'Hokkaido. De nombreuses activités vous y attendent: cyclisme, rafting, randonnée, golf, visites de la région et bien plus encore. « Large choix de plats et de produits frais. »"
       }
     ]
   }

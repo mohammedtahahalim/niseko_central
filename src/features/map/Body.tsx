@@ -14,7 +14,7 @@ export default function Body() {
   const { t } = useTranslation();
   return (
     <BodyWrapper>
-      <BodyText>{t("map.body")}</BodyText>
+      <BodyText tabIndex={0}>{t("map.body")}</BodyText>
     </BodyWrapper>
   );
 }

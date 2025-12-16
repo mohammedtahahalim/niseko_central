@@ -14,7 +14,9 @@ export default function Welcome() {
   const { t } = useTranslation();
   return (
     <WelcomeWrapper>
-      <WelcomeText variant="subtitle1">{t("map.welcome")}</WelcomeText>
+      <WelcomeText variant="subtitle1" tabIndex={0}>
+        {t("map.welcome")}
+      </WelcomeText>
     </WelcomeWrapper>
   );
 }

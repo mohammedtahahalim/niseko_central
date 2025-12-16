@@ -144,7 +144,10 @@
     "niseko-accommodation-deals": "ニセコの宿泊プラン",
     "blogs": "ブログ",
     "map": "地図",
-    "about": "について"
+    "about": "について",
+    "niseko-information": "一般情報",
+    "webcam": "ウェブカメラ",
+    "niseko-weather": "天気"
   },
   "quick_reservation": {
     "title": "空室状況を確認",
@@ -668,6 +671,32 @@
           "ニセコセントラルがブランドをリニューアルしました！以前はHTホリデーズとして知られていたニセコセントラルは、2003年の創業以来、ニセコエリアで最大の宿泊施設へと成長しました。ニセコセントラルを創業したオーストラリア出身のパイオニアたちは、スキーへの情熱、ニセコとその豊富なパウダースノーへの憧れ、そして世界中のスキーリゾートで共通するコンセプトに基づいたホスピタリティと宿泊モデルを導入するというビジョンを共有していました。",
           "創業者を鼓舞した情熱は創業以来、ニセコを世界で最も急速に成長しているスキーリゾートの一つへと押し上げました。私たちは、日本ならではの個性を保ちつつ、国際的なマーケット基盤を惹きつける、一年を通して楽しめるリゾートづくりに携われることを誇りに思います。"
         ]
+      }
+    ]
+  },
+  "niseko-information": {
+    "title": "ニセコ",
+    "subtitle": "日本北部の北海道に位置するニセコは、国内外の観光客が一年を通して訪れる人気のリゾート地です。",
+    "body1": "元々は温泉リゾートとして知られ、国内では人気がありましたが、海外ではあまり知られていません。ニセコエリア、特にヒラフは、極上のパウダースノーで国内外で有名です。",
+    "body2": "ニセコは現在、世界で最も急速に成長しているスキーリゾートの一つであり、その中心には、この地域最大のリゾートビレッジであるヒラフがあります。日本独自の個性と国際的な影響が融合したヒラフは、世界のどこにも類を見ない体験を提供しています。",
+    "services": [
+      {
+        "title": "ニセコへのアクセス",
+        "image": "",
+        "blur_image": "",
+        "content": "ニセコに最も近い主要都市は札幌で、主要空港は新千歳国際空港です。アジアの主要都市への直行便が毎日運航しています。新千歳空港は、ニセコへのハブ空港として、電車、バス、またはプライベート送迎など、優れた交通手段を提供しています。ニセコセントラルがお客様の送迎ニーズをサポートいたします。"
+      },
+      {
+        "title": "ニセコの冬",
+        "image": "https://d1z517741srsht.cloudfront.net/general/_1500xAUTO_crop_center-center_none/2086/winter-lee.webp",
+        "blur_image": "data:image/jpeg;base64,UklGRmIAAABXRUJQVlA4IFYAAAAQBACdASoUAAwAPm0sk0YkIqGhMAgAgA2JZQCdMoACYu4PLInfsZRbAAD++YSNmQX1/zF/SJBR4BmicqJTpL/DZDuFmTvhnYhQb3CiRTKlPl3iKggAAA==",
+        "content": "日本のスキーシーズンは12月上旬から4月下旬まで続きます。積雪期には、リゾートは雪に覆われ、スキーヤーとスノーボーダーは、グラン・ヒラフ、HANAZONO、アンヌプリ、ニセコビレッジの4つのリゾートにまたがる、年間最大15メートルの積雪と全長47キロメートルの整備されたゲレンデを満喫できます。スノーモービル、キッズスノーパーク、トボガン、スノーシューなど、様々な山岳アクティビティもお楽しみいただけます。"
+      },
+      {
+        "title": "ニセコの夏",
+        "image": "https://d1z517741srsht.cloudfront.net/guest-services/_1500xAUTO_crop_center-center_none/2087/golfer.webp",
+        "blur_image": "data:image/jpeg;base64,UklGRo4AAABXRUJQVlA4IIIAAADQAwCdASoUAA0APm0skkWkIqGYBABABsSzAFR6ECmqg7tVe/WZl3AA/cGTJdvNCAwuNR+GBabqPSVOrYe2K3r41+1aeEcm1oAENXAc9/uUx4TofC5vYP/1nJp3W7BdvMf6nfPfUUVngLfsKFFoY6VJlFG/DdhIGQ93rmU0XiqrwNAA",
+        "content": "北海道の夏は6月から9月まで温暖な気候で、ニセコは南西部の北海道を満喫するのに最適な拠点です。サイクリング、ラフティング、ハイキング、ゴルフ、地元観光など、様々なアクティビティをお楽しみいただけます。また、幅広いグルメや新鮮な農産物です。"
       }
     ]
   }

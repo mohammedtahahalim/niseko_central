@@ -144,7 +144,10 @@
     "contact": "Contact",
     "blogs": "Blogs",
     "map": "Map",
-    "about": "About"
+    "about": "About",
+    "niseko-information": "General Information",
+    "webcam": "Webcam",
+    "niseko-weather": "Weather"
   },
   "quick_reservation": {
     "title": "Check Availability",
@@ -799,6 +802,32 @@
           "Niseko Central has re-branded! Formerly known as HT Holidays, Niseko Central has grown to become the largest accommodation provided in the Niseko area since its humble beginnings in 2003. The original Australian pioneers who founded Niseko Central shared a passion for skiing, a fascination with Niseko and its abundant powder snow, and a vision to introduce a hospitality and accommodation model based on a common concept in the ski resorts they had visited around the world.",
           "Ever since its establishment, the passion that inspired our founders has spread to the point where Niseko is now one of the fastest growing ski resorts in the world. We are proud to be a part of building a year-round resort that maintains the unique Japanese character, whilst attracting an international market base."
         ]
+      }
+    ]
+  },
+  "niseko-information": {
+    "title": "Niseko",
+    "subtitle": "Niseko, located on the island of Hokkaido, Northern Japan, is a year round destination for both Japanese and international holiday makers.",
+    "body1": "Originally an Onsen (natural hot spa) resort, popular within Japan but otherwise internationally unknown, the Niseko area, and Hirafu in particular, is now famous throughout Japan and around the world for its exceptional powder snow.",
+    "body2": "Niseko is now one of the fastest growing ski destinations in the world, and at the heart of Niseko is Hirafu, the largest resort village in the area. With its unique Japanese character and mix of international influences, Hirafu offers an experience not found anywhere else in the world.",
+    "services": [
+      {
+        "title": "Access To Niseko",
+        "image": "",
+        "blur_image": "",
+        "content": "The closest major city to Niseko is Sapporo; the main airport being New Chitose International Airport. With daily flights to and from all major Asian hubs, New Chitose Airport offers excellent transfer options to Niseko by train, bus or private transfer; Niseko Central can assist with your transfer requirements."
+      },
+      {
+        "title": "Niseko Winter",
+        "image": "https://d1z517741srsht.cloudfront.net/general/_1500xAUTO_crop_center-center_none/2086/winter-lee.webp",
+        "blur_image": "data:image/jpeg;base64,UklGRmIAAABXRUJQVlA4IFYAAAAQBACdASoUAAwAPm0sk0YkIqGhMAgAgA2JZQCdMoACYu4PLInfsZRbAAD++YSNmQX1/zF/SJBR4BmicqJTpL/DZDuFmTvhnYhQb3CiRTKlPl3iKggAAA==",
+        "content": "Japan ski season starts from early December and ends in late April. During the snow season, the resort is covered in a blanket of snow, as skiers and snowboarders enjoy an annual snowfall of up to 15 metres and the 47 kms of groomed slopes across four linked resorts: Grand Hirafu, Hanazono, Annupuri and Niseko Village. A range of off mountain activities are available including: snowmobiling, kids snow parks, tobogganing, snowshoeing and more."
+      },
+      {
+        "title": "Niseko Summer",
+        "image": "https://d1z517741srsht.cloudfront.net/guest-services/_1500xAUTO_crop_center-center_none/2087/golfer.webp",
+        "blur_image": "data:image/jpeg;base64,UklGRo4AAABXRUJQVlA4IIIAAADQAwCdASoUAA0APm0skkWkIqGYBABABsSzAFR6ECmqg7tVe/WZl3AA/cGTJdvNCAwuNR+GBabqPSVOrYe2K3r41+1aeEcm1oAENXAc9/uUx4TofC5vYP/1nJp3W7BdvMf6nfPfUUVngLfsKFFoY6VJlFG/DdhIGQ93rmU0XiqrwNAA",
+        "content": "The Hokkaido summer offers temperate weather from June through to September and Niseko offers the perfect base to experience South Western Hokkaido area, with a range of activities to keep you occupied including: cycling, rafting, hiking, golf, touring the local area and much more as well as wide range of cuisine and fresh produce."
       }
     ]
   }
