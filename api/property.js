@@ -22,6 +22,7 @@ export default async function handler(req, res) {
       adults,
       children,
       infants,
+      propertyType,
       ...rest
     } = req.query;
     // Reject Unknown Queries
