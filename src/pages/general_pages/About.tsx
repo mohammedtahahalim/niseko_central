@@ -1,13 +1,12 @@
 import { Box, Container, styled } from "@mui/material";
 import LinkTitle from "../../components/LinkTitle";
-import Title from "../../features/map/Title";
-import Welcome from "../../features/map/Welcome";
-import Body from "../../features/map/Body";
-import Banner from "../../features/map/Banner";
-import Pdf from "../../features/map/Pdf";
+import Title from "../../features/about/Title";
+import Subtitle from "../../features/about/Subtitle";
+import Body from "../../features/about/Body";
+import Mission from "../../features/about/Mission";
 import Suggestions from "../../features/suggestions/Suggestions";
 
-const MapContainer = styled(Container)(({ theme }) => ({
+const AboutContainer = styled(Container)(({ theme }) => ({
   width: "100%",
   height: "100%",
   display: "flex",
@@ -21,27 +20,26 @@ const MapContainer = styled(Container)(({ theme }) => ({
   },
 }));
 
-const ContentWrapper = styled(Box)({
+const AboutWrapper = styled(Box)({
   width: "100%",
   maxWidth: "900px",
   display: "flex",
   flexDirection: "column",
-  gap: "20px",
+  gap: "30px",
   margin: "0 auto",
 });
 
-export default function Map() {
+export default function About() {
   return (
-    <MapContainer maxWidth="xl">
+    <AboutContainer maxWidth="xl">
       <LinkTitle />
-      <ContentWrapper>
+      <AboutWrapper>
         <Title />
-        <Welcome />
+        <Subtitle />
         <Body />
-        <Banner />
-        <Pdf />
-      </ContentWrapper>
+        <Mission />
+      </AboutWrapper>
       <Suggestions />
-    </MapContainer>
+    </AboutContainer>
   );
 }
