@@ -8,6 +8,7 @@ const NotFound = lazy(() => import("../pages/general_pages/NotFound"));
 const Reservations = lazy(() => import("../pages/general_pages/Reservations"));
 import type { TRoutes } from "../utils/Types";
 import Blogs from "../pages/general_pages/Blogs";
+import Map from "../pages/general_pages/Map";
 
 export const general_pages: TRoutes[] = [
   {
@@ -41,5 +42,9 @@ export const general_pages: TRoutes[] = [
   {
     path: "/blogs",
     element: Blogs,
+  },
+  {
+    path: "/map",
+    element: Map,
   },
 ];

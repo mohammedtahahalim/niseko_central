@@ -154,7 +154,8 @@
     "concierge": "Concierge",
     "contact": "Contact",
     "niseko-accommodation-deals": "Offres d'hébergement à Niseko",
-    "blogs": "Blogs"
+    "blogs": "Blogs",
+    "map": "Carte"
   },
   "quick_reservation": {
     "title": "Vérifier les disponibilités",
@@ -641,5 +642,11 @@
       }
     ],
     "closure": "Consultez régulièrement cette page — les nouveaux postes sont affichés dès qu'ils sont disponibles."
+  },
+  "map": {
+    "title": "Carte des hébergements",
+    "welcome": "Trouvez vos vacances au cœur de Niseko.",
+    "body": "Choisissez parmi plus de 200 hébergements à Niseko-Hirafu, au cœur du domaine de Niseko. Notre plan du village central de Niseko répertorie tous nos établissements ainsi que les points d'intérêt du village, notamment les remontées mécaniques, les onsens et bien plus encore.",
+    "pdf": "Afficher la carte au format PDF (PDF)"
   }
 }

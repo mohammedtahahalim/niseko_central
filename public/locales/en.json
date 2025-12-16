@@ -142,7 +142,8 @@
     "faq": "FAQ",
     "concierge": "Concierge",
     "contact": "Contact",
-    "blogs": "Blogs"
+    "blogs": "Blogs",
+    "map": "Map"
   },
   "quick_reservation": {
     "title": "Check Availability",
@@ -241,7 +242,7 @@
         "key": "type",
         "options": [
           {
-            "key": "",
+            "key": "0",
             "value": "All Property Types"
           },
           {
@@ -772,5 +773,11 @@
       }
     ],
     "closure": "Check back regularly — new positions are posted as they become available."
+  },
+  "map": {
+    "title": "Accommodation Map",
+    "welcome": "Find your holiday in the heart of Niseko.",
+    "body": "Choose from over 200 stays in Niseko-Hirafu, the heart of the greater Niseko area. Our Niseko Central Village Map features all of our properties as well as village landmarks including the ski lifts, onsens and more. ",
+    "pdf": "View Map as PDF (PDF)"
   }
 }

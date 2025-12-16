@@ -10,6 +10,13 @@ import Card from "../../components/Card";
 import { useTranslation } from "react-i18next";
 import Empty from "./Empty";
 
+const propertyTypes: Record<string, number> = {
+  allPropertyTypes: 0,
+  condominiums: 5,
+  "resort-homes": 6,
+  premierCollection: 7,
+};
+
 const BookingsWrapper = styled(Box)({
   width: "100%",
   display: "grid",
@@ -36,6 +43,12 @@ export default function Bookings() {
         Number(queries["children"]) +
         Number(queries["infants"]) || 1;
     dispatch(setFilter({ filter: "max_pax", value: guests || 1 }));
+    const propertyType = queries["propertyType"];
+    if (propertyType && propertyType in propertyTypes) {
+      dispatch(
+        setFilter({ filter: "type", value: propertyTypes[propertyType] })
+      );
+    }
     return () => {
       bookings.abort();
     };
