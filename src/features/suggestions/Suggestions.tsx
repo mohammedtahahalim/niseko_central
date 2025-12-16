@@ -100,7 +100,7 @@ export default function Suggestions() {
   const isArabic = i18n.language === "ar";
 
   useEffect(() => {
-    dispatch(fetchSuggestions({}));
+    dispatch(fetchSuggestions({ queries: { limit: 12 } }));
   }, []);
 
   return (

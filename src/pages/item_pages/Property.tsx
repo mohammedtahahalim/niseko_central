@@ -38,8 +38,7 @@ export default function Property() {
     };
   }, [id, title]);
 
-  if (shouldRedirect)
-    return <Navigate to={"/niseko-accommodation"} replace={true} />;
+  if (shouldRedirect) return <Navigate to={"/404"} replace={true} />;
 
   if (error) {
     return <Error errorMessage={error} />;

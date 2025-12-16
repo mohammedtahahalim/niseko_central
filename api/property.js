@@ -59,7 +59,7 @@ export default async function handler(req, res) {
         titles.push(sanitizeURL(curr_title));
       }
       if (!titles.includes(sanitizeURL(title)))
-        return res.status(400).json({ message: "id and title mismatch ..." });
+        return res.status(400).json({ message: "Property Not Found ..." });
       return res.status(200).json({ property: result[0] });
     }
     if (limit === undefined) limit = MAX_LIMIT;

@@ -756,5 +756,21 @@
       "content": "The latest news, events and special deals and discounts from Niseko, Japan."
     },
     "special": "Blog"
+  },
+  "404": {
+    "title": "Sorry, the page you were looking for could not be found.",
+    "subtitle1": "Oops! The job listing you were looking for is no longer available.",
+    "subtitle2": "Don’t worry — there are still plenty of opportunities you can explore:",
+    "links": [
+      {
+        "text": "Browse our current openings",
+        "link": "https://www.nisekocentral.com/niseko-jobs"
+      },
+      {
+        "text": "Or return to the homepage to see what’s new",
+        "link": "https://www.nisekocentral.com/"
+      }
+    ],
+    "closure": "Check back regularly — new positions are posted as they become available."
   }
 }

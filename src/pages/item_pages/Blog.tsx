@@ -31,7 +31,7 @@ export default function Blog() {
     };
   }, []);
 
-  if (shouldRedirect) return <Navigate to={"/blogs"} replace={true} />;
+  if (shouldRedirect) return <Navigate to={"/404"} replace={true} />;
 
   return (
     <BlogContainer maxWidth="xl">

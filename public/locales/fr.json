@@ -625,5 +625,21 @@
       "content": "Les dernières actualités, événements, offres spéciales et réductions de Niseko, Japon."
     },
     "special": "Blog"
+  },
+  "404": {
+    "title": "Désolé, la page que vous recherchiez est introuvable.",
+    "subtitle1": "Oups ! L'offre d'emploi que vous recherchiez n'est plus disponible.",
+    "subtitle2": "Ne vous inquiétez pas, il existe encore de nombreuses opportunités à explorer :",
+    "links": [
+      {
+        "text": "Consultez nos offres d'emploi actuelles",
+        "link": "https://www.nisekocentral.com/niseko-jobs"
+      },
+      {
+        "text": "Ou retournez à la page d'accueil pour voir les nouveautés",
+        "link": "https://www.nisekocentral.com/"
+      }
+    ],
+    "closure": "Consultez régulièrement cette page — les nouveaux postes sont affichés dès qu'ils sont disponibles."
   }
 }

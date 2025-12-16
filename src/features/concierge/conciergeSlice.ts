@@ -115,6 +115,7 @@ interface ConciergeSlice {
   error: string | null;
   type: ConciergeProps["type"];
   articles: CombinedConcierge | null;
+  shouldRedirect: boolean;
 }
 
 export const fetchConcierge = createAsyncThunk<
@@ -177,6 +178,7 @@ const initialState: ConciergeSlice = {
   error: null,
   type: "full",
   articles: null,
+  shouldRedirect: false,
 };
 
 export const conciergeSlice = createSlice({
@@ -194,6 +196,7 @@ export const conciergeSlice = createSlice({
       (state, action: PayloadAction<string | undefined>) => {
         state.loading = false;
         state.error = action.payload || "Unknown Error";
+        state.shouldRedirect = action.payload === "404";
       }
     );
     builder.addCase(
