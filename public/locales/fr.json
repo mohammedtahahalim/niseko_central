@@ -155,7 +155,8 @@
     "contact": "Contact",
     "niseko-accommodation-deals": "Offres d'hébergement à Niseko",
     "blogs": "Blogs",
-    "map": "Carte"
+    "map": "Carte",
+    "about": "À propos"
   },
   "quick_reservation": {
     "title": "Vérifier les disponibilités",
@@ -648,5 +649,26 @@
     "welcome": "Trouvez vos vacances au cœur de Niseko.",
     "body": "Choisissez parmi plus de 200 hébergements à Niseko-Hirafu, au cœur du domaine de Niseko. Notre plan du village central de Niseko répertorie tous nos établissements ainsi que les points d'intérêt du village, notamment les remontées mécaniques, les onsens et bien plus encore.",
     "pdf": "Afficher la carte au format PDF (PDF)"
+  },
+  "about": {
+    "title": "À propos de Niseko Central",
+    "subtitle": "Niseko Central est le principal fournisseur d'hébergement à Niseko-Hirafu, au cœur de la région de Niseko. Nous gérons des hébergements de qualité à Niseko depuis près de 20 ans et sommes leaders sur le marché en matière de produits, de services et de prestation.",
+    "body1": "Notre portefeuille unique de propriétés contemporaines offre des intérieurs confortables, un design soigné et des finitions de grande qualité. Aujourd'hui, nous gérons et commercialisons 170 appartements et résidences de luxe pour répondre aux besoins variés de nos clients.",
+    "body2": "Nous restons le prestataire de services hôteliers de référence dans la région de Niseko et notre personnel passionné s'efforce constamment d'offrir une expérience exceptionnelle à chaque client, avec un service personnalisé de la plus haute qualité.",
+    "services": [
+      {
+        "headline": "Notre peuple",
+        "contents": [
+          "Notre personnel multilingue et professionnel est à votre disposition pour répondre à vos besoins. Dès votre premier appel, notre équipe s'engage à ce que vous soyez pris en charge par des personnes qui comprennent parfaitement vos attentes et vos besoins pour vos vacances."
+        ]
+      },
+      {
+        "headline": "Notre histoire et notre avenir",
+        "contents": [
+          "Niseko Central change de nom ! Anciennement connu sous le nom de HT Holidays, Niseko Central est devenu le plus grand prestataire d'hébergement de la région de Niseko depuis ses modestes débuts en 2003. Les pionniers australiens à l'origine de Niseko Central partageaient une passion pour le ski, une fascination pour Niseko et son abondante neige poudreuse, ainsi que la vision d'introduire un modèle d'hôtellerie et d'hébergement basé sur un concept commun aux stations de ski qu'ils avaient visitées à travers le monde.",
+          "Depuis sa création, la passion qui animait nos fondateurs s'est propagée au point que Niseko est aujourd'hui l'une des stations de ski à la croissance la plus rapide au monde. Nous sommes fiers de contribuer à la construction d'une station ouverte toute l'année qui préserve son caractère japonais unique tout en attirant une clientèle internationale."
+        ]
+      }
+    ]
   }
 }

@@ -143,7 +143,8 @@
     "concierge": "Concierge",
     "contact": "Contact",
     "blogs": "Blogs",
-    "map": "Map"
+    "map": "Map",
+    "about": "About"
   },
   "quick_reservation": {
     "title": "Check Availability",
@@ -779,5 +780,26 @@
     "welcome": "Find your holiday in the heart of Niseko.",
     "body": "Choose from over 200 stays in Niseko-Hirafu, the heart of the greater Niseko area. Our Niseko Central Village Map features all of our properties as well as village landmarks including the ski lifts, onsens and more. ",
     "pdf": "View Map as PDF (PDF)"
+  },
+  "about": {
+    "title": "About Niseko Central",
+    "subtitle": "Niseko Central is the premier accommodation provider in Niseko-Hirafu, the heart of the greater Niseko area. We have been managing quality accommodations in Niseko for almost 20 years and are the market leaders in relation to product, services and service delivery.",
+    "body1": "Our unique portfolio of contemporary properties offers comfortable interiors and great design and finishes. Today, we manage and market 170 luxury condominiums and resort homes to suit all customers’ different needs.",
+    "body2": "We continue to be the go-to hospitality provider for the Niseko area and our passionate staff always strive to provide exceptional experiences for every guest, with the highest levels of personal service.",
+    "services": [
+      {
+        "headline": "Our People",
+        "contents": [
+          "Our professional, multilingual resort staff are on call to meet your needs. Our team is committed to ensure that, right from your first call, you will be taken care by people who really understand your holiday expectations and needs."
+        ]
+      },
+      {
+        "headline": "Our History And Our Future",
+        "contents": [
+          "Niseko Central has re-branded! Formerly known as HT Holidays, Niseko Central has grown to become the largest accommodation provided in the Niseko area since its humble beginnings in 2003. The original Australian pioneers who founded Niseko Central shared a passion for skiing, a fascination with Niseko and its abundant powder snow, and a vision to introduce a hospitality and accommodation model based on a common concept in the ski resorts they had visited around the world.",
+          "Ever since its establishment, the passion that inspired our founders has spread to the point where Niseko is now one of the fastest growing ski resorts in the world. We are proud to be a part of building a year-round resort that maintains the unique Japanese character, whilst attracting an international market base."
+        ]
+      }
+    ]
   }
 }
