@@ -15,6 +15,7 @@ export default function Pdf() {
       variant="outlined"
       color="primary"
       href="https://d1z517741srsht.cloudfront.net/maps/250611_NC_propertiesMap_EN.pdf"
+      role="button"
     >
       {t("map.pdf")}
     </PDFButton>

@@ -9,6 +9,11 @@ const Reservations = lazy(() => import("../pages/general_pages/Reservations"));
 const Blogs = lazy(() => import("../pages/general_pages/Blogs"));
 const Map = lazy(() => import("../pages/general_pages/Map"));
 const About = lazy(() => import("../pages/general_pages/About"));
+const GeneralInformation = lazy(
+  () => import("../pages/general_pages/GeneralInformation")
+);
+const Live = lazy(() => import("../pages/general_pages/Live"));
+const Weather = lazy(() => import("../pages/general_pages/Weather"));
 import type { TRoutes } from "../utils/Types";
 
 export const general_pages: TRoutes[] = [
@@ -51,5 +56,17 @@ export const general_pages: TRoutes[] = [
   {
     path: "/about",
     element: About,
+  },
+  {
+    path: "/niseko-information",
+    element: GeneralInformation,
+  },
+  {
+    path: "/webcam",
+    element: Live,
+  },
+  {
+    path: "/niseko-weather",
+    element: Weather,
   },
 ];
