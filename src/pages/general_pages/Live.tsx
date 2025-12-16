@@ -29,6 +29,7 @@ export default function Live() {
   return (
     <LiveContainer>
       <LinkTitle />
+      <LiveWrapper></LiveWrapper>
     </LiveContainer>
   );
 }
