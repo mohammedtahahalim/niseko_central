@@ -11,6 +11,7 @@ import Banner from "../../features/concierge/article/Banner";
 import Price from "../../features/concierge/article/Price";
 import Content from "../../features/concierge/article/Content";
 import Error from "../../components/Error";
+import RenderOnView from "../../features/render_on_view/RenderOnView";
 
 const ArticleContainer = styled(Container)({
   width: "100%",
@@ -58,10 +59,18 @@ export default function Article() {
       {error && <Error errorMessage={error} />}
       {!error && (
         <>
-          <Title />
-          <Banner />
-          <Price />
-          <Content />
+          <RenderOnView animationDirection="top">
+            <Title />
+          </RenderOnView>
+          <RenderOnView animationDirection="left">
+            <Banner />
+          </RenderOnView>
+          <RenderOnView animationDirection="right">
+            <Price />
+          </RenderOnView>
+          <RenderOnView animationDirection="top">
+            <Content />
+          </RenderOnView>
         </>
       )}
     </ArticleContainer>

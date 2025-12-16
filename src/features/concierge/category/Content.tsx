@@ -42,7 +42,7 @@ export default function Content() {
         Array.from({ length: 3 }).map((_, idx) => {
           return <SkeletonTile key={idx} variant="rectangular" />;
         })}
-      {articles &&
+      {Array.isArray(articles) &&
         (articles as categoryArticle[]).map((article, idx) => {
           return (
             <ContentBox key={`${article.id}-${idx}`}>

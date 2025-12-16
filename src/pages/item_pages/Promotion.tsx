@@ -34,8 +34,7 @@ export default function Promotion() {
     };
   }, []);
 
-  if (shouldRedirect)
-    return <Navigate to={"/niseko-accommodation-deals"} replace={true} />;
+  if (shouldRedirect) return <Navigate to={"/404"} replace={true} />;
 
   return (
     <PromotionWrapper maxWidth="xl">

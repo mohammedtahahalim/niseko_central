@@ -1,10 +1,10 @@
 import { Container, styled } from "@mui/material";
 import LinkTitle from "../../components/LinkTitle";
-import { useDispatch } from "react-redux";
-import type { AppDispatch } from "../../app/store";
+import { useDispatch, useSelector } from "react-redux";
+import type { AppDispatch, RootState } from "../../app/store";
 import { useEffect } from "react";
 import { fetchConcierge } from "../../features/concierge/conciergeSlice";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import Title from "../../features/concierge/category/Title";
 import Content from "../../features/concierge/category/Content";
 
@@ -20,6 +20,7 @@ const CategoryContainer = styled(Container)({
 export default function Category() {
   const { category } = useParams();
   const dispatch = useDispatch<AppDispatch>();
+  const { shouldRedirect } = useSelector((state: RootState) => state.concierge);
 
   useEffect(() => {
     const categoryDispatch = dispatch(
@@ -32,6 +33,8 @@ export default function Category() {
       categoryDispatch.abort();
     };
   }, [category]);
+
+  if (shouldRedirect) return <Navigate to={"/404"} replace={true} />;
 
   return (
     <CategoryContainer maxWidth="xl">
