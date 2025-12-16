@@ -29,6 +29,7 @@ export default function Weather() {
   return (
     <WeatherContainer>
       <LinkTitle />
+      <WeatherWrapper></WeatherWrapper>
     </WeatherContainer>
   );
 }
