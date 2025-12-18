@@ -14,6 +14,7 @@ const GeneralInformation = lazy(
 );
 const Live = lazy(() => import("../pages/general_pages/Live"));
 const Weather = lazy(() => import("../pages/general_pages/Weather"));
+const Express = lazy(() => import("../pages/general_pages/Express"));
 import type { TRoutes } from "../utils/Types";
 
 export const general_pages: TRoutes[] = [
@@ -68,5 +69,9 @@ export const general_pages: TRoutes[] = [
   {
     path: "/niseko-weather",
     element: Weather,
+  },
+  {
+    path: "/express-check-in",
+    element: Express,
   },
 ];

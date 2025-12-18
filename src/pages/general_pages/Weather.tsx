@@ -1,5 +1,10 @@
 import { Container, styled, Box } from "@mui/material";
 import LinkTitle from "../../components/LinkTitle";
+import Suggestions from "../../features/suggestions/Suggestions";
+import Title from "../../features/weather/Title";
+import Subtitle from "../../features/weather/Subtitle";
+import Snippet from "../../features/weather/Snippet";
+import Useful from "../../features/weather/Useful";
 
 const WeatherContainer = styled(Container)(({ theme }) => ({
   width: "100%",
@@ -7,7 +12,6 @@ const WeatherContainer = styled(Container)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   gap: "9px",
-  minHeight: "100vh",
   padding: "1rem",
   backgroundColor: theme.palette.mainbody?.main,
   [theme.breakpoints.down("md")]: {
@@ -21,15 +25,21 @@ const WeatherWrapper = styled(Box)({
   maxWidth: "900px",
   display: "flex",
   flexDirection: "column",
-  gap: "20px",
+  gap: "30px",
   margin: "0 auto",
 });
 
 export default function Weather() {
   return (
-    <WeatherContainer>
+    <WeatherContainer maxWidth="xl">
       <LinkTitle />
-      <WeatherWrapper></WeatherWrapper>
+      <WeatherWrapper>
+        <Title />
+        <Subtitle />
+        <Snippet />
+        <Useful />
+      </WeatherWrapper>
+      <Suggestions />
     </WeatherContainer>
   );
 }

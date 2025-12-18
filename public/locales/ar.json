@@ -144,7 +144,8 @@
     "about": "عن",
     "niseko-information": "معلومات عامة",
     "webcam": "كاميرا ويب",
-    "niseko-weather": "طقس"
+    "niseko-weather": "طقس",
+    "express-check-in": "تسجيل الوصول السريع"
   },
   "quick_reservation": {
     "title": "تحقق من التوافر",
@@ -659,6 +660,36 @@
         "image": "https://d1z517741srsht.cloudfront.net/guest-services/_1500xAUTO_crop_center-center_none/2087/golfer.webp",
         "blur_image": "data:image/jpeg;base64,UklGRo4AAABXRUJQVlA4IIIAAADQAwCdASoUAA0APm0skkWkIqGYBABABsSzAFR6ECmqg7tVe/WZl3AA/cGTJdvNCAwuNR+GBabqPSVOrYe2K3r41+1aeEcm1oAENXAc9/uUx4TofC5vYP/1nJp3W7BdvMf6nfPfUUVngLfsKFFoY6VJlFG/DdhIGQ93rmU0XiqrwNAA",
         "content": "يتميز صيف هوكايدو بطقس معتدل من يونيو إلى سبتمبر، وتُعدّ نيسيكو قاعدة مثالية لاستكشاف منطقة جنوب غرب هوكايدو، حيث توفر مجموعة متنوعة من الأنشطة التي تُبقيكم مشغولين، بما في ذلك: ركوب الدراجات، والتجديف، والمشي لمسافات طويلة، والجولف، والجولات السياحية في المنطقة، وغيرها الكثير، بالإضافة إلى تشكيلة واسعة من المأكولات والمنتجات الطازجة."
+      }
+    ]
+  },
+  "cam": {
+    "title": "كاميرا بث مباشر لجبل يوتي",
+    "subtitle": "تم تصوير جبل يوتي الشهير 7 أيام في الأسبوع، 365 يومًا في السنة، عبر كاميرا البث المباشر الخاصة بنا.",
+    "content1": "أبرز معالم نيسيكو وأكثرها تصويرًا: جبل يوتي. يُشار إليه غالبًا باسم ييزو فوجي أو إيزو فوجي لتشابهه مع جبل فوجي الياباني الشهير، ويبلغ ارتفاع هذا البركان الطبقي الخامد 1898 مترًا. استمتعوا بمشاهدة هذا المعلم البارز في نيسيكو من أي مكان (يتم تحديث الصور كل 30 ثانية).",
+    "content2": "شاركنا صورك لجبل يوتي خلال إقامتك في نيسيكو عن طريق وضع علامة",
+    "instagram": "على إنستغرام!"
+  },
+  "weather": {
+    "title": "طقس",
+    "subtitle": "اطلع على تقرير الثلوج المحدث وتوقعات الطقس في نيسيكو من موقع نيسيكو سنترال. استمتع بعطلتك في نيسيكو مع ثلوج رائعة وأجواء مثالية.",
+    "useful_title": "روابط مفيدة",
+    "useful_links": [
+      {
+        "title": "ياهو للطقس (باللغة اليابانية فقط)",
+        "path": "http://weather.yahoo.co.jp/weather/jp/1b/1600/1395.html"
+      },
+      {
+        "title": "تقارير عن مصعد نيسيكو",
+        "path": "http://www.niseko.ne.jp/en/weather/index.html"
+      },
+      {
+        "title": "توقعات تساقط الثلوج",
+        "path": "http://www.snow-forecast.com/resorts/Niseko/6day/mid"
+      },
+      {
+        "title": "تقرير عن الانهيارات الثلجية والمناطق النائية",
+        "path": "http://niseko.nadare.info/"
       }
     ]
   }

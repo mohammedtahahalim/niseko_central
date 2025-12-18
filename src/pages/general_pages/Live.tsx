@@ -1,5 +1,9 @@
 import { Container, styled, Box } from "@mui/material";
 import LinkTitle from "../../components/LinkTitle";
+import Title from "../../features/webcam/Title";
+import Subtitle from "../../features/webcam/Subtitle";
+import Content from "../../features/webcam/Content";
+import Cam from "../../features/webcam/Cam";
 
 const LiveContainer = styled(Container)(({ theme }) => ({
   width: "100%",
@@ -21,15 +25,21 @@ const LiveWrapper = styled(Box)({
   maxWidth: "900px",
   display: "flex",
   flexDirection: "column",
-  gap: "20px",
+  gap: "40px",
   margin: "0 auto",
+  minHeight: "100vh",
 });
 
 export default function Live() {
   return (
-    <LiveContainer>
+    <LiveContainer maxWidth="xl">
       <LinkTitle />
-      <LiveWrapper></LiveWrapper>
+      <LiveWrapper>
+        <Title />
+        <Subtitle />
+        <Content />
+        <Cam />
+      </LiveWrapper>
     </LiveContainer>
   );
 }
