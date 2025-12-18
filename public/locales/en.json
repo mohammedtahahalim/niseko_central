@@ -861,5 +861,9 @@
         "path": "http://niseko.nadare.info/"
       }
     ]
+  },
+  "express": {
+    "title": "Express Check-in",
+    "subtitle": "If the below form is not visible please use this link: "
   }
 }

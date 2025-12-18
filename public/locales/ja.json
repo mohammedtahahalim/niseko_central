@@ -730,5 +730,9 @@
         "path": "http://niseko.nadare.info/"
       }
     ]
+  },
+  "express": {
+    "title": "エクスプレスチェックイン",
+    "subtitle": "以下のフォームが表示されない場合は、このリンクを使用してください。"
   }
 }
