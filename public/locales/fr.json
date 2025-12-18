@@ -707,5 +707,28 @@
     "content1": "Le mont Yotei, l'un des sites les plus emblématiques et photographiés de Niseko, est souvent appelé Yezo Fuji ou Ezo Fuji en raison de sa ressemblance avec le célèbre mont Fuji japonais. Ce stratovolcan inactif culmine à 1 898 mètres d'altitude. Admirez ce symbole de Niseko depuis n'importe où (images mises à jour toutes les 30 secondes).",
     "content2": "Partagez vos photos du mont Yotei avec nous pendant votre séjour à Niseko en utilisant le hashtag #Tags",
     "instagram": "sur Instagram !"
+  },
+  "weather": {
+    "title": "Météo",
+    "subtitle": "Consultez le bulletin neige et les prévisions météo de Niseko Central. Profitez pleinement de vos vacances à Niseko grâce à une neige poudreuse exceptionnelle et des conditions météorologiques idéales.",
+    "useful_title": "Liens utiles",
+    "useful_links": [
+      {
+        "title": "Yahoo Météo (en japonais uniquement)",
+        "path": "http://weather.yahoo.co.jp/weather/jp/1b/1600/1395.html"
+      },
+      {
+        "title": "Rapports sur les remontées mécaniques de Niseko",
+        "path": "http://www.niseko.ne.jp/en/weather/index.html"
+      },
+      {
+        "title": "Prévisions de neige",
+        "path": "http://www.snow-forecast.com/resorts/Niseko/6day/mid"
+      },
+      {
+        "title": "Rapport sur les avalanches et le hors-piste",
+        "path": "http://niseko.nadare.info/"
+      }
+    ]
   }
 }

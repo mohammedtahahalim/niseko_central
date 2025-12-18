@@ -838,5 +838,28 @@
     "content1": "Niseko's most iconic and most-photographed landmarks: Mt. Yotei. Often referred to as Yezo Fuji or Ezo Fuji because of it's resemblance to Japan's famous Mt. Fuji, the inactive stratovolcano stands 1,898 metres high. Enjoy our view of this Niseko icon from wherever you are (images updated every 30 seconds).",
     "content2": "Share your photos of Mt. Yotei with us during your stay in Niseko by tagging",
     "instagram": "on Instagram!"
+  },
+  "weather": {
+    "title": "Weather",
+    "subtitle": "Check Niseko Central’s updated Niseko snow report and weather forecast. Enjoy your holiday in Niseko with great powder and fabulous weather conditions.",
+    "useful_title": "Useful Links",
+    "useful_links": [
+      {
+        "title": "Yahoo Weather (Japanese only)",
+        "path": "http://weather.yahoo.co.jp/weather/jp/1b/1600/1395.html"
+      },
+      {
+        "title": "Niseko Lift Reports",
+        "path": "http://www.niseko.ne.jp/en/weather/index.html"
+      },
+      {
+        "title": "Snow Forecasts",
+        "path": "http://www.snow-forecast.com/resorts/Niseko/6day/mid"
+      },
+      {
+        "title": "Avalanche and Backcountry Report",
+        "path": "http://niseko.nadare.info/"
+      }
+    ]
   }
 }

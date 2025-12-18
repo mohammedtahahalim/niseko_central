@@ -707,5 +707,28 @@
     "content1": "ニセコで最も象徴的で、最も多く写真に撮られているランドマーク、羊蹄山。日本の有名な富士山に似ていることから、しばしばエゾ富士とも呼ばれるこの休火山は、標高1,898メートルです。ニセコの象徴であるこの山の絶景を、どこからでもお楽しみください（画像は30秒ごとに更新されます）。",
     "content2": "ニセコ滞在中に羊蹄山の写真をタグ付けしてシェアしてください",
     "instagram": "インスタグラムで！"
+  },
+  "weather": {
+    "title": "天気",
+    "subtitle": "ニセコセントラルの最新のニセコ積雪情報と天気予報をご確認ください。極上のパウダースノーと素晴らしい天候で、ニセコでの休暇をお楽しみください。",
+    "useful_title": "便利なリンク",
+    "useful_links": [
+      {
+        "title": "Yahoo!天気（日本語のみ）",
+        "path": "http://weather.yahoo.co.jp/weather/jp/1b/1600/1395.html"
+      },
+      {
+        "title": "ニセコリフトレポート",
+        "path": "http://www.niseko.ne.jp/en/weather/index.html"
+      },
+      {
+        "title": "雪予報",
+        "path": "http://www.snow-forecast.com/resorts/Niseko/6day/mid"
+      },
+      {
+        "title": "雪崩とバックカントリーレポート",
+        "path": "http://niseko.nadare.info/"
+      }
+    ]
   }
 }
