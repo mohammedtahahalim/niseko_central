@@ -147,7 +147,8 @@
     "about": "About",
     "niseko-information": "General Information",
     "webcam": "Webcam",
-    "niseko-weather": "Weather"
+    "niseko-weather": "Weather",
+    "express-check-in": "Express Check In"
   },
   "quick_reservation": {
     "title": "Check Availability",
@@ -830,5 +831,12 @@
         "content": "The Hokkaido summer offers temperate weather from June through to September and Niseko offers the perfect base to experience South Western Hokkaido area, with a range of activities to keep you occupied including: cycling, rafting, hiking, golf, touring the local area and much more as well as wide range of cuisine and fresh produce."
       }
     ]
+  },
+  "cam": {
+    "title": "Live Camera of Mt. Yotei",
+    "subtitle": "Iconic Mt. Yotei captured 7 days a week, 365 days a year, via our Live Camera.",
+    "content1": "Niseko's most iconic and most-photographed landmarks: Mt. Yotei. Often referred to as Yezo Fuji or Ezo Fuji because of it's resemblance to Japan's famous Mt. Fuji, the inactive stratovolcano stands 1,898 metres high. Enjoy our view of this Niseko icon from wherever you are (images updated every 30 seconds).",
+    "content2": "Share your photos of Mt. Yotei with us during your stay in Niseko by tagging",
+    "instagram": "on Instagram!"
   }
 }
