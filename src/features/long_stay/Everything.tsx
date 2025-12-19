@@ -9,7 +9,7 @@ const EverythingWrapper = styled(Box)({
 
 export default function Default() {
   const everythingRef = useRef<HTMLElement | null>(null);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const content = t("long-stay.everything") as string;
   const shadowRef = useRef<ShadowRoot | null>(null);
 
@@ -27,7 +27,7 @@ export default function Default() {
       .replaceAll("ul", 'ul style="list-style-type: square !important"')
       .replace("lg:border-r", "")}
     `;
-  }, []);
+  }, [i18n.language]);
 
   return <EverythingWrapper ref={everythingRef}></EverythingWrapper>;
 }

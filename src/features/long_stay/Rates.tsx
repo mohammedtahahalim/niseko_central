@@ -9,7 +9,7 @@ const RatesWrapper = styled(Box)({
 
 export default function Default() {
   const ratesRef = useRef<HTMLElement | null>(null);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const content = t("long-stay.rates") as string;
   const shadowRef = useRef<ShadowRoot | null>(null);
 
@@ -28,7 +28,7 @@ export default function Default() {
       .replace("lg:border-r", "")
       .replace(/<svg(.|\n)*\/svg>/g, "")}
     `;
-  }, []);
+  }, [i18n.language]);
 
   return <RatesWrapper ref={ratesRef}></RatesWrapper>;
 }
