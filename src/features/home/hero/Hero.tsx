@@ -88,7 +88,7 @@ export default function Hero() {
         loop={true}
         style={{ width: "100%", height: "100%" }}
         spaceBetween={0}
-        speed={250}
+        speed={400}
         onSwiper={(swiper) => (swiperRef.current = swiper)}
         keyboard={{ enabled: true, onlyInViewport: true }}
         role="region"

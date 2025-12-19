@@ -148,7 +148,8 @@
     "niseko-information": "一般情報",
     "webcam": "ウェブカメラ",
     "niseko-weather": "天気",
-    "express-check-in": "エクスプレスチェックイン"
+    "express-check-in": "エクスプレスチェックイン",
+    "niseko-long-stay": "夏の長期滞在"
   },
   "quick_reservation": {
     "title": "空室状況を確認",
@@ -734,5 +735,8 @@
   "express": {
     "title": "エクスプレスチェックイン",
     "subtitle": "以下のフォームが表示されない場合は、このリンクを使用してください。"
+  },
+  "long-stay": {
+    "links": ["夏の長期滞在", "客室に揃っているもの", "宿泊料金"]
   }
 }

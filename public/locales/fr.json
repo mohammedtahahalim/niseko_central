@@ -160,7 +160,8 @@
     "niseko-information": "Informations générales",
     "webcam": "Webcam",
     "niseko-weather": "Météo",
-    "express-check-in": "Enregistrement express"
+    "express-check-in": "Enregistrement express",
+    "niseko-long-stay": "Séjour d'été prolongé"
   },
   "quick_reservation": {
     "title": "Vérifier les disponibilités",
@@ -734,5 +735,12 @@
   "express": {
     "title": "Enregistrement express",
     "subtitle": "Si le formulaire ci-dessous n'est pas visible, veuillez utiliser ce lien :"
+  },
+  "long-stay": {
+    "links": [
+      "Séjour d'été prolongé",
+      "Tout ce que vous trouverez dans votre chambre",
+      "Tarifs d'hébergement"
+    ]
   }
 }
