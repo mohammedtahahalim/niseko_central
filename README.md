@@ -38,14 +38,22 @@ The application is a **non-commercial, demonstration-only clone** intended solel
 ## Purpose
 
 This project serves as a showcase of my ability to recreate a complex, modern web application from scratch using contemporary tools and best practices.
+
+## Constraints:
+
+This project relies on vercel serverless function for backend implementation, make sure that .env file is at the root of the project and
+contains all variable to both db configuration (this project uses aiven free tier), ttl for cachout, emailjs template id and service id.
+
 ## Installation (for local review)
 
 1. Clone the repository:
+
 ```bash
    git clone https://github.com/mohammedtahahalim/niseko_central.git
 ```
 
 2. Install dependencies:
+
 ```bash
 npm install
 # or
@@ -53,9 +61,11 @@ yarn install
 ```
 
 3. Start the development server:
+
 ```bash
 npm run dev
 # or
 yarn dev
 ```
+
 # Thank you for reviewing this project.
