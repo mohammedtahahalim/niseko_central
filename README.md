@@ -44,6 +44,8 @@ This project serves as a showcase of my ability to recreate a complex, modern we
 This project relies on vercel serverless function for backend implementation, make sure that .env file is at the root of the project and
 contains all variable to both db configuration (this project uses aiven free tier), ttl for cachout, emailjs template id and service id.
 
+If pathing does not work locally, remove vercel.json file from the root folder
+
 ## Installation (for local review)
 
 1. Clone the repository:
