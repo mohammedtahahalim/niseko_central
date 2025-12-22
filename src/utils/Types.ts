@@ -29,6 +29,7 @@ export type THeroContent = {
   image: string;
   more: string;
   link: string;
+  blur_image: string;
 };
 
 export type ServiceContents = {

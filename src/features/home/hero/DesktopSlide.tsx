@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import EastIcon from "@mui/icons-material/East";
 import WestIcon from "@mui/icons-material/West";
+import { useState } from "react";
 
 const DesktopSlideWrapper = styled(Box)({
   width: "100%",
@@ -81,7 +82,9 @@ export default function DesktopSlide({
   image,
   more,
   link,
+  blur_image,
 }: THeroContent) {
+  const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const navigate = useNavigate();
   const { i18n } = useTranslation();
   const isArabic = i18n.language === "ar";
@@ -121,11 +124,18 @@ export default function DesktopSlide({
       </InfoSlide>
       <ImageSlide>
         <img
-          src={image}
+          src={isLoaded ? image : blur_image}
           alt="Slider Image"
-          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            opacity: isLoaded ? 1 : 0.75,
+            transition: "all 0.2s ease-in-out",
+          }}
           decoding="async"
           loading="lazy"
+          onLoad={() => setIsLoaded(true)}
         />
       </ImageSlide>
     </DesktopSlideWrapper>
