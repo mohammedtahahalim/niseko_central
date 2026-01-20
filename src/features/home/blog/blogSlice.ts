@@ -38,22 +38,28 @@ const cache: TCache = new Proxy(
     get(target: TCache, prop: string) {
       if (!(prop in target)) return undefined;
       clearTimeout(timeouts[prop]);
-      timeouts[prop] = setTimeout(() => {
-        delete timeouts[prop];
-        delete target[prop];
-      }, TTL * 1000 * 60);
+      timeouts[prop] = setTimeout(
+        () => {
+          delete timeouts[prop];
+          delete target[prop];
+        },
+        TTL * 1000 * 60,
+      );
       return target[prop];
     },
     set(target: TCache, key: string, val: BlogReturn) {
       clearTimeout(timeouts[key]);
-      timeouts[key] = setTimeout(() => {
-        delete timeouts[key];
-        delete target[key];
-      }, TTL * 1000 * 60);
+      timeouts[key] = setTimeout(
+        () => {
+          delete timeouts[key];
+          delete target[key];
+        },
+        TTL * 1000 * 60,
+      );
       target[key] = val;
       return true;
     },
-  }
+  },
 );
 
 export const fetchBlogs = createAsyncThunk<
@@ -65,7 +71,7 @@ export const fetchBlogs = createAsyncThunk<
     const fullQueries: string = new URLSearchParams(
       Object.entries(args)
         .filter(([_, v]) => v !== null && v !== undefined)
-        .map(([k, v]) => [k, String(v)])
+        .map(([k, v]) => [k, String(v)]),
     ).toString();
 
     // Cache Hit Check ...
@@ -82,16 +88,16 @@ export const fetchBlogs = createAsyncThunk<
       throw new Error(response.status.toString());
     }
     const resonse_data = await response.json();
-    let {
-      blogs,
+    const {
       first_blog,
       page,
       page_size: limit,
       total_blogs,
       total_pages,
     } = resonse_data;
+    let { blogs } = resonse_data;
     blogs = blogs.filter(
-      (blog: BlogReturn["blogs"]) => blogsSchema.safeParse(blog).success
+      (blog: BlogReturn["blogs"]) => blogsSchema.safeParse(blog).success,
     );
     // TODO: sort queries before assigning to filter on, duplicates
     const data = {
@@ -148,7 +154,7 @@ export const blogSlice = createSlice({
         state.loading = false;
         state.error = action.payload ?? "Unknown";
         state.shouldRedirect = action.payload === "400";
-      }
+      },
     );
     builder.addCase(
       fetchBlogs.fulfilled,
@@ -156,7 +162,7 @@ export const blogSlice = createSlice({
         state.error = null;
         state.loading = false;
         state.data = action.payload;
-      }
+      },
     );
   },
 });

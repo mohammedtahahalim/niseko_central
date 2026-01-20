@@ -64,13 +64,13 @@ const Default = styled("span")(({ theme }) => ({
 export default function Filters() {
   const { t } = useTranslation();
   const { filters, loading } = useSelector(
-    (state: RootState) => state.bookings
+    (state: RootState) => state.bookings,
   );
   const dispatch = useDispatch<AppDispatch>();
 
   const filterData = useMemo(
     () => t("accommodation.filters", { returnObjects: true }) as FilterOption[],
-    [t]
+    [t],
   );
 
   return (
@@ -90,7 +90,7 @@ export default function Filters() {
                   return <Default>{filter.placeholder}</Default>;
                 }
                 const option = filter.options.find(
-                  (opt) => opt.key == selected
+                  (opt) => opt.key == selected,
                 );
                 return option ? option.value : Number(selected);
               }}
@@ -99,7 +99,7 @@ export default function Filters() {
                   setFilter({
                     filter: filter.key as FilterValue["filter"],
                     value: Number(e.target.value),
-                  })
+                  }),
                 )
               }
               MenuProps={{

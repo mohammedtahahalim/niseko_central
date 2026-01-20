@@ -33,7 +33,7 @@ export default function General() {
   const { t } = useTranslation();
   const { loading } = useSelector((state: RootState) => state.contact);
   const { in_house, first_name, last_name } = useSelector(
-    (state: RootState) => state.contact.formData.general_data
+    (state: RootState) => state.contact.formData.general_data,
   );
   const dispatch = useDispatch<AppDispatch>();
 

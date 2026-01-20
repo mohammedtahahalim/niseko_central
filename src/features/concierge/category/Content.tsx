@@ -32,7 +32,7 @@ const SkeletonTile = styled(Skeleton)({
 
 export default function Content() {
   const { loading, error, articles } = useSelector(
-    (state: RootState) => state.concierge
+    (state: RootState) => state.concierge,
   );
 
   return (

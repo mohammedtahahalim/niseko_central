@@ -51,20 +51,23 @@ const bookingCache = new Proxy(
       const modKey = key || DEFAULT_KEY;
       obj[modKey] = value;
       if (timeouts[modKey]) clearTimeout(timeouts[modKey]);
-      timeouts[modKey] = setTimeout(() => {
-        delete obj[modKey];
-        delete timeouts[modKey];
-      }, import.meta.env.VITE_CACHE_TTL * 60 * 1000);
+      timeouts[modKey] = setTimeout(
+        () => {
+          delete obj[modKey];
+          delete timeouts[modKey];
+        },
+        import.meta.env.VITE_CACHE_TTL * 60 * 1000,
+      );
       return true;
     },
     has(obj: Record<string, Property[]>, key: string) {
       const modKey = key || DEFAULT_KEY;
-      return obj.hasOwnProperty(modKey);
+      return Object.prototype.hasOwnProperty.call(obj, modKey);
     },
-  }
+  },
 );
 
-interface BookingState<T extends Object> {
+interface BookingState<T extends object> {
   loading: boolean;
   error: string;
   bookings: T[];
@@ -88,7 +91,7 @@ export const fetchBookings = createAsyncThunk<
     const fullQueries = new URLSearchParams(
       Object.entries(args)
         .filter(([_, v]) => v !== null && v !== undefined)
-        .map(([k, v]) => [k, String(v)])
+        .map(([k, v]) => [k, String(v)]),
     ).toString();
     if (bookingCache[fullQueries]) {
       return bookingCache[fullQueries] as Property[];
@@ -102,7 +105,7 @@ export const fetchBookings = createAsyncThunk<
     }
     const raw_data = await response.json();
     const filtered_data = raw_data.properties.filter(
-      (property: Property) => bookingsScehma.safeParse(property).success
+      (property: Property) => bookingsScehma.safeParse(property).success,
     );
     bookingCache[fullQueries] = filtered_data;
     return filtered_data as Property[];
@@ -144,8 +147,8 @@ export const bookingSlice = createSlice({
           .filter((booking) => booking.max_pax >= value)
           .filter((booking) =>
             booking.en.title.includes(
-              properties_types.get(state.filters.property)!
-            )
+              properties_types.get(state.filters.property)!,
+            ),
           );
       } else if (filter === "type") {
         state.filters.type = value;
@@ -154,7 +157,7 @@ export const bookingSlice = createSlice({
         state.displayBookings = state.bookings
           .filter((booking) => booking.max_pax >= state.filters.max_pax)
           .filter((booking) =>
-            booking.en.title.includes(properties_types.get(value)!)
+            booking.en.title.includes(properties_types.get(value)!),
           );
       }
     },
@@ -174,7 +177,7 @@ export const bookingSlice = createSlice({
               } else {
                 return b.price - a.price;
               }
-            }
+            },
           );
           break;
         case "name":
@@ -185,7 +188,7 @@ export const bookingSlice = createSlice({
               } else {
                 return b.en.title.localeCompare(a.en.title);
               }
-            }
+            },
           );
           break;
         case "size":
@@ -196,7 +199,7 @@ export const bookingSlice = createSlice({
               } else {
                 return b.size - a.size;
               }
-            }
+            },
           );
           break;
         case "bedrooms":
@@ -207,7 +210,7 @@ export const bookingSlice = createSlice({
               } else {
                 return b.beds - a.beds;
               }
-            }
+            },
           );
           break;
       }
@@ -225,7 +228,7 @@ export const bookingSlice = createSlice({
         state.loading = false;
         state.error = action.payload as string;
         state.shouldRedirect = action.payload === "400";
-      }
+      },
     );
     builder.addCase(
       fetchBookings.fulfilled,
@@ -233,7 +236,7 @@ export const bookingSlice = createSlice({
         state.loading = false;
         state.bookings = action.payload;
         state.displayBookings = action.payload;
-      }
+      },
     );
   },
 });

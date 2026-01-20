@@ -2,6 +2,11 @@ import { Box, styled } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
+type TNav = {
+  path: string;
+  element: string;
+};
+
 const NavigationWrapper = styled(Box)(({ theme }) => ({
   flex: "1",
   width: "100%",
@@ -70,49 +75,49 @@ export default function Navigation() {
     <NavigationWrapper role="navigation">
       <StayWrapper>
         <Wrapper>
-          {(t("footer.menu.stay", { returnObjects: true }) as any[]).map(
+          {(t("footer.menu.stay", { returnObjects: true }) as TNav[]).map(
             (link) => {
               return (
                 <LinkField key={link.path} to={link.element}>
                   {link.path}
                 </LinkField>
               );
-            }
+            },
           )}
         </Wrapper>
         <Wrapper>
-          {(t("footer.menu.map", { returnObjects: true }) as any[]).map(
+          {(t("footer.menu.map", { returnObjects: true }) as TNav[]).map(
             (link) => {
               return (
                 <LinkField key={link.path} to={link.element}>
                   {link.path}
                 </LinkField>
               );
-            }
+            },
           )}
         </Wrapper>
       </StayWrapper>
       <MenuWrapper>
         <Wrapper>
-          {(t("footer.menu.concierge", { returnObjects: true }) as any[]).map(
+          {(t("footer.menu.concierge", { returnObjects: true }) as TNav[]).map(
             (link) => {
               return (
                 <LinkField key={link.path} to={link.element}>
                   {link.path}
                 </LinkField>
               );
-            }
+            },
           )}
         </Wrapper>
         <Wrapper>
-          {(t("footer.menu.about", { returnObjects: true }) as any[]).map(
+          {(t("footer.menu.about", { returnObjects: true }) as TNav[]).map(
             (link) => {
               return (
                 <LinkField key={link.path} to={link.element}>
                   {link.path}
                 </LinkField>
               );
-            }
+            },
           )}
         </Wrapper>
       </MenuWrapper>

@@ -31,7 +31,7 @@ export default function Price() {
   const shadowRef = useRef<ShadowRoot | null>(null);
   const { i18n } = useTranslation();
   const { loading, articles } = useSelector(
-    (state: RootState) => state.concierge
+    (state: RootState) => state.concierge,
   );
 
   const currContent =
@@ -52,7 +52,7 @@ export default function Price() {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@%5E2/dist/tailwind.min.css">
     ${dangrousContent}
     `;
-  }, [articles, i18n.language]);
+  }, [articles, i18n.language, prices]);
 
   return (
     <PriceContainer>

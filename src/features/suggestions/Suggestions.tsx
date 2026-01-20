@@ -94,14 +94,14 @@ export default function Suggestions() {
   const swiperRef = useRef<SwiperType | null>(null);
   const { slideCount } = useSlideCount();
   const { suggestionsBookings, suggestionsLoading, error } = useSelector(
-    (state: RootState) => state.suggestions
+    (state: RootState) => state.suggestions,
   );
   const dispatch = useDispatch<AppDispatch>();
   const isArabic = i18n.language === "ar";
 
   useEffect(() => {
     dispatch(fetchSuggestions({ queries: { limit: 12 } }));
-  }, []);
+  }, [dispatch]);
 
   return (
     <RenderOnView animationDirection="left">

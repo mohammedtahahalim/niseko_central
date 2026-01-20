@@ -128,7 +128,7 @@ export default function NisekoPassport() {
               variant="contained"
               onClick={() =>
                 navigate(
-                  "/niseko-accommodation-deals/7/experience-niseko-passport"
+                  "/niseko-accommodation-deals/7/experience-niseko-passport",
                 )
               }
               onKeyDown={onKeyDown}

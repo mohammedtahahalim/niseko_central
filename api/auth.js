@@ -35,7 +35,7 @@ export default async function handler(req, res) {
           httpOnly: true,
           secure: true,
           path: "/",
-        })
+        }),
       );
       return res.status(200).json({
         isAuthenticated: false,

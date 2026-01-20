@@ -31,7 +31,7 @@ const LinkWrapper = styled(Link)({
 
 export default function SubAuth({ dir = "v", h = 50, w = 1 }: SubAuthProps) {
   const { isAuthenticated, loading } = useSelector(
-    (state: RootState) => state.auth
+    (state: RootState) => state.auth,
   );
   const { t } = useTranslation();
   const dispatch = useDispatch<AppDispatch>();

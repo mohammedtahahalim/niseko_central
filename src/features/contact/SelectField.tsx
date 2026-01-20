@@ -31,7 +31,7 @@ export default function SelectField({ field }: SelectFieldProps) {
     (state: RootState) =>
       state.contact.formData.accommodation_data[
         field as keyof typeof state.contact.formData.accommodation_data
-      ]
+      ],
   );
   const { t } = useTranslation();
   const dispatch = useDispatch<AppDispatch>();
@@ -50,7 +50,9 @@ export default function SelectField({ field }: SelectFieldProps) {
         labelId={field}
         id={field}
         name={field}
-        renderValue={(selected: any) => {
+        renderValue={(
+          selected: string | number | boolean | number[] | null,
+        ) => {
           if (selected === 0)
             return t("contact.forms.accommodation.form_content.placeholder");
           if (selected === 10) return "10+";

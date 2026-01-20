@@ -29,15 +29,15 @@ const PropertyWrapper = styled(FormControlLabel)({
   fontSize: "0.5rem",
 });
 const Property = memo(() => {
-  const { i18n, t } = useTranslation();
+  const { t } = useTranslation();
   const { properties } = useSelector(
-    (state: RootState) => state.contact.formData.accommodation_data
+    (state: RootState) => state.contact.formData.accommodation_data,
   );
   const properties_types = useMemo(() => {
     return t("contact.forms.accommodation.form_content.properties", {
       returnObjects: true,
     });
-  }, [i18n.language]) as Property[];
+  }, [t]) as Property[];
   const propertiesSet = useMemo(() => new Set(properties), [properties]);
   const dispatch = useDispatch<AppDispatch>();
   const [all, setAll] = useState<boolean>(false);
@@ -74,26 +74,30 @@ const Property = memo(() => {
               <Checkbox
                 checked={all || propertiesSet.has(Number(elem.key))}
                 onChange={() => {
-                  propertiesSet.has(Number(elem.key))
-                    ? propertiesSet.delete(Number(elem.key))
-                    : propertiesSet.add(Number(elem.key));
+                  if (propertiesSet.has(Number(elem.key))) {
+                    propertiesSet.delete(Number(elem.key));
+                  } else {
+                    propertiesSet.add(Number(elem.key));
+                  }
                   dispatch(
                     update_field({
                       key: "properties",
                       value: [...propertiesSet],
-                    })
+                    }),
                   );
                 }}
                 onKeyDown={(e: React.KeyboardEvent) => {
                   if (e.key === "Enter") {
-                    propertiesSet.has(Number(elem.key))
-                      ? propertiesSet.delete(Number(elem.key))
-                      : propertiesSet.add(Number(elem.key));
+                    if (propertiesSet.has(Number(elem.key))) {
+                      propertiesSet.delete(Number(elem.key));
+                    } else {
+                      propertiesSet.add(Number(elem.key));
+                    }
                     dispatch(
                       update_field({
                         key: "properties",
                         value: [...propertiesSet],
-                      })
+                      }),
                     );
                   }
                 }}

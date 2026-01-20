@@ -43,10 +43,10 @@ export default function Sorters() {
   const { t } = useTranslation();
   const [isActive, setIsActive] = useState<number | null>(null);
   const { type, max_pax, property } = useSelector(
-    (state: RootState) => state.bookings.filters
+    (state: RootState) => state.bookings.filters,
   );
   const { previous_sort, sort_order } = useSelector(
-    (state: RootState) => state.bookings
+    (state: RootState) => state.bookings,
   );
   const dispatch = useDispatch<AppDispatch>();
 
@@ -86,7 +86,7 @@ export default function Sorters() {
               {sortElement.sort_value}
             </Sorter>
           );
-        }
+        },
       )}
     </SortersWrapper>
   );

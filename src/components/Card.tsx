@@ -223,9 +223,9 @@ export default function Card({
   const navigation = useCallback(
     () =>
       navigate(
-        `/niseko-accommodation/${id}/${sanitizeURL(title + "-" + type)}`
+        `/niseko-accommodation/${id}/${sanitizeURL(title + "-" + type)}`,
       ),
-    [title, type]
+    [title, type, id, navigate],
   );
 
   const onEnterKey = (e: React.KeyboardEvent) => {

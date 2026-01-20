@@ -97,7 +97,7 @@ export default function News() {
   const swiperRef = useRef<SwiperType | null>(null);
   const { slideCount, maxHeight } = useSlideAndHeightCount();
   const { news, newsLoading, error } = useSelector(
-    (state: RootState) => state.news
+    (state: RootState) => state.news,
   );
   const isArabic = i18n.language === "ar";
 

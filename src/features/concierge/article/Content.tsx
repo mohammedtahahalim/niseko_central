@@ -29,7 +29,7 @@ export default function Content() {
   const shadowRef = useRef<ShadowRoot | null>(null);
   const { i18n } = useTranslation();
   const { loading, articles } = useSelector(
-    (state: RootState) => state.concierge
+    (state: RootState) => state.concierge,
   );
 
   const currContent =
@@ -56,7 +56,7 @@ export default function Content() {
     } catch (err) {
       console.log(err);
     }
-  }, [articles, i18n.language]);
+  }, [articles, i18n.language, content]);
 
   return (
     <ContentContainer>

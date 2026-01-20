@@ -32,7 +32,7 @@ export default function Home() {
       news.abort();
       blogs.abort();
     };
-  }, []);
+  }, [dispatch]);
 
   return (
     <HomeWrapper>

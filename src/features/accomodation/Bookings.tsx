@@ -30,7 +30,7 @@ export default function Bookings() {
   const location = useLocation().search;
   const queries = Object.fromEntries(new URLSearchParams(location).entries());
   const { displayBookings, loading, shouldRedirect } = useSelector(
-    (state: RootState) => state.bookings
+    (state: RootState) => state.bookings,
   );
   const dispatch = useDispatch<AppDispatch>();
   const { skeltonCount } = useSkeltonCount();
@@ -46,13 +46,13 @@ export default function Bookings() {
     const propertyType = queries["propertyType"];
     if (propertyType && propertyType in propertyTypes) {
       dispatch(
-        setFilter({ filter: "type", value: propertyTypes[propertyType] })
+        setFilter({ filter: "type", value: propertyTypes[propertyType] }),
       );
     }
     return () => {
       bookings.abort();
     };
-  }, [location]);
+  }, [location, dispatch, queries]);
 
   if (shouldRedirect)
     return <Navigate to={"/niseko-accommodation"} replace={true} />;
