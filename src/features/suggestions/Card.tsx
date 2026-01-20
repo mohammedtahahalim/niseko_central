@@ -225,7 +225,7 @@ export default function Card({
     <CardContainer
       onClick={() =>
         navigate(
-          `/niseko-accommodation/${id}/${sanitizeURL(title + "-" + type)}`
+          `/niseko-accommodation/${id}/${sanitizeURL(title + "-" + type)}`,
         )
       }
       tabIndex={0}

@@ -12,7 +12,7 @@ import Error from "../../components/Error";
 
 export default function Auth() {
   const { loading, error, isAuthenticated, redirectTo } = useSelector(
-    (state: RootState) => state.auth
+    (state: RootState) => state.auth,
   );
   const dispatch = useDispatch<AppDispatch>();
   const { i18n } = useTranslation();
@@ -22,7 +22,7 @@ export default function Auth() {
   useEffect(() => {
     document.title = "...";
     dispatch(checkAuthentication());
-  }, []);
+  }, [dispatch]);
 
   if (loading) return <Loader />;
   if (error)

@@ -28,7 +28,7 @@ export default function useLanguage({
         cooldownRef.current = false;
       }, cooldown);
     },
-    [i18n]
+    [i18n, cooldown],
   );
 
   return { changeLanguage };

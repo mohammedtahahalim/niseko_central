@@ -27,7 +27,7 @@ export default function Default() {
       .replaceAll("ul", 'ul style="list-style-type: square !important"')
       .replace("lg:border-r", "")}
     `;
-  }, [i18n.language]);
+  }, [i18n.language, content]);
 
   return <EverythingWrapper ref={everythingRef}></EverythingWrapper>;
 }

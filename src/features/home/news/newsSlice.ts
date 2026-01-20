@@ -34,22 +34,28 @@ const cache: TCache = new Proxy(
     get(target: TCache, prop: string) {
       if (!(prop in target)) return undefined;
       clearTimeout(timeouts[prop]);
-      timeouts[prop] = setTimeout(() => {
-        delete target[prop];
-        delete timeouts[prop];
-      }, import.meta.env.VITE_CACHE_TTL * 1000 * 60);
+      timeouts[prop] = setTimeout(
+        () => {
+          delete target[prop];
+          delete timeouts[prop];
+        },
+        import.meta.env.VITE_CACHE_TTL * 1000 * 60,
+      );
       return target[prop];
     },
     set(target: TCache, key: string, val: NewsData[]) {
       clearTimeout(timeouts[key]);
       target[key] = val;
-      timeouts[key] = setTimeout(() => {
-        delete timeouts[key];
-        delete target[key];
-      }, import.meta.env.VITE_CACHE_TTL * 1000 * 60);
+      timeouts[key] = setTimeout(
+        () => {
+          delete timeouts[key];
+          delete target[key];
+        },
+        import.meta.env.VITE_CACHE_TTL * 1000 * 60,
+      );
       return true;
     },
-  }
+  },
 );
 
 export const fetchNews = createAsyncThunk<
@@ -60,9 +66,9 @@ export const fetchNews = createAsyncThunk<
   const { queries, options } = args ?? {};
   const fullQueries = new URLSearchParams(
     Object.entries(queries ?? {})
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
       .filter(([_, v]) => v !== null && v !== undefined)
-      .map(([k, v]) => [k, String(v)])
+      .map(([k, v]) => [k, String(v)]),
   ).toString();
 
   // TODO: Change the query string to sorted when large queries are involved
@@ -84,7 +90,7 @@ export const fetchNews = createAsyncThunk<
     }
     const rawData = await response.json();
     const data = (rawData.news as NewsData[]).filter(
-      (news) => newsSchema.safeParse(news).success
+      (news) => newsSchema.safeParse(news).success,
     );
     cache[fullQueries] = data;
     return data as NewsData[];
@@ -126,7 +132,7 @@ const newsSlice = createSlice({
       (state, action: PayloadAction<string | void>) => {
         state.newsLoading = false;
         state.error = action.payload ?? null;
-      }
+      },
     );
     builder.addCase(fetchNews.fulfilled, (state, action) => {
       state.newsLoading = false;

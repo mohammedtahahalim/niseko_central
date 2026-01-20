@@ -28,7 +28,7 @@ export default function Default() {
       .replace("lg:border-r", "")
       .replace(/<svg(.|\n)*\/svg>/g, "")}
     `;
-  }, [i18n.language]);
+  }, [i18n.language, content]);
 
   return <RatesWrapper ref={ratesRef}></RatesWrapper>;
 }

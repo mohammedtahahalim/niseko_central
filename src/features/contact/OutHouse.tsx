@@ -9,7 +9,7 @@ export default function OutHouse() {
   const { email, message } = useSelector((state: RootState) =>
     !state.contact.formData.general_data.in_house
       ? state.contact.formData.general_data
-      : { email: "", message: "" }
+      : { email: "", message: "" },
   );
   const dispatch = useDispatch<AppDispatch>();
   return (

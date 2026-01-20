@@ -127,7 +127,7 @@ export const submitInquiry = createAsyncThunk<
         : generalSchema.safeParse(formData.general_data);
     if (!isValidForm.success) {
       throw new Error(
-        isValidForm.error.issues.map((issue) => issue.message).join(", ")
+        isValidForm.error.issues.map((issue) => issue.message).join(", "),
       );
     }
     const fullURL: string = `${import.meta.env.VITE_API_URL}/api/inquiry`;
@@ -163,7 +163,7 @@ export const submitInquiry = createAsyncThunk<
         err.message
           .split(", ")
           .map((elem) => "- " + elem)
-          .join("\n")
+          .join("\n"),
       );
       return rejectWithValue(err.message);
     }
@@ -182,15 +182,15 @@ export const contactSlice = createSlice({
       state,
       action: PayloadAction<{
         key: string;
-        value: any;
-      }>
+        value: unknown;
+      }>,
     ) {
       const { key, value } = action.payload;
       const active_type =
         state.formData.type === "accommodation"
           ? "accommodation_data"
           : "general_data";
-      (state.formData[active_type] as Record<string, any>)[key] = value;
+      (state.formData[active_type] as Record<string, unknown>)[key] = value;
     },
   },
   extraReducers: (builder) => {
@@ -205,7 +205,7 @@ export const contactSlice = createSlice({
           state.loading = false;
           state.error = action.payload ?? "unknown";
           state.isSubmitted = false;
-        }
+        },
       )
       .addCase(submitInquiry.fulfilled, (state) => {
         state.loading = false;

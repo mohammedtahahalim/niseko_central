@@ -7,14 +7,14 @@ interface UseSlideCountReturn {
 
 export default function useSlideCount(): UseSlideCountReturn {
   const [slideCount, setSlideCount] = useState<number>(
-    swiperSlideCount(window.innerWidth)
+    swiperSlideCount(window.innerWidth),
   );
   useEffect(() => {
     window.addEventListener(
       "resize",
       debouncer(() => {
         setSlideCount(swiperSlideCount(window.innerWidth));
-      }, 100)
+      }, 100),
     );
   }, []);
 

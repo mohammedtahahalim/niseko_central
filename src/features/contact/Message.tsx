@@ -18,7 +18,7 @@ const MessageWrapper = styled(Box)({
 export default function Message() {
   const { t } = useTranslation();
   const { comments } = useSelector(
-    (state: RootState) => state.contact.formData.accommodation_data
+    (state: RootState) => state.contact.formData.accommodation_data,
   );
   const dispatch = useDispatch<AppDispatch>();
   return (

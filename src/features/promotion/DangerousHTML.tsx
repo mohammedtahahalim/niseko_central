@@ -44,7 +44,7 @@ export default function DangerousHTML() {
   const { pathname } = useLocation();
   const shadowRef = useRef<HTMLElement | null>(null);
   const { loading, promotion } = useSelector(
-    (state: RootState) => state.promotion
+    (state: RootState) => state.promotion,
   );
   const content_data = promotion[i18n.language as keyof typeof promotion];
   const content =

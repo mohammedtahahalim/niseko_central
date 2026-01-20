@@ -1,9 +1,12 @@
 import type { TLanguage } from "../features/languages/changeLanguage";
 import type { TBackendErrors } from "./Types";
 
-export const debouncer = (callback: Function, cooldown: number) => {
+export const debouncer = <T extends (...args: unknown[]) => void>(
+  callback: T,
+  cooldown: number,
+) => {
   let timer: number;
-  return (...args: any[]) => {
+  return (...args: Parameters<T>) => {
     clearTimeout(timer);
     timer = setTimeout(() => {
       callback.call(null, args);
@@ -71,12 +74,12 @@ export const convertDate = (d: Date, lang: TLanguage) => {
 
 export const swiperSlideCount = (basis: number): number => {
   if (basis < 750) return 1;
-  return Math.floor(basis / 650) + 1;
+  return Math.min(Math.floor(basis / 650) + 1, 3);
 };
 
 export const RenderAnimationStyle = (
   direction: "top" | "right" | "bottom" | "left",
-  offset: number
+  offset: number,
 ) => {
   const axis = direction === "top" || direction === "bottom" ? "y" : "x";
   const charge = direction === "top" || direction === "left" ? "+" : "-";
@@ -97,7 +100,7 @@ export const sanitizeURL = (url: string): string => {
       .toLowerCase()
       .split(/\s+/)
       .filter((elem) => elem !== "-")
-      .join("-")
+      .join("-"),
   );
   return sanitizedURL;
 };
@@ -109,7 +112,7 @@ export const niceUrl = (url: string): string => {
       word
         .split("")
         .map((a, idx) => (idx === 0 ? a.toUpperCase() : a))
-        .join("")
+        .join(""),
     )
     .join(" ");
   return decodeURIComponent(modURL);
@@ -176,7 +179,7 @@ export const format_date = (date: Date, locale: TLanguage) => {
 
 export const generate_page_count = (
   current_page: number,
-  last_page: number
+  last_page: number,
 ) => {
   const control_first_page = Math.max(1, current_page - 2);
   const control_last_page = Math.min(Math.max(current_page + 2, 5), last_page);
@@ -186,7 +189,7 @@ export const generate_page_count = (
   const pages_count = Array.from({ length }, (_, idx) =>
     control_first_page + length - 1 <= control_last_page
       ? control_first_page + idx
-      : control_last_page - length + 1 + idx
+      : control_last_page - length + 1 + idx,
   );
 
   return pages_count;

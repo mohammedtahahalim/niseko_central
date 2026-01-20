@@ -85,7 +85,7 @@ export const fetchProperty = createAsyncThunk<
     const isValid = propertySchema.safeParse(data);
     if (!isValid.success) {
       throw new Error(
-        isValid.error.issues.map((issue) => issue.message).join(", ")
+        isValid.error.issues.map((issue) => issue.message).join(", "),
       );
     }
     return data as ProperyType;
@@ -104,7 +104,7 @@ interface PropertySliceState {
   loading: boolean;
   error: string | null;
   shouldRedirect: boolean;
-  propertyData: any;
+  propertyData: ProperyType | null;
 }
 
 const initialState: PropertySliceState = {
@@ -129,7 +129,7 @@ export const propertySlice = createSlice({
         state.error = action.payload ?? "Unknown Error";
         state.loading = false;
         state.shouldRedirect = action.payload === "400";
-      }
+      },
     );
     builder.addCase(
       fetchProperty.fulfilled,
@@ -137,7 +137,7 @@ export const propertySlice = createSlice({
         state.propertyData = action.payload;
         state.loading = false;
         state.shouldRedirect = false;
-      }
+      },
     );
   },
 });

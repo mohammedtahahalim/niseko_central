@@ -32,7 +32,7 @@ const SkeltonWrapper = styled(Skeleton, {
     [theme.breakpoints.down("middle_break")]: {
       maxWidth: `calc(100% / ${skeltonNum})`,
     },
-  })
+  }),
 );
 
 export default function Skelton({

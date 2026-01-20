@@ -1,4 +1,10 @@
-import { useEffect, useRef, useState, type RefObject } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type RefObject,
+} from "react";
 import { useLocation } from "react-router-dom";
 
 interface UseModalProps {
@@ -25,20 +31,20 @@ export default function useModal<P extends HTMLElement, M extends HTMLElement>({
   const timerRef = useRef<number | undefined>(undefined);
   const pathname = useLocation().pathname;
 
-  const openModal = () => {
+  const openModal = useCallback(() => {
     timerRef.current = setTimeout(() => {
       lastActiveElement.current = document.activeElement as HTMLElement;
       setIsOpen(true);
       modalRef.current?.focus();
     }, delay);
-  };
+  }, [delay]);
 
-  const closeModal = () => {
+  const closeModal = useCallback(() => {
     timerRef.current = setTimeout(() => {
       setIsOpen(false);
       lastActiveElement.current?.focus();
     }, delay);
-  };
+  }, [delay]);
 
   const stopOutsideEvents = (e: Event | UIEvent) => {
     e.stopPropagation();
@@ -91,11 +97,11 @@ export default function useModal<P extends HTMLElement, M extends HTMLElement>({
       window.removeEventListener("resize", closeModal);
       clearTimeout(timerRef.current);
     };
-  }, [isOpen]);
+  }, [isOpen, disableScroll, openModal, closeModal]);
 
   useEffect(() => {
     closeModal();
-  }, [pathname]);
+  }, [pathname, closeModal]);
 
   return { parentRef, modalRef, isOpen, openModal, closeModal };
 }

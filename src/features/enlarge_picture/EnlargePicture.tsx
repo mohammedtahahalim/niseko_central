@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Box, styled } from "@mui/material";
 
 interface EnlargePictureProps {
-  children: React.ReactElement<any>;
+  children: React.ReactElement<React.ImgHTMLAttributes<HTMLImageElement>>;
 }
 
 const BigImageContainer = styled(Box)({
@@ -59,7 +59,7 @@ export default function EnlargePicture({ children }: EnlargePictureProps) {
   }, [isOpen]);
 
   const clonedChildren = React.cloneElement(children, {
-    onClick: (e: MouseEvent) => {
+    onClick: (e: React.MouseEvent<HTMLImageElement>) => {
       e.stopPropagation();
       setIsOpen(true);
     },

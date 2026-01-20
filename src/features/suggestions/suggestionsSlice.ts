@@ -36,7 +36,7 @@ export const fetchSuggestions = createAsyncThunk<
   const fullQueries: string = new URLSearchParams(
     Object.entries(queries)
       .filter(([_, v]) => v !== undefined && v !== null)
-      .map(([k, v]) => [k, String(v)])
+      .map(([k, v]) => [k, String(v)]),
   ).toString();
   const fullURL: string = `${
     import.meta.env.VITE_API_URL
@@ -53,7 +53,7 @@ export const fetchSuggestions = createAsyncThunk<
     const rawData = await response.json();
     const data = rawData.properties.filter(
       (property: SuggestionBookingData) =>
-        suggestionsBookingSchema.safeParse(property).success
+        suggestionsBookingSchema.safeParse(property).success,
     );
     return data as SuggestionBookingData[];
   } catch (err) {
@@ -98,7 +98,7 @@ export const suggestionSlice = createSlice({
         state.suggestionsLoading = false;
         state.error = "";
         state.suggestionsBookings = action.payload;
-      }
+      },
     );
   },
 });

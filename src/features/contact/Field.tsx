@@ -23,7 +23,7 @@ const Field = memo(({ field_type }: FieldProps) => {
     (state: RootState) =>
       state.contact.formData.accommodation_data[
         field_type as keyof typeof state.contact.formData.accommodation_data
-      ]
+      ],
   );
   const { t } = useTranslation();
   const dispatch = useDispatch<AppDispatch>();

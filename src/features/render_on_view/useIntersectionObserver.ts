@@ -16,6 +16,7 @@ export default function useIntersectionObserver<T extends HTMLElement>({
   const componentRef = useRef<T | null>(null);
 
   useEffect(() => {
+    const currentRef = componentRef.current;
     const intersectionObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -26,19 +27,19 @@ export default function useIntersectionObserver<T extends HTMLElement>({
       },
       {
         threshold,
-      }
+      },
     );
 
-    if (componentRef.current) {
-      intersectionObserver.observe(componentRef.current);
+    if (currentRef) {
+      intersectionObserver.observe(currentRef);
     }
 
     return () => {
-      if (componentRef.current) {
-        intersectionObserver.unobserve(componentRef.current);
+      if (currentRef) {
+        intersectionObserver.unobserve(currentRef);
       }
     };
-  }, []);
+  }, [threshold]);
 
   return { isVisible, componentRef };
 }

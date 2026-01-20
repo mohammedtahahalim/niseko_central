@@ -41,7 +41,7 @@ const SubSkeleton = styled(Skeleton)({
 export default function Title() {
   const { i18n } = useTranslation();
   const { loading, articles } = useSelector(
-    (state: RootState) => state.concierge
+    (state: RootState) => state.concierge,
   );
 
   const currContent =

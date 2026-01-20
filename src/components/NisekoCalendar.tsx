@@ -84,7 +84,7 @@ export default function NisekoCalendar() {
     HTMLDivElement
   >();
   const { start_date, end_date } = useSelector(
-    (state: RootState) => state.quickReservation
+    (state: RootState) => state.quickReservation,
   );
   const dispatch = useDispatch<AppDispatch>();
   const { i18n, t } = useTranslation();
@@ -112,7 +112,7 @@ export default function NisekoCalendar() {
               type="text"
               value={`${convertDate(
                 new Date(start_date),
-                i18n.language as TLanguage
+                i18n.language as TLanguage,
               )} - ${
                 end_date
                   ? convertDate(new Date(end_date), i18n.language as TLanguage)

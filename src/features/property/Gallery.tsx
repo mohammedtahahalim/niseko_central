@@ -50,9 +50,12 @@ const CustomSkelton = styled(Skeleton)({
 
 export default function Gallery() {
   const { loading, propertyData } = useSelector(
-    (state: RootState) => state.property
+    (state: RootState) => state.property,
   );
-  const { images, blurred_images } = propertyData || {};
+  const { images, blurred_images } = propertyData || {
+    images: [],
+    blurred_images: [],
+  };
 
   return (
     <RenderOnView animationDirection="top">

@@ -33,7 +33,7 @@ const getInitialTheme = (): TTheme => {
     if (localStorageTheme && ["light", "dark"].includes(localStorageTheme))
       return localStorageTheme as TTheme;
     const matchMediaTheme = window.matchMedia(
-      "(prefers-color-scheme: dark)"
+      "(prefers-color-scheme: dark)",
     ).matches;
     if (matchMediaTheme) return "dark";
     return "light";
@@ -91,10 +91,10 @@ export default function useTheme({
   const changeTheme = useCallback(
     debouncer(() => {
       setCurrentTheme((currentTheme) =>
-        currentTheme === "dark" ? "light" : "dark"
+        currentTheme === "dark" ? "light" : "dark",
       );
     }, cooldown),
-    [cooldown]
+    [cooldown],
   );
 
   return { NisekoTheme, currentTheme, changeTheme };

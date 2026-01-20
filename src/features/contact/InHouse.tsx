@@ -33,7 +33,7 @@ export default function InHouse() {
         value={emergency_phone}
         onChange={(e) =>
           dispatch(
-            update_field({ key: "emergency_phone", value: e.target.value })
+            update_field({ key: "emergency_phone", value: e.target.value }),
           )
         }
       />

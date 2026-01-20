@@ -46,11 +46,11 @@ export default function RenderOnView({
   });
   const initialPosition = useMemo(
     () => RenderAnimationStyle(animationDirection, offset)["initial"],
-    [animationDirection, offset]
+    [animationDirection, offset],
   );
   const animatePosition = useMemo(
     () => RenderAnimationStyle(animationDirection, offset)["animate"],
-    [animationDirection, offset]
+    [animationDirection, offset],
   );
   return (
     <Placeholder>

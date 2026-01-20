@@ -26,7 +26,7 @@ const fullSchema = z.object({
       ja: z.object({ title: z.string().nonempty() }),
       ar: z.object({ title: z.string().nonempty() }),
       fr: z.object({ title: z.string().nonempty() }),
-    })
+    }),
   ),
 });
 
@@ -91,13 +91,13 @@ const cache: Record<string, CombinedConcierge> = new Proxy(
     set(
       target: Record<string, CombinedConcierge>,
       key: string,
-      value: CombinedConcierge
+      value: CombinedConcierge,
     ) {
       refresh(key);
       target[key] = value;
       return true;
     },
-  }
+  },
 );
 
 interface ConciergeProps {
@@ -129,7 +129,7 @@ export const fetchConcierge = createAsyncThunk<
       Object.entries(queries ?? {})
         .filter(([_, v]) => v !== null && v !== undefined)
         .map(([k, v]) => [k, String(v)])
-        .sort(([a], [b]) => a.localeCompare(b))
+        .sort(([a], [b]) => a.localeCompare(b)),
     ).toString() || "";
   if (fullQueries in cache) {
     return { type, content: cache[fullQueries] };
@@ -152,12 +152,12 @@ export const fetchConcierge = createAsyncThunk<
     }
     if (type === "category") {
       data = raw_data.filter(
-        (elem: categoryArticle) => categorySchema.safeParse(elem).success
+        (elem: categoryArticle) => categorySchema.safeParse(elem).success,
       );
     }
     if (type === "full") {
       data = raw_data.filter(
-        (elem: fullArticle) => fullSchema.safeParse(elem).success
+        (elem: fullArticle) => fullSchema.safeParse(elem).success,
       );
     }
     cache[fullQueries] = data;
@@ -197,7 +197,7 @@ export const conciergeSlice = createSlice({
         state.loading = false;
         state.error = action.payload || "Unknown Error";
         state.shouldRedirect = action.payload === "404";
-      }
+      },
     );
     builder.addCase(
       fetchConcierge.fulfilled,
@@ -207,7 +207,7 @@ export const conciergeSlice = createSlice({
         state.error = null;
         state.articles = content;
         state.type = type;
-      }
+      },
     );
   },
 });

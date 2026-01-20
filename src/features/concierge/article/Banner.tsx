@@ -31,7 +31,7 @@ const ImageSkeleton = styled(Skeleton)({
 export default function Banner() {
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   const { loading, articles } = useSelector(
-    (state: RootState) => state.concierge
+    (state: RootState) => state.concierge,
   );
   const { image, blur_image } = (articles as idArticle) || {};
   return (

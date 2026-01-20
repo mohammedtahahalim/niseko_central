@@ -9,6 +9,11 @@ interface IsNavActive {
   isActive: boolean;
 }
 
+type TNav = {
+  path: string;
+  element: string;
+};
+
 const NavMenuWrapper = styled(Box)({
   flex: "1",
   width: "100%",
@@ -61,7 +66,7 @@ export default function NavMenu() {
   return (
     <NavMenuWrapper>
       <NavElements role="navigation">
-        {(t("header.nav_menu", { returnObjects: true }) as any[]).map(
+        {(t("header.nav_menu", { returnObjects: true }) as TNav[]).map(
           (navItem) => {
             return (
               <NavItem
@@ -73,7 +78,7 @@ export default function NavMenu() {
                 {navItem.path}
               </NavItem>
             );
-          }
+          },
         )}
       </NavElements>
       <Modal
