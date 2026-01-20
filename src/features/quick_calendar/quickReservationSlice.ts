@@ -49,7 +49,7 @@ const quickReservationSlice = createSlice({
           adults: state.adults.toString(),
           children: state.children.toString(),
           infants: state.infants.toString(),
-        })
+        }),
       );
       state.reservationUrl = `/niseko-accommodation?${queries}`;
       state.shouldRedirect = true;

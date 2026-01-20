@@ -94,7 +94,9 @@ export const newsLetterSlice = createSlice({
       state.email = action.payload;
     },
     reset: (state) => {
-      (state.firstName = ""), (state.lastName = ""), (state.email = "");
+      state.firstName = "";
+      state.lastName = "";
+      state.email = "";
     },
     resetError: (state) => {
       state.errors = null;
@@ -102,7 +104,8 @@ export const newsLetterSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(signUpToNewsLetter.pending, (state) => {
-      (state.errors = null), (state.loading = true);
+      state.loading = true;
+      state.errors = null;
     });
     builder.addCase(signUpToNewsLetter.rejected, (state, action) => {
       state.loading = false;

@@ -7,8 +7,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import { useLocation } from "react-router-dom";
 
 interface ModalProps {
-  trigger: React.ReactElement<any>;
-  children: React.ReactElement<any>;
+  trigger: React.ReactElement<Record<string, unknown>>;
+  children: React.ReactElement<Record<string, unknown>>;
   sx?: React.CSSProperties;
   fullScreenWrapper?: boolean;
   blurBackground?: boolean;
@@ -59,7 +59,7 @@ const ModalWrapper = styled(Box, {
     alignItems: "center",
     borderRadius: `${br ? 12 : 0}px`,
     border: `1px solid ${theme.palette.divider}`,
-  })
+  }),
 );
 
 const CloseModalWrapper = styled(Box)(({ theme }) => ({
@@ -91,7 +91,7 @@ export default function Modal({
 
   useEffect(() => {
     closeModal();
-  }, [queries]);
+  }, [queries, closeModal]);
 
   useEffect(() => {
     if (!isOpen || !modalRef.current) return;
@@ -107,7 +107,7 @@ export default function Modal({
 
     const modal = modalRef.current;
     const focusable = Array.from(
-      modal.querySelectorAll(focusableSelectors)
+      modal.querySelectorAll(focusableSelectors),
     ) as HTMLElement[];
 
     if (focusable.length === 0) return;
@@ -133,7 +133,7 @@ export default function Modal({
     first.focus();
 
     return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen, closeModal]);
+  }, [isOpen, closeModal, modalRef]);
 
   const clonedTrigger = React.cloneElement(trigger, {
     ref: (node: HTMLElement) => {
@@ -193,7 +193,7 @@ export default function Modal({
             </ModalMotion>
           )}
         </AnimatePresence>,
-        document.body
+        document.body,
       )}
     </>
   );

@@ -26,7 +26,7 @@ const SkeletonImage = styled(Skeleton)({
 export default function Banner() {
   const [loaded, setLoaded] = useState<boolean>(false);
   const { loading, promotion } = useSelector(
-    (state: RootState) => state.promotion
+    (state: RootState) => state.promotion,
   );
   const { image, blur_image } = promotion;
   return (

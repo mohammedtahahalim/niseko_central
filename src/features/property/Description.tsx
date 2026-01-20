@@ -127,7 +127,8 @@ export default function Description() {
     useSelector((state: RootState) => state.property) || {};
   const { translations } = propertyData || {};
   const { i18n } = useTranslation();
-  const { description, amenities } = translations?.[i18n.language] || {};
+  const { description, amenities } =
+    translations?.[i18n.language as keyof typeof translations] || {};
   const amenities_keys = translations?.["en"].amenities;
   return (
     <RenderOnView animationDirection="right" animationSpeed={1.75}>
@@ -159,7 +160,8 @@ export default function Description() {
               return (
                 <InfoPiece key={amenity}>
                   <SvgContainer>
-                    {amenities_icons[amenities_keys[idx]]}
+                    {amenities_keys?.[idx] &&
+                      amenities_icons[amenities_keys[idx]]}
                   </SvgContainer>
                   <InfoText variant="subtitle1" tabIndex={0}>
                     {amenity}

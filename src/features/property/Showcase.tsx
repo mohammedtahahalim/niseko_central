@@ -9,8 +9,6 @@ import type { Swiper as SwiperType } from "swiper";
 import SwiperCore from "swiper";
 import { Controller } from "swiper/modules";
 
-SwiperCore.use([Controller]);
-
 const ShowcaseWrapper = styled(Box)({
   width: "100vw",
   height: "100vh",
@@ -135,9 +133,10 @@ const SliderImage = styled("img")({
 });
 
 export default function Showcase() {
+  SwiperCore.use([Controller]);
   const { images } = useSelector(
-    (state: RootState) => state.property.propertyData
-  );
+    (state: RootState) => state.property.propertyData,
+  ) || { images: [] };
   const mainSwiperRef = useRef<SwiperType | null>(null);
   const thumbSwiperRef = useRef<SwiperType | null>(null);
 

@@ -52,7 +52,8 @@ export default function Bookings() {
     return () => {
       bookings.abort();
     };
-  }, [location, dispatch, queries]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location, dispatch]);
 
   if (shouldRedirect)
     return <Navigate to={"/niseko-accommodation"} replace={true} />;

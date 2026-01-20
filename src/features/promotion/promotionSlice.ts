@@ -44,7 +44,7 @@ export const fetchPromotion = createAsyncThunk<
     const fullQueries: string = new URLSearchParams(
       Object.entries(queries ?? {})
         .filter(([_, v]) => v !== undefined && v !== null)
-        .map(([k, v]) => [k, String(v)])
+        .map(([k, v]) => [k, String(v)]),
     ).toString();
     const fullOptions: RequestInit = {
       signal,
@@ -61,7 +61,7 @@ export const fetchPromotion = createAsyncThunk<
     const isValidData = promotionSchema.safeParse(raw_data.promotion);
     if (!isValidData.success) {
       throw new Error(
-        isValidData.error.issues.map((i) => i.message).join("\n")
+        isValidData.error.issues.map((i) => i.message).join("\n"),
       );
     }
     return raw_data.promotion as Promotion;
@@ -115,7 +115,7 @@ const promotionSlice = createSlice({
           state.loading = false;
           state.error = action.payload ?? "Unknown Error";
           state.shouldRedirect = action.payload === "400";
-        }
+        },
       )
       .addCase(
         fetchPromotion.fulfilled,
@@ -123,7 +123,7 @@ const promotionSlice = createSlice({
           state.loading = false;
           state.error = null;
           state.promotion = action.payload;
-        }
+        },
       ),
 });
 

@@ -100,7 +100,7 @@ const SkeltonButton = styled(Skeleton)(({ theme }) => ({
 export default function MainTitle() {
   const { t, i18n } = useTranslation();
   const { loading, propertyData } = useSelector(
-    (state: RootState) => state.property
+    (state: RootState) => state.property,
   );
   const { translations } = propertyData || {};
 
@@ -118,11 +118,22 @@ export default function MainTitle() {
             <Content>
               <Info>
                 <Title variant="h6" tabIndex={0}>
-                  {translations[i18n.language].type}{" "}
-                  <span>{translations[i18n.language].title}</span>
+                  {
+                    translations[i18n.language as keyof typeof translations]
+                      .type
+                  }{" "}
+                  <span>
+                    {
+                      translations[i18n.language as keyof typeof translations]
+                        .title
+                    }
+                  </span>
                 </Title>
                 <Map variant="body1">
-                  {translations[i18n.language].location}{" "}
+                  {
+                    translations[i18n.language as keyof typeof translations]
+                      .location
+                  }{" "}
                 </Map>
               </Info>
               <Book

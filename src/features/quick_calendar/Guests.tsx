@@ -39,7 +39,7 @@ const StyledTextField = styled(TextField)({
 export default function Guests() {
   const { t } = useTranslation();
   const { adults, children, infants } = useSelector(
-    (state: RootState) => state.quickReservation
+    (state: RootState) => state.quickReservation,
   );
   const dispatch = useDispatch<AppDispatch>();
   return (

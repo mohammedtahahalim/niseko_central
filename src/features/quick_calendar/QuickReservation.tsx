@@ -47,7 +47,7 @@ const CalendarWrapper = styled(Box)({
 export default function QuickReservation() {
   const { t } = useTranslation();
   const { reservationUrl, shouldRedirect } = useSelector(
-    (state: RootState) => state.quickReservation
+    (state: RootState) => state.quickReservation,
   );
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
@@ -56,7 +56,7 @@ export default function QuickReservation() {
       dispatch(resetSubmission());
       navigate(reservationUrl);
     }
-  }, [reservationUrl]);
+  }, [reservationUrl, dispatch, navigate, shouldRedirect]);
   return (
     <QuickReservationWrapper aria-modal={true}>
       <Title variant="h6" color="textColor">

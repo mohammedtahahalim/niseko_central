@@ -20,7 +20,7 @@ const NewsLetterWrapper = styled(Box)({
 
 export default function NewsLetter() {
   const { errors, hasRegistered, loading } = useSelector(
-    (state: RootState) => state.newsLetter
+    (state: RootState) => state.newsLetter,
   );
   const dispatch = useDispatch<AppDispatch>();
   const timerRef = useRef<number | null>(null);
@@ -34,7 +34,7 @@ export default function NewsLetter() {
         clearTimeout(timerRef.current);
       }
     };
-  }, [errors]);
+  }, [errors, dispatch]);
 
   if (loading) return <Loader />;
 

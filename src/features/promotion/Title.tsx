@@ -40,7 +40,7 @@ const SkeletonTitle = styled(Skeleton)({
 export default function Title() {
   const { t, i18n } = useTranslation();
   const { loading, promotion } = useSelector(
-    (state: RootState) => state.promotion
+    (state: RootState) => state.promotion,
   );
 
   const promotionData = promotion[i18n.language as keyof typeof promotion];

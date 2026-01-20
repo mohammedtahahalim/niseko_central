@@ -42,7 +42,7 @@ const Subscribe = styled(Button)({
 export default function Form() {
   const { t } = useTranslation();
   const { firstName, lastName, email } = useSelector(
-    (state: RootState) => state.newsLetter
+    (state: RootState) => state.newsLetter,
   );
   const dispatch = useDispatch<AppDispatch>();
 

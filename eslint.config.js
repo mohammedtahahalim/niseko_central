@@ -29,6 +29,7 @@ export default defineConfig([
           caughtErrorsIgnorePattern: "^_",
         },
       ],
+      "react-hooks/exhaustive-deps": "off",
     },
   },
 ]);
