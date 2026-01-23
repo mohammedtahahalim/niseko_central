@@ -94,7 +94,7 @@ export default function UnsafeContent() {
           ref={shadowRef}
           tabIndex={0}
           role="article"
-          aria-description="This content is externally sourced from niseko central and rendered as is."
+          aria-description="This content is externally sourced from Booking Nest and rendered as is."
         />
       )}
     </DangerousHTMLWrapper>

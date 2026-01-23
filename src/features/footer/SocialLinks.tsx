@@ -1,6 +1,4 @@
 import { Box, styled, Typography } from "@mui/material";
-import { useContext } from "react";
-import { UIContext } from "../../context/MiniContext";
 import { useTranslation } from "react-i18next";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import FacebookIcon from "@mui/icons-material/Facebook";
@@ -59,20 +57,15 @@ const Link = styled("a")(({ theme }) => ({
 }));
 
 export default function SocialLinks() {
-  const { currentTheme } = useContext(UIContext);
   const { t } = useTranslation();
   return (
     <SocialLinksWrapper>
       <Logos>
         <NisekoLogo tabIndex={0}>
           <img
-            src={
-              currentTheme === "light"
-                ? "/img/niseko_logo_light.webp"
-                : "/img/niseko_logo_dark.webp"
-            }
+            src={"/img/logo.png"}
             alt=""
-            style={{ width: "90%", objectFit: "contain" }}
+            style={{ width: "90%", objectFit: "contain", scale: 1.5 }}
           />
         </NisekoLogo>
         <AntaLogo tabIndex={0}>

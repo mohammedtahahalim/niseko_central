@@ -100,7 +100,7 @@ export default function NisekoPassport() {
             onMouseLeave={() => setIsImageHover(false)}
           >
             <img
-              src="https://d1z517741srsht.cloudfront.net/general/_1536xAUTO_crop_center-center_none/344571/1115_Nisekopassport_winter2019TVscreen3LRCropRT.webp"
+              src="https://i0.wp.com/thekeystotravel.com/wp-content/uploads/2019/09/Passport-and-Plane-Window.jpg?fit=1000%2C667&ssl=1"
               alt="Passport Image"
               style={{
                 width: "100%",
