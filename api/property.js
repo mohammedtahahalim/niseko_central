@@ -48,7 +48,7 @@ export default async function handler(req, res) {
       if (!isValid.success) {
         throw new Error(
           "Property Does not correspong valid format : ",
-          isValid.error.issues.map((issue) => issue.message).join(", ")
+          isValid.error.issues.map((issue) => issue.message).join(", "),
         );
       }
       const titles = [];
