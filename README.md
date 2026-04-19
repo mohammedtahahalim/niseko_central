@@ -4,7 +4,7 @@ This repository contains a full-stack recreation of the Booking Nest accommodati
 
 The application is a **non-commercial, demonstration-only clone** intended solely to showcase proficiency in modern web technologies.
 
-**Live Demo**: [https://niseko-central.vercel.app/](https://niseko-central.vercel.app/) (hosted on Vercel)
+**Live Demo**: [https://niseko-central.vercel.app/](https://niseko-central-taha.vercel.app/) (hosted on Vercel)
 
 ## Important Disclaimer
 
