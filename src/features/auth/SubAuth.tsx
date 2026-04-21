@@ -1,10 +1,8 @@
 import { Box, styled } from "@mui/material";
 import { Link } from "react-router-dom";
 import LineSeparator from "../../components/LineSeparator";
-import { useDispatch, useSelector } from "react-redux";
-import type { AppDispatch, RootState } from "../../app/store";
-import { useEffect } from "react";
-import { checkAuthentication } from "./authSlice";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../app/store";
 import { LinearProgress } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
@@ -30,16 +28,12 @@ const LinkWrapper = styled(Link)({
 });
 
 export default function SubAuth({ dir = "v", h = 50, w = 1 }: SubAuthProps) {
-  const { isAuthenticated, loading } = useSelector(
+  const { isAuthenticated, status } = useSelector(
     (state: RootState) => state.auth,
   );
   const { t } = useTranslation();
-  const dispatch = useDispatch<AppDispatch>();
-  useEffect(() => {
-    if (isAuthenticated === null) {
-      dispatch(checkAuthentication());
-    }
-  }, [isAuthenticated, dispatch]);
+  const loading = status === "loading";
+
   return (
     <SubAuthWrapper>
       {loading && (

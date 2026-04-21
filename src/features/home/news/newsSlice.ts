@@ -74,7 +74,6 @@ export const fetchNews = createAsyncThunk<
   // TODO: Change the query string to sorted when large queries are involved
   if (fullQueries in cache) return cache[fullQueries];
 
-  // Cache Miss ...
   const fullURL: string = `${import.meta.env.VITE_API_URL}/api/promotion${
     fullQueries ? "?" + fullQueries : ""
   }`;

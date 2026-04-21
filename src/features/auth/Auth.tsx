@@ -11,7 +11,7 @@ import Loader from "../../components/Loader";
 import Error from "../../components/Error";
 
 export default function Auth() {
-  const { loading, error, isAuthenticated, redirectTo } = useSelector(
+  const { status, error, isAuthenticated, redirectTo } = useSelector(
     (state: RootState) => state.auth,
   );
   const dispatch = useDispatch<AppDispatch>();
@@ -19,12 +19,18 @@ export default function Auth() {
   const lang = i18n.language in backendErrors ? i18n.language : "en-US";
   const errorMessage = backendErrors[lang][error as THTTPCodes];
 
+  console.log("Here");
+
   useEffect(() => {
-    document.title = "...";
-    dispatch(checkAuthentication());
+    if (status !== "idle") return;
+    const authRequest = dispatch(checkAuthentication());
+    return () => {
+      authRequest.abort();
+    };
   }, [dispatch]);
 
-  if (loading) return <Loader />;
+  if (status === "loading" || status === "idle") return <Loader />;
+
   if (error)
     return (
       <Error errorMessage={errorMessage}>
@@ -32,6 +38,8 @@ export default function Auth() {
       </Error>
     );
   if (redirectTo) return <Navigate to={redirectTo} replace />;
+
   if (!isAuthenticated) return <Loader />;
+
   return <Outlet />;
 }

@@ -14,7 +14,7 @@ export default async function handler(req, res) {
   try {
     // Parsing token from cookies
     const cookies = parse(req.headers.cookie || "");
-    const token = cookies.token;
+    const { token } = cookies;
     if (!token) {
       return res.status(200).json({
         isAuthenticated: false,
